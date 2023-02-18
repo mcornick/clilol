@@ -64,7 +64,5 @@ func init() {
 		}
 	}
 	rootCmd.PersistentFlags().BoolVarP(&silent, "silent", "s", false, "be silent")
-	cobra.CheckErr(viper.BindPFlag("apikey", rootCmd.PersistentFlags().Lookup("apikey")))
 	cobra.CheckErr(viper.BindPFlag("silent", rootCmd.PersistentFlags().Lookup("silent")))
-	cobra.CheckErr(viper.BindPFlag("username", rootCmd.PersistentFlags().Lookup("username")))
 }
