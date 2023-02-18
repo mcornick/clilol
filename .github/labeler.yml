@@ -1,0 +1,13 @@
+---
+cmd:
+  - - cmd/*.go
+deps:
+  - - go.mod
+docs:
+  - - docs/*
+    - mkdocs*yml
+tooling:
+  - - .github/**/*
+    - .goreleaser.yaml
+    - .pre-commit-config.yaml
+    - scripts/*
