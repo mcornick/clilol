@@ -16,16 +16,13 @@ clilol status post [status text] [flags]
 ### Options
 
 ```
-  -e, --emoji string   Emoji to add to status
-  -h, --help           help for post
+  -h, --help   help for post
 ```
 
 ### Options inherited from parent commands
 
 ```
-  -k, --apikey string     API key
-  -s, --silent            be silent
-  -U, --username string   Username
+  -s, --silent   be silent
 ```
 
 ### SEE ALSO

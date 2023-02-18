@@ -12,10 +12,8 @@ Because it seemed like a good idea at the time.
 ### Options
 
 ```
-  -k, --apikey string     API key
-  -h, --help              help for clilol
-  -s, --silent            be silent
-  -U, --username string   Username
+  -h, --help     help for clilol
+  -s, --silent   be silent
 ```
 
 ### SEE ALSO

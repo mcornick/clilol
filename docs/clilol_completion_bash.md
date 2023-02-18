@@ -43,9 +43,7 @@ clilol completion bash
 ### Options inherited from parent commands
 
 ```
-  -k, --apikey string     API key
-  -s, --silent            be silent
-  -U, --username string   Username
+  -s, --silent   be silent
 ```
 
 ### SEE ALSO

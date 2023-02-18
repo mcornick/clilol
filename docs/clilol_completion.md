@@ -20,9 +20,7 @@ See each sub-command's help for details on how to use the generated script.
 ### Options inherited from parent commands
 
 ```
-  -k, --apikey string     API key
-  -s, --silent            be silent
-  -U, --username string   Username
+  -s, --silent   be silent
 ```
 
 ### SEE ALSO
