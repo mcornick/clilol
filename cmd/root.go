@@ -31,11 +31,12 @@ import (
 	"github.com/spf13/viper"
 )
 
+const endpoint = "https://api.omg.lol"
+
 var (
-	silent   bool
-	endpoint = "https://api.omg.lol"
-	version  = "dev"
-	rootCmd  = &cobra.Command{
+	silent  bool
+	version = "dev"
+	rootCmd = &cobra.Command{
 		Version: version,
 		Use:     "clilol",
 		Short:   "A cli for omg.lol",
