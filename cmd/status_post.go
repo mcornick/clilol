@@ -59,8 +59,7 @@ type StatusPostResponse struct {
 }
 
 var (
-	emoji    string
-	response StatusPostResponse
+	statusPostEmoji string
 
 	postCmd = &cobra.Command{
 		Use:   "post [status text]",
@@ -68,7 +67,8 @@ var (
 		Long:  "Posts a status to status.lol. Quote the status if it contains spaces.",
 		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			status := Status{emoji, strings.Join(args, " ")}
+			var response StatusPostResponse
+			status := Status{statusPostEmoji, strings.Join(args, " ")}
 			jsonBody, err := json.Marshal(status)
 			cobra.CheckErr(err)
 			bodyReader := bytes.NewReader(jsonBody)
@@ -98,6 +98,6 @@ var (
 )
 
 func init() {
-	postCmd.Flags().StringVarP(&emoji, "emoji", "e", "", "Emoji to add to status")
+	postCmd.Flags().StringVarP(&statusPostEmoji, "emoji", "e", "", "Emoji to add to status")
 	statusCmd.AddCommand(postCmd)
 }
