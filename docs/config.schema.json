@@ -1,0 +1,31 @@
+{
+  "$id": "https://mcornick.com/mpg/config.schema.json",
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "additionalProperties": false,
+  "description": "mpg configuration file",
+  "properties": {
+    "digit": {
+      "default": true,
+      "description": "include digits in the password",
+      "type": "boolean"
+    },
+    "length": {
+      "default": 16,
+      "description": "length of password",
+      "minimum": 1,
+      "type": "integer"
+    },
+    "lower": {
+      "default": true,
+      "description": "include lowercase in the password",
+      "type": "boolean"
+    },
+    "upper": {
+      "default": true,
+      "description": "include uppercase in the password",
+      "type": "boolean"
+    }
+  },
+  "title": "mpg config",
+  "type": "object"
+}

@@ -26,6 +26,8 @@ package cmd
 
 import (
 	"fmt"
+	"path/filepath"
+	"strings"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/cobra/doc"
@@ -34,9 +36,18 @@ import (
 var markdownDocCmd = &cobra.Command{
 	Use:   "markdown-doc",
 	Short: "Generate markdown docs",
-	Long:  fmt.Sprintln("Generates markdown docs for clilol in the current directory."),
+	Long:  fmt.Sprintln("Generates markdown docs for clilol in the docs directory."),
 	Run: func(cmd *cobra.Command, args []string) {
-		cobra.CheckErr(doc.GenMarkdownTree(rootCmd, "."))
+		// cobra.CheckErr(doc.GenMarkdownTree(rootCmd, "."))
+		filePrepender := func(filename string) string {
+			slug := strings.Replace(filepath.Base(filename), ".md", "", 1)
+			title := strings.Replace(slug, "_", " ", -1)
+			return fmt.Sprintf("---\ntitle: \"%s\"\n---\n", title)
+		}
+		linkHandler := func(name string) string {
+			return name
+		}
+		_ = doc.GenMarkdownTreeCustom(rootCmd, "docs", filePrepender, linkHandler)
 	},
 }
 

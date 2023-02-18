@@ -1,0 +1,40 @@
+---
+copyright: Copyright &copy; 2023 Mark Cornick
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/mcornick/clilol
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+plugins:
+  - git-revision-date-localized
+  - social
+repo_name: mcornick/clilol
+repo_url: https://github.com/mcornick/clilol
+site_author: Mark Cornick
+site_description: a CLI for omg.lol (work in progress)
+site_name: clilol, a CLI for omg.lol
+site_url: https://mcornick.com/clilol/
+theme:
+  features:
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+  icon:
+    logo: fontawesome/solid/heart
+    repo: fontawesome/brands/github
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode

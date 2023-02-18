@@ -1,0 +1,23 @@
+---
+jobs:
+  deploy:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: pip install mkdocs-material mkdocs-git-revision-date-localized-plugin pillow cairosvg
+      - run: mkdocs gh-deploy --force
+name: mkdocs
+"on":
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
