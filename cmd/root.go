@@ -32,9 +32,7 @@ import (
 )
 
 var (
-	apikey   string
 	silent   bool
-	username string
 	endpoint = "https://api.omg.lol"
 	version  = "dev"
 	rootCmd  = &cobra.Command{
@@ -64,9 +62,7 @@ func init() {
 			cobra.CheckErr(err)
 		}
 	}
-	rootCmd.PersistentFlags().StringVarP(&apikey, "apikey", "k", "", "API key")
 	rootCmd.PersistentFlags().BoolVarP(&silent, "silent", "s", false, "be silent")
-	rootCmd.PersistentFlags().StringVarP(&username, "username", "U", "", "Username")
 	cobra.CheckErr(viper.BindPFlag("apikey", rootCmd.PersistentFlags().Lookup("apikey")))
 	cobra.CheckErr(viper.BindPFlag("silent", rootCmd.PersistentFlags().Lookup("silent")))
 	cobra.CheckErr(viper.BindPFlag("username", rootCmd.PersistentFlags().Lookup("username")))
