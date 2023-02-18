@@ -1,4 +1,7 @@
 *.1
 .cache
 clilol
+completions
+dist
+manpages
 site

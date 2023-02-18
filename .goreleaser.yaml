@@ -1,0 +1,78 @@
+---
+announce:
+  mastodon:
+    enabled: true
+    server: https://social.lol
+archives:
+  - builds_info:
+      group: root
+      owner: root
+    files:
+      - README.md
+      - LICENSE
+      - completions/*
+      - manpages/*.1
+    format_overrides:
+      - format: zip
+        goos: windows
+    rlcp: true
+before:
+  hooks:
+    - go mod tidy
+    - ./scripts/completions.sh
+    - ./scripts/manpages.sh
+brews:
+  - description: A CLI for omg.lol
+    homepage: https://mcornick.com/clilol
+    install: |-
+      bin.install "clilol"
+      bash_completion.install "completions/clilol.bash" => "clilol"
+      zsh_completion.install "completions/clilol.zsh" => "_clilol"
+      fish_completion.install "completions/clilol.fish"
+      man1.install "manpages/*.1"
+    license: MIT
+    tap:
+      name: homebrew-tap
+      owner: mcornick
+builds:
+  - env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w -X github.com/mcornick/clilol/cmd.version={{.Version}}
+    mod_timestamp: "{{ .CommitTimestamp }}"
+    targets:
+      - go_first_class
+changelog:
+  filters:
+    exclude:
+      - "^test:"
+      - "^chore:"
+      - "^docs:"
+      - merge conflict
+      - Merge pull request
+      - Merge remote-tracking branch
+      - Merge branch
+      - go mod tidy
+  sort: asc
+  use: github
+checksum:
+  name_template: checksums.txt
+gomod:
+  proxy: true
+milestones:
+  - close: true
+scoop:
+  bucket:
+    name: scoop-bucket
+    owner: mcornick
+  description: A CLI for omg.lol
+  homepage: https://mcornick.com/clilol
+  license: MIT
+signs:
+  - artifacts: checksum
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+universal_binaries:
+  - replace: true

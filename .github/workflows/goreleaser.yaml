@@ -1,0 +1,43 @@
+---
+jobs:
+  goreleaser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - run: git fetch --force --tags
+      - uses: actions/setup-go@v3
+        with:
+          cache: true
+          go-version: ">=1.19.5"
+      - id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+      - env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        run: echo "$GPG_PRIVATE_KEY" > /home/runner/gpgkey.asc && chmod 600 /home/runner/gpgkey.asc
+        shell: bash
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          MASTODON_CLIENT_ID: ${{ secrets.MASTODON_CLIENT_ID }}
+          MASTODON_CLIENT_SECRET: ${{ secrets.MASTODON_CLIENT_SECRET }}
+        uses: goreleaser/goreleaser-action@v4
+        with:
+          args: release --clean
+          version: latest
+      - run: rm /home/runner/gpgkey.asc
+        shell: bash
+name: goreleaser
+"on":
+  push:
+    tags:
+      - "*"
+permissions:
+  contents: write
+  id-token: write
+  issues: write
+  packages: write
