@@ -17,7 +17,7 @@ jobs:
 name: mkdocs
 "on":
   push:
-    branches:
-      - main
+    tags:
+      - "*"
 permissions:
   contents: write
