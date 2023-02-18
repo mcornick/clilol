@@ -33,30 +33,8 @@ import (
 	"github.com/spf13/viper"
 )
 
-type Status struct {
-	Emoji   string `json:"emoji"`
-	Content string `json:"content"`
-}
-
-type StatusPostResponseStatus struct {
-	StatusCode int  `json:"status_code"`
-	Success    bool `json:"success"`
-}
-
-type StatusPostResponseResponse struct {
-	Message     string `json:"message"`
-	ID          string `json:"id"`
-	Status      string `json:"status"`
-	URL         string `json:"url"`
-	ExternalURL string `json:"external_url"`
-}
-type StatusPostResponse struct {
-	Request  StatusPostResponseStatus   `json:"request"`
-	Response StatusPostResponseResponse `json:"response"`
-}
-
 var (
-	statusPostEmoji string
+	Emoji string
 
 	postCmd = &cobra.Command{
 		Use:   "post [status text]",
@@ -64,8 +42,28 @@ var (
 		Long:  "Posts a status to status.lol. Quote the status if it contains spaces.",
 		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			var result StatusPostResponse
-			status := Status{statusPostEmoji, strings.Join(args, " ")}
+			type Input struct {
+				Emoji   string `json:"emoji"`
+				Content string `json:"content"`
+			}
+
+			type Result struct {
+				Request struct {
+					StatusCode int  `json:"status_code"`
+					Success    bool `json:"success"`
+				} `json:"request"`
+				Response struct {
+					Message     string `json:"message"`
+					ID          string `json:"id"`
+					Status      string `json:"status"`
+					URL         string `json:"url"`
+					ExternalURL string `json:"external_url"`
+				} `json:"response"`
+			}
+
+			var result Result
+
+			status := Input{Emoji, strings.Join(args, " ")}
 			callAPI(
 				http.MethodPost,
 				"/address/"+viper.GetString("username")+"/statuses/", status,
@@ -83,6 +81,6 @@ var (
 )
 
 func init() {
-	postCmd.Flags().StringVarP(&statusPostEmoji, "emoji", "e", "", "Emoji to add to status")
+	postCmd.Flags().StringVarP(&Emoji, "emoji", "e", "", "Emoji to add to status")
 	statusCmd.AddCommand(postCmd)
 }
