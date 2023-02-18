@@ -25,10 +25,7 @@
 package cmd
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 	"strings"
 
@@ -67,30 +64,18 @@ var (
 		Long:  "Posts a status to status.lol. Quote the status if it contains spaces.",
 		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			var response StatusPostResponse
+			var result StatusPostResponse
 			status := Status{statusPostEmoji, strings.Join(args, " ")}
-			jsonBody, err := json.Marshal(status)
-			cobra.CheckErr(err)
-			bodyReader := bytes.NewReader(jsonBody)
-			req, err := http.NewRequest(http.MethodPost,
-				endpoint+"/address/"+viper.GetString("username")+"/statuses/",
-				bodyReader,
+			callAPI(
+				http.MethodPost,
+				"/address/"+viper.GetString("username")+"/statuses/", status,
+				&result,
 			)
-			cobra.CheckErr(err)
-			req.Header.Add("Authorization", "Bearer "+viper.GetString("apikey"))
-			req.Header.Add("User-Agent", "clilol (https://github.com/mcornick/clilol)")
-			resp, err := http.DefaultClient.Do(req)
-			cobra.CheckErr(err)
-			defer resp.Body.Close()
-			body, err := io.ReadAll(resp.Body)
-			cobra.CheckErr(err)
-			err = json.Unmarshal(body, &response)
-			cobra.CheckErr(err)
 			if !silent {
-				if response.Request.Success {
-					cmd.Println(response.Response.URL)
+				if result.Request.Success {
+					cmd.Println(result.Response.URL)
 				} else {
-					cobra.CheckErr(fmt.Errorf(response.Response.Message))
+					cobra.CheckErr(fmt.Errorf(result.Response.Message))
 				}
 			}
 		},
