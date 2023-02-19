@@ -38,7 +38,6 @@ var markdownDocCmd = &cobra.Command{
 	Short: "Generate markdown docs",
 	Long:  fmt.Sprintln("Generates markdown docs for clilol in the docs directory."),
 	Run: func(cmd *cobra.Command, args []string) {
-		// cobra.CheckErr(doc.GenMarkdownTree(rootCmd, "."))
 		filePrepender := func(filename string) string {
 			slug := strings.Replace(filepath.Base(filename), ".md", "", 1)
 			title := strings.Replace(slug, "_", " ", -1)
