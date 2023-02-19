@@ -34,7 +34,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func callAPI(method string, path string, params interface{}, result interface{}) {
+func callAPI(cmd *cobra.Command, method string, path string, params interface{}) []byte {
 	jsonBody, err := json.Marshal(params)
 	cobra.CheckErr(err)
 	bodyReader := bytes.NewReader(jsonBody)
@@ -48,6 +48,5 @@ func callAPI(method string, path string, params interface{}, result interface{})
 	defer response.Body.Close()
 	body, err := io.ReadAll(response.Body)
 	cobra.CheckErr(err)
-	err = json.Unmarshal(body, &result)
-	cobra.CheckErr(err)
+	return body
 }

@@ -34,9 +34,10 @@ import (
 const endpoint = "https://api.omg.lol"
 
 var (
-	silent  bool
-	version = "dev"
-	rootCmd = &cobra.Command{
+	silent   bool
+	wantJson bool
+	version  = "dev"
+	rootCmd  = &cobra.Command{
 		Version: version,
 		Use:     "clilol",
 		Short:   "A cli for omg.lol",
@@ -64,5 +65,7 @@ func init() {
 		}
 	}
 	rootCmd.PersistentFlags().BoolVarP(&silent, "silent", "s", false, "be silent")
+	rootCmd.PersistentFlags().BoolVarP(&wantJson, "json", "j", false, "output json")
 	cobra.CheckErr(viper.BindPFlag("silent", rootCmd.PersistentFlags().Lookup("silent")))
+	cobra.CheckErr(viper.BindPFlag("json", rootCmd.PersistentFlags().Lookup("json")))
 }

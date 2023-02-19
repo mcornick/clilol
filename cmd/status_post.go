@@ -25,6 +25,7 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"strings"
@@ -42,7 +43,6 @@ var postCmd = &cobra.Command{
 		type Input struct {
 			Status string `json:"status"`
 		}
-
 		type Result struct {
 			Request struct {
 				StatusCode int  `json:"status_code"`
@@ -56,22 +56,28 @@ var postCmd = &cobra.Command{
 				ExternalURL string `json:"external_url"`
 			} `json:"response"`
 		}
-
 		var result Result
-
 		status := Input{strings.Join(args, " ")}
-		callAPI(
+		body := callAPI(
+			cmd,
 			http.MethodPost,
-			"/address/"+viper.GetString("username")+"/statuses/", status,
-			&result,
+			"/address/"+viper.GetString("username")+"/statuses/",
+			status,
 		)
+		err := json.Unmarshal(body, &result)
+		cobra.CheckErr(err)
 		if !silent {
-			if result.Request.Success {
-				cmd.Println(result.Response.URL)
+			if !wantJson {
+				if result.Request.Success {
+					cmd.Println(result.Response.Message)
+				} else {
+					cobra.CheckErr(fmt.Errorf(result.Response.Message))
+				}
 			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
+				cmd.Println(string(body))
 			}
 		}
+
 	},
 }
 
