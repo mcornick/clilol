@@ -34,15 +34,17 @@ import (
 	"github.com/spf13/viper"
 )
 
-func callAPI(cmd *cobra.Command, method string, path string, params interface{}) []byte {
+func callAPI(cmd *cobra.Command, method string, path string, params interface{}, auth bool) []byte {
 	jsonBody, err := json.Marshal(params)
 	cobra.CheckErr(err)
 	bodyReader := bytes.NewReader(jsonBody)
 	request, err := http.NewRequest(method, endpoint+path, bodyReader)
 	cobra.CheckErr(err)
 	request.Header.Set("User-Agent", "clilol (https://github.com/mcornick/clilol)")
-	request.Header.Set("Authorization", "Bearer "+viper.GetString("apikey"))
 	request.Header.Set("Content-Type", "application/json")
+	if auth {
+		request.Header.Set("Authorization", "Bearer "+viper.GetString("apikey"))
+	}
 	response, err := http.DefaultClient.Do(request)
 	cobra.CheckErr(err)
 	defer response.Body.Close()

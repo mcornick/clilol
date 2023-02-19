@@ -63,6 +63,7 @@ var postCmd = &cobra.Command{
 			http.MethodPost,
 			"/address/"+viper.GetString("username")+"/statuses/",
 			status,
+			true,
 		)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
