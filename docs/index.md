@@ -90,14 +90,14 @@ clilol expects a configuration file to specify your username and API key.
 
     You can find your API key on [your omg.lol account page](https://home.omg.lol/account).
 
- The configuration file should be named either `config.yaml`, `config.toml` or `config.json` depending on which format you prefer, and should located in one of these directories:
+ The configuration file should be named either `config.yaml`, `config.toml` or `config.json` depending on which format you prefer, and should be located in one of these directories:
 
 - `$HOME/Library/Application Support/clilol` (macOS)
 - `$XDG_CONFIG_HOME/clilol` (Unix)
 - `/etc/clilol` (macOS or Unix)
 - `%AppData%\clilol` (Windows)
 
-The files should look like this, substituting your own username and API key:
+The file should look like one of these, substituting your own username and API key:
 
 === "config.yaml"
 
