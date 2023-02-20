@@ -21,13 +21,17 @@ jobs:
         run: echo "$GPG_PRIVATE_KEY" > /home/runner/gpgkey.asc && chmod 600 /home/runner/gpgkey.asc
         shell: bash
       - env:
+          AUR_KEY: ${{ secrets.GH_PATH }}
+          FURY_TOKEN: ${{ secrets.FURY_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GORELEASER_KEY: ${{ secrets.GORELEASER_KEY }}
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
           MASTODON_CLIENT_ID: ${{ secrets.MASTODON_CLIENT_ID }}
           MASTODON_CLIENT_SECRET: ${{ secrets.MASTODON_CLIENT_SECRET }}
         uses: goreleaser/goreleaser-action@v4
         with:
           args: release --clean
+          distribution: goreleaser-pro
           version: latest
       - run: rm /home/runner/gpgkey.asc
         shell: bash

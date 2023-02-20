@@ -16,6 +16,25 @@ archives:
       - format: zip
         goos: windows
     rlcp: true
+aurs:
+  - description: "A CLI for omg.lol"
+    git_url: 'ssh://git@github.com/mcornick/clilol-aur.git'
+    homepage: "https://mcornick.com/clilol/"
+    license: "MIT"
+    maintainers:
+      - 'Mark Cornick <mcornick@mcornick.com>'
+    name: clilol-bin
+    package: |-
+      install -Dm755 "./clilol" "${pkgdir}/usr/bin/clilol"
+      install -Dm644 "./LICENSE" "${pkgdir}/usr/share/licenses/clilol/LICENSE"
+      mkdir -p "${pkgdir}/usr/share/bash-completion/completions/"
+      mkdir -p "${pkgdir}/usr/share/zsh/site-functions/"
+      mkdir -p "${pkgdir}/usr/share/fish/vendor_completions.d/"
+      install -Dm644 "./completions/clilol.bash" "${pkgdir}/usr/share/bash-completion/completions/clilol"
+      install -Dm644 "./completions/clilol.zsh" "${pkgdir}/usr/share/zsh/site-functions/_clilol"
+      install -Dm644 "./completions/clilol.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/clilol.fish"
+      install -Dm644 "./manpages/*.1" "${pkgdir}/usr/share/man/man1/*.1"
+    private_key: '{{ .Env.AUR_KEY }}'
 before:
   hooks:
     - go mod tidy
@@ -59,10 +78,46 @@ changelog:
   use: github
 checksum:
   name_template: checksums.txt
+furies:
+  - account: mcornick
 gomod:
   proxy: true
 milestones:
   - close: true
+nfpms:
+  - archlinux:
+      packager: Mark Cornick <mcornick@mcornick.com>
+    contents:
+      - dst: /usr/share/bash-completion/completions/clilol
+        file_info:
+          mode: 0644
+        src: ./completions/clilol.bash
+      - dst: /usr/share/fish/vendor_completions.d/clilol.fish
+        file_info:
+          mode: 0644
+        src: ./completions/clilol.fish
+      - dst: /usr/share/zsh/vendor-completions/_clilol
+        file_info:
+          mode: 0644
+        src: ./completions/clilol.zsh
+      - dst: /usr/share/man/man1/
+        file_info:
+          mode: 0644
+        src: ./manpages/*.1
+      - dst: /usr/share/doc/clilol/copyright
+        file_info:
+          mode: 0644
+        src: ./LICENSE
+    description: A CLI for omg.lol
+    formats:
+      - apk
+      - archlinux
+      - deb
+      - rpm
+    homepage: https://github.com/mcornick/clilol
+    license: MIT
+    maintainer: Mark Cornick <mcornick@mcornick.com>
+    vendor: Mark Cornick
 scoop:
   bucket:
     name: scoop-bucket
@@ -76,3 +131,4 @@ snapshot:
   name_template: "{{ incpatch .Version }}-next"
 universal_binaries:
   - replace: true
+# yaml-language-server: $schema=https://goreleaser.com/static/schema-pro.json
