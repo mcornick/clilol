@@ -86,11 +86,7 @@ See the statuslog commands to get statuses for all users.`,
 							result.Response.Statuses = result.Response.Statuses[:getLimit]
 						}
 						for _, status := range result.Response.Statuses {
-							cmd.Printf(
-								"\nhttps://api.omg.lol/address/%s/statuses/%s\n",
-								status.Address,
-								status.Id,
-							)
+							cmd.Printf("\nhttps://status.lol/%s/%s\n", status.Address, status.Id)
 							timestamp, err := strconv.Atoi(status.Created)
 							cobra.CheckErr(err)
 							cmd.Printf("  %s\n", time.Unix(int64(timestamp), 0))
