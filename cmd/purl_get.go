@@ -18,9 +18,8 @@ import (
 )
 
 var (
-	purlGetUsername string
-	purlGetName     string
-	purlGetCmd      = &cobra.Command{
+	purlGetName string
+	purlGetCmd  = &cobra.Command{
 		Use:   "get",
 		Short: "get a PURL",
 		Long: `Gets a PURL by name.
@@ -48,7 +47,7 @@ it defaults to your own username.`,
 			var result Result
 			body := callAPI(
 				http.MethodGet,
-				"/address/"+purlGetUsername+"/purl/"+purlGetName,
+				"/address/"+username+"/purl/"+purlGetName,
 				nil,
 				true,
 			)
@@ -76,7 +75,7 @@ it defaults to your own username.`,
 
 func init() {
 	purlGetCmd.Flags().StringVarP(
-		&purlGetUsername,
+		&username,
 		"username",
 		"u",
 		viper.GetString("username"),

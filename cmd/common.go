@@ -18,6 +18,8 @@ import (
 	"github.com/spf13/viper"
 )
 
+var username string
+
 func callAPI(method string, path string, params interface{}, auth bool) []byte {
 	jsonBody, err := json.Marshal(params)
 	cobra.CheckErr(err)

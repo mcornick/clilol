@@ -20,9 +20,8 @@ import (
 )
 
 var (
-	statusGetUsername string
-	statusGetLimit    int
-	statusGetCmd      = &cobra.Command{
+	statusGetLimit int
+	statusGetCmd   = &cobra.Command{
 		Use:   "get",
 		Short: "get status",
 		Long: `Gets status(es) for a single user from status.lol.
@@ -55,7 +54,7 @@ See the statuslog commands to get statuses for all users.`,
 			var result Result
 			body := callAPI(
 				http.MethodGet,
-				"/address/"+statusGetUsername+"/statuses/",
+				"/address/"+username+"/statuses/",
 				nil,
 				false,
 			)
@@ -83,14 +82,13 @@ See the statuslog commands to get statuses for all users.`,
 					fmt.Println(string(body))
 				}
 			}
-
 		},
 	}
 )
 
 func init() {
 	statusGetCmd.Flags().StringVarP(
-		&statusGetUsername,
+		&username,
 		"username",
 		"u",
 		viper.GetString("username"),

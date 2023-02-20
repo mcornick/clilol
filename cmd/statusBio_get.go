@@ -17,60 +17,56 @@ import (
 	"github.com/spf13/viper"
 )
 
-var (
-	bioGetUsername string
-	bioGetCmd      = &cobra.Command{
-		Use:   "get",
-		Short: "get status bio",
-		Long: `Gets status bio for a user from status.lol.
+var bioGetCmd = &cobra.Command{
+	Use:   "get",
+	Short: "get status bio",
+	Long: `Gets status bio for a user from status.lol.
 
 The username can be specified with the --username flag. If not set,
 it defaults to your own username.
 
 Note that any custom CSS set on the bio is ignored.
 `,
-		Args: cobra.NoArgs,
-		Run: func(cmd *cobra.Command, args []string) {
-			type Result struct {
-				Request struct {
-					StatusCode int  `json:"status_code"`
-					Success    bool `json:"success"`
-				} `json:"request"`
-				Response struct {
-					Message string `json:"message"`
-					Bio     string `json:"bio"`
-					Css     string `json:"css"`
-				} `json:"response"`
-			}
-			var result Result
-			body := callAPI(
-				http.MethodGet,
-				"/address/"+bioGetUsername+"/statuses/bio/",
-				nil,
-				false,
-			)
-			err := json.Unmarshal(body, &result)
-			cobra.CheckErr(err)
-			if !silent {
-				if !wantJson {
-					if result.Request.Success {
-						fmt.Println(result.Response.Message)
-						fmt.Printf("\n%s\n", result.Response.Bio)
-					} else {
-						cobra.CheckErr(fmt.Errorf(result.Response.Message))
-					}
+	Args: cobra.NoArgs,
+	Run: func(cmd *cobra.Command, args []string) {
+		type Result struct {
+			Request struct {
+				StatusCode int  `json:"status_code"`
+				Success    bool `json:"success"`
+			} `json:"request"`
+			Response struct {
+				Message string `json:"message"`
+				Bio     string `json:"bio"`
+				Css     string `json:"css"`
+			} `json:"response"`
+		}
+		var result Result
+		body := callAPI(
+			http.MethodGet,
+			"/address/"+username+"/statuses/bio/",
+			nil,
+			false,
+		)
+		err := json.Unmarshal(body, &result)
+		cobra.CheckErr(err)
+		if !silent {
+			if !wantJson {
+				if result.Request.Success {
+					fmt.Println(result.Response.Message)
+					fmt.Printf("\n%s\n", result.Response.Bio)
 				} else {
-					fmt.Println(string(body))
+					cobra.CheckErr(fmt.Errorf(result.Response.Message))
 				}
+			} else {
+				fmt.Println(string(body))
 			}
-
-		},
-	}
-)
+		}
+	},
+}
 
 func init() {
 	bioGetCmd.Flags().StringVarP(
-		&bioGetUsername,
+		&username,
 		"username",
 		"u",
 		viper.GetString("username"),

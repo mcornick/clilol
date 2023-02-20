@@ -76,7 +76,6 @@ external URL will be used.`,
 					fmt.Println(string(body))
 				}
 			}
-
 		},
 	}
 )

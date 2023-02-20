@@ -70,7 +70,6 @@ See the status commands to get statuses for a single user.`,
 					fmt.Println(string(body))
 				}
 			}
-
 		},
 	}
 )
