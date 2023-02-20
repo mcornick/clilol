@@ -123,7 +123,7 @@ The files should look like this, substituting your own username and API key:
 
 ## Environment Variables
 
-Configuration is also possible using environment variables. For example, these environment variables would replicate the default configuration of clilol:
+Configuration is also possible using environment variables:
 
 ```sh
 export CLILOL_USERNAME="tomservo"
