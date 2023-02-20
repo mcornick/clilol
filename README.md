@@ -8,4 +8,4 @@ Please see the full documentation in the `docs` directory, also available at htt
 
 clilol is under heavy development as I add support for more services. If something looks broken, I'm probably working on fixing it; if I don't get around to it, please let me know by filing an issue.
 
-clilol is available as open source under the terms of the MIT License.
+clilol is available as open source under the terms of the MPL-2.0 License.

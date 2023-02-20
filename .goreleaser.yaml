@@ -20,7 +20,7 @@ aurs:
   - description: "A CLI for omg.lol"
     git_url: 'ssh://git@github.com/mcornick/clilol-aur.git'
     homepage: "https://mcornick.com/clilol/"
-    license: "MIT"
+    license: "MPL-2.0"
     maintainers:
       - 'Mark Cornick <mcornick@mcornick.com>'
     name: clilol-bin
@@ -49,7 +49,7 @@ brews:
       zsh_completion.install "completions/clilol.zsh" => "_clilol"
       fish_completion.install "completions/clilol.fish"
       man1.install Dir["manpages/*.1"]
-    license: MIT
+    license: MPL-2.0
     tap:
       name: homebrew-tap
       owner: mcornick
@@ -115,7 +115,7 @@ nfpms:
       - deb
       - rpm
     homepage: https://github.com/mcornick/clilol
-    license: MIT
+    license: MPL-2.0
     maintainer: Mark Cornick <mcornick@mcornick.com>
     vendor: Mark Cornick
 scoop:
@@ -124,7 +124,7 @@ scoop:
     owner: mcornick
   description: A CLI for omg.lol
   homepage: https://mcornick.com/clilol
-  license: MIT
+  license: MPL-2.0
 signs:
   - artifacts: checksum
 snapshot:

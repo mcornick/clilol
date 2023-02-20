@@ -8,7 +8,7 @@ When filing a pull request, please explain what you're changing and why. Please 
 
 clilol uses [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-angular/blob/master/convention.md) style. Please follow this convention. Scopes are not required in commit messages.
 
-clilol uses the MIT license. Please indicate your acceptance of the MIT license by using [git commit --signoff](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s).
+clilol uses the [MPL-2.0 license](https://www.mozilla.org/en-US/MPL/2.0/). Please indicate your acceptance of the MPL-2.0 license by using [git commit --signoff](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s).
 
 clilol is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
