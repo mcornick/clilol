@@ -79,12 +79,14 @@ See the statuslog commands to get statuses for all users.`,
 			)
 			err := json.Unmarshal(body, &result)
 			cobra.CheckErr(err)
+			if getLimit > 0 {
+				result.Response.Statuses = result.Response.Statuses[:getLimit]
+				body, err = json.MarshalIndent(result, "", "    ")
+				cobra.CheckErr(err)
+			}
 			if !silent {
 				if !wantJson {
 					if result.Request.Success {
-						if getLimit > 0 {
-							result.Response.Statuses = result.Response.Statuses[:getLimit]
-						}
 						for _, status := range result.Response.Statuses {
 							cmd.Printf("\nhttps://status.lol/%s/%s\n", status.Address, status.Id)
 							timestamp, err := strconv.Atoi(status.Created)
