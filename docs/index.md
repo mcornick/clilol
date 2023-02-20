@@ -9,6 +9,12 @@ Please see the links in the navigation menu to the left to learn about all the d
 
 ## Installation
 
+You can install clilol in any of these ways.
+
+!!! Note
+
+    These are the only supported builds of omglol. I don't submit them to "official" repositories, at least not yet. If you find a problem with anyone else's build, please try my builds instead.
+
 === "Homebrew"
 
     I maintain a [Homebrew](https://brew.sh/) tap.
@@ -36,10 +42,6 @@ Please see the links in the navigation menu to the left to learn about all the d
 
     RPM packages are also available from my Gemfury repository.
 
-    !!! Note
-
-        I do not, and do not intend to, submit clilol to any distribution's official repositories.
-
     ```
     # /etc/yum.repos.d/mcornick.repo
     [fury]
@@ -53,10 +55,6 @@ Please see the links in the navigation menu to the left to learn about all the d
 
     DEB packages are also available from my Gemfury repository.
 
-    !!! Note
-
-        I do not, and do not intend to, submit clilol to any distribution's official repositories.
-
     ```
     # /etc/apt/sources.list.d/mcornick.list
     deb [trusted=yes] https://apt.fury.io/mcornick/ /
@@ -65,10 +63,6 @@ Please see the links in the navigation menu to the left to learn about all the d
 === "Arch User Repository"
 
     I maintain an [AUR](https://wiki.archlinux.org/title/Arch_User_Repository) for clilol.
-
-    !!! Note
-
-        I do not, and do not intend to, submit clilol to Arch Linux's official AUR.
 
     ```
     git clone https://github.com/mcornick/clilol-aur.git
