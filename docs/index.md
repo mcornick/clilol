@@ -1,61 +1,155 @@
 ---
 title: Home
 ---
-This is a project to create a CLI for the various fun services offered by [omg.lol](https://omg.lol/).
+__clilol__ is a CLI for the various fun services offered by [omg.lol](https://omg.lol/). At present, it supports the statuslog features (aka [status.lol/](https://status.lol/)), with support for more omg.lol services on the way.
 
 Please see the links in the navigation menu to the left to learn about all the different commands provided by clilol.
 
-## You've Got Questions, I've Got Answers
+## Installation
 
-I'd be lying if I said they were frequently asked, but it is what it is.
+=== "Homebrew"
 
-This section will be rewritten and improved in the future.
+    I maintain a [Homebrew](https://brew.sh/) tap.
 
-### What do I need to run clilol?
+    ```bash
+    brew install mcornick/tap/clilol
+    ```
 
-Other than a computer for which I've built binaries (see next question) or one where you're comfortable building from source, you'll need an [omg.lol](https://omg.lol) account, and the API key for your omg.lol account, which you can find [here](https://home.omg.lol/account).
+=== "Scoop"
 
-### How do I install clilol?
+    I maintain a [Scoop](https://scoop.sh/) bucket.
 
-Binaries are built for macOS, Linux, and Windows and available from [GitHub](https://github.com/mcornick/clilol). You can also get packages from my [Homebrew tap](https://github.com/mcornick/homebrew-tap) or [Scoop bucket](https://github.com/mcornick/scoop-bucket). I intend to provide Linux packages (RPM, DEB, etc.) in the future. You should be able to build from source on other systems. While I don't support those, feel free to file a GitHub issue if something breaks, and I'll try to help.
+    ```powershell
+    scoop bucket add mcornick https://github.com/mcornick/scoop-bucket.git
+    scoop install clilol
+    ```
 
-### Where do I put that API key?
+=== "Binaries and Linux packages"
 
-Create a file `config.yaml` that looks like this:
+    I maintain binary releases on GitHub [here](https://github.com/mcornick/clilol/releases). Releases are built for macOS (universal), Linux (i386, amd64, arm64, and armv6) and Windows (i386, amd64). Linux packages are built in RPM, DEB, APK, and Arch Linux pkg.tar.zst formats.
 
-```yaml
-username: tomservo
-apikey: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-```
+    Binary checksums included on the release pages are signed with my [GPG key](https://github.com/mcornick.gpg).
 
-Fill in the X's with the API key you found above, and use your own username, of course.
+=== "YUM Repository"
 
-Then make one of these directories, depending on what operating system you use:
+    RPM packages are also available from my Gemfury repository.
+
+    !!! Note
+
+        I do not, and do not intend to, submit clilol to any distribution's official repositories.
+
+    ```
+    # /etc/yum.repos.d/mcornick.repo
+    [fury]
+    name=mcornick yum repo
+    baseurl=https://yum.fury.io/mcornick/
+    enabled=1
+    gpgcheck=0
+    ```
+
+=== "APT Repository"
+
+    DEB packages are also available from my Gemfury repository.
+
+    !!! Note
+
+        I do not, and do not intend to, submit clilol to any distribution's official repositories.
+
+    ```
+    # /etc/apt/sources.list.d/mcornick.list
+    deb [trusted=yes] https://apt.fury.io/mcornick/ /
+    ```
+
+=== "Arch User Repository"
+
+    I maintain an [AUR](https://wiki.archlinux.org/title/Arch_User_Repository) for clilol.
+
+    !!! Note
+
+        I do not, and do not intend to, submit clilol to Arch Linux's official AUR.
+
+    ```
+    git clone https://github.com/mcornick/clilol-aur.git
+    cd clilol-aur
+    makepkg -i
+    ```
+
+=== "From source"
+
+    The usual: `go install github.com/mcornick/clilol@latest`
+
+    While I do not build or test for platforms other than the ones listed under the Binaries tab, clilol _should_ still work on any platform supported by Go, and if you find that it does not, feel free to file a GitHub issue and I'll take a look.
+
+## Configuration File
+
+clilol expects a configuration file to specify your username and API key.
+
+!!! Note
+
+    You can find your API key on [your omg.lol account page](https://home.omg.lol/account).
+
+ The configuration file should be named either `config.yaml`, `config.toml` or `config.json` depending on which format you prefer, and should located in one of these directories:
 
 - `$HOME/Library/Application Support/clilol` (macOS)
-- `$XDG_CONFIG_HOME/clilol` (Linux/Unix)
+- `$XDG_CONFIG_HOME/clilol` (Unix)
+- `/etc/clilol` (macOS or Unix)
 - `%AppData%\clilol` (Windows)
 
-Finally, put the `config.yaml` file in that directory you just created.
+The files should look like this, substituting your own username and API key:
 
-If you prefer not to keep this information on disk, on macOS and Linux/Unix systems you can set the `CLILOL_USERNAME` and `CLILOL_APIKEY` environment variables. I have no idea if this works on Windows or if there is a Windows compatible alternative.
+=== "config.yaml"
 
-Now you should be ready to lol.
+    ```yaml
+    ---
+    username: tomservo
+    apikey: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    ```
 
-### How do I specify emoji when posting a status?
+=== "config.toml"
 
-Use the `--emoji` option:
+    ```toml
+    username = "tomservo"
+    apikey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    ```
 
+=== "config.json"
+
+    ```json
+    {
+      "username": "tomservo",
+      "apikey": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    }
+    ```
+
+## Environment Variables
+
+Configuration is also possible using environment variables. For example, these environment variables would replicate the default configuration of clilol:
+
+```sh
+export CLILOL_USERNAME="tomservo"
+export CLILOL_APIKEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 ```
-clilol status post --emoji '🇫🇷' 'Ooh la la, ah oui oui!'
-```
 
-You will need to type in the actual emoji, not a :emoji: style code. If you don't specify an emoji, the default is sparkles (✨)
+Environment variables take precedence over any configuration file.
 
-### How do you pronounce clilol?
+## Contributing to clilol
 
-I pronounce it "see ell eye lol." "See ell eye ell oh ell" works too.
+If you think you have a problem, improvement, or other contribution towards the betterment of clilol, please file an issue or, where appropriate, a pull request.
 
-### Is this an official/supported omg.lol product?
+Keep in mind that I'm not paid to write Go code, so I'm doing this in my spare time, which means it might take me a while to respond.
 
-No. I am only a happy customer, not otherwise affiliated with Neatnik/omg.lol. So don't bug them if you find a problem. Bug me by opening a GitHub issue.
+When filing a pull request, please explain what you're changing and why. Please use standard Go formatting (`go fmt` is your friend.) Please limit your changes to the specific thing you're fixing and isolate your changes in a topic branch that I can merge without pulling in other stuff.
+
+clilol uses [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-angular/blob/master/convention.md) style. Please follow this convention. Scopes are not required in commit messages.
+
+clilol uses the MIT license. Please indicate your acceptance of the MIT license by using [git commit --signoff](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s).
+
+clilol is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+Thanks for contributing!
+
+## Etcetera
+
+clilol releases are announced on a [Mastodon account](https://social.lol/@mcornick) which you are welcome to follow.
+
+To verify signatures on commits to clilol, you might need [my GPG public key](https://github.com/mcornick.gpg).
