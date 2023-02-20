@@ -12,7 +12,8 @@ jobs:
           python-version: 3.x
       - env:
           GH_PAT: ${{ secrets.GH_PAT }}
-        run: pip install mkdocs-material mkdocs-git-revision-date-localized-plugin pillow cairosvg
+        run: pip install git+https://${GH_PAT}@github.com/squidfunk/mkdocs-material-insiders.git
+      - run: pip install mkdocs-git-revision-date-localized-plugin pillow cairosvg
       - run: mkdocs gh-deploy --force
 name: mkdocs
 "on":
