@@ -94,7 +94,7 @@ func init() {
 		"emoji",
 		"e",
 		"",
-		"Emoji to add to status",
+		"Emoji to add to status (default sparkles)",
 	)
 	postCmd.Flags().StringVarP(
 		&postExternalURL,
