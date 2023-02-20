@@ -89,7 +89,19 @@ var (
 )
 
 func init() {
-	postCmd.Flags().StringVarP(&postEmoji, "emoji", "e", "", "Emoji to add to status")
-	postCmd.Flags().StringVarP(&postExternalURL, "external-url", "u", "", "External URL to add to status")
+	postCmd.Flags().StringVarP(
+		&postEmoji,
+		"emoji",
+		"e",
+		"",
+		"Emoji to add to status",
+	)
+	postCmd.Flags().StringVarP(
+		&postExternalURL,
+		"external-url",
+		"u",
+		"",
+		"External URL to add to status",
+	)
 	statusCmd.AddCommand(postCmd)
 }
