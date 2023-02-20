@@ -36,10 +36,15 @@ import (
 
 var (
 	bioUpdateCmd = &cobra.Command{
-		Use:   "update [status text]",
-		Short: "Update your status bio",
-		Long:  "Updates your bio on status.lol. Quote the bio if it contains spaces.",
-		Args:  cobra.MinimumNArgs(1),
+		Use:   "update [bio text]",
+		Short: "update your status bio",
+		Long: `Updates your status bio on status.lol.
+		
+Quote the bio if it contains spaces.
+
+Note that the omg.lol API does not permit you to change any custom
+CSS. You'll need to do that on the website.`,
+		Args: cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			type Input struct {
 				Content string `json:"content"`

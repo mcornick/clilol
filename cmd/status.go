@@ -30,8 +30,8 @@ import (
 
 var statusCmd = &cobra.Command{
 	Use:   "status",
-	Short: "Manipulate status",
-	Long:  "Do status things",
+	Short: "do things with statuses",
+	Long:  `The status group of commands allows you to get, post, and update statuses.`,
 }
 
 func init() {

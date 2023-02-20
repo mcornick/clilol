@@ -3,11 +3,17 @@ title: "clilol status-bio get"
 ---
 ## clilol status-bio get
 
-Get status bio
+get status bio
 
 ### Synopsis
 
-Gets a user's status bio from status.lol.
+Gets status bio for a user from status.lol.
+
+The username can be specified with the --username flag. If not set,
+it defaults to your own username.
+
+Note that any custom CSS set on the bio is ignored.
+
 
 ```
 clilol status-bio get [flags]
@@ -29,5 +35,5 @@ clilol status-bio get [flags]
 
 ### SEE ALSO
 
-* [clilol status-bio](clilol_status-bio.md)	 - Manipulate status bio
+* [clilol status-bio](clilol_status-bio.md)	 - do things with status bios
 

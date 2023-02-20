@@ -26,7 +26,7 @@ See each sub-command's help for details on how to use the generated script.
 
 ### SEE ALSO
 
-* [clilol](clilol.md)	 - A cli for omg.lol
+* [clilol](clilol.md)	 - a cli for omg.lol
 * [clilol completion bash](clilol_completion_bash.md)	 - Generate the autocompletion script for bash
 * [clilol completion fish](clilol_completion_fish.md)	 - Generate the autocompletion script for fish
 * [clilol completion powershell](clilol_completion_powershell.md)	 - Generate the autocompletion script for powershell

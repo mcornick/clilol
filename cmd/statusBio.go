@@ -30,8 +30,8 @@ import (
 
 var statusBioCmd = &cobra.Command{
 	Use:   "status-bio",
-	Short: "Manipulate status bio",
-	Long:  "Do status bio things",
+	Short: "do things with status bios",
+	Long:  `The status-bio group of commands allows you to get and update status bios.`,
 }
 
 func init() {

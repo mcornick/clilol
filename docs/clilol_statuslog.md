@@ -3,11 +3,11 @@ title: "clilol statuslog"
 ---
 ## clilol statuslog
 
-View the status log
+view the status log
 
 ### Synopsis
 
-View the status log
+The statuslog group of commands allows you to view the status log.
 
 ### Options
 
@@ -24,6 +24,6 @@ View the status log
 
 ### SEE ALSO
 
-* [clilol](clilol.md)	 - A cli for omg.lol
-* [clilol statuslog get](clilol_statuslog_get.md)	 - Get status
+* [clilol](clilol.md)	 - a cli for omg.lol
+* [clilol statuslog get](clilol_statuslog_get.md)	 - get the statuslog
 

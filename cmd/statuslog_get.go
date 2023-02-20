@@ -36,9 +36,14 @@ var (
 	logGetAll bool
 	logGetCmd = &cobra.Command{
 		Use:   "get",
-		Short: "Get status",
-		Long:  "Gets status(es) from status.lol.",
-		Args:  cobra.NoArgs,
+		Short: "get the statuslog",
+		Long: `Gets status(es) for all status.lol users.
+
+By default, only the most recent status for each user is returned.
+To see all statuses ever posted, use the --all flag.
+
+See the status commands to get statuses for a single user.`,
+		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
 			type Result struct {
 				Request struct {

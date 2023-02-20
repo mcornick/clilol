@@ -3,11 +3,11 @@ title: "clilol status-bio"
 ---
 ## clilol status-bio
 
-Manipulate status bio
+do things with status bios
 
 ### Synopsis
 
-Do status bio things
+The status-bio group of commands allows you to get and update status bios.
 
 ### Options
 
@@ -24,7 +24,7 @@ Do status bio things
 
 ### SEE ALSO
 
-* [clilol](clilol.md)	 - A cli for omg.lol
-* [clilol status-bio get](clilol_status-bio_get.md)	 - Get status bio
-* [clilol status-bio update](clilol_status-bio_update.md)	 - Update your status bio
+* [clilol](clilol.md)	 - a cli for omg.lol
+* [clilol status-bio get](clilol_status-bio_get.md)	 - get status bio
+* [clilol status-bio update](clilol_status-bio_update.md)	 - update your status bio
 

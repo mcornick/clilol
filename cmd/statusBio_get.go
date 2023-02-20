@@ -37,9 +37,15 @@ var (
 	bioGetUsername string
 	bioGetCmd      = &cobra.Command{
 		Use:   "get",
-		Short: "Get status bio",
-		Long:  "Gets a user's status bio from status.lol.",
-		Args:  cobra.NoArgs,
+		Short: "get status bio",
+		Long: `Gets status bio for a user from status.lol.
+
+The username can be specified with the --username flag. If not set,
+it defaults to your own username.
+
+Note that any custom CSS set on the bio is ignored.
+`,
+		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
 			type Result struct {
 				Request struct {

@@ -3,11 +3,20 @@ title: "clilol status post"
 ---
 ## clilol status post
 
-Post a status
+post a status
 
 ### Synopsis
 
-Posts a status to status.lol. Quote the status if it contains spaces.
+Posts a status to status.lol.
+
+Quote the status text if it contains spaces.
+
+You can specify an emoji with the --emoji flag. If not set, the
+sparkles emoji will be used.
+
+You can specify an external URL with the --external-url flag. This
+will be shown as a "Respond" link on the statuslog. If not set, no
+external URL will be used.
 
 ```
 clilol status post [status text] [flags]
@@ -30,5 +39,5 @@ clilol status post [status text] [flags]
 
 ### SEE ALSO
 
-* [clilol status](clilol_status.md)	 - Manipulate status
+* [clilol status](clilol_status.md)	 - do things with statuses
 

@@ -30,8 +30,8 @@ import (
 
 var statuslogCmd = &cobra.Command{
 	Use:   "statuslog",
-	Short: "View the status log",
-	Long:  "View the status log",
+	Short: "view the status log",
+	Long:  `The statuslog group of commands allows you to view the status log.`,
 }
 
 func init() {

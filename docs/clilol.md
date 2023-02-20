@@ -3,11 +3,12 @@ title: "clilol"
 ---
 ## clilol
 
-A cli for omg.lol
+a cli for omg.lol
 
 ### Synopsis
 
-Because it seemed like a good idea at the time.
+This is the root command. It does nothing on its own.
+See the subcommands for more information.
 
 ### Options
 
@@ -22,7 +23,7 @@ Because it seemed like a good idea at the time.
 * [clilol completion](clilol_completion.md)	 - Generate the autocompletion script for the specified shell
 * [clilol man](clilol_man.md)	 - Generate man pages
 * [clilol markdown-doc](clilol_markdown-doc.md)	 - Generate markdown docs
-* [clilol status](clilol_status.md)	 - Manipulate status
-* [clilol status-bio](clilol_status-bio.md)	 - Manipulate status bio
-* [clilol statuslog](clilol_statuslog.md)	 - View the status log
+* [clilol status](clilol_status.md)	 - do things with statuses
+* [clilol status-bio](clilol_status-bio.md)	 - do things with status bios
+* [clilol statuslog](clilol_statuslog.md)	 - view the status log
 

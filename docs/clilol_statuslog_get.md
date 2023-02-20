@@ -3,11 +3,16 @@ title: "clilol statuslog get"
 ---
 ## clilol statuslog get
 
-Get status
+get the statuslog
 
 ### Synopsis
 
-Gets status(es) from status.lol.
+Gets status(es) for all status.lol users.
+
+By default, only the most recent status for each user is returned.
+To see all statuses ever posted, use the --all flag.
+
+See the status commands to get statuses for a single user.
 
 ```
 clilol statuslog get [flags]
@@ -29,5 +34,5 @@ clilol statuslog get [flags]
 
 ### SEE ALSO
 
-* [clilol statuslog](clilol_statuslog.md)	 - View the status log
+* [clilol statuslog](clilol_statuslog.md)	 - view the status log
 

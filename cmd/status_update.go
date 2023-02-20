@@ -39,9 +39,17 @@ var (
 	updateID    string
 	updateCmd   = &cobra.Command{
 		Use:   "update [status text]",
-		Short: "Update a status",
-		Long:  "Updates a status on status.lol. Quote the status if it contains spaces.",
-		Args:  cobra.MinimumNArgs(1),
+		Short: "update a status",
+		Long: `Updates a status on status.lol.
+Specify the ID of the status to update with the --id flag. The
+status can be found as the last element of the status URL.
+
+Quote the status text if it contains spaces.
+
+You can specify an emoji with the --emoji flag. If not set, the
+sparkles emoji will be used. Note that the omg.lol API does not
+preserve the existing emoji if you don't specify one.`,
+		Args: cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			type Input struct {
 				Id      string `json:"id"`

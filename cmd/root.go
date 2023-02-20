@@ -40,8 +40,9 @@ var (
 	rootCmd  = &cobra.Command{
 		Version: version,
 		Use:     "clilol",
-		Short:   "A cli for omg.lol",
-		Long:    "Because it seemed like a good idea at the time.",
+		Short:   "a cli for omg.lol",
+		Long: `This is the root command. It does nothing on its own.
+See the subcommands for more information.`,
 	}
 )
 

@@ -29,5 +29,5 @@ clilol man [flags]
 
 ### SEE ALSO
 
-* [clilol](clilol.md)	 - A cli for omg.lol
+* [clilol](clilol.md)	 - a cli for omg.lol
 

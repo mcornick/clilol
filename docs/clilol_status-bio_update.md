@@ -3,14 +3,19 @@ title: "clilol status-bio update"
 ---
 ## clilol status-bio update
 
-Update your status bio
+update your status bio
 
 ### Synopsis
 
-Updates your bio on status.lol. Quote the bio if it contains spaces.
+Updates your status bio on status.lol.
+		
+Quote the bio if it contains spaces.
+
+Note that the omg.lol API does not permit you to change any custom
+CSS. You'll need to do that on the website.
 
 ```
-clilol status-bio update [status text] [flags]
+clilol status-bio update [bio text] [flags]
 ```
 
 ### Options
@@ -28,5 +33,5 @@ clilol status-bio update [status text] [flags]
 
 ### SEE ALSO
 
-* [clilol status-bio](clilol_status-bio.md)	 - Manipulate status bio
+* [clilol status-bio](clilol_status-bio.md)	 - do things with status bios
 
