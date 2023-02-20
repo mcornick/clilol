@@ -68,4 +68,5 @@ func init() {
 	rootCmd.PersistentFlags().BoolVarP(&wantJson, "json", "j", false, "output json")
 	cobra.CheckErr(viper.BindPFlag("silent", rootCmd.PersistentFlags().Lookup("silent")))
 	cobra.CheckErr(viper.BindPFlag("json", rootCmd.PersistentFlags().Lookup("json")))
+	rootCmd.DisableAutoGenTag = true
 }
