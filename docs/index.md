@@ -146,6 +146,6 @@ Thanks for contributing!
 
 ## Etcetera
 
-clilol releases are announced on a [my social.lol account](https://social.lol/@mcornick) which you are welcome to follow.
+clilol releases are announced on [my social.lol account](https://social.lol/@mcornick) which you are welcome to follow.
 
 To verify signatures on commits to clilol, you might need [my GPG public key](https://github.com/mcornick.gpg).
