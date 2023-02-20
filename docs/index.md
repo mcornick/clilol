@@ -51,10 +51,10 @@ Now you should be ready to lol.
 
 ### How do I specify emoji when posting a status?
 
-Just add the emoji at the front of your status, like this:
+Use the `--emoji` option:
 
 ```
-clilol status post '🇫🇷 Ooh la la, ah oui oui!'
+clilol status post --emoji '🇫🇷' 'Ooh la la, ah oui oui!'
 ```
 
 You will need to type in the actual emoji, not a :emoji: style code. I think this is a limitation of the omg.lol API, but I'm going to see if it will accept codes.

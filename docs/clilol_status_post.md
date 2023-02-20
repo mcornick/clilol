@@ -16,7 +16,9 @@ clilol status post [status text] [flags]
 ### Options
 
 ```
-  -h, --help   help for post
+  -e, --emoji string          Emoji to add to status
+  -u, --external-url string   External URL to add to status
+  -h, --help                  help for post
 ```
 
 ### Options inherited from parent commands
