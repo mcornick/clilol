@@ -47,9 +47,7 @@ The username can be specified with the --username flag. If not set,
 it defaults to your own username.
 
 The number of statuses returned can be specified with the --limit
-flag. If not set, it will return all statuses for the user. (This
-does not currently work if you also use the --json flag. This is
-a bug, and I'll fix it eventually.)
+flag. If not set, it will return all statuses for the user.
 
 See the statuslog commands to get statuses for all users.`,
 		Args: cobra.NoArgs,
@@ -119,7 +117,7 @@ func init() {
 		"limit",
 		"l",
 		0,
-		"how many status(es) to get (default all; ignored if --json is set)",
+		"how many status(es) to get (default all)",
 	)
 	statusCmd.AddCommand(getCmd)
 }
