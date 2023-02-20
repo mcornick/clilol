@@ -48,7 +48,7 @@ brews:
       bash_completion.install "completions/clilol.bash" => "clilol"
       zsh_completion.install "completions/clilol.zsh" => "_clilol"
       fish_completion.install "completions/clilol.fish"
-      man1.install "manpages/*.1"
+      man1.install Dir["manpages/*"]
     license: MIT
     tap:
       name: homebrew-tap
