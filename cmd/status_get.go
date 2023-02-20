@@ -62,7 +62,6 @@ var (
 			}
 			var result Result
 			body := callAPI(
-				cmd,
 				http.MethodGet,
 				"/address/"+getUsername+"/statuses/",
 				nil,

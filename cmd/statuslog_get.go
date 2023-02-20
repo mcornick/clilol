@@ -64,7 +64,7 @@ var (
 				url = "/statuslog/latest/"
 			}
 			var result Result
-			body := callAPI(cmd, http.MethodGet, url, nil, false)
+			body := callAPI(http.MethodGet, url, nil, false)
 			err := json.Unmarshal(body, &result)
 			cobra.CheckErr(err)
 			if !silent {

@@ -62,7 +62,6 @@ var (
 			var result Result
 			status := Input{updateID, updateEmoji, strings.Join(args, " ")}
 			body := callAPI(
-				cmd,
 				http.MethodPatch,
 				"/address/"+viper.GetString("username")+"/statuses/",
 				status,

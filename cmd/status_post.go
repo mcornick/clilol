@@ -64,7 +64,6 @@ var (
 			var result Result
 			status := Input{postEmoji, strings.Join(args, " "), postExternalURL}
 			body := callAPI(
-				cmd,
 				http.MethodPost,
 				"/address/"+viper.GetString("username")+"/statuses/",
 				status,

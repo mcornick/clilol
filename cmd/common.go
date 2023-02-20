@@ -34,7 +34,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func callAPI(cmd *cobra.Command, method string, path string, params interface{}, auth bool) []byte {
+func callAPI(method string, path string, params interface{}, auth bool) []byte {
 	jsonBody, err := json.Marshal(params)
 	cobra.CheckErr(err)
 	bodyReader := bytes.NewReader(jsonBody)

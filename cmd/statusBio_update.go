@@ -57,7 +57,6 @@ var (
 			var result Result
 			bio := Input{strings.Join(args, " ")}
 			body := callAPI(
-				cmd,
 				http.MethodPost,
 				"/address/"+viper.GetString("username")+"/statuses/bio/",
 				bio,
