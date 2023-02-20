@@ -34,59 +34,59 @@ import (
 	"github.com/spf13/viper"
 )
 
-var (
-	Emoji       string
-	ExternalURL string
-	postCmd     = &cobra.Command{
-		Use:   "post [status text]",
-		Short: "Post a status",
-		Long:  "Posts a status to status.lol. Quote the status if it contains spaces.",
-		Args:  cobra.MinimumNArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
-			type Input struct {
-				Emoji       string `json:"emoji"`
-				Content     string `json:"content"`
+var postCmd = &cobra.Command{
+	Use:   "post [status text]",
+	Short: "Post a status",
+	Long:  "Posts a status to status.lol. Quote the status if it contains spaces.",
+	Args:  cobra.MinimumNArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		var (
+			Emoji       string
+			ExternalURL string
+		)
+		type Input struct {
+			Emoji       string `json:"emoji"`
+			Content     string `json:"content"`
+			ExternalURL string `json:"external_url"`
+		}
+		type Result struct {
+			Request struct {
+				StatusCode int  `json:"status_code"`
+				Success    bool `json:"success"`
+			} `json:"request"`
+			Response struct {
+				Message     string `json:"message"`
+				ID          string `json:"id"`
+				Status      string `json:"status"`
+				URL         string `json:"url"`
 				ExternalURL string `json:"external_url"`
-			}
-			type Result struct {
-				Request struct {
-					StatusCode int  `json:"status_code"`
-					Success    bool `json:"success"`
-				} `json:"request"`
-				Response struct {
-					Message     string `json:"message"`
-					ID          string `json:"id"`
-					Status      string `json:"status"`
-					URL         string `json:"url"`
-					ExternalURL string `json:"external_url"`
-				} `json:"response"`
-			}
-			var result Result
-			status := Input{Emoji, strings.Join(args, " "), ExternalURL}
-			body := callAPI(
-				cmd,
-				http.MethodPost,
-				"/address/"+viper.GetString("username")+"/statuses/",
-				status,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
-			cobra.CheckErr(err)
-			if !silent {
-				if !wantJson {
-					if result.Request.Success {
-						cmd.Println(result.Response.Message)
-					} else {
-						cobra.CheckErr(fmt.Errorf(result.Response.Message))
-					}
+			} `json:"response"`
+		}
+		var result Result
+		status := Input{Emoji, strings.Join(args, " "), ExternalURL}
+		body := callAPI(
+			cmd,
+			http.MethodPost,
+			"/address/"+viper.GetString("username")+"/statuses/",
+			status,
+			true,
+		)
+		err := json.Unmarshal(body, &result)
+		cobra.CheckErr(err)
+		if !silent {
+			if !wantJson {
+				if result.Request.Success {
+					cmd.Println(result.Response.Message)
 				} else {
-					cmd.Println(string(body))
+					cobra.CheckErr(fmt.Errorf(result.Response.Message))
 				}
+			} else {
+				cmd.Println(string(body))
 			}
+		}
 
-		},
-	}
-)
+	},
+}
 
 func init() {
 	postCmd.Flags().StringVarP(&Emoji, "emoji", "e", "", "Emoji to add to status")
