@@ -1,5 +1,5 @@
 ---
-title: Home
+title: clilol
 ---
 __clilol__ is a CLI for the various fun services offered by [omg.lol](https://omg.lol/). At present, it supports the statuslog features (aka [status.lol/](https://status.lol/)), with support for more omg.lol services on the way.
 
