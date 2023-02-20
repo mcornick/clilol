@@ -24,4 +24,5 @@ Because it seemed like a good idea at the time.
 * [clilol markdown-doc](clilol_markdown-doc.md)	 - Generate markdown docs
 * [clilol status](clilol_status.md)	 - Manipulate status
 * [clilol status-bio](clilol_status-bio.md)	 - Manipulate status bio
+* [clilol statuslog](clilol_statuslog.md)	 - View the status log
 
