@@ -88,17 +88,17 @@ See the statuslog commands to get statuses for all users.`,
 				if !wantJson {
 					if result.Request.Success {
 						for _, status := range result.Response.Statuses {
-							cmd.Printf("\nhttps://status.lol/%s/%s\n", status.Address, status.Id)
+							fmt.Printf("\nhttps://status.lol/%s/%s\n", status.Address, status.Id)
 							timestamp, err := strconv.Atoi(status.Created)
 							cobra.CheckErr(err)
-							cmd.Printf("  %s\n", time.Unix(int64(timestamp), 0))
-							cmd.Printf("  %s %s\n", status.Emoji, status.Content)
+							fmt.Printf("  %s\n", time.Unix(int64(timestamp), 0))
+							fmt.Printf("  %s %s\n", status.Emoji, status.Content)
 						}
 					} else {
 						cobra.CheckErr(fmt.Errorf(result.Response.Message))
 					}
 				} else {
-					cmd.Println(string(body))
+					fmt.Println(string(body))
 				}
 			}
 

@@ -72,12 +72,12 @@ CSS. You'll need to do that on the website.`,
 			if !silent {
 				if !wantJson {
 					if result.Request.Success {
-						cmd.Println(result.Response.Message)
+						fmt.Println(result.Response.Message)
 					} else {
 						cobra.CheckErr(fmt.Errorf(result.Response.Message))
 					}
 				} else {
-					cmd.Println(string(body))
+					fmt.Println(string(body))
 				}
 			}
 

@@ -76,14 +76,14 @@ See the status commands to get statuses for a single user.`,
 				if !wantJson {
 					if result.Request.Success {
 						for _, status := range result.Response.Statuses {
-							cmd.Printf("@%s, %s\n", status.Address, status.RelativeTime)
-							cmd.Printf("  %s %s\n", status.Emoji, status.Content)
+							fmt.Printf("@%s, %s\n", status.Address, status.RelativeTime)
+							fmt.Printf("  %s %s\n", status.Emoji, status.Content)
 						}
 					} else {
 						cobra.CheckErr(fmt.Errorf(result.Response.Message))
 					}
 				} else {
-					cmd.Println(string(body))
+					fmt.Println(string(body))
 				}
 			}
 

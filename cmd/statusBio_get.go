@@ -70,13 +70,13 @@ Note that any custom CSS set on the bio is ignored.
 			if !silent {
 				if !wantJson {
 					if result.Request.Success {
-						cmd.Println(result.Response.Message)
-						cmd.Printf("\n%s\n", result.Response.Bio)
+						fmt.Println(result.Response.Message)
+						fmt.Printf("\n%s\n", result.Response.Bio)
 					} else {
 						cobra.CheckErr(fmt.Errorf(result.Response.Message))
 					}
 				} else {
-					cmd.Println(string(body))
+					fmt.Println(string(body))
 				}
 			}
 
