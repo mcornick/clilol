@@ -20,9 +20,9 @@ import (
 )
 
 var (
-	getUsername string
-	getLimit    int
-	getCmd      = &cobra.Command{
+	statusGetUsername string
+	statusGetLimit    int
+	statusGetCmd      = &cobra.Command{
 		Use:   "get",
 		Short: "get status",
 		Long: `Gets status(es) for a single user from status.lol.
@@ -55,14 +55,14 @@ See the statuslog commands to get statuses for all users.`,
 			var result Result
 			body := callAPI(
 				http.MethodGet,
-				"/address/"+getUsername+"/statuses/",
+				"/address/"+statusGetUsername+"/statuses/",
 				nil,
 				false,
 			)
 			err := json.Unmarshal(body, &result)
 			cobra.CheckErr(err)
-			if getLimit > 0 {
-				result.Response.Statuses = result.Response.Statuses[:getLimit]
+			if statusGetLimit > 0 {
+				result.Response.Statuses = result.Response.Statuses[:statusGetLimit]
 				body, err = json.MarshalIndent(result, "", "    ")
 				cobra.CheckErr(err)
 			}
@@ -89,19 +89,19 @@ See the statuslog commands to get statuses for all users.`,
 )
 
 func init() {
-	getCmd.Flags().StringVarP(
-		&getUsername,
+	statusGetCmd.Flags().StringVarP(
+		&statusGetUsername,
 		"username",
 		"u",
 		viper.GetString("username"),
 		"username whose status(es) to get",
 	)
-	getCmd.Flags().IntVarP(
-		&getLimit,
+	statusGetCmd.Flags().IntVarP(
+		&statusGetLimit,
 		"limit",
 		"l",
 		0,
 		"how many status(es) to get (default all)",
 	)
-	statusCmd.AddCommand(getCmd)
+	statusCmd.AddCommand(statusGetCmd)
 }

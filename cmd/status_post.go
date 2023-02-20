@@ -19,9 +19,9 @@ import (
 )
 
 var (
-	postEmoji       string
-	postExternalURL string
-	postCmd         = &cobra.Command{
+	statusPostEmoji       string
+	statusPostExternalURL string
+	statusPostCmd         = &cobra.Command{
 		Use:   "post [status text]",
 		Short: "post a status",
 		Long: `Posts a status to status.lol.
@@ -56,7 +56,7 @@ external URL will be used.`,
 				} `json:"response"`
 			}
 			var result Result
-			status := Input{postEmoji, strings.Join(args, " "), postExternalURL}
+			status := Input{statusPostEmoji, strings.Join(args, " "), statusPostExternalURL}
 			body := callAPI(
 				http.MethodPost,
 				"/address/"+viper.GetString("username")+"/statuses/",
@@ -82,19 +82,19 @@ external URL will be used.`,
 )
 
 func init() {
-	postCmd.Flags().StringVarP(
-		&postEmoji,
+	statusPostCmd.Flags().StringVarP(
+		&statusPostEmoji,
 		"emoji",
 		"e",
 		"",
 		"Emoji to add to status (default sparkles)",
 	)
-	postCmd.Flags().StringVarP(
-		&postExternalURL,
+	statusPostCmd.Flags().StringVarP(
+		&statusPostExternalURL,
 		"external-url",
 		"u",
 		"",
 		"External URL to add to status",
 	)
-	statusCmd.AddCommand(postCmd)
+	statusCmd.AddCommand(statusPostCmd)
 }
