@@ -9,11 +9,7 @@ Please see the links in the navigation menu to the left to learn about all the d
 
 ## Installation
 
-You can install clilol in any of these ways.
-
-!!! Note
-
-    These are the only supported builds of omglol. I don't submit them to "official" repositories, at least not yet. If you find a problem with anyone else's build, please try my builds instead.
+You can install clilol in any of these ways. (These are the only supported builds of omglol. I don't submit them to "official" repositories, at least not yet. If you find a problem with anyone else's build, please try my builds instead.)
 
 === "Homebrew"
 
@@ -78,13 +74,9 @@ You can install clilol in any of these ways.
 
 ## Configuration File
 
-clilol expects a configuration file to specify your username and API key.
+clilol expects a configuration file to specify your username and API key. You can find your API key on [your omg.lol account page](https://home.omg.lol/account).
 
-!!! Note
-
-    You can find your API key on [your omg.lol account page](https://home.omg.lol/account).
-
- The configuration file should be named either `config.yaml`, `config.toml` or `config.json` depending on which format you prefer, and should be located in one of these directories:
+The configuration file should be named either `config.yaml`, `config.toml` or `config.json` depending on which format you prefer, and should be located in one of these directories:
 
 - `$HOME/Library/Application Support/clilol` (macOS)
 - `$XDG_CONFIG_HOME/clilol` (Unix)
