@@ -56,7 +56,7 @@ external URL will be used.`,
 			type Input struct {
 				Emoji       string `json:"emoji"`
 				Content     string `json:"content"`
-				ExternalURL string `json:"external_url"`
+				ExternalURL string `json:"external_url,omitempty"`
 			}
 			type Result struct {
 				Request struct {
