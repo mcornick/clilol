@@ -13,18 +13,11 @@ This section will be rewritten and improved in the future.
 
 ### What do I need to run clilol?
 
-1. A computer and operating system supported by [Go](https://go.dev)
-2. An [omg.lol](https://omg.lol) account
-3. The API key for your omg.lol account, which you can find [here](https://home.omg.lol/account)
+Other than a computer for which I've built binaries (see next question) or one where you're comfortable building from source, you'll need an [omg.lol](https://omg.lol) account, and the API key for your omg.lol account, which you can find [here](https://home.omg.lol/account).
 
 ### How do I install clilol?
 
-1. Get [Go](https://go.dev)
-2. Clone the repo from [GitHub](https://github.com/mcornick/clilol)
-3. `go build` to get a binary named `clilol`
-4. Put that `clilol` binary wherever you like
-
-Once clilol is a little more mature, I'll provide pre-built binaries, Linux packages, Homebrew, etc.
+Binaries are built for macOS, Linux, and Windows and available from [GitHub](https://github.com/mcornick/clilol). You can also get packages from my [Homebrew tap](https://github.com/mcornick/homebrew-tap) or [Scoop bucket](https://github.com/mcornick/scoop-bucket). I intend to provide Linux packages (RPM, DEB, etc.) in the future. You should be able to build from source on other systems. While I don't support those, feel free to file a GitHub issue if something breaks, and I'll try to help.
 
 ### Where do I put that API key?
 
@@ -57,9 +50,7 @@ Use the `--emoji` option:
 clilol status post --emoji '🇫🇷' 'Ooh la la, ah oui oui!'
 ```
 
-You will need to type in the actual emoji, not a :emoji: style code. I think this is a limitation of the omg.lol API, but I'm going to see if it will accept codes.
-
-If you don't specify an emoji, the default is sparkles (✨)
+You will need to type in the actual emoji, not a :emoji: style code. If you don't specify an emoji, the default is sparkles (✨)
 
 ### How do you pronounce clilol?
 
