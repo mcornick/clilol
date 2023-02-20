@@ -27,4 +27,5 @@ Do status things
 * [clilol](clilol.md)	 - A cli for omg.lol
 * [clilol status get](clilol_status_get.md)	 - Get status
 * [clilol status post](clilol_status_post.md)	 - Post a status
+* [clilol status update](clilol_status_update.md)	 - Update a status
 
