@@ -20,8 +20,9 @@ clilol now set [flags]
 ### Options
 
 ```
-  -f, --filename string   file to write Now page to (default stdout)
+  -f, --filename string   file to read Now page from (default stdin)
   -h, --help              help for set
+  -l, --listed            create Now page as listed (default false)
 ```
 
 ### Options inherited from parent commands

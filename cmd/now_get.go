@@ -60,7 +60,7 @@ to stdout.`,
 				if !wantJson {
 					if result.Request.Success {
 						if nowGetFilename != "" {
-							err = os.WriteFile(nowGetFilename, []byte(result.Response.Now.Content), 0644)
+							err = os.WriteFile(nowGetFilename, []byte(result.Response.Now.Content), 0o644)
 							cobra.CheckErr(err)
 						} else {
 							fmt.Println(result.Response.Now.Content)

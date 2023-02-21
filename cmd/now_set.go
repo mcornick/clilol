@@ -92,7 +92,14 @@ func init() {
 		"filename",
 		"f",
 		"",
-		"file to write Now page to (default stdout)",
+		"file to read Now page from (default stdin)",
+	)
+	nowSetCmd.Flags().BoolVarP(
+		&nowSetListed,
+		"listed",
+		"l",
+		false,
+		"create Now page as listed (default false)",
 	)
 	nowCmd.AddCommand(nowSetCmd)
 }
