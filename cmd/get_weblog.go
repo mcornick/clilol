@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 var getWeblogCmd = &cobra.Command{
@@ -51,7 +52,7 @@ Specify the ID with the --id flag.`,
 		var result Result
 		body := callAPIWithJSON(
 			http.MethodGet,
-			"/address/"+addressFlag+"/weblog/entry/"+idFlag,
+			"/address/"+viper.GetString("address")+"/weblog/entry/"+idFlag,
 			nil,
 			true,
 		)

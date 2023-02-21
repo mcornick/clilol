@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 var getWeblogLatestCmd = &cobra.Command{
@@ -48,7 +49,7 @@ var getWeblogLatestCmd = &cobra.Command{
 		var result Result
 		body := callAPIWithJSON(
 			http.MethodGet,
-			"/address/"+addressFlag+"/weblog/post/latest",
+			"/address/"+viper.GetString("address")+"/weblog/post/latest",
 			nil,
 			true,
 		)
