@@ -9,7 +9,8 @@ post a status
 
 Posts a status to status.lol.
 
-Quote the status text if it contains spaces.
+Specify the status text with the --text flag.
+Quote the text if it contains spaces.
 
 You can specify an emoji with the --emoji flag. This must be an
 actual emoji, not a :emoji: style code. If not set, the sparkles
@@ -20,7 +21,7 @@ will be shown as a "Respond" link on the statuslog. If not set, no
 external URL will be used.
 
 ```
-clilol status post [status text] [flags]
+clilol status post [flags]
 ```
 
 ### Options
@@ -29,6 +30,7 @@ clilol status post [status text] [flags]
   -e, --emoji string          Emoji to add to status (default sparkles)
   -a, --external-url string   External URL to add to status
   -h, --help                  help for post
+  -t, --text string           Status text
 ```
 
 ### Options inherited from parent commands

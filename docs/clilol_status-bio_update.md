@@ -9,7 +9,8 @@ update your status bio
 
 Updates your status bio on status.lol.
 		
-Quote the bio if it contains spaces.
+Specify the new bio text with the --text flag.
+Quote the text if it contains spaces.
 
 Note that the omg.lol API does not permit you to change any custom
 CSS. You'll need to do that on the website.
@@ -21,7 +22,8 @@ clilol status-bio update [bio text] [flags]
 ### Options
 
 ```
-  -h, --help   help for update
+  -h, --help          help for update
+  -t, --text string   New bio text
 ```
 
 ### Options inherited from parent commands
