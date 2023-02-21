@@ -38,4 +38,5 @@ See the subcommands for more information.
 * [clilol statuslog](clilol_statuslog.md)	 - view the status log
 * [clilol theme](clilol_theme.md)	 - do things with profile themes
 * [clilol web](clilol_web.md)	 - do things with your webpage
+* [clilol weblog](clilol_weblog.md)	 - do things with your weblog
 
