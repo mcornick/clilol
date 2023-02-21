@@ -47,7 +47,7 @@ Specify the PURL name with the --name flag, and the URL with the
 			}
 			var result Result
 			purl := Input{name, purlCreateURL, purlCreateListed}
-			body := callAPI(
+			body := callAPIWithJSON(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/purl",
 				purl,

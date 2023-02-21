@@ -50,7 +50,7 @@ var addressGetInfoPublicCmd = &cobra.Command{
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPI(
+		body := callAPIWithJSON(
 			http.MethodGet,
 			"/address/"+address+"/info",
 			nil,

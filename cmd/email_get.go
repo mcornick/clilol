@@ -37,7 +37,7 @@ var emailGetCmd = &cobra.Command{
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPI(
+		body := callAPIWithJSON(
 			http.MethodGet,
 			"/address/"+viper.GetString("address")+"/email",
 			nil,

@@ -47,7 +47,7 @@ var themeListCmd = &cobra.Command{
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPI(http.MethodGet, "/theme/list", nil, false)
+		body := callAPIWithJSON(http.MethodGet, "/theme/list", nil, false)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
 		if !silent {

@@ -41,7 +41,7 @@ Note that any custom CSS set on the bio is ignored.
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPI(
+		body := callAPIWithJSON(
 			http.MethodGet,
 			"/address/"+address+"/statuses/bio/",
 			nil,

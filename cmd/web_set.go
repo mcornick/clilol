@@ -60,7 +60,7 @@ be published.`,
 				content = string(stdin)
 			}
 			webPage := Input{webSetPublish, content}
-			body := callAPI(
+			body := callAPIWithJSON(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/web",
 				webPage,

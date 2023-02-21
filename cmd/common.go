@@ -25,7 +25,7 @@ var (
 	address  string
 )
 
-func callAPI(method string, path string, params interface{}, auth bool) []byte {
+func callAPIWithJSON(method string, path string, params interface{}, auth bool) []byte {
 	jsonBody, err := json.Marshal(params)
 	cobra.CheckErr(err)
 	bodyReader := bytes.NewReader(jsonBody)

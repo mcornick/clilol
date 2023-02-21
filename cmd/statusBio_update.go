@@ -46,7 +46,7 @@ CSS. You'll need to do that on the website.`,
 			}
 			var result Result
 			bio := Input{bioUpdateText}
-			body := callAPI(
+			body := callAPIWithJSON(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/statuses/bio/",
 				bio,

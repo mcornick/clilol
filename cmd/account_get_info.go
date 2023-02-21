@@ -45,7 +45,7 @@ var accountGetInfoCmd = &cobra.Command{
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPI(
+		body := callAPIWithJSON(
 			http.MethodGet,
 			"/account/"+viper.GetString("email")+"/info",
 			nil,

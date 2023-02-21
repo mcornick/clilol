@@ -69,7 +69,7 @@ and the data with the --data flag.`,
 			}
 			var result Result
 			dns := Input{dnsCreateType, name, dnsCreateData, dnsCreatePriority, dnsCreateTTL}
-			body := callAPI(
+			body := callAPIWithJSON(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/dns",
 				dns,

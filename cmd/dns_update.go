@@ -70,7 +70,7 @@ and the data with the --data flag.`,
 			}
 			var result Result
 			dns := Input{dnsUpdateType, name, dnsUpdateData, dnsUpdatePriority, dnsUpdateTTL}
-			body := callAPI(
+			body := callAPIWithJSON(
 				http.MethodPatch,
 				"/address/"+viper.GetString("address")+"/dns/"+objectID,
 				dns,

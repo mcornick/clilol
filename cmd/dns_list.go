@@ -42,7 +42,7 @@ var dnsListCmd = &cobra.Command{
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPI(http.MethodGet, "/address/"+address+"/dns", nil, true)
+		body := callAPIWithJSON(http.MethodGet, "/address/"+address+"/dns", nil, true)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
 		if !silent {

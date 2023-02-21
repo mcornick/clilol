@@ -48,7 +48,7 @@ var weblogListCmd = &cobra.Command{
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPI(
+		body := callAPIWithJSON(
 			http.MethodGet,
 			"/address/"+viper.GetString("address")+"/weblog/entries",
 			nil,

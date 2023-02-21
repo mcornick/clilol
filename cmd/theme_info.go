@@ -49,7 +49,7 @@ Specify the theme name with the --name flag.`,
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPI(
+		body := callAPIWithJSON(
 			http.MethodGet,
 			"/theme/"+name+"/info",
 			nil,

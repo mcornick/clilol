@@ -63,7 +63,7 @@ from stdin.`,
 				listed = 0
 			}
 			nowPage := Input{content, listed}
-			body := callAPI(
+			body := callAPIWithJSON(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/now",
 				nowPage,

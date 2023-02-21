@@ -50,7 +50,7 @@ to stdout.`,
 				} `json:"response"`
 			}
 			var result Result
-			body := callAPI(
+			body := callAPIWithJSON(
 				http.MethodGet,
 				"/address/"+viper.GetString("address")+"/web",
 				nil,

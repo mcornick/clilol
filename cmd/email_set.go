@@ -45,7 +45,7 @@ To specify multiple addresses, separate them with commas.`,
 			}
 			var result Result
 			email := Input{emailSetDestination}
-			body := callAPI(
+			body := callAPIWithJSON(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/email",
 				email,

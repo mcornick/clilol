@@ -49,7 +49,7 @@ Specify the ID with the --id flag.`,
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPI(
+		body := callAPIWithJSON(
 			http.MethodGet,
 			"/address/"+address+"/weblog/entry/"+objectID,
 			nil,

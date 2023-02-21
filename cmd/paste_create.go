@@ -70,7 +70,7 @@ from stdin.`,
 				listed = 0
 			}
 			paste := Input{pasteCreateTitle, content, listed}
-			body := callAPI(
+			body := callAPIWithJSON(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/pastebin",
 				paste,

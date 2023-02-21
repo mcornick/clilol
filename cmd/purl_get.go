@@ -45,7 +45,7 @@ it defaults to your own address.`,
 				} `json:"response"`
 			}
 			var result Result
-			body := callAPI(
+			body := callAPIWithJSON(
 				http.MethodGet,
 				"/address/"+address+"/purl/"+purlGetName,
 				nil,

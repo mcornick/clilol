@@ -43,7 +43,7 @@ var nowListCmd = &cobra.Command{
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPI(http.MethodGet, "/now/garden", nil, false)
+		body := callAPIWithJSON(http.MethodGet, "/now/garden", nil, false)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
 		if !silent {

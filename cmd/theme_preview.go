@@ -38,7 +38,7 @@ to stdout.`,
 				} `json:"response"`
 			}
 			var result Result
-			body := callAPI(
+			body := callAPIWithJSON(
 				http.MethodGet,
 				"/theme/"+name+"/preview",
 				nil,

@@ -52,7 +52,7 @@ See the statuslog commands to get statuses for all users.`,
 				} `json:"response"`
 			}
 			var result Result
-			body := callAPI(
+			body := callAPIWithJSON(
 				http.MethodGet,
 				"/address/"+address+"/statuses/",
 				nil,

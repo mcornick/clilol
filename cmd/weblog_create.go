@@ -47,7 +47,7 @@ Specify the entry name with the --name flag, and the URL with the
 			}
 			var result Result
 			weblog := Input{name, weblogCreateURL, weblogCreateListed}
-			body := callAPI(
+			body := callAPIWithJSON(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/weblog",
 				weblog,
