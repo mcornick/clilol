@@ -29,4 +29,5 @@ The weblog group of commands allows you to manage your weblog.lol weblog.
 * [clilol weblog delete](clilol_weblog_delete.md)	 - delete a weblog entry
 * [clilol weblog get](clilol_weblog_get.md)	 - get a weblog entry
 * [clilol weblog list](clilol_weblog_list.md)	 - list all weblog entries
+* [clilol weblog set](clilol_weblog_set.md)	 - set your weblog config
 

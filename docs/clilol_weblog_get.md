@@ -32,5 +32,7 @@ clilol weblog get [flags]
 ### SEE ALSO
 
 * [clilol weblog](clilol_weblog.md)	 - do things with your weblog
+* [clilol weblog get config](clilol_weblog_get_config.md)	 - get your weblog config
 * [clilol weblog get latest](clilol_weblog_get_latest.md)	 - get the latest weblog entry
+* [clilol weblog get template](clilol_weblog_get_template.md)	 - get your weblog template
 
