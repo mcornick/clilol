@@ -36,5 +36,6 @@ See the subcommands for more information.
 * [clilol status](clilol_status.md)	 - do things with statuses
 * [clilol status-bio](clilol_status-bio.md)	 - do things with status bios
 * [clilol statuslog](clilol_statuslog.md)	 - view the status log
+* [clilol theme](clilol_theme.md)	 - do things with profile themes
 * [clilol web](clilol_web.md)	 - do things with your webpage
 
