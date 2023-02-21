@@ -11,29 +11,26 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
+	"os"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 var (
-	weblogCreateURL    string
-	weblogCreateListed bool
-	weblogCreateCmd    = &cobra.Command{
+	weblogCreateFilename string
+	weblogCreateCmd      = &cobra.Command{
 		Use:   "create",
-		Short: "create a entry",
-		Long: `Creates a entry.
+		Short: "create a weblog entry",
+		Long: `Creates an entry in your weblog.
 
-Specify the entry name with the --name flag, and the URL with the
---url flag.`,
+If you specify a filename with the --filename flag, the content of the file
+will be used. If you do not specify a filename, the content will be read
+from stdin.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type Input struct {
-				Name   string `json:"name"`
-				URL    string `json:"url"`
-				Listed bool   `json:"listed,omitempty"`
-			}
 			type Result struct {
 				Request struct {
 					StatusCode int  `json:"status_code"`
@@ -41,16 +38,38 @@ Specify the entry name with the --name flag, and the URL with the
 				} `json:"request"`
 				Response struct {
 					Message string `json:"message"`
-					Name    string `json:"name"`
-					URL     string `json:"url"`
+					Entry   struct {
+						Location string `json:"location"`
+						Title    string `json:"title"`
+						Date     int64  `json:"date"`
+						Type     string `json:"type"`
+						Status   string `json:"status"`
+						Body     string `json:"body"`
+						Source   string `json:"source"`
+						Metadata struct {
+							Date string `json:"date"`
+							Slug string `json:"slug"`
+						} `json:"metadata"`
+						Output string `json:"output"`
+						Entry  string `json:"entry"`
+					} `json:"entry"`
 				} `json:"response"`
 			}
 			var result Result
-			weblog := Input{name, weblogCreateURL, weblogCreateListed}
-			body := callAPIWithJSON(
+			var content string
+			if weblogCreateFilename != "" {
+				input, err := os.ReadFile(weblogCreateFilename)
+				cobra.CheckErr(err)
+				content = string(input)
+			} else {
+				stdin, err := io.ReadAll(os.Stdin)
+				cobra.CheckErr(err)
+				content = string(stdin)
+			}
+			body := callAPIWithRawData(
 				http.MethodPost,
-				"/address/"+viper.GetString("address")+"/weblog",
-				weblog,
+				"/address/"+viper.GetString("address")+"/weblog/entry",
+				content,
 				true,
 			)
 			err := json.Unmarshal(body, &result)
@@ -72,25 +91,11 @@ Specify the entry name with the --name flag, and the URL with the
 
 func init() {
 	weblogCreateCmd.Flags().StringVarP(
-		&name,
-		"name",
-		"n",
+		&weblogCreateFilename,
+		"filename",
+		"f",
 		"",
-		"Name of the entry",
-	)
-	weblogCreateCmd.Flags().StringVarP(
-		&weblogCreateURL,
-		"url",
-		"a",
-		"",
-		"URL to redirect to",
-	)
-	weblogCreateCmd.Flags().BoolVarP(
-		&weblogCreateListed,
-		"listed",
-		"l",
-		false,
-		"Create as listed (default false)",
+		"file to read entry from (default stdin)",
 	)
 	weblogCmd.AddCommand(weblogCreateCmd)
 }
