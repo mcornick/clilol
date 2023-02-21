@@ -17,54 +17,56 @@ import (
 	"github.com/spf13/viper"
 )
 
-var emailSetDestination string
-var emailSetCmd = &cobra.Command{
-	Use:   "set",
-	Short: "set email forwarding address(es)",
-	Long: `Sets your email forwarding address(es).
+var (
+	emailSetDestination string
+	emailSetCmd         = &cobra.Command{
+		Use:   "set",
+		Short: "set email forwarding address(es)",
+		Long: `Sets your email forwarding address(es).
 	
 To specify multiple addresses, separate them with commas.`,
-	Args: cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
-		type Input struct {
-			Destination string `json:"destination"`
-		}
-		type Result struct {
-			Request struct {
-				StatusCode int  `json:"status_code"`
-				Success    bool `json:"success"`
-			} `json:"request"`
-			Response struct {
-				Message           string   `json:"message"`
-				DestinationString string   `json:"destination_string"`
-				DestinationArray  []string `json:"destination_array"`
-				Address           string   `json:"address"`
-				EmailAddress      string   `json:"email_address"`
-			} `json:"response"`
-		}
-		var result Result
-		email := Input{emailSetDestination}
-		body := callAPI(
-			http.MethodPost,
-			"/address/"+viper.GetString("address")+"/email",
-			email,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
-		cobra.CheckErr(err)
-		if !silent {
-			if !wantJson {
-				if result.Request.Success {
-					fmt.Println(result.Response.Message)
-				} else {
-					cobra.CheckErr(fmt.Errorf(result.Response.Message))
-				}
-			} else {
-				fmt.Println(string(body))
+		Args: cobra.NoArgs,
+		Run: func(cmd *cobra.Command, args []string) {
+			type Input struct {
+				Destination string `json:"destination"`
 			}
-		}
-	},
-}
+			type Result struct {
+				Request struct {
+					StatusCode int  `json:"status_code"`
+					Success    bool `json:"success"`
+				} `json:"request"`
+				Response struct {
+					Message           string   `json:"message"`
+					DestinationString string   `json:"destination_string"`
+					DestinationArray  []string `json:"destination_array"`
+					Address           string   `json:"address"`
+					EmailAddress      string   `json:"email_address"`
+				} `json:"response"`
+			}
+			var result Result
+			email := Input{emailSetDestination}
+			body := callAPI(
+				http.MethodPost,
+				"/address/"+viper.GetString("address")+"/email",
+				email,
+				true,
+			)
+			err := json.Unmarshal(body, &result)
+			cobra.CheckErr(err)
+			if !silent {
+				if !wantJson {
+					if result.Request.Success {
+						fmt.Println(result.Response.Message)
+					} else {
+						cobra.CheckErr(fmt.Errorf(result.Response.Message))
+					}
+				} else {
+					fmt.Println(string(body))
+				}
+			}
+		},
+	}
+)
 
 func init() {
 	emailSetCmd.Flags().StringVarP(
