@@ -25,5 +25,5 @@ The statuslog group of commands allows you to view the status log.
 ### SEE ALSO
 
 * [clilol](clilol.md)	 - a cli for omg.lol
-* [clilol statuslog get](clilol_statuslog_get.md)	 - get the statuslog
+* [clilol statuslog list](clilol_statuslog_list.md)	 - list the statuslog
 

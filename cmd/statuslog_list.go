@@ -17,11 +17,11 @@ import (
 )
 
 var (
-	logGetAll bool
-	logGetCmd = &cobra.Command{
-		Use:   "get",
-		Short: "get the statuslog",
-		Long: `Gets status(es) for all status.lol users.
+	logListAll bool
+	logListCmd = &cobra.Command{
+		Use:   "list",
+		Short: "list the statuslog",
+		Long: `Lists status(es) for all status.lol users.
 
 By default, only the most recent status for each user is returned.
 To see all statuses ever posted, use the --all flag.
@@ -47,7 +47,7 @@ See the status commands to get statuses for a single user.`,
 				} `json:"response"`
 			}
 			var url string
-			if logGetAll {
+			if logListAll {
 				url = "/statuslog/"
 			} else {
 				url = "/statuslog/latest/"
@@ -75,12 +75,12 @@ See the status commands to get statuses for a single user.`,
 )
 
 func init() {
-	logGetCmd.Flags().BoolVarP(
-		&logGetAll,
+	logListCmd.Flags().BoolVarP(
+		&logListAll,
 		"all",
 		"a",
 		false,
 		"get the entire statuslog (default is latest statuses only)",
 	)
-	statuslogCmd.AddCommand(logGetCmd)
+	statuslogCmd.AddCommand(logListCmd)
 }

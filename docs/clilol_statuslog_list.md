@@ -1,13 +1,13 @@
 ---
-title: "clilol statuslog get"
+title: "clilol statuslog list"
 ---
-## clilol statuslog get
+## clilol statuslog list
 
-get the statuslog
+list the statuslog
 
 ### Synopsis
 
-Gets status(es) for all status.lol users.
+Lists status(es) for all status.lol users.
 
 By default, only the most recent status for each user is returned.
 To see all statuses ever posted, use the --all flag.
@@ -15,14 +15,14 @@ To see all statuses ever posted, use the --all flag.
 See the status commands to get statuses for a single user.
 
 ```
-clilol statuslog get [flags]
+clilol statuslog list [flags]
 ```
 
 ### Options
 
 ```
   -a, --all    get the entire statuslog (default is latest statuses only)
-  -h, --help   help for get
+  -h, --help   help for list
 ```
 
 ### Options inherited from parent commands
