@@ -25,38 +25,40 @@ var (
 	address  string
 )
 
-func callAPIWithJSON(method string, path string, params interface{}, auth bool) []byte {
-	jsonBody, err := json.Marshal(params)
-	cobra.CheckErr(err)
-	bodyReader := bytes.NewReader(jsonBody)
+func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byte, error) {
 	request, err := http.NewRequest(method, endpoint+path, bodyReader)
-	cobra.CheckErr(err)
+	if err != nil {
+		return nil, err
+	}
 	request.Header.Set("User-Agent", "clilol (https://github.com/mcornick/clilol)")
 	request.Header.Set("Content-Type", "application/json")
 	if auth {
 		request.Header.Set("Authorization", "Bearer "+viper.GetString("apikey"))
 	}
 	response, err := http.DefaultClient.Do(request)
-	cobra.CheckErr(err)
+	if err != nil {
+		return nil, err
+	}
 	defer response.Body.Close()
 	body, err := io.ReadAll(response.Body)
+	if err != nil {
+		return nil, err
+	}
+	return body, nil
+}
+
+func callAPIWithJSON(method string, path string, params interface{}, auth bool) []byte {
+	jsonBody, err := json.Marshal(params)
+	cobra.CheckErr(err)
+	bodyReader := bytes.NewReader(jsonBody)
+	body, err := callAPI(method, path, bodyReader, auth)
 	cobra.CheckErr(err)
 	return body
 }
 
 func callAPIWithRawData(method string, path string, data string, auth bool) []byte {
 	bodyReader := strings.NewReader(data)
-	request, err := http.NewRequest(method, endpoint+path, bodyReader)
-	cobra.CheckErr(err)
-	request.Header.Set("User-Agent", "clilol (https://github.com/mcornick/clilol)")
-	request.Header.Set("Content-Type", "application/json")
-	if auth {
-		request.Header.Set("Authorization", "Bearer "+viper.GetString("apikey"))
-	}
-	response, err := http.DefaultClient.Do(request)
-	cobra.CheckErr(err)
-	defer response.Body.Close()
-	body, err := io.ReadAll(response.Body)
+	body, err := callAPI(method, path, bodyReader, auth)
 	cobra.CheckErr(err)
 	return body
 }
