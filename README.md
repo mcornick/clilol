@@ -1,6 +1,6 @@
 # clilol
 
-clilol is a CLI for the various fun services offered by [omg.lol](https://omg.lol/). At present, it supports the statuslog (aka [status.lol](https://status.lol/)) and PURL features, with support for more omg.lol services on the way.
+clilol is a CLI for the various fun services offered by [omg.lol](https://omg.lol/). The services currently supported can be found in [this GitHub issue](https://github.com/mcornick/clilol/issues/6) along with the services that are intended to be supported eventually.
 
 ![Screenshot](docs/clilol.gif "Screenshot")
 
