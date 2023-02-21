@@ -20,16 +20,19 @@ import (
 )
 
 var (
-	statusGetID  string
-	statusGetCmd = &cobra.Command{
-		Use:   "get",
-		Short: "get status",
-		Long: `Gets a single status for a single user from status.lol.
-
-Specify the status ID with the --id flag.
+	statusListLimit int
+	statusListCmd   = &cobra.Command{
+		Use:   "list",
+		Short: "list statuses",
+		Long: `Lists statuses for a single user from status.lol.
 
 The username can be specified with the --username flag. If not set,
-it defaults to your own username.`,
+it defaults to your own username.
+
+The number of statuses returned can be specified with the --limit
+flag. If not set, it will return all statuses for the user.
+
+See the statuslog commands to get statuses for all users.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
 			type Result struct {
@@ -38,41 +41,40 @@ it defaults to your own username.`,
 					Success    bool `json:"success"`
 				} `json:"request"`
 				Response struct {
-					Message string `json:"message"`
-					Status  struct {
+					Message  string `json:"message"`
+					Statuses []struct {
 						Id      string `json:"id"`
 						Address string `json:"address"`
 						Created string `json:"created"`
 						Emoji   string `json:"emoji"`
 						Content string `json:"content"`
-					} `json:"status"`
+					} `json:"statuses"`
 				} `json:"response"`
 			}
 			var result Result
 			body := callAPI(
 				http.MethodGet,
-				"/address/"+username+"/statuses/"+statusGetID,
+				"/address/"+username+"/statuses/",
 				nil,
 				false,
 			)
 			err := json.Unmarshal(body, &result)
 			cobra.CheckErr(err)
+			if statusListLimit > 0 {
+				result.Response.Statuses = result.Response.Statuses[:statusListLimit]
+				body, err = json.MarshalIndent(result, "", "    ")
+				cobra.CheckErr(err)
+			}
 			if !silent {
 				if !wantJson {
 					if result.Request.Success {
-						fmt.Printf(
-							"\nhttps://status.lol/%s/%s\n",
-							result.Response.Status.Address,
-							result.Response.Status.Id,
-						)
-						timestamp, err := strconv.Atoi(result.Response.Status.Created)
-						cobra.CheckErr(err)
-						fmt.Printf("  %s\n", time.Unix(int64(timestamp), 0))
-						fmt.Printf(
-							"  %s %s\n",
-							result.Response.Status.Emoji,
-							result.Response.Status.Content,
-						)
+						for _, status := range result.Response.Statuses {
+							fmt.Printf("\nhttps://status.lol/%s/%s\n", status.Address, status.Id)
+							timestamp, err := strconv.Atoi(status.Created)
+							cobra.CheckErr(err)
+							fmt.Printf("  %s\n", time.Unix(int64(timestamp), 0))
+							fmt.Printf("  %s %s\n", status.Emoji, status.Content)
+						}
 					} else {
 						cobra.CheckErr(fmt.Errorf(result.Response.Message))
 					}
@@ -85,19 +87,19 @@ it defaults to your own username.`,
 )
 
 func init() {
-	statusGetCmd.Flags().StringVarP(
+	statusListCmd.Flags().StringVarP(
 		&username,
 		"username",
 		"u",
 		viper.GetString("username"),
-		"username whose status to get",
+		"username whose status(es) to get",
 	)
-	statusGetCmd.Flags().StringVarP(
-		&statusGetID,
-		"id",
-		"i",
-		"",
-		"ID of the status to get",
+	statusListCmd.Flags().IntVarP(
+		&statusListLimit,
+		"limit",
+		"l",
+		0,
+		"how many status(es) to get (default all)",
 	)
-	statusCmd.AddCommand(statusGetCmd)
+	statusCmd.AddCommand(statusListCmd)
 }
