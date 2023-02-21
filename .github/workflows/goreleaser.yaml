@@ -45,3 +45,4 @@ permissions:
   id-token: write
   issues: write
   packages: write
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
