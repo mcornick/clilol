@@ -19,70 +19,67 @@ import (
 	"github.com/spf13/viper"
 )
 
-var (
-	statusGetID  string
-	statusGetCmd = &cobra.Command{
-		Use:   "get",
-		Short: "get status",
-		Long: `Gets a single status for a single user from status.lol.
+var statusGetCmd = &cobra.Command{
+	Use:   "get",
+	Short: "get status",
+	Long: `Gets a single status for a single user from status.lol.
 
 Specify the status ID with the --id flag.
 
 The username can be specified with the --username flag. If not set,
 it defaults to your own username.`,
-		Args: cobra.NoArgs,
-		Run: func(cmd *cobra.Command, args []string) {
-			type Result struct {
-				Request struct {
-					StatusCode int  `json:"status_code"`
-					Success    bool `json:"success"`
-				} `json:"request"`
-				Response struct {
-					Message string `json:"message"`
-					Status  struct {
-						Id      string `json:"id"`
-						Address string `json:"address"`
-						Created string `json:"created"`
-						Emoji   string `json:"emoji"`
-						Content string `json:"content"`
-					} `json:"status"`
-				} `json:"response"`
-			}
-			var result Result
-			body := callAPI(
-				http.MethodGet,
-				"/address/"+username+"/statuses/"+statusGetID,
-				nil,
-				false,
-			)
-			err := json.Unmarshal(body, &result)
-			cobra.CheckErr(err)
-			if !silent {
-				if !wantJson {
-					if result.Request.Success {
-						fmt.Printf(
-							"\nhttps://status.lol/%s/%s\n",
-							result.Response.Status.Address,
-							result.Response.Status.Id,
-						)
-						timestamp, err := strconv.Atoi(result.Response.Status.Created)
-						cobra.CheckErr(err)
-						fmt.Printf("  %s\n", time.Unix(int64(timestamp), 0))
-						fmt.Printf(
-							"  %s %s\n",
-							result.Response.Status.Emoji,
-							result.Response.Status.Content,
-						)
-					} else {
-						cobra.CheckErr(fmt.Errorf(result.Response.Message))
-					}
+	Args: cobra.NoArgs,
+	Run: func(cmd *cobra.Command, args []string) {
+		type Result struct {
+			Request struct {
+				StatusCode int  `json:"status_code"`
+				Success    bool `json:"success"`
+			} `json:"request"`
+			Response struct {
+				Message string `json:"message"`
+				Status  struct {
+					Id      string `json:"id"`
+					Address string `json:"address"`
+					Created string `json:"created"`
+					Emoji   string `json:"emoji"`
+					Content string `json:"content"`
+				} `json:"status"`
+			} `json:"response"`
+		}
+		var result Result
+		body := callAPI(
+			http.MethodGet,
+			"/address/"+username+"/statuses/"+objectID,
+			nil,
+			false,
+		)
+		err := json.Unmarshal(body, &result)
+		cobra.CheckErr(err)
+		if !silent {
+			if !wantJson {
+				if result.Request.Success {
+					fmt.Printf(
+						"\nhttps://status.lol/%s/%s\n",
+						result.Response.Status.Address,
+						result.Response.Status.Id,
+					)
+					timestamp, err := strconv.Atoi(result.Response.Status.Created)
+					cobra.CheckErr(err)
+					fmt.Printf("  %s\n", time.Unix(int64(timestamp), 0))
+					fmt.Printf(
+						"  %s %s\n",
+						result.Response.Status.Emoji,
+						result.Response.Status.Content,
+					)
 				} else {
-					fmt.Println(string(body))
+					cobra.CheckErr(fmt.Errorf(result.Response.Message))
 				}
+			} else {
+				fmt.Println(string(body))
 			}
-		},
-	}
-)
+		}
+	},
+}
 
 func init() {
 	statusGetCmd.Flags().StringVarP(
@@ -93,7 +90,7 @@ func init() {
 		"username whose status to get",
 	)
 	statusGetCmd.Flags().StringVarP(
-		&statusGetID,
+		&objectID,
 		"id",
 		"i",
 		"",

@@ -16,43 +16,41 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var (
-	serviceInfoCmd = &cobra.Command{
-		Use:   "info",
-		Short: "get service stats",
-		Long:  "Gets statistics for omg.lol services.",
-		Args:  cobra.NoArgs,
-		Run: func(cmd *cobra.Command, args []string) {
-			type Result struct {
-				Request struct {
-					StatusCode int  `json:"status_code"`
-					Success    bool `json:"success"`
-				} `json:"request"`
-				Response struct {
-					Message   string `json:"message"`
-					Members   int    `json:"members"`
-					Addresses int    `json:"addresses"`
-					Profiles  int    `json:"profiles"`
-				} `json:"response"`
-			}
-			var result Result
-			body := callAPI(http.MethodGet, "/service/info", nil, false)
-			err := json.Unmarshal(body, &result)
-			cobra.CheckErr(err)
-			if !silent {
-				if !wantJson {
-					if result.Request.Success {
-						fmt.Println(result.Response.Message)
-					} else {
-						cobra.CheckErr(fmt.Errorf(result.Response.Message))
-					}
+var serviceInfoCmd = &cobra.Command{
+	Use:   "info",
+	Short: "get service stats",
+	Long:  "Gets statistics for omg.lol services.",
+	Args:  cobra.NoArgs,
+	Run: func(cmd *cobra.Command, args []string) {
+		type Result struct {
+			Request struct {
+				StatusCode int  `json:"status_code"`
+				Success    bool `json:"success"`
+			} `json:"request"`
+			Response struct {
+				Message   string `json:"message"`
+				Members   int    `json:"members"`
+				Addresses int    `json:"addresses"`
+				Profiles  int    `json:"profiles"`
+			} `json:"response"`
+		}
+		var result Result
+		body := callAPI(http.MethodGet, "/service/info", nil, false)
+		err := json.Unmarshal(body, &result)
+		cobra.CheckErr(err)
+		if !silent {
+			if !wantJson {
+				if result.Request.Success {
+					fmt.Println(result.Response.Message)
 				} else {
-					fmt.Println(string(body))
+					cobra.CheckErr(fmt.Errorf(result.Response.Message))
 				}
+			} else {
+				fmt.Println(string(body))
 			}
-		},
-	}
-)
+		}
+	},
+}
 
 func init() {
 	serviceCmd.AddCommand(serviceInfoCmd)

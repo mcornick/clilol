@@ -14,13 +14,12 @@ import (
 	"net/http"
 
 	"github.com/spf13/cobra"
-	"golang.org/x/net/idna"
 )
 
-var directoryListCmd = &cobra.Command{
+var dnsListCmd = &cobra.Command{
 	Use:   "list",
-	Short: "list the address directory",
-	Long:  "Lists the omg.lol address directory.",
+	Short: "list all dns records",
+	Long:  `Lists all of your DNS records.`,
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
@@ -29,24 +28,33 @@ var directoryListCmd = &cobra.Command{
 				Success    bool `json:"success"`
 			} `json:"request"`
 			Response struct {
-				Message   string   `json:"message"`
-				URL       string   `json:"url"`
-				Directory []string `json:"directory"`
+				Message string `json:"message"`
+				DNS     []struct {
+					ID         string `json:"id"`
+					Type       string `json:"type"`
+					Name       string `json:"name"`
+					Data       string `json:"data"`
+					Priority   string `json:"priority"`
+					TTL        string `json:"ttl"`
+					CreatedAt  string `json:"created_at"`
+					Updated_At string `json:"updated_at"`
+				} `json:"dns"`
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPI(http.MethodGet, "/directory", nil, false)
+		body := callAPI(http.MethodGet, "/address/"+username+"/dns", nil, true)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
 		if !silent {
 			if !wantJson {
 				if result.Request.Success {
-					fmt.Printf("%s\n\n", result.Response.Message)
-					for _, address := range result.Response.Directory {
-						idnaProfile := idna.New()
-						decoded, err := idnaProfile.ToUnicode(address)
-						cobra.CheckErr(err)
-						fmt.Println(decoded)
+					for _, record := range result.Response.DNS {
+						fmt.Printf(
+							"%s %s %s\n",
+							record.Name,
+							record.Type,
+							record.Data,
+						)
 					}
 				} else {
 					cobra.CheckErr(fmt.Errorf(result.Response.Message))
@@ -59,5 +67,5 @@ var directoryListCmd = &cobra.Command{
 }
 
 func init() {
-	directoryCmd.AddCommand(directoryListCmd)
+	dnsCmd.AddCommand(dnsListCmd)
 }

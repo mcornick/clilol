@@ -18,7 +18,6 @@ import (
 )
 
 var (
-	purlCreateName   string
 	purlCreateURL    string
 	purlCreateListed bool
 	purlCreateCmd    = &cobra.Command{
@@ -47,7 +46,7 @@ Specify the PURL name with the --name flag, and the URL with the
 				} `json:"response"`
 			}
 			var result Result
-			purl := Input{purlCreateName, purlCreateURL, purlCreateListed}
+			purl := Input{name, purlCreateURL, purlCreateListed}
 			body := callAPI(
 				http.MethodPost,
 				"/address/"+viper.GetString("username")+"/purl",
@@ -73,7 +72,7 @@ Specify the PURL name with the --name flag, and the URL with the
 
 func init() {
 	purlCreateCmd.Flags().StringVarP(
-		&purlCreateName,
+		&name,
 		"name",
 		"n",
 		"",

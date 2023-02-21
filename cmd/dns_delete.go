@@ -14,14 +14,19 @@ import (
 	"net/http"
 
 	"github.com/spf13/cobra"
-	"golang.org/x/net/idna"
+	"github.com/spf13/viper"
 )
 
-var directoryListCmd = &cobra.Command{
-	Use:   "list",
-	Short: "list the address directory",
-	Long:  "Lists the omg.lol address directory.",
-	Args:  cobra.NoArgs,
+var dnsDeleteCmd = &cobra.Command{
+	Use:   "delete",
+	Short: "delete a DNS record",
+	Long: `Deletes a DNS record.
+
+Specify the record ID with the --id flag.
+
+Note that you won't be asked to confirm deletion.
+Be sure you know what you're doing.`,
+	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
 			Request struct {
@@ -29,25 +34,22 @@ var directoryListCmd = &cobra.Command{
 				Success    bool `json:"success"`
 			} `json:"request"`
 			Response struct {
-				Message   string   `json:"message"`
-				URL       string   `json:"url"`
-				Directory []string `json:"directory"`
+				Message string `json:"message"`
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPI(http.MethodGet, "/directory", nil, false)
+		body := callAPI(
+			http.MethodDelete,
+			"/address/"+viper.GetString("username")+"/dns/"+objectID,
+			nil,
+			true,
+		)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
 		if !silent {
 			if !wantJson {
 				if result.Request.Success {
-					fmt.Printf("%s\n\n", result.Response.Message)
-					for _, address := range result.Response.Directory {
-						idnaProfile := idna.New()
-						decoded, err := idnaProfile.ToUnicode(address)
-						cobra.CheckErr(err)
-						fmt.Println(decoded)
-					}
+					fmt.Println(result.Response.Message)
 				} else {
 					cobra.CheckErr(fmt.Errorf(result.Response.Message))
 				}
@@ -59,5 +61,12 @@ var directoryListCmd = &cobra.Command{
 }
 
 func init() {
-	directoryCmd.AddCommand(directoryListCmd)
+	dnsDeleteCmd.Flags().StringVarP(
+		&objectID,
+		"id",
+		"i",
+		"",
+		"ID of the DNS record to delete",
+	)
+	dnsCmd.AddCommand(dnsDeleteCmd)
 }

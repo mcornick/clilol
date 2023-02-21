@@ -20,7 +20,6 @@ import (
 
 var (
 	statusUpdateEmoji string
-	statusUpdateID    string
 	statusUpdateCmd   = &cobra.Command{
 		Use:   "update [status text]",
 		Short: "update a status",
@@ -54,7 +53,7 @@ to change it, you'll still need to specify it again.`,
 				} `json:"response"`
 			}
 			var result Result
-			status := Input{statusUpdateID, statusUpdateEmoji, strings.Join(args, " ")}
+			status := Input{objectID, statusUpdateEmoji, strings.Join(args, " ")}
 			body := callAPI(
 				http.MethodPatch,
 				"/address/"+viper.GetString("username")+"/statuses/",
@@ -80,7 +79,7 @@ to change it, you'll still need to specify it again.`,
 
 func init() {
 	statusUpdateCmd.Flags().StringVarP(
-		&statusUpdateID,
+		&objectID,
 		"id",
 		"i",
 		"",
