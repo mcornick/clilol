@@ -28,6 +28,7 @@ See the subcommands for more information.
 * [clilol email](clilol_email.md)	 - do things with email forwarding addresses
 * [clilol man](clilol_man.md)	 - Generate man pages
 * [clilol markdown-doc](clilol_markdown-doc.md)	 - Generate markdown docs
+* [clilol now](clilol_now.md)	 - do things with your Now page
 * [clilol preference](clilol_preference.md)	 - do things with preferences
 * [clilol purl](clilol_purl.md)	 - do things with PURLs
 * [clilol service](clilol_service.md)	 - do things with services
