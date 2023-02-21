@@ -54,7 +54,7 @@ to change it, you'll still need to specify it again.`,
 				} `json:"response"`
 			}
 			var result Result
-			status := Input{objectID, updateStatusEmoji, updateStatusStatus}
+			status := Input{idFlag, updateStatusEmoji, updateStatusStatus}
 			body := callAPIWithJSON(
 				http.MethodPatch,
 				"/address/"+viper.GetString("address")+"/statuses/",
@@ -80,7 +80,7 @@ to change it, you'll still need to specify it again.`,
 
 func init() {
 	updateStatusCmd.Flags().StringVarP(
-		&objectID,
+		&idFlag,
 		"id",
 		"i",
 		"",

@@ -36,7 +36,7 @@ var getAddressExpirationCmd = &cobra.Command{
 		var result Result
 		body := callAPIWithJSON(
 			http.MethodGet,
-			"/address/"+address+"/expiration",
+			"/address/"+addressFlag+"/expiration",
 			nil,
 			false,
 		)

@@ -58,7 +58,7 @@ var getAddressInfoPrivateCmd = &cobra.Command{
 		var result Result
 		body := callAPIWithJSON(
 			http.MethodGet,
-			"/address/"+address+"/info",
+			"/address/"+addressFlag+"/info",
 			nil,
 			true,
 		)
@@ -82,7 +82,7 @@ var getAddressInfoPrivateCmd = &cobra.Command{
 
 func init() {
 	getAddressInfoPrivateCmd.Flags().StringVarP(
-		&address,
+		&addressFlag,
 		"address",
 		"a",
 		viper.GetString("address"),

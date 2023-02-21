@@ -39,7 +39,7 @@ Specify the new name with the --name flag.`,
 			} `json:"response"`
 		}
 		var result Result
-		account := Input{name}
+		account := Input{nameFlag}
 		body := callAPIWithJSON(
 			http.MethodPost,
 			"/account/"+viper.GetString("email")+"/name",
@@ -64,7 +64,7 @@ Specify the new name with the --name flag.`,
 
 func init() {
 	updateAccountNameCmd.Flags().StringVarP(
-		&name,
+		&nameFlag,
 		"name",
 		"n",
 		"",

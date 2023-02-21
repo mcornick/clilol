@@ -40,7 +40,7 @@ to stdout.`,
 			var result Result
 			body := callAPIWithJSON(
 				http.MethodGet,
-				"/theme/"+name+"/preview",
+				"/theme/"+nameFlag+"/preview",
 				nil,
 				true,
 			)
@@ -64,7 +64,7 @@ to stdout.`,
 
 func init() {
 	getThemePreviewCmd.Flags().StringVarP(
-		&name,
+		&nameFlag,
 		"name",
 		"n",
 		"",

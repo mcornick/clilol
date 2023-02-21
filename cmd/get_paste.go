@@ -49,7 +49,7 @@ it defaults to your own address.`,
 			var result Result
 			body := callAPIWithJSON(
 				http.MethodGet,
-				"/address/"+address+"/pastebin/"+getPasteTitle,
+				"/address/"+addressFlag+"/pastebin/"+getPasteTitle,
 				nil,
 				true,
 			)
@@ -77,7 +77,7 @@ it defaults to your own address.`,
 
 func init() {
 	getPasteCmd.Flags().StringVarP(
-		&address,
+		&addressFlag,
 		"address",
 		"a",
 		viper.GetString("address"),

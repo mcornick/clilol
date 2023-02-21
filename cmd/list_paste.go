@@ -48,9 +48,9 @@ your own address.`,
 		var result Result
 		body := callAPIWithJSON(
 			http.MethodGet,
-			"/address/"+address+"/pastebin",
+			"/address/"+addressFlag+"/pastebin",
 			nil,
-			address == viper.GetString("address"),
+			addressFlag == viper.GetString("address"),
 		)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
@@ -76,7 +76,7 @@ your own address.`,
 
 func init() {
 	listPasteCmd.Flags().StringVarP(
-		&address,
+		&addressFlag,
 		"address",
 		"a",
 		viper.GetString("address"),

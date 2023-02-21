@@ -47,7 +47,7 @@ it defaults to your own address.`,
 			var result Result
 			body := callAPIWithJSON(
 				http.MethodGet,
-				"/address/"+address+"/purl/"+getPURLName,
+				"/address/"+addressFlag+"/purl/"+getPURLName,
 				nil,
 				true,
 			)
@@ -75,7 +75,7 @@ it defaults to your own address.`,
 
 func init() {
 	getPURLCmd.Flags().StringVarP(
-		&address,
+		&addressFlag,
 		"address",
 		"a",
 		viper.GetString("address"),

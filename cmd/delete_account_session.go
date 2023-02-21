@@ -40,7 +40,7 @@ Be sure you know what you're doing.`,
 		var result Result
 		body := callAPIWithJSON(
 			http.MethodDelete,
-			"/account/"+viper.GetString("email")+"/sessions/"+objectID,
+			"/account/"+viper.GetString("email")+"/sessions/"+idFlag,
 			nil,
 			true,
 		)
@@ -62,7 +62,7 @@ Be sure you know what you're doing.`,
 
 func init() {
 	deleteAccountSessionCmd.Flags().StringVarP(
-		&objectID,
+		&idFlag,
 		"id",
 		"i",
 		"",

@@ -50,7 +50,7 @@ to stdout.`,
 			var result Result
 			body := callAPIWithJSON(
 				http.MethodGet,
-				"/address/"+address+"/now",
+				"/address/"+addressFlag+"/now",
 				nil,
 				false,
 			)
@@ -78,7 +78,7 @@ to stdout.`,
 
 func init() {
 	getNowCmd.Flags().StringVarP(
-		&address,
+		&addressFlag,
 		"address",
 		"a",
 		viper.GetString("address"),

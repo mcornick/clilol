@@ -51,7 +51,7 @@ Specify the ID with the --id flag.`,
 		var result Result
 		body := callAPIWithJSON(
 			http.MethodGet,
-			"/address/"+address+"/weblog/entry/"+objectID,
+			"/address/"+addressFlag+"/weblog/entry/"+idFlag,
 			nil,
 			true,
 		)
@@ -83,7 +83,7 @@ Specify the ID with the --id flag.`,
 
 func init() {
 	getWeblogCmd.Flags().StringVarP(
-		&objectID,
+		&idFlag,
 		"id",
 		"i",
 		"",

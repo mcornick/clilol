@@ -40,7 +40,7 @@ Be sure you know what you're doing.`,
 		var result Result
 		body := callAPIWithJSON(
 			http.MethodDelete,
-			"/address/"+viper.GetString("address")+"/dns/"+objectID,
+			"/address/"+viper.GetString("address")+"/dns/"+idFlag,
 			nil,
 			true,
 		)
@@ -62,7 +62,7 @@ Be sure you know what you're doing.`,
 
 func init() {
 	deleteDNSCmd.Flags().StringVarP(
-		&objectID,
+		&idFlag,
 		"id",
 		"i",
 		"",

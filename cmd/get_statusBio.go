@@ -43,7 +43,7 @@ Note that any custom CSS set on the bio is ignored.
 		var result Result
 		body := callAPIWithJSON(
 			http.MethodGet,
-			"/address/"+address+"/statuses/bio/",
+			"/address/"+addressFlag+"/statuses/bio/",
 			nil,
 			false,
 		)
@@ -66,7 +66,7 @@ Note that any custom CSS set on the bio is ignored.
 
 func init() {
 	getStatusBioCmd.Flags().StringVarP(
-		&address,
+		&addressFlag,
 		"address",
 		"a",
 		viper.GetString("address"),

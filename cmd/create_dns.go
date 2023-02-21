@@ -68,7 +68,7 @@ and the data with the --data flag.`,
 				} `json:"response"`
 			}
 			var result Result
-			dns := Input{createDNSType, name, createDNSData, createDNSPriority, createDNSTTL}
+			dns := Input{createDNSType, nameFlag, createDNSData, createDNSPriority, createDNSTTL}
 			body := callAPIWithJSON(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/dns",
@@ -101,7 +101,7 @@ func init() {
 		"Type of DNS record to create",
 	)
 	createDNSCmd.Flags().StringVarP(
-		&name,
+		&nameFlag,
 		"name",
 		"n",
 		"",

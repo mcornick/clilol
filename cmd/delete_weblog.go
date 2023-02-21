@@ -40,7 +40,7 @@ Be sure you know what you're doing.`,
 		var result Result
 		body := callAPIWithJSON(
 			http.MethodDelete,
-			"/address/"+viper.GetString("address")+"/weblog/delete/"+objectID,
+			"/address/"+viper.GetString("address")+"/weblog/delete/"+idFlag,
 			nil,
 			true,
 		)
@@ -62,7 +62,7 @@ Be sure you know what you're doing.`,
 
 func init() {
 	deleteWeblogCmd.Flags().StringVarP(
-		&objectID,
+		&idFlag,
 		"id",
 		"i",
 		"",

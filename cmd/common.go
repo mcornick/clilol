@@ -20,9 +20,9 @@ import (
 )
 
 var (
-	name     string
-	objectID string
-	address  string
+	nameFlag    string
+	idFlag      string
+	addressFlag string
 )
 
 func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byte, error) {

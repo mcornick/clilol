@@ -51,7 +51,7 @@ Specify the theme name with the --name flag.`,
 		var result Result
 		body := callAPIWithJSON(
 			http.MethodGet,
-			"/theme/"+name+"/info",
+			"/theme/"+nameFlag+"/info",
 			nil,
 			true,
 		)
@@ -64,7 +64,7 @@ Specify the theme name with the --name flag.`,
 					cobra.CheckErr(err)
 					fmt.Printf(
 						"%s: %s by %s (%s) updated %s\n",
-						name,
+						nameFlag,
 						result.Response.Theme.Name,
 						result.Response.Theme.Author,
 						result.Response.Theme.AuthorURL,
@@ -82,7 +82,7 @@ Specify the theme name with the --name flag.`,
 
 func init() {
 	getThemeCmd.Flags().StringVarP(
-		&name,
+		&nameFlag,
 		"name",
 		"n",
 		"",

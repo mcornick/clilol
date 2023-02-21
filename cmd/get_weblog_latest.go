@@ -48,7 +48,7 @@ var getWeblogLatestCmd = &cobra.Command{
 		var result Result
 		body := callAPIWithJSON(
 			http.MethodGet,
-			"/address/"+address+"/weblog/post/latest",
+			"/address/"+addressFlag+"/weblog/post/latest",
 			nil,
 			true,
 		)

@@ -69,10 +69,10 @@ and the data with the --data flag.`,
 				} `json:"response"`
 			}
 			var result Result
-			dns := Input{updateDNSType, name, updateDNSData, updateDNSPriority, updateDNSTTL}
+			dns := Input{updateDNSType, nameFlag, updateDNSData, updateDNSPriority, updateDNSTTL}
 			body := callAPIWithJSON(
 				http.MethodPatch,
-				"/address/"+viper.GetString("address")+"/dns/"+objectID,
+				"/address/"+viper.GetString("address")+"/dns/"+idFlag,
 				dns,
 				true,
 			)
@@ -95,7 +95,7 @@ and the data with the --data flag.`,
 
 func init() {
 	updateDNSCmd.Flags().StringVarP(
-		&objectID,
+		&idFlag,
 		"id",
 		"i",
 		"",
@@ -109,7 +109,7 @@ func init() {
 		"Updated DNS type",
 	)
 	updateDNSCmd.Flags().StringVarP(
-		&name,
+		&nameFlag,
 		"name",
 		"n",
 		"",

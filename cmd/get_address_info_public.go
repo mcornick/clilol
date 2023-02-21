@@ -52,7 +52,7 @@ var getAddressInfoPublicCmd = &cobra.Command{
 		var result Result
 		body := callAPIWithJSON(
 			http.MethodGet,
-			"/address/"+address+"/info",
+			"/address/"+addressFlag+"/info",
 			nil,
 			false,
 		)
@@ -76,7 +76,7 @@ var getAddressInfoPublicCmd = &cobra.Command{
 
 func init() {
 	getAddressInfoPublicCmd.Flags().StringVarP(
-		&address,
+		&addressFlag,
 		"address",
 		"a",
 		viper.GetString("address"),

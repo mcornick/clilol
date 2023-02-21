@@ -49,7 +49,7 @@ it defaults to your own address.`,
 		var result Result
 		body := callAPIWithJSON(
 			http.MethodGet,
-			"/address/"+address+"/statuses/"+objectID,
+			"/address/"+addressFlag+"/statuses/"+idFlag,
 			nil,
 			false,
 		)
@@ -83,14 +83,14 @@ it defaults to your own address.`,
 
 func init() {
 	getStatusCmd.Flags().StringVarP(
-		&address,
+		&addressFlag,
 		"address",
 		"a",
 		viper.GetString("address"),
 		"address whose status to get",
 	)
 	getStatusCmd.Flags().StringVarP(
-		&objectID,
+		&idFlag,
 		"id",
 		"i",
 		"",
