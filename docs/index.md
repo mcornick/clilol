@@ -74,7 +74,7 @@ You can install clilol in any of these ways. (These are the only supported build
 
 ## Configuration File
 
-clilol expects a configuration file to specify your username and API key. You can find your API key on [your omg.lol account page](https://home.omg.lol/account).
+clilol expects a configuration file to specify your username, login email, and API key. You can find your API key on [your omg.lol account page](https://home.omg.lol/account).
 
 The configuration file should be named either `config.yaml`, `config.toml` or `config.json` depending on which format you prefer, and should be located in one of these directories:
 
@@ -83,13 +83,14 @@ The configuration file should be named either `config.yaml`, `config.toml` or `c
 - `/etc/clilol` (macOS or Unix)
 - `%AppData%\clilol` (Windows)
 
-The file should look like one of these, substituting your own username and API key:
+The file should look like one of these, substituting your own details:
 
 === "config.yaml"
 
     ```yaml
     ---
     username: tomservo
+    email: tomservo@gizmonics.example.com
     apikey: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     ```
 
@@ -97,6 +98,7 @@ The file should look like one of these, substituting your own username and API k
 
     ```toml
     username = "tomservo"
+    email = "tomservo@gizmonics.example.com"
     apikey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
     ```
 
@@ -105,6 +107,7 @@ The file should look like one of these, substituting your own username and API k
     ```json
     {
       "username": "tomservo",
+      "email": "tomservo@gizmonics.example.com",
       "apikey": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
     }
     ```
@@ -115,10 +118,13 @@ Configuration is also possible using environment variables:
 
 ```sh
 export CLILOL_USERNAME="tomservo"
+export CLILOL_EMAIL="tomservo@gizmonics.example.com"
 export CLILOL_APIKEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 ```
 
 Environment variables take precedence over any configuration file.
+
+Your email address is only needed for the `clilol account` commands. It is not used by clilol for anything else, such as spamming you. If you don't use the `clilol account` commands, feel free to not specify it.
 
 ## Contributing to clilol
 
