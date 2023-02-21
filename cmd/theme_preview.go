@@ -17,48 +17,50 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var themePreviewFilename string
-var themePreviewCmd = &cobra.Command{
-	Use:   "preview",
-	Short: "get theme preview",
-	Long: `Gets an HTML preview of a theme.
+var (
+	themePreviewFilename string
+	themePreviewCmd      = &cobra.Command{
+		Use:   "preview",
+		Short: "get theme preview",
+		Long: `Gets an HTML preview of a theme.
 
 Specify the theme name with the --name flag.
 
 If you specify a filename with the --filename flag, the content will be written
 to that file. If you do not specify a filename, the content will be written
 to stdout.`,
-	Args: cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
-			Response struct {
-				Message string `json:"message"`
-				HTML    string `json:"html"`
-			} `json:"response"`
-		}
-		var result Result
-		body := callAPI(
-			http.MethodGet,
-			"/theme/"+name+"/preview",
-			nil,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
-		cobra.CheckErr(err)
-		if !silent {
-			if !wantJson {
-				if themePreviewFilename != "" {
-					err = os.WriteFile(themePreviewFilename, []byte(result.Response.HTML), 0o644)
-					cobra.CheckErr(err)
-				} else {
-					fmt.Println(result.Response.HTML)
-				}
-			} else {
-				fmt.Println(string(body))
+		Args: cobra.NoArgs,
+		Run: func(cmd *cobra.Command, args []string) {
+			type Result struct {
+				Response struct {
+					Message string `json:"message"`
+					HTML    string `json:"html"`
+				} `json:"response"`
 			}
-		}
-	},
-}
+			var result Result
+			body := callAPI(
+				http.MethodGet,
+				"/theme/"+name+"/preview",
+				nil,
+				true,
+			)
+			err := json.Unmarshal(body, &result)
+			cobra.CheckErr(err)
+			if !silent {
+				if !wantJson {
+					if themePreviewFilename != "" {
+						err = os.WriteFile(themePreviewFilename, []byte(result.Response.HTML), 0o644)
+						cobra.CheckErr(err)
+					} else {
+						fmt.Println(result.Response.HTML)
+					}
+				} else {
+					fmt.Println(string(body))
+				}
+			}
+		},
+	}
+)
 
 func init() {
 	themePreviewCmd.Flags().StringVarP(
