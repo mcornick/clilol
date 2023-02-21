@@ -20,6 +20,7 @@ See the subcommands for more information.
 
 ### SEE ALSO
 
+* [clilol account](clilol_account.md)	 - do things with your account
 * [clilol completion](clilol_completion.md)	 - Generate the autocompletion script for the specified shell
 * [clilol directory](clilol_directory.md)	 - do things with the address directory
 * [clilol dns](clilol_dns.md)	 - do things with DNS
