@@ -24,6 +24,7 @@ See the subcommands for more information.
 * [clilol directory](clilol_directory.md)	 - do things with the address directory
 * [clilol man](clilol_man.md)	 - Generate man pages
 * [clilol markdown-doc](clilol_markdown-doc.md)	 - Generate markdown docs
+* [clilol preference](clilol_preference.md)	 - do things with preferences
 * [clilol purl](clilol_purl.md)	 - do things with PURLs
 * [clilol service](clilol_service.md)	 - do things with services
 * [clilol status](clilol_status.md)	 - do things with statuses
