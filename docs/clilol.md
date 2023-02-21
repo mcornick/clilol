@@ -25,6 +25,7 @@ See the subcommands for more information.
 * [clilol completion](clilol_completion.md)	 - Generate the autocompletion script for the specified shell
 * [clilol directory](clilol_directory.md)	 - do things with the address directory
 * [clilol dns](clilol_dns.md)	 - do things with DNS
+* [clilol email](clilol_email.md)	 - do things with email forwarding addresses
 * [clilol man](clilol_man.md)	 - Generate man pages
 * [clilol markdown-doc](clilol_markdown-doc.md)	 - Generate markdown docs
 * [clilol preference](clilol_preference.md)	 - do things with preferences
