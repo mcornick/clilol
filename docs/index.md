@@ -7,9 +7,9 @@ __clilol__ is a CLI for the various fun services offered by [omg.lol](https://om
 
 Please see the links in the navigation menu to the left to learn about all the different commands provided by clilol.
 
-!!! Warning
+!!! Note
 
-    clilol is still under heavy development, and the current tree of commands will change. Everything will stabilize before a 1.0.0 release. _Caveat lector_.
+    clilol is still under heavy development, and things may still change before a 1.0.0 release. _Caveat lector_.
 
 ## Installation
 
