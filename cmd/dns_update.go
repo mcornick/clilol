@@ -18,11 +18,13 @@ import (
 )
 
 var (
-	dnsUpdateType string
-	dnsUpdateData string
-	dnsUpdateCmd  = &cobra.Command{
-		Use:   "Update",
-		Short: "Update a DNS record",
+	dnsUpdateType     string
+	dnsUpdateData     string
+	dnsUpdatePriority int
+	dnsUpdateTTL      int
+	dnsUpdateCmd      = &cobra.Command{
+		Use:   "update",
+		Short: "update a DNS record",
 		Long: `Updates a DNS record.
 
 Specify the ID of the DNS record with the --id flag,
@@ -32,9 +34,11 @@ and the data with the --data flag.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
 			type Input struct {
-				Type string `json:"type"`
-				Name string `json:"name"`
-				Data string `json:"data"`
+				Type     string `json:"type"`
+				Name     string `json:"name"`
+				Data     string `json:"data"`
+				Priority int    `json:"priority"`
+				TTL      int    `json:"ttl"`
 			}
 			type Result struct {
 				Request struct {
@@ -45,18 +49,18 @@ and the data with the --data flag.`,
 					Message  string `json:"message"`
 					DataSent struct {
 						Type     string `json:"type"`
-						Priority string `json:"priority"`
-						TTL      string `json:"ttl"`
+						Priority int    `json:"priority"`
+						TTL      int    `json:"ttl"`
 						Name     string `json:"name"`
 						Content  string `json:"content"`
 					} `json:"data_sent"`
 					ResponseReceived struct {
 						Data struct {
-							ID        string `json:"id"`
+							ID        int    `json:"id"`
 							Name      string `json:"name"`
 							Content   string `json:"content"`
-							TTL       string `json:"ttl"`
-							Priority  string `json:"priority"`
+							TTL       int    `json:"ttl"`
+							Priority  int    `json:"priority"`
 							Type      string `json:"type"`
 							CreatedAt string `json:"created_at"`
 							UpdatedAt string `json:"updated_at"`
@@ -65,7 +69,7 @@ and the data with the --data flag.`,
 				} `json:"response"`
 			}
 			var result Result
-			dns := Input{name, dnsUpdateType, dnsUpdateData}
+			dns := Input{dnsUpdateType, name, dnsUpdateData, dnsUpdatePriority, dnsUpdateTTL}
 			body := callAPI(
 				http.MethodPatch,
 				"/address/"+viper.GetString("username")+"/dns/"+objectID,
@@ -117,6 +121,20 @@ func init() {
 		"d",
 		"",
 		"Updated data",
+	)
+	dnsUpdateCmd.Flags().IntVarP(
+		&dnsUpdatePriority,
+		"priority",
+		"p",
+		0,
+		"Updated priority",
+	)
+	dnsUpdateCmd.Flags().IntVarP(
+		&dnsUpdateTTL,
+		"ttl",
+		"T",
+		3600,
+		"Updated TTL",
 	)
 	dnsCmd.AddCommand(dnsUpdateCmd)
 }

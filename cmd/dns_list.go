@@ -30,12 +30,12 @@ var dnsListCmd = &cobra.Command{
 			Response struct {
 				Message string `json:"message"`
 				DNS     []struct {
-					ID         string `json:"id"`
+					ID         int    `json:"id"`
 					Type       string `json:"type"`
 					Name       string `json:"name"`
 					Data       string `json:"data"`
-					Priority   string `json:"priority"`
-					TTL        string `json:"ttl"`
+					Priority   int    `json:"priority"`
+					TTL        int    `json:"ttl"`
 					CreatedAt  string `json:"created_at"`
 					Updated_At string `json:"updated_at"`
 				} `json:"dns"`
@@ -50,10 +50,11 @@ var dnsListCmd = &cobra.Command{
 				if result.Request.Success {
 					for _, record := range result.Response.DNS {
 						fmt.Printf(
-							"%s %s %s\n",
+							"%s %s %s ; ID: %d\n",
 							record.Name,
 							record.Type,
 							record.Data,
+							record.ID,
 						)
 					}
 				} else {

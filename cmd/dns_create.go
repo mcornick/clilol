@@ -18,9 +18,11 @@ import (
 )
 
 var (
-	dnsCreateType string
-	dnsCreateData string
-	dnsCreateCmd  = &cobra.Command{
+	dnsCreateType     string
+	dnsCreateData     string
+	dnsCreatePriority int
+	dnsCreateTTL      int
+	dnsCreateCmd      = &cobra.Command{
 		Use:   "create",
 		Short: "create a DNS record",
 		Long: `Creates a DNS record.
@@ -31,9 +33,11 @@ and the data with the --data flag.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
 			type Input struct {
-				Type string `json:"type"`
-				Name string `json:"name"`
-				Data string `json:"data"`
+				Type     string `json:"type"`
+				Name     string `json:"name"`
+				Data     string `json:"data"`
+				Priority int    `json:"priority"`
+				TTL      int    `json:"ttl"`
 			}
 			type Result struct {
 				Request struct {
@@ -44,18 +48,18 @@ and the data with the --data flag.`,
 					Message  string `json:"message"`
 					DataSent struct {
 						Type     string `json:"type"`
-						Priority string `json:"priority"`
-						TTL      string `json:"ttl"`
+						Priority int    `json:"priority"`
+						TTL      int    `json:"ttl"`
 						Name     string `json:"name"`
 						Content  string `json:"content"`
 					} `json:"data_sent"`
 					ResponseReceived struct {
 						Data struct {
-							ID        string `json:"id"`
+							ID        int    `json:"id"`
 							Name      string `json:"name"`
 							Content   string `json:"content"`
-							TTL       string `json:"ttl"`
-							Priority  string `json:"priority"`
+							TTL       int    `json:"ttl"`
+							Priority  int    `json:"priority"`
 							Type      string `json:"type"`
 							CreatedAt string `json:"created_at"`
 							UpdatedAt string `json:"updated_at"`
@@ -64,7 +68,7 @@ and the data with the --data flag.`,
 				} `json:"response"`
 			}
 			var result Result
-			dns := Input{dnsCreateType, name, dnsCreateData}
+			dns := Input{dnsCreateType, name, dnsCreateData, dnsCreatePriority, dnsCreateTTL}
 			body := callAPI(
 				http.MethodPost,
 				"/address/"+viper.GetString("username")+"/dns",
@@ -109,6 +113,20 @@ func init() {
 		"d",
 		"",
 		"Data to store in the DNS record",
+	)
+	dnsCreateCmd.Flags().IntVarP(
+		&dnsCreatePriority,
+		"priority",
+		"p",
+		0,
+		"Priority of the DNS record",
+	)
+	dnsCreateCmd.Flags().IntVarP(
+		&dnsCreateTTL,
+		"ttl",
+		"T",
+		3600,
+		"Time to live of the DNS record",
 	)
 	dnsCmd.AddCommand(dnsCreateCmd)
 }
