@@ -81,7 +81,7 @@ func init() {
 	createPURLCmd.Flags().StringVarP(
 		&createPURLURL,
 		"url",
-		"a",
+		"u",
 		"",
 		"URL to redirect to",
 	)

@@ -99,7 +99,7 @@ func init() {
 	createStatusCmd.Flags().StringVarP(
 		&createStatusExternalURL,
 		"external-url",
-		"a",
+		"u",
 		"",
 		"External URL to add to status",
 	)
