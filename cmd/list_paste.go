@@ -46,6 +46,9 @@ your own address.`,
 			} `json:"response"`
 		}
 		var result Result
+		if addressFlag == "" {
+			addressFlag = viper.GetString("address")
+		}
 		body := callAPIWithJSON(
 			http.MethodGet,
 			"/address/"+addressFlag+"/pastebin",
@@ -79,7 +82,7 @@ func init() {
 		&addressFlag,
 		"address",
 		"a",
-		viper.GetString("address"),
+		"",
 		"address whose pastes to list",
 	)
 	listCmd.AddCommand(listPasteCmd)

@@ -41,6 +41,9 @@ Note that any custom CSS set on the bio is ignored.
 			} `json:"response"`
 		}
 		var result Result
+		if addressFlag == "" {
+			addressFlag = viper.GetString("address")
+		}
 		body := callAPIWithJSON(
 			http.MethodGet,
 			"/address/"+addressFlag+"/statuses/bio/",
@@ -69,7 +72,7 @@ func init() {
 		&addressFlag,
 		"address",
 		"a",
-		viper.GetString("address"),
+		"",
 		"address whose status bio to get",
 	)
 	getCmd.AddCommand(getStatusBioCmd)

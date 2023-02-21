@@ -56,6 +56,9 @@ var getAddressInfoPrivateCmd = &cobra.Command{
 			} `json:"response"`
 		}
 		var result Result
+		if addressFlag == "" {
+			addressFlag = viper.GetString("address")
+		}
 		body := callAPIWithJSON(
 			http.MethodGet,
 			"/address/"+addressFlag+"/info",
@@ -85,7 +88,7 @@ func init() {
 		&addressFlag,
 		"address",
 		"a",
-		viper.GetString("address"),
+		"",
 		"address whose availability to get",
 	)
 	getAddressInfoCmd.AddCommand(getAddressInfoPrivateCmd)

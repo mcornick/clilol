@@ -34,6 +34,9 @@ var getAddressExpirationCmd = &cobra.Command{
 			} `json:"response"`
 		}
 		var result Result
+		if addressFlag == "" {
+			addressFlag = viper.GetString("address")
+		}
 		body := callAPIWithJSON(
 			http.MethodGet,
 			"/address/"+addressFlag+"/expiration",
@@ -61,7 +64,7 @@ func init() {
 		&addressFlag,
 		"address",
 		"a",
-		viper.GetString("address"),
+		"",
 		"address whose expiration to get",
 	)
 	getAddressCmd.AddCommand(getAddressExpirationCmd)

@@ -47,6 +47,9 @@ it defaults to your own address.`,
 			} `json:"response"`
 		}
 		var result Result
+		if addressFlag == "" {
+			addressFlag = viper.GetString("address")
+		}
 		body := callAPIWithJSON(
 			http.MethodGet,
 			"/address/"+addressFlag+"/statuses/"+idFlag,
@@ -86,7 +89,7 @@ func init() {
 		&addressFlag,
 		"address",
 		"a",
-		viper.GetString("address"),
+		"",
 		"address whose status to get",
 	)
 	getStatusCmd.Flags().StringVarP(

@@ -48,6 +48,9 @@ to stdout.`,
 				} `json:"response"`
 			}
 			var result Result
+			if addressFlag == "" {
+				addressFlag = viper.GetString("address")
+			}
 			body := callAPIWithJSON(
 				http.MethodGet,
 				"/address/"+addressFlag+"/now",
@@ -81,7 +84,7 @@ func init() {
 		&addressFlag,
 		"address",
 		"a",
-		viper.GetString("address"),
+		"",
 		"address whose Now page to get",
 	)
 	getNowCmd.Flags().StringVarP(

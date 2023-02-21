@@ -52,6 +52,9 @@ See the statuslog commands to get statuses for all users.`,
 				} `json:"response"`
 			}
 			var result Result
+			if addressFlag == "" {
+				addressFlag = viper.GetString("address")
+			}
 			body := callAPIWithJSON(
 				http.MethodGet,
 				"/address/"+addressFlag+"/statuses/",
@@ -91,7 +94,7 @@ func init() {
 		&addressFlag,
 		"address",
 		"a",
-		viper.GetString("address"),
+		"",
 		"address whose status(es) to get",
 	)
 	listStatusCmd.Flags().IntVarP(
