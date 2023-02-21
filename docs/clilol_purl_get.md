@@ -11,8 +11,8 @@ Gets a PURL by name.
 
 Specify the name with the --name flag.
 
-The username can be specified with the --username flag. If not set,
-it defaults to your own username.
+The address can be specified with the --address flag. If not set,
+it defaults to your own address.
 
 ```
 clilol purl get [flags]
@@ -21,9 +21,9 @@ clilol purl get [flags]
 ### Options
 
 ```
-  -h, --help              help for get
-  -n, --name string       name of the PURL to get
-  -u, --username string   username whose PURL to get
+  -a, --address string   address whose PURL to get
+  -h, --help             help for get
+  -n, --name string      name of the PURL to get
 ```
 
 ### Options inherited from parent commands

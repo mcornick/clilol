@@ -22,8 +22,8 @@ var purlListCmd = &cobra.Command{
 	Short: "list all PURLs",
 	Long: `Lists all PURLs for a user.
 
-The username can be specified with the --username flag. If not set,
-it defaults to your own username.`,
+The address can be specified with the --address flag. If not set,
+it defaults to your own address.`,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
@@ -43,7 +43,7 @@ it defaults to your own username.`,
 		var result Result
 		body := callAPI(
 			http.MethodGet,
-			"/address/"+username+"/purls",
+			"/address/"+address+"/purls",
 			nil,
 			true,
 		)
@@ -72,11 +72,11 @@ it defaults to your own username.`,
 
 func init() {
 	purlListCmd.Flags().StringVarP(
-		&username,
-		"username",
-		"u",
-		viper.GetString("username"),
-		"username whose PURLs to get",
+		&address,
+		"address",
+		"a",
+		viper.GetString("address"),
+		"address whose PURLs to get",
 	)
 	purlCmd.AddCommand(purlListCmd)
 }

@@ -26,8 +26,8 @@ var (
 		Short: "list statuses",
 		Long: `Lists statuses for a single user from status.lol.
 
-The username can be specified with the --username flag. If not set,
-it defaults to your own username.
+The address can be specified with the --address flag. If not set,
+it defaults to your own address.
 
 The number of statuses returned can be specified with the --limit
 flag. If not set, it will return all statuses for the user.
@@ -54,7 +54,7 @@ See the statuslog commands to get statuses for all users.`,
 			var result Result
 			body := callAPI(
 				http.MethodGet,
-				"/address/"+username+"/statuses/",
+				"/address/"+address+"/statuses/",
 				nil,
 				false,
 			)
@@ -88,11 +88,11 @@ See the statuslog commands to get statuses for all users.`,
 
 func init() {
 	statusListCmd.Flags().StringVarP(
-		&username,
-		"username",
-		"u",
-		viper.GetString("username"),
-		"username whose status(es) to get",
+		&address,
+		"address",
+		"a",
+		viper.GetString("address"),
+		"address whose status(es) to get",
 	)
 	statusListCmd.Flags().IntVarP(
 		&statusListLimit,

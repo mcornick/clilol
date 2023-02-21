@@ -27,7 +27,7 @@ clilol status post [status text] [flags]
 
 ```
   -e, --emoji string          Emoji to add to status (default sparkles)
-  -u, --external-url string   External URL to add to status
+  -a, --external-url string   External URL to add to status
   -h, --help                  help for post
 ```
 

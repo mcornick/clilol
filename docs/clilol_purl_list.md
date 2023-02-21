@@ -9,8 +9,8 @@ list all PURLs
 
 Lists all PURLs for a user.
 
-The username can be specified with the --username flag. If not set,
-it defaults to your own username.
+The address can be specified with the --address flag. If not set,
+it defaults to your own address.
 
 ```
 clilol purl list [flags]
@@ -19,8 +19,8 @@ clilol purl list [flags]
 ### Options
 
 ```
-  -h, --help              help for list
-  -u, --username string   username whose PURLs to get
+  -a, --address string   address whose PURLs to get
+  -h, --help             help for list
 ```
 
 ### Options inherited from parent commands

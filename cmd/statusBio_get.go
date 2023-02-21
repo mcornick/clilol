@@ -22,8 +22,8 @@ var bioGetCmd = &cobra.Command{
 	Short: "get status bio",
 	Long: `Gets status bio for a user from status.lol.
 
-The username can be specified with the --username flag. If not set,
-it defaults to your own username.
+The address can be specified with the --address flag. If not set,
+it defaults to your own address.
 
 Note that any custom CSS set on the bio is ignored.
 `,
@@ -43,7 +43,7 @@ Note that any custom CSS set on the bio is ignored.
 		var result Result
 		body := callAPI(
 			http.MethodGet,
-			"/address/"+username+"/statuses/bio/",
+			"/address/"+address+"/statuses/bio/",
 			nil,
 			false,
 		)
@@ -66,11 +66,11 @@ Note that any custom CSS set on the bio is ignored.
 
 func init() {
 	bioGetCmd.Flags().StringVarP(
-		&username,
-		"username",
-		"u",
-		viper.GetString("username"),
-		"username whose status bio to get",
+		&address,
+		"address",
+		"a",
+		viper.GetString("address"),
+		"address whose status bio to get",
 	)
 	statusBioCmd.AddCommand(bioGetCmd)
 }

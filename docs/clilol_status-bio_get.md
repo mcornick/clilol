@@ -9,8 +9,8 @@ get status bio
 
 Gets status bio for a user from status.lol.
 
-The username can be specified with the --username flag. If not set,
-it defaults to your own username.
+The address can be specified with the --address flag. If not set,
+it defaults to your own address.
 
 Note that any custom CSS set on the bio is ignored.
 
@@ -22,8 +22,8 @@ clilol status-bio get [flags]
 ### Options
 
 ```
-  -h, --help              help for get
-  -u, --username string   username whose status bio to get (default "mcornick")
+  -a, --address string   address whose status bio to get (default "mcornick")
+  -h, --help             help for get
 ```
 
 ### Options inherited from parent commands

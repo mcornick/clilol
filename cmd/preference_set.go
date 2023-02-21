@@ -48,7 +48,7 @@ the --value flag.`,
 			pref := Input{preferenceSetItem, preferenceSetValue}
 			body := callAPI(
 				http.MethodPost,
-				"/preferences/"+viper.GetString("username"),
+				"/preferences/"+viper.GetString("address"),
 				pref,
 				true,
 			)

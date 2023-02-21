@@ -56,7 +56,7 @@ to change it, you'll still need to specify it again.`,
 			status := Input{objectID, statusUpdateEmoji, strings.Join(args, " ")}
 			body := callAPI(
 				http.MethodPatch,
-				"/address/"+viper.GetString("username")+"/statuses/",
+				"/address/"+viper.GetString("address")+"/statuses/",
 				status,
 				true,
 			)

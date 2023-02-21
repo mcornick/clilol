@@ -71,7 +71,7 @@ and the data with the --data flag.`,
 			dns := Input{dnsCreateType, name, dnsCreateData, dnsCreatePriority, dnsCreateTTL}
 			body := callAPI(
 				http.MethodPost,
-				"/address/"+viper.GetString("username")+"/dns",
+				"/address/"+viper.GetString("address")+"/dns",
 				dns,
 				true,
 			)

@@ -59,7 +59,7 @@ external URL will be used.`,
 			status := Input{statusPostEmoji, strings.Join(args, " "), statusPostExternalURL}
 			body := callAPI(
 				http.MethodPost,
-				"/address/"+viper.GetString("username")+"/statuses/",
+				"/address/"+viper.GetString("address")+"/statuses/",
 				status,
 				true,
 			)
@@ -91,7 +91,7 @@ func init() {
 	statusPostCmd.Flags().StringVarP(
 		&statusPostExternalURL,
 		"external-url",
-		"u",
+		"a",
 		"",
 		"External URL to add to status",
 	)

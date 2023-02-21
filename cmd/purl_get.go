@@ -26,8 +26,8 @@ var (
 
 Specify the name with the --name flag.
 
-The username can be specified with the --username flag. If not set,
-it defaults to your own username.`,
+The address can be specified with the --address flag. If not set,
+it defaults to your own address.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
 			type Result struct {
@@ -47,7 +47,7 @@ it defaults to your own username.`,
 			var result Result
 			body := callAPI(
 				http.MethodGet,
-				"/address/"+username+"/purl/"+purlGetName,
+				"/address/"+address+"/purl/"+purlGetName,
 				nil,
 				true,
 			)
@@ -75,11 +75,11 @@ it defaults to your own username.`,
 
 func init() {
 	purlGetCmd.Flags().StringVarP(
-		&username,
-		"username",
-		"u",
-		viper.GetString("username"),
-		"username whose PURL to get",
+		&address,
+		"address",
+		"a",
+		viper.GetString("address"),
+		"address whose PURL to get",
 	)
 	purlGetCmd.Flags().StringVarP(
 		&purlGetName,

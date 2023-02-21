@@ -21,7 +21,7 @@ clilol statuslog list [flags]
 ### Options
 
 ```
-  -a, --all    get the entire statuslog (default is latest statuses only)
+  -A, --all    get the entire statuslog (default is latest statuses only)
   -h, --help   help for list
 ```
 

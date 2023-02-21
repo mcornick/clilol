@@ -46,7 +46,7 @@ CSS. You'll need to do that on the website.`,
 		bio := Input{strings.Join(args, " ")}
 		body := callAPI(
 			http.MethodPost,
-			"/address/"+viper.GetString("username")+"/statuses/bio/",
+			"/address/"+viper.GetString("address")+"/statuses/bio/",
 			bio,
 			true,
 		)

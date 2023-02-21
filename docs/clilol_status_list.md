@@ -9,8 +9,8 @@ list statuses
 
 Lists statuses for a single user from status.lol.
 
-The username can be specified with the --username flag. If not set,
-it defaults to your own username.
+The address can be specified with the --address flag. If not set,
+it defaults to your own address.
 
 The number of statuses returned can be specified with the --limit
 flag. If not set, it will return all statuses for the user.
@@ -24,9 +24,9 @@ clilol status list [flags]
 ### Options
 
 ```
-  -h, --help              help for list
-  -l, --limit int         how many status(es) to get (default all)
-  -u, --username string   username whose status(es) to get (default "mcornick")
+  -a, --address string   address whose status(es) to get (default "mcornick")
+  -h, --help             help for list
+  -l, --limit int        how many status(es) to get (default all)
 ```
 
 ### Options inherited from parent commands

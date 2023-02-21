@@ -22,7 +22,7 @@ clilol purl create [flags]
   -h, --help          help for create
   -l, --listed        Create as listed (default false)
   -n, --name string   Name of the PURL
-  -u, --url string    URL to redirect to
+  -a, --url string    URL to redirect to
 ```
 
 ### Options inherited from parent commands

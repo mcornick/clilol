@@ -72,7 +72,7 @@ and the data with the --data flag.`,
 			dns := Input{dnsUpdateType, name, dnsUpdateData, dnsUpdatePriority, dnsUpdateTTL}
 			body := callAPI(
 				http.MethodPatch,
-				"/address/"+viper.GetString("username")+"/dns/"+objectID,
+				"/address/"+viper.GetString("address")+"/dns/"+objectID,
 				dns,
 				true,
 			)

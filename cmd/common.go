@@ -21,7 +21,7 @@ import (
 var (
 	name     string
 	objectID string
-	username string
+	address  string
 )
 
 func callAPI(method string, path string, params interface{}, auth bool) []byte {

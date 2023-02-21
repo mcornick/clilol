@@ -78,7 +78,7 @@ func init() {
 	logListCmd.Flags().BoolVarP(
 		&logListAll,
 		"all",
-		"a",
+		"A",
 		false,
 		"get the entire statuslog (default is latest statuses only)",
 	)

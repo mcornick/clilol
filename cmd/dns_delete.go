@@ -40,7 +40,7 @@ Be sure you know what you're doing.`,
 		var result Result
 		body := callAPI(
 			http.MethodDelete,
-			"/address/"+viper.GetString("username")+"/dns/"+objectID,
+			"/address/"+viper.GetString("address")+"/dns/"+objectID,
 			nil,
 			true,
 		)

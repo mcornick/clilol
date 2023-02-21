@@ -49,7 +49,7 @@ Specify the PURL name with the --name flag, and the URL with the
 			purl := Input{name, purlCreateURL, purlCreateListed}
 			body := callAPI(
 				http.MethodPost,
-				"/address/"+viper.GetString("username")+"/purl",
+				"/address/"+viper.GetString("address")+"/purl",
 				purl,
 				true,
 			)
@@ -81,7 +81,7 @@ func init() {
 	purlCreateCmd.Flags().StringVarP(
 		&purlCreateURL,
 		"url",
-		"u",
+		"a",
 		"",
 		"URL to redirect to",
 	)

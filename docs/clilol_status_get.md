@@ -11,8 +11,8 @@ Gets a single status for a single user from status.lol.
 
 Specify the status ID with the --id flag.
 
-The username can be specified with the --username flag. If not set,
-it defaults to your own username.
+The address can be specified with the --address flag. If not set,
+it defaults to your own address.
 
 ```
 clilol status get [flags]
@@ -21,9 +21,9 @@ clilol status get [flags]
 ### Options
 
 ```
-  -h, --help              help for get
-  -i, --id string         ID of the status to get
-  -u, --username string   username whose status to get (default "mcornick")
+  -a, --address string   address whose status to get (default "mcornick")
+  -h, --help             help for get
+  -i, --id string        ID of the status to get
 ```
 
 ### Options inherited from parent commands

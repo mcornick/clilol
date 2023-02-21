@@ -26,8 +26,8 @@ var statusGetCmd = &cobra.Command{
 
 Specify the status ID with the --id flag.
 
-The username can be specified with the --username flag. If not set,
-it defaults to your own username.`,
+The address can be specified with the --address flag. If not set,
+it defaults to your own address.`,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
@@ -49,7 +49,7 @@ it defaults to your own username.`,
 		var result Result
 		body := callAPI(
 			http.MethodGet,
-			"/address/"+username+"/statuses/"+objectID,
+			"/address/"+address+"/statuses/"+objectID,
 			nil,
 			false,
 		)
@@ -83,11 +83,11 @@ it defaults to your own username.`,
 
 func init() {
 	statusGetCmd.Flags().StringVarP(
-		&username,
-		"username",
-		"u",
-		viper.GetString("username"),
-		"username whose status to get",
+		&address,
+		"address",
+		"a",
+		viper.GetString("address"),
+		"address whose status to get",
 	)
 	statusGetCmd.Flags().StringVarP(
 		&objectID,
