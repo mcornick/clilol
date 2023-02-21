@@ -21,6 +21,7 @@ See the subcommands for more information.
 ### SEE ALSO
 
 * [clilol completion](clilol_completion.md)	 - Generate the autocompletion script for the specified shell
+* [clilol directory](clilol_directory.md)	 - do things with the address directory
 * [clilol man](clilol_man.md)	 - Generate man pages
 * [clilol markdown-doc](clilol_markdown-doc.md)	 - Generate markdown docs
 * [clilol purl](clilol_purl.md)	 - do things with PURLs
