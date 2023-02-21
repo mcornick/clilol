@@ -24,6 +24,7 @@ See the subcommands for more information.
 * [clilol man](clilol_man.md)	 - Generate man pages
 * [clilol markdown-doc](clilol_markdown-doc.md)	 - Generate markdown docs
 * [clilol purl](clilol_purl.md)	 - do things with PURLs
+* [clilol service](clilol_service.md)	 - do things with services
 * [clilol status](clilol_status.md)	 - do things with statuses
 * [clilol status-bio](clilol_status-bio.md)	 - do things with status bios
 * [clilol statuslog](clilol_statuslog.md)	 - view the status log
