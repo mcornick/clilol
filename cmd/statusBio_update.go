@@ -12,22 +12,23 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strings"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
+var bioUpdateText string
 var bioUpdateCmd = &cobra.Command{
 	Use:   "update [bio text]",
 	Short: "update your status bio",
 	Long: `Updates your status bio on status.lol.
 		
-Quote the bio if it contains spaces.
+Specify the new bio text with the --text flag.
+Quote the text if it contains spaces.
 
 Note that the omg.lol API does not permit you to change any custom
 CSS. You'll need to do that on the website.`,
-	Args: cobra.MinimumNArgs(1),
+	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Input struct {
 			Content string `json:"content"`
@@ -43,7 +44,7 @@ CSS. You'll need to do that on the website.`,
 			} `json:"response"`
 		}
 		var result Result
-		bio := Input{strings.Join(args, " ")}
+		bio := Input{bioUpdateText}
 		body := callAPI(
 			http.MethodPost,
 			"/address/"+viper.GetString("address")+"/statuses/bio/",
@@ -67,5 +68,12 @@ CSS. You'll need to do that on the website.`,
 }
 
 func init() {
+	bioUpdateCmd.Flags().StringVarP(
+		&bioUpdateText,
+		"text",
+		"t",
+		"",
+		"New bio text",
+	)
 	statusBioCmd.AddCommand(bioUpdateCmd)
 }
