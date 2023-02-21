@@ -1,11 +1,15 @@
 ---
 title: Home
 ---
-__clilol__ is a CLI for the various fun services offered by [omg.lol](https://omg.lol/). The services currently supported can be found in [this GitHub issue](https://github.com/mcornick/clilol/issues/6) along with the services that are intended to be supported eventually.
+__clilol__ is a CLI for the various fun services offered by [omg.lol](https://omg.lol/). All of the services supported by the [omg.lol API](https://api.omg.lol) are supported.
 
 ![Screenshot](clilol.gif "Screenshot")
 
 Please see the links in the navigation menu to the left to learn about all the different commands provided by clilol.
+
+!!! Warning
+
+    clilol is still under heavy development, and the current tree of commands will change. Everything will stabilize before a 1.0.0 release. _Caveat lector_.
 
 ## Installation
 
