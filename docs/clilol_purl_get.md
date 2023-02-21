@@ -3,7 +3,7 @@ title: "clilol purl get"
 ---
 ## clilol purl get
 
-Get a PURL
+get a PURL
 
 ### Synopsis
 

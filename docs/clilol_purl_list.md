@@ -3,7 +3,7 @@ title: "clilol purl list"
 ---
 ## clilol purl list
 
-List all PURLs
+list all PURLs
 
 ### Synopsis
 

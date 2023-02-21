@@ -26,6 +26,7 @@ The status group of commands allows you to get, post, and update statuses.
 
 * [clilol](clilol.md)	 - a cli for omg.lol
 * [clilol status get](clilol_status_get.md)	 - get status
+* [clilol status list](clilol_status_list.md)	 - list statuses
 * [clilol status post](clilol_status_post.md)	 - post a status
 * [clilol status update](clilol_status_update.md)	 - update a status
 
