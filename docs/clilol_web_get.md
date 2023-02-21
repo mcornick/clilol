@@ -7,7 +7,7 @@ get your webpage content
 
 ### Synopsis
 
-Gets all content for your webpage.
+Gets the Markdown content for your webpage.
 
 If you specify a filename with the --filename flag, the content will be written
 to that file. If you do not specify a filename, the content will be written

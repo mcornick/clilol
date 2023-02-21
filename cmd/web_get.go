@@ -23,7 +23,7 @@ var (
 	webGetCmd      = &cobra.Command{
 		Use:   "get",
 		Short: "get your webpage content",
-		Long: `Gets all content for your webpage.
+		Long: `Gets the Markdown content for your webpage.
 
 If you specify a filename with the --filename flag, the content will be written
 to that file. If you do not specify a filename, the content will be written
