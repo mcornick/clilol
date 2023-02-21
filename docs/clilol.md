@@ -29,6 +29,7 @@ See the subcommands for more information.
 * [clilol man](clilol_man.md)	 - Generate man pages
 * [clilol markdown-doc](clilol_markdown-doc.md)	 - Generate markdown docs
 * [clilol now](clilol_now.md)	 - do things with your Now page
+* [clilol paste](clilol_paste.md)	 - do things with your pastebin
 * [clilol preference](clilol_preference.md)	 - do things with preferences
 * [clilol purl](clilol_purl.md)	 - do things with PURLs
 * [clilol service](clilol_service.md)	 - do things with services
