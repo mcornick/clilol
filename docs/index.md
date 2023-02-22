@@ -133,6 +133,7 @@ The file should look like one of these, substituting your own details:
       "apikey": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
     }
     ```
+A [JSON Schema](config.schema.json) for the configuration file is available, for editors that support it.
 
 ## Environment Variables
 
