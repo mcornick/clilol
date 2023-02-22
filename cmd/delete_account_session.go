@@ -19,7 +19,7 @@ import (
 
 var deleteAccountSessionCmd = &cobra.Command{
 	Use:   "session",
-	Short: "delete a session",
+	Short: "Delete a session",
 	Long: `Deletes an active session, logging it out.
 
 Specify the session ID with the --id flag.

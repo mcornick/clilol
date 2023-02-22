@@ -20,7 +20,7 @@ import (
 
 var listAccountAddressesCmd = &cobra.Command{
 	Use:   "addresses",
-	Short: "list your addresses",
+	Short: "List your addresses",
 	Long:  `Lists the addresses on your account.`,
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {

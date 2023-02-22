@@ -24,7 +24,7 @@ var (
 	createDNSTTL      int
 	createDNSCmd      = &cobra.Command{
 		Use:   "dns",
-		Short: "create a DNS record",
+		Short: "Create a DNS record",
 		Long: `Creates a DNS record.
 
 Specify the type of DNS record with the --type flag,

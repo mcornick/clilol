@@ -3,7 +3,7 @@ title: "clilol create paste"
 ---
 ## clilol create paste
 
-create or update a paste
+Create or update a paste
 
 ### Synopsis
 
@@ -39,5 +39,5 @@ clilol create paste [flags]
 
 ### SEE ALSO
 
-* [clilol create](clilol_create.md)	 - create things
+* [clilol create](clilol_create.md)	 - Create things
 

@@ -3,7 +3,7 @@ title: "clilol list paste"
 ---
 ## clilol list paste
 
-list pastes
+List pastes
 
 ### Synopsis
 
@@ -35,5 +35,5 @@ clilol list paste [flags]
 
 ### SEE ALSO
 
-* [clilol list](clilol_list.md)	 - list things
+* [clilol list](clilol_list.md)	 - List things
 

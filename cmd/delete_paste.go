@@ -21,7 +21,7 @@ var (
 	deletePasteTitle string
 	deletePasteCmd   = &cobra.Command{
 		Use:   "paste",
-		Short: "delete a paste",
+		Short: "Delete a paste",
 		Long: `Deletes a paste.
 
 Specify the paste title with the --title flag.

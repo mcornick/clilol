@@ -19,7 +19,7 @@ import (
 
 var deleteWeblogCmd = &cobra.Command{
 	Use:   "weblog",
-	Short: "delete a weblog entry",
+	Short: "Delete a weblog entry",
 	Long: `Deletes a weblog entry.
 
 Specify the weblog entry ID with the --id flag.

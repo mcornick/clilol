@@ -14,7 +14,7 @@ import (
 
 var listAccountCmd = &cobra.Command{
 	Use:   "account",
-	Short: "list information about your account",
+	Short: "List information about your account",
 	Long:  `The account list group of commands allows you to list information about your omg.lol account.`,
 }
 

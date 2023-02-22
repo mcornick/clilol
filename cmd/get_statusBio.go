@@ -19,7 +19,7 @@ import (
 
 var getStatusBioCmd = &cobra.Command{
 	Use:   "status-bio",
-	Short: "get status bio",
+	Short: "Get status bio",
 	Long: `Gets status bio for a user from status.lol.
 
 The address can be specified with the --address flag. If not set,

@@ -20,7 +20,7 @@ import (
 
 var getAddressInfoPrivateCmd = &cobra.Command{
 	Use:   "private",
-	Short: "get private information about an address",
+	Short: "Get private information about an address",
 	Long:  `Gets private information about an address.`,
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {

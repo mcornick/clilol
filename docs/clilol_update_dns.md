@@ -3,7 +3,7 @@ title: "clilol update dns"
 ---
 ## clilol update dns
 
-update a DNS record
+Update a DNS record
 
 ### Synopsis
 
@@ -39,5 +39,5 @@ clilol update dns [flags]
 
 ### SEE ALSO
 
-* [clilol update](clilol_update.md)	 - update things
+* [clilol update](clilol_update.md)	 - Update things
 

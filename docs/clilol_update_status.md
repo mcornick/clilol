@@ -3,7 +3,7 @@ title: "clilol update status"
 ---
 ## clilol update status
 
-update a status
+Update a status
 
 ### Synopsis
 
@@ -42,5 +42,5 @@ clilol update status [flags]
 
 ### SEE ALSO
 
-* [clilol update](clilol_update.md)	 - update things
+* [clilol update](clilol_update.md)	 - Update things
 

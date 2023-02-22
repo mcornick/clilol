@@ -3,7 +3,7 @@ title: "clilol get email"
 ---
 ## clilol get email
 
-get email forwarding address(es)
+Get email forwarding address(es)
 
 ### Synopsis
 
@@ -28,5 +28,5 @@ clilol get email [flags]
 
 ### SEE ALSO
 
-* [clilol get](clilol_get.md)	 - get things
+* [clilol get](clilol_get.md)	 - Get things
 

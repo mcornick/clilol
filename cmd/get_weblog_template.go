@@ -22,7 +22,7 @@ var (
 	getWeblogTemplateFilename string
 	getWeblogTemplateCmd      = &cobra.Command{
 		Use:   "template",
-		Short: "get your weblog template",
+		Short: "Get your weblog template",
 		Long: `Gets your weblog template in rendered form.
 
 If you specify a filename with the --filename flag, the content will be written

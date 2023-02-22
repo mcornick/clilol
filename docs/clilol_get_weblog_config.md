@@ -3,7 +3,7 @@ title: "clilol get weblog config"
 ---
 ## clilol get weblog config
 
-get your weblog config
+Get your weblog config
 
 ### Synopsis
 
@@ -33,5 +33,5 @@ clilol get weblog config [flags]
 
 ### SEE ALSO
 
-* [clilol get weblog](clilol_get_weblog.md)	 - get a weblog entry
+* [clilol get weblog](clilol_get_weblog.md)	 - Get a weblog entry
 

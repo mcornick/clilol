@@ -3,7 +3,7 @@ title: "clilol get address expiration"
 ---
 ## clilol get address expiration
 
-get address expiration
+Get address expiration
 
 ### Synopsis
 
@@ -29,5 +29,5 @@ clilol get address expiration [flags]
 
 ### SEE ALSO
 
-* [clilol get address](clilol_get_address.md)	 - get information about an address
+* [clilol get address](clilol_get_address.md)	 - Get information about an address
 

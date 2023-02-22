@@ -3,7 +3,7 @@ title: "clilol delete purl"
 ---
 ## clilol delete purl
 
-delete a PURL
+Delete a PURL
 
 ### Synopsis
 
@@ -34,5 +34,5 @@ clilol delete purl [flags]
 
 ### SEE ALSO
 
-* [clilol delete](clilol_delete.md)	 - delete things
+* [clilol delete](clilol_delete.md)	 - Delete things
 

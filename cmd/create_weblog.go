@@ -23,7 +23,7 @@ var (
 	createWeblogFilename string
 	createWeblogCmd      = &cobra.Command{
 		Use:   "weblog",
-		Short: "create a weblog entry",
+		Short: "Create a weblog entry",
 		Long: `Creates an entry in your weblog.
 
 If you specify a filename with the --filename flag, the content of the file

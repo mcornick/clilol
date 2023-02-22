@@ -3,7 +3,7 @@ title: "clilol get weblog latest"
 ---
 ## clilol get weblog latest
 
-get the latest weblog entry
+Get the latest weblog entry
 
 ### Synopsis
 
@@ -28,5 +28,5 @@ clilol get weblog latest [flags]
 
 ### SEE ALSO
 
-* [clilol get weblog](clilol_get_weblog.md)	 - get a weblog entry
+* [clilol get weblog](clilol_get_weblog.md)	 - Get a weblog entry
 

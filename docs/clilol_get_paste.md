@@ -3,7 +3,7 @@ title: "clilol get paste"
 ---
 ## clilol get paste
 
-get a paste
+Get a paste
 
 ### Synopsis
 
@@ -36,5 +36,5 @@ clilol get paste [flags]
 
 ### SEE ALSO
 
-* [clilol get](clilol_get.md)	 - get things
+* [clilol get](clilol_get.md)	 - Get things
 

@@ -21,7 +21,7 @@ var (
 	getPURLName string
 	getPURLCmd  = &cobra.Command{
 		Use:   "purl",
-		Short: "get a PURL",
+		Short: "Get a PURL",
 		Long: `Gets a PURL by name.
 
 Specify the name with the --name flag.

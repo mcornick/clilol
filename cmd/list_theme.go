@@ -18,7 +18,7 @@ import (
 
 var listThemeCmd = &cobra.Command{
 	Use:   "theme",
-	Short: "list profile themes",
+	Short: "List profile themes",
 	Long:  "Lists the available profile themes.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {

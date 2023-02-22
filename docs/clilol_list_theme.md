@@ -3,7 +3,7 @@ title: "clilol list theme"
 ---
 ## clilol list theme
 
-list profile themes
+List profile themes
 
 ### Synopsis
 
@@ -28,5 +28,5 @@ clilol list theme [flags]
 
 ### SEE ALSO
 
-* [clilol list](clilol_list.md)	 - list things
+* [clilol list](clilol_list.md)	 - List things
 

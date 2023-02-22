@@ -19,7 +19,7 @@ import (
 
 var listNowCmd = &cobra.Command{
 	Use:   "list",
-	Short: "list Now pages",
+	Short: "List Now pages",
 	Long:  "Lists pages in the Now garden.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {

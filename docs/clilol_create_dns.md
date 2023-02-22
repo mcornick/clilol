@@ -3,7 +3,7 @@ title: "clilol create dns"
 ---
 ## clilol create dns
 
-create a DNS record
+Create a DNS record
 
 ### Synopsis
 
@@ -37,5 +37,5 @@ clilol create dns [flags]
 
 ### SEE ALSO
 
-* [clilol create](clilol_create.md)	 - create things
+* [clilol create](clilol_create.md)	 - Create things
 

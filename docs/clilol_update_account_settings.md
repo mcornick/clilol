@@ -33,5 +33,5 @@ clilol update account settings [flags]
 
 ### SEE ALSO
 
-* [clilol update account](clilol_update_account.md)	 - update information about your account
+* [clilol update account](clilol_update_account.md)	 - Update information about your account
 

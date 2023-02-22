@@ -23,7 +23,7 @@ var (
 	getPasteTitle    string
 	getPasteCmd      = &cobra.Command{
 		Use:   "paste",
-		Short: "get a paste",
+		Short: "Get a paste",
 		Long: `Gets a paste by title.
 
 Specify the title with the --title flag.

@@ -21,7 +21,7 @@ import (
 
 var getStatusCmd = &cobra.Command{
 	Use:   "status",
-	Short: "get status",
+	Short: "Get status",
 	Long: `Gets a single status for a single user from status.lol.
 
 Specify the status ID with the --id flag.

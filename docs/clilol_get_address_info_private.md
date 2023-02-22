@@ -3,7 +3,7 @@ title: "clilol get address info private"
 ---
 ## clilol get address info private
 
-get private information about an address
+Get private information about an address
 
 ### Synopsis
 
@@ -29,5 +29,5 @@ clilol get address info private [flags]
 
 ### SEE ALSO
 
-* [clilol get address info](clilol_get_address_info.md)	 - get information about an address
+* [clilol get address info](clilol_get_address_info.md)	 - Get information about an address
 

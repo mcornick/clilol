@@ -3,7 +3,7 @@ title: "clilol list account sessions"
 ---
 ## clilol list account sessions
 
-list your sessions
+List your sessions
 
 ### Synopsis
 
@@ -28,5 +28,5 @@ clilol list account sessions [flags]
 
 ### SEE ALSO
 
-* [clilol list account](clilol_list_account.md)	 - list information about your account
+* [clilol list account](clilol_list_account.md)	 - List information about your account
 

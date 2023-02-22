@@ -14,7 +14,7 @@ import (
 
 var getAddressInfoCmd = &cobra.Command{
 	Use:   "info",
-	Short: "get information about an address",
+	Short: "Get information about an address",
 	Long:  `The address get group of commands gets information about omg.lol addresses.`,
 }
 

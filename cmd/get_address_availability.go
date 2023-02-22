@@ -19,7 +19,7 @@ import (
 
 var getAddressAvailabilityCmd = &cobra.Command{
 	Use:   "availability",
-	Short: "get address availability",
+	Short: "Get address availability",
 	Long:  `Gets the availability of an address.`,
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {

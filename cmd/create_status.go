@@ -23,7 +23,7 @@ var (
 	createStatusExternalURL string
 	createStatusCmd         = &cobra.Command{
 		Use:   "status",
-		Short: "post a status",
+		Short: "Create a status",
 		Long: `Posts a status to status.lol.
 
 Specify the status text with the --text flag.

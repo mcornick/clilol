@@ -14,7 +14,7 @@ import (
 
 var deleteAccountCmd = &cobra.Command{
 	Use:   "account",
-	Short: "delete information about your account",
+	Short: "Delete information about your account",
 	Long:  `The account delete group of commands allows you to delete information about your omg.lol account.`,
 }
 

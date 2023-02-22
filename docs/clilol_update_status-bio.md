@@ -3,7 +3,7 @@ title: "clilol update status-bio"
 ---
 ## clilol update status-bio
 
-update your status bio
+Update your status bio
 
 ### Synopsis
 
@@ -35,5 +35,5 @@ clilol update status-bio [flags]
 
 ### SEE ALSO
 
-* [clilol update](clilol_update.md)	 - update things
+* [clilol update](clilol_update.md)	 - Update things
 

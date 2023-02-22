@@ -3,7 +3,7 @@ title: "clilol get account name"
 ---
 ## clilol get account name
 
-get your account name
+Get your account name
 
 ### Synopsis
 
@@ -28,5 +28,5 @@ clilol get account name [flags]
 
 ### SEE ALSO
 
-* [clilol get account](clilol_get_account.md)	 - get information about your account
+* [clilol get account](clilol_get_account.md)	 - Get information about your account
 

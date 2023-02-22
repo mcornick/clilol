@@ -3,7 +3,7 @@ title: "clilol delete dns"
 ---
 ## clilol delete dns
 
-delete a DNS record
+Delete a DNS record
 
 ### Synopsis
 
@@ -34,5 +34,5 @@ clilol delete dns [flags]
 
 ### SEE ALSO
 
-* [clilol delete](clilol_delete.md)	 - delete things
+* [clilol delete](clilol_delete.md)	 - Delete things
 

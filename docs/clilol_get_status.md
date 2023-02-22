@@ -3,7 +3,7 @@ title: "clilol get status"
 ---
 ## clilol get status
 
-get status
+Get status
 
 ### Synopsis
 
@@ -35,5 +35,5 @@ clilol get status [flags]
 
 ### SEE ALSO
 
-* [clilol get](clilol_get.md)	 - get things
+* [clilol get](clilol_get.md)	 - Get things
 

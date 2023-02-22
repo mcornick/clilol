@@ -20,7 +20,7 @@ var (
 	listStatuslogAll bool
 	listStatuslogCmd = &cobra.Command{
 		Use:   "statuslog",
-		Short: "list the statuslog",
+		Short: "List the statuslog",
 		Long: `Lists status(es) for all status.lol users.
 
 By default, only the most recent status for each user is returned.

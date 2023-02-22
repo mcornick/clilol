@@ -22,7 +22,7 @@ var (
 	getNowFilename string
 	getNowCmd      = &cobra.Command{
 		Use:   "now",
-		Short: "get a Now page",
+		Short: "Get a Now page",
 		Long: `Gets a Now page by address.
 
 The address can be specified with the --address flag. If not set,

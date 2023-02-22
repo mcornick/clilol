@@ -22,7 +22,7 @@ var (
 	updateStatusStatus string
 	updateStatusCmd    = &cobra.Command{
 		Use:   "status",
-		Short: "update a status",
+		Short: "Update a status",
 		Long: `Updates a status on status.lol.
 Specify the ID of the status to update with the --id flag. The
 status can be found as the last element of the status URL.

@@ -14,7 +14,7 @@ import (
 
 var deleteCmd = &cobra.Command{
 	Use:   "delete",
-	Short: "delete things",
+	Short: "Delete things",
 	Long:  `These commands delete things.`,
 }
 

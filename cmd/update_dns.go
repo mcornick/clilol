@@ -24,7 +24,7 @@ var (
 	updateDNSTTL      int
 	updateDNSCmd      = &cobra.Command{
 		Use:   "dns",
-		Short: "update a DNS record",
+		Short: "Update a DNS record",
 		Long: `Updates a DNS record.
 
 Specify the ID of the DNS record with the --id flag,

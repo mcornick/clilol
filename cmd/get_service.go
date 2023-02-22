@@ -18,7 +18,7 @@ import (
 
 var getServiceCmd = &cobra.Command{
 	Use:   "service",
-	Short: "get service stats",
+	Short: "Get service stats",
 	Long:  "Gets statistics for omg.lol services.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {

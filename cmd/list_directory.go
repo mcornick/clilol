@@ -19,7 +19,7 @@ import (
 
 var listDirectoryCmd = &cobra.Command{
 	Use:   "directory",
-	Short: "list the address directory",
+	Short: "List the address directory",
 	Long:  "Lists the omg.lol address directory.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {

@@ -3,7 +3,7 @@ title: "clilol list directory"
 ---
 ## clilol list directory
 
-list the address directory
+List the address directory
 
 ### Synopsis
 
@@ -28,5 +28,5 @@ clilol list directory [flags]
 
 ### SEE ALSO
 
-* [clilol list](clilol_list.md)	 - list things
+* [clilol list](clilol_list.md)	 - List things
 

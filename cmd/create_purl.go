@@ -22,7 +22,7 @@ var (
 	createPURLListed bool
 	createPURLCmd    = &cobra.Command{
 		Use:   "purl",
-		Short: "create a PURL",
+		Short: "Create a PURL",
 		Long: `Creates a PURL.
 
 Specify the PURL name with the --name flag, and the URL with the

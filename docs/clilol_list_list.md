@@ -3,7 +3,7 @@ title: "clilol list list"
 ---
 ## clilol list list
 
-list Now pages
+List Now pages
 
 ### Synopsis
 
@@ -28,5 +28,5 @@ clilol list list [flags]
 
 ### SEE ALSO
 
-* [clilol list](clilol_list.md)	 - list things
+* [clilol list](clilol_list.md)	 - List things
 

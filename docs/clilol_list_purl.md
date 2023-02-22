@@ -3,7 +3,7 @@ title: "clilol list purl"
 ---
 ## clilol list purl
 
-list all PURLs
+List all PURLs
 
 ### Synopsis
 
@@ -32,5 +32,5 @@ clilol list purl [flags]
 
 ### SEE ALSO
 
-* [clilol list](clilol_list.md)	 - list things
+* [clilol list](clilol_list.md)	 - List things
 

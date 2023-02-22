@@ -3,7 +3,7 @@ title: "clilol get now"
 ---
 ## clilol get now
 
-get a Now page
+Get a Now page
 
 ### Synopsis
 
@@ -37,5 +37,5 @@ clilol get now [flags]
 
 ### SEE ALSO
 
-* [clilol get](clilol_get.md)	 - get things
+* [clilol get](clilol_get.md)	 - Get things
 

@@ -20,9 +20,9 @@ See the subcommands for more information.
 
 ### SEE ALSO
 
-* [clilol create](clilol_create.md)	 - create things
-* [clilol delete](clilol_delete.md)	 - delete things
-* [clilol get](clilol_get.md)	 - get things
-* [clilol list](clilol_list.md)	 - list things
-* [clilol update](clilol_update.md)	 - update things
+* [clilol create](clilol_create.md)	 - Create things
+* [clilol delete](clilol_delete.md)	 - Delete things
+* [clilol get](clilol_get.md)	 - Get things
+* [clilol list](clilol_list.md)	 - List things
+* [clilol update](clilol_update.md)	 - Update things
 

@@ -3,7 +3,7 @@ title: "clilol delete weblog"
 ---
 ## clilol delete weblog
 
-delete a weblog entry
+Delete a weblog entry
 
 ### Synopsis
 
@@ -34,5 +34,5 @@ clilol delete weblog [flags]
 
 ### SEE ALSO
 
-* [clilol delete](clilol_delete.md)	 - delete things
+* [clilol delete](clilol_delete.md)	 - Delete things
 

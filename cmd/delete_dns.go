@@ -19,7 +19,7 @@ import (
 
 var deleteDNSCmd = &cobra.Command{
 	Use:   "dns",
-	Short: "delete a DNS record",
+	Short: "Delete a DNS record",
 	Long: `Deletes a DNS record.
 
 Specify the record ID with the --id flag.

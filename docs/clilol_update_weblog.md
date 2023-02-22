@@ -24,7 +24,7 @@ The account get group of commands allows you to set your weblog.lol configuratio
 
 ### SEE ALSO
 
-* [clilol update](clilol_update.md)	 - update things
+* [clilol update](clilol_update.md)	 - Update things
 * [clilol update weblog config](clilol_update_weblog_config.md)	 - set your weblog config
 * [clilol update weblog template](clilol_update_weblog_template.md)	 - set your weblog template
 

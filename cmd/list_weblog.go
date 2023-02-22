@@ -21,7 +21,7 @@ import (
 
 var listWeblogCmd = &cobra.Command{
 	Use:   "weblog",
-	Short: "list all weblog entries",
+	Short: "List all weblog entries",
 	Long:  `Lists all of your weblog entries.`,
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {

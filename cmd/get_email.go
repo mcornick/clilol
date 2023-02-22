@@ -19,7 +19,7 @@ import (
 
 var getEmailCmd = &cobra.Command{
 	Use:   "email",
-	Short: "get email forwarding address(es)",
+	Short: "Get email forwarding address(es)",
 	Long:  `Gets your email forwarding address(es).`,
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {

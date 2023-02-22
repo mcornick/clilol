@@ -3,7 +3,7 @@ title: "clilol create purl"
 ---
 ## clilol create purl
 
-create a PURL
+Create a PURL
 
 ### Synopsis
 
@@ -34,5 +34,5 @@ clilol create purl [flags]
 
 ### SEE ALSO
 
-* [clilol create](clilol_create.md)	 - create things
+* [clilol create](clilol_create.md)	 - Create things
 

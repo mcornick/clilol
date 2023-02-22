@@ -3,7 +3,7 @@ title: "clilol delete paste"
 ---
 ## clilol delete paste
 
-delete a paste
+Delete a paste
 
 ### Synopsis
 
@@ -34,5 +34,5 @@ clilol delete paste [flags]
 
 ### SEE ALSO
 
-* [clilol delete](clilol_delete.md)	 - delete things
+* [clilol delete](clilol_delete.md)	 - Delete things
 

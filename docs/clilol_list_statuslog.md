@@ -3,7 +3,7 @@ title: "clilol list statuslog"
 ---
 ## clilol list statuslog
 
-list the statuslog
+List the statuslog
 
 ### Synopsis
 
@@ -34,5 +34,5 @@ clilol list statuslog [flags]
 
 ### SEE ALSO
 
-* [clilol list](clilol_list.md)	 - list things
+* [clilol list](clilol_list.md)	 - List things
 

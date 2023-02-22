@@ -22,7 +22,7 @@ var (
 	getWeblogConfigFilename string
 	getWeblogConfigCmd      = &cobra.Command{
 		Use:   "config",
-		Short: "get your weblog config",
+		Short: "Get your weblog config",
 		Long: `Gets your weblog configuration in editable form.
 
 If you specify a filename with the --filename flag, the content will be written

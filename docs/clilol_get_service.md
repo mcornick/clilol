@@ -3,7 +3,7 @@ title: "clilol get service"
 ---
 ## clilol get service
 
-get service stats
+Get service stats
 
 ### Synopsis
 
@@ -28,5 +28,5 @@ clilol get service [flags]
 
 ### SEE ALSO
 
-* [clilol get](clilol_get.md)	 - get things
+* [clilol get](clilol_get.md)	 - Get things
 

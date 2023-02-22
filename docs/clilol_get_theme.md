@@ -3,7 +3,7 @@ title: "clilol get theme"
 ---
 ## clilol get theme
 
-get theme information
+Get theme information
 
 ### Synopsis
 
@@ -31,6 +31,6 @@ clilol get theme [flags]
 
 ### SEE ALSO
 
-* [clilol get](clilol_get.md)	 - get things
-* [clilol get theme preview](clilol_get_theme_preview.md)	 - get theme preview
+* [clilol get](clilol_get.md)	 - Get things
+* [clilol get theme preview](clilol_get_theme_preview.md)	 - Get theme preview
 

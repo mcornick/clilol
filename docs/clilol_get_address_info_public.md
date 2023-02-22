@@ -3,7 +3,7 @@ title: "clilol get address info public"
 ---
 ## clilol get address info public
 
-get public information about an address
+Get public information about an address
 
 ### Synopsis
 
@@ -29,5 +29,5 @@ clilol get address info public [flags]
 
 ### SEE ALSO
 
-* [clilol get address info](clilol_get_address_info.md)	 - get information about an address
+* [clilol get address info](clilol_get_address_info.md)	 - Get information about an address
 

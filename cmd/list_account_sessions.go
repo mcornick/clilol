@@ -20,7 +20,7 @@ import (
 
 var listAccountSessionsCmd = &cobra.Command{
 	Use:   "sessions",
-	Short: "list your sessions",
+	Short: "List your sessions",
 	Long:  `Lists the active sessions on your account.`,
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {

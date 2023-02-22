@@ -19,7 +19,7 @@ import (
 
 var getAccountNameCmd = &cobra.Command{
 	Use:   "name",
-	Short: "get your account name",
+	Short: "Get your account name",
 	Long:  `Gets the name on your account.`,
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {

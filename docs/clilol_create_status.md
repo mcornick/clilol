@@ -3,7 +3,7 @@ title: "clilol create status"
 ---
 ## clilol create status
 
-post a status
+Create a status
 
 ### Synopsis
 
@@ -42,5 +42,5 @@ clilol create status [flags]
 
 ### SEE ALSO
 
-* [clilol create](clilol_create.md)	 - create things
+* [clilol create](clilol_create.md)	 - Create things
 

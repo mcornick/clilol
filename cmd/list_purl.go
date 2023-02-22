@@ -19,7 +19,7 @@ import (
 
 var listPURLCmd = &cobra.Command{
 	Use:   "purl",
-	Short: "list all PURLs",
+	Short: "List all PURLs",
 	Long: `Lists all PURLs for a user.
 
 The address can be specified with the --address flag. If not set,

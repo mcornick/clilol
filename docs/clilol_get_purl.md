@@ -3,7 +3,7 @@ title: "clilol get purl"
 ---
 ## clilol get purl
 
-get a PURL
+Get a PURL
 
 ### Synopsis
 
@@ -35,5 +35,5 @@ clilol get purl [flags]
 
 ### SEE ALSO
 
-* [clilol get](clilol_get.md)	 - get things
+* [clilol get](clilol_get.md)	 - Get things
 

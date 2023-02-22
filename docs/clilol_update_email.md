@@ -31,5 +31,5 @@ clilol update email [flags]
 
 ### SEE ALSO
 
-* [clilol update](clilol_update.md)	 - update things
+* [clilol update](clilol_update.md)	 - Update things
 

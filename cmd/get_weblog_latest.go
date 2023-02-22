@@ -20,7 +20,7 @@ import (
 
 var getWeblogLatestCmd = &cobra.Command{
 	Use:   "latest",
-	Short: "get the latest weblog entry",
+	Short: "Get the latest weblog entry",
 	Long:  "Gets your weblog's latest entry",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {

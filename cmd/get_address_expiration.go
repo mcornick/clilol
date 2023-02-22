@@ -19,7 +19,7 @@ import (
 
 var getAddressExpirationCmd = &cobra.Command{
 	Use:   "expiration",
-	Short: "get address expiration",
+	Short: "Get address expiration",
 	Long:  `Gets the expiration of an address.`,
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {

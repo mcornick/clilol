@@ -21,7 +21,7 @@ var (
 	updateStatusBioText string
 	updateStatusBioCmd  = &cobra.Command{
 		Use:   "status-bio",
-		Short: "update your status bio",
+		Short: "Update your status bio",
 		Long: `Updates your status bio on status.lol.
 		
 Specify the new bio text with the --text flag.

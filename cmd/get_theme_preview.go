@@ -21,7 +21,7 @@ var (
 	getThemePreviewFilename string
 	getThemePreviewCmd      = &cobra.Command{
 		Use:   "preview",
-		Short: "get theme preview",
+		Short: "Get theme preview",
 		Long: `Gets an HTML preview of a theme.
 
 Specify the theme name with the --name flag.

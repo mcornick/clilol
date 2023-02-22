@@ -25,7 +25,7 @@ var (
 	createPasteListed   bool
 	createPasteCmd      = &cobra.Command{
 		Use:   "paste",
-		Short: "create or update a paste",
+		Short: "Create or update a paste",
 		Long: `Create or update a paste in your pastebin.
 
 Specify a title with the --title flag. If the title is already in use,

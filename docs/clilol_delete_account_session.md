@@ -3,7 +3,7 @@ title: "clilol delete account session"
 ---
 ## clilol delete account session
 
-delete a session
+Delete a session
 
 ### Synopsis
 
@@ -34,5 +34,5 @@ clilol delete account session [flags]
 
 ### SEE ALSO
 
-* [clilol delete account](clilol_delete_account.md)	 - delete information about your account
+* [clilol delete account](clilol_delete_account.md)	 - Delete information about your account
 

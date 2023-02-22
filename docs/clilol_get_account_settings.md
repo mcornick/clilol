@@ -3,7 +3,7 @@ title: "clilol get account settings"
 ---
 ## clilol get account settings
 
-get your account settings
+Get your account settings
 
 ### Synopsis
 
@@ -28,5 +28,5 @@ clilol get account settings [flags]
 
 ### SEE ALSO
 
-* [clilol get account](clilol_get_account.md)	 - get information about your account
+* [clilol get account](clilol_get_account.md)	 - Get information about your account
 

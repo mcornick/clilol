@@ -3,7 +3,7 @@ title: "clilol get weblog template"
 ---
 ## clilol get weblog template
 
-get your weblog template
+Get your weblog template
 
 ### Synopsis
 
@@ -33,5 +33,5 @@ clilol get weblog template [flags]
 
 ### SEE ALSO
 
-* [clilol get weblog](clilol_get_weblog.md)	 - get a weblog entry
+* [clilol get weblog](clilol_get_weblog.md)	 - Get a weblog entry
 

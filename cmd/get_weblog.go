@@ -20,7 +20,7 @@ import (
 
 var getWeblogCmd = &cobra.Command{
 	Use:   "weblog",
-	Short: "get a weblog entry",
+	Short: "Get a weblog entry",
 	Long: `Gets one of your weblog entries by ID.
 
 Specify the ID with the --id flag.`,

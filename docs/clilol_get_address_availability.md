@@ -3,7 +3,7 @@ title: "clilol get address availability"
 ---
 ## clilol get address availability
 
-get address availability
+Get address availability
 
 ### Synopsis
 
@@ -29,5 +29,5 @@ clilol get address availability [flags]
 
 ### SEE ALSO
 
-* [clilol get address](clilol_get_address.md)	 - get information about an address
+* [clilol get address](clilol_get_address.md)	 - Get information about an address
 

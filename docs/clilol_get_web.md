@@ -3,7 +3,7 @@ title: "clilol get web"
 ---
 ## clilol get web
 
-get your webpage content
+Get your webpage content
 
 ### Synopsis
 
@@ -33,5 +33,5 @@ clilol get web [flags]
 
 ### SEE ALSO
 
-* [clilol get](clilol_get.md)	 - get things
+* [clilol get](clilol_get.md)	 - Get things
 

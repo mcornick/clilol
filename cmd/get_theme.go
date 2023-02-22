@@ -20,7 +20,7 @@ import (
 
 var getThemeCmd = &cobra.Command{
 	Use:   "theme",
-	Short: "get theme information",
+	Short: "Get theme information",
 	Long: `Gets information about a theme.
 
 Specify the theme name with the --name flag.`,

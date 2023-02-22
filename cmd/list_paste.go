@@ -20,7 +20,7 @@ import (
 
 var listPasteCmd = &cobra.Command{
 	Use:   "paste",
-	Short: "list pastes",
+	Short: "List pastes",
 	Long: `Lists pastes for a user.
 
 The address can be specified with the --address flag. If not set,

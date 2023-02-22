@@ -19,7 +19,7 @@ import (
 
 var deletePURLCmd = &cobra.Command{
 	Use:   "purl",
-	Short: "delete a PURL",
+	Short: "Delete a PURL",
 	Long: `Deletes a PURL.
 
 Specify the PURL name with the --name flag.

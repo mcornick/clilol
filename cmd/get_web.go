@@ -22,7 +22,7 @@ var (
 	getWebFilename string
 	getWebCmd      = &cobra.Command{
 		Use:   "web",
-		Short: "get your webpage content",
+		Short: "Get your webpage content",
 		Long: `Gets the Markdown content for your webpage.
 
 If you specify a filename with the --filename flag, the content will be written

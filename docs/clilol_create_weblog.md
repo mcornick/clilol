@@ -3,7 +3,7 @@ title: "clilol create weblog"
 ---
 ## clilol create weblog
 
-create a weblog entry
+Create a weblog entry
 
 ### Synopsis
 
@@ -33,5 +33,5 @@ clilol create weblog [flags]
 
 ### SEE ALSO
 
-* [clilol create](clilol_create.md)	 - create things
+* [clilol create](clilol_create.md)	 - Create things
 

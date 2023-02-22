@@ -3,7 +3,7 @@ title: "clilol list dns"
 ---
 ## clilol list dns
 
-list all dns records
+List all dns records
 
 ### Synopsis
 
@@ -28,5 +28,5 @@ clilol list dns [flags]
 
 ### SEE ALSO
 
-* [clilol list](clilol_list.md)	 - list things
+* [clilol list](clilol_list.md)	 - List things
 

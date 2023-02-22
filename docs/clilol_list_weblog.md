@@ -3,7 +3,7 @@ title: "clilol list weblog"
 ---
 ## clilol list weblog
 
-list all weblog entries
+List all weblog entries
 
 ### Synopsis
 
@@ -28,5 +28,5 @@ clilol list weblog [flags]
 
 ### SEE ALSO
 
-* [clilol list](clilol_list.md)	 - list things
+* [clilol list](clilol_list.md)	 - List things
 
