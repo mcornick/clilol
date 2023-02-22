@@ -16,9 +16,10 @@ import (
 )
 
 var manCmd = &cobra.Command{
-	Use:   "man",
-	Short: "Generate man pages",
-	Long:  fmt.Sprintln("Generates man pages for clilol in the current directory."),
+	Use:    "man",
+	Short:  "Generate man pages",
+	Long:   fmt.Sprintln("Generates man pages for clilol in the current directory."),
+	Hidden: true,
 	Run: func(cmd *cobra.Command, args []string) {
 		header := &doc.GenManHeader{
 			Title:   "Mark Cornick",
