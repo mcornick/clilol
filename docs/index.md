@@ -154,7 +154,7 @@ If you think you have a problem, improvement, or other contribution towards the 
 
 Keep in mind that I'm not paid to write Go code, so I'm doing this in my spare time, which means it might take me a while to respond.
 
-When filing a pull request, please explain what you're changing and why. Please use standard Go formatting (`go fmt` is your friend.) Please limit your changes to the specific thing you're fixing and isolate your changes in a topic branch that I can merge without pulling in other stuff.
+When filing a pull request, please explain what you're changing and why. Please use [gofumpt](https://github.com/mvdan/gofumpt) to format your Go code. Please limit your changes to the specific thing you're fixing and isolate your changes in a topic branch that I can merge without pulling in other stuff.
 
 clilol uses [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-angular/blob/master/convention.md) style. Please follow this convention. Scopes are not required in commit messages.
 
