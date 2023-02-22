@@ -34,7 +34,7 @@ var getAccountNameCmd = &cobra.Command{
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPIWithJSON(
+		body := callAPIWithParams(
 			http.MethodGet,
 			"/account/"+viper.GetString("email")+"/name",
 			nil,

@@ -35,7 +35,7 @@ var listDirectoryCmd = &cobra.Command{
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPIWithJSON(http.MethodGet, "/directory", nil, false)
+		body := callAPIWithParams(http.MethodGet, "/directory", nil, false)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
 		if !silentFlag {

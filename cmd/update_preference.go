@@ -46,7 +46,7 @@ the --value flag.`,
 			}
 			var result Result
 			pref := Input{updatePreferenceItem, updatePreferenceValue}
-			body := callAPIWithJSON(
+			body := callAPIWithParams(
 				http.MethodPost,
 				"/preferences/"+viper.GetString("address"),
 				pref,

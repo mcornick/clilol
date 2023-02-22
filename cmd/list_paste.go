@@ -49,7 +49,7 @@ your own address.`,
 		if addressFlag == "" {
 			addressFlag = viper.GetString("address")
 		}
-		body := callAPIWithJSON(
+		body := callAPIWithParams(
 			http.MethodGet,
 			"/address/"+addressFlag+"/pastebin",
 			nil,

@@ -53,7 +53,7 @@ var getAddressInfoPublicCmd = &cobra.Command{
 		if addressFlag == "" {
 			addressFlag = viper.GetString("address")
 		}
-		body := callAPIWithJSON(
+		body := callAPIWithParams(
 			http.MethodGet,
 			"/address/"+addressFlag+"/info",
 			nil,

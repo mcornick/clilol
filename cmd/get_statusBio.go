@@ -44,7 +44,7 @@ Note that any custom CSS set on the bio is ignored.
 		if addressFlag == "" {
 			addressFlag = viper.GetString("address")
 		}
-		body := callAPIWithJSON(
+		body := callAPIWithParams(
 			http.MethodGet,
 			"/address/"+addressFlag+"/statuses/bio/",
 			nil,

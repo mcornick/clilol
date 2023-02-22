@@ -40,7 +40,7 @@ Specify the new name with the --name flag.`,
 		}
 		var result Result
 		account := Input{nameFlag}
-		body := callAPIWithJSON(
+		body := callAPIWithParams(
 			http.MethodPost,
 			"/account/"+viper.GetString("email")+"/name",
 			account,

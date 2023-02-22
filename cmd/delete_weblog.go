@@ -38,7 +38,7 @@ Be sure you know what you're doing.`,
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPIWithJSON(
+		body := callAPIWithParams(
 			http.MethodDelete,
 			"/address/"+viper.GetString("address")+"/weblog/delete/"+idFlag,
 			nil,

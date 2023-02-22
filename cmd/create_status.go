@@ -58,7 +58,7 @@ external URL will be used.`,
 			}
 			var result Result
 			status := Input{createStatusEmoji, createStatusStatus, createStatusExternalURL}
-			body := callAPIWithJSON(
+			body := callAPIWithParams(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/statuses/",
 				status,

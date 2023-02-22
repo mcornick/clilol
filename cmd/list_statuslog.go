@@ -53,7 +53,7 @@ See the status commands to get statuses for a single user.`,
 				url = "/statuslog/latest/"
 			}
 			var result Result
-			body := callAPIWithJSON(http.MethodGet, url, nil, false)
+			body := callAPIWithParams(http.MethodGet, url, nil, false)
 			err := json.Unmarshal(body, &result)
 			cobra.CheckErr(err)
 			if !silentFlag {

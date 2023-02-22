@@ -45,7 +45,7 @@ Specify the new settings with the flags listed below.`,
 			}
 			var result Result
 			account := Input{accountSetSettingsCommunication, accountSetSettingsDateFormat, accountSetSettingsWebEditor}
-			body := callAPIWithJSON(
+			body := callAPIWithParams(
 				http.MethodPost,
 				"/account/"+viper.GetString("email")+"/settings",
 				account,

@@ -41,7 +41,7 @@ to stdout.`,
 				} `json:"response"`
 			}
 			var result Result
-			body := callAPIWithJSON(
+			body := callAPIWithParams(
 				http.MethodGet,
 				"/address/"+viper.GetString("address")+"/weblog/template",
 				nil,

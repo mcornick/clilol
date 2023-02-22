@@ -35,7 +35,7 @@ var getServiceCmd = &cobra.Command{
 			} `json:"response"`
 		}
 		var result Result
-		body := callAPIWithJSON(http.MethodGet, "/service/info", nil, false)
+		body := callAPIWithParams(http.MethodGet, "/service/info", nil, false)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
 		if !silentFlag {
