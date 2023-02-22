@@ -28,7 +28,7 @@ clilol create status [flags]
 
 ```
   -e, --emoji string          Emoji to add to status (default sparkles)
-  -a, --external-url string   External URL to add to status
+  -u, --external-url string   External URL to add to status
   -h, --help                  help for status
   -t, --text string           Status text
 ```
