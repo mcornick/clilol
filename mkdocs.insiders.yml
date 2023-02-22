@@ -23,3 +23,4 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json

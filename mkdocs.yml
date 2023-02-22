@@ -44,3 +44,4 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
