@@ -10,7 +10,13 @@ jobs:
       - uses: actions/setup-go@v3
         with:
           cache: true
-          go-version: ">=1.20.1"
+          go-version: ">=1.19.5"
+      - uses: sigstore/cosign-installer@main
+        with:
+          cosign-release: v1.13.1
+      - uses: anchore/sbom-action/download-syft@main
+        with:
+          syft-version: v0.69.0
       - id: import_gpg
         uses: crazy-max/ghaction-import-gpg@v5
         with:
@@ -20,6 +26,15 @@ jobs:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
         run: echo "$GPG_PRIVATE_KEY" > /home/runner/gpgkey.asc && chmod 600 /home/runner/gpgkey.asc
         shell: bash
+      - uses: docker/login-action@v2
+        with:
+          password: ${{ secrets.GH_PAT }}
+          registry: ghcr.io
+          username: mcornick
+      - uses: docker/login-action@v2
+        with:
+          password: ${{ secrets.DOCKER_TOKEN }}
+          username: mcornick
       - env:
           AUR_KEY: ${{ secrets.AUR_KEY }}
           FURY_TOKEN: ${{ secrets.FURY_TOKEN }}
@@ -33,6 +48,14 @@ jobs:
           args: release --clean
           distribution: goreleaser-pro
           version: latest
+      - env:
+          COSIGN_EXPERIMENTAL: 1
+        run: cosign sign ghcr.io/mcornick/clilol
+        shell: bash
+      - env:
+          COSIGN_EXPERIMENTAL: 1
+        run: cosign sign mcornick/clilol
+        shell: bash
       - run: rm /home/runner/gpgkey.asc
         shell: bash
 name: goreleaser

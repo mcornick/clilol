@@ -42,7 +42,7 @@ before:
     - ./scripts/manpages.sh
 brews:
   - description: A CLI for omg.lol
-    homepage: https://mcornick.com/clilol
+    homepage: https://mcornick.com/clilol/
     install: |-
       bin.install "clilol"
       bash_completion.install "completions/clilol.bash" => "clilol"
@@ -82,6 +82,27 @@ furies:
   - account: mcornick
 gomod:
   proxy: true
+kos:
+  - bare: true
+    build: clilol
+    id: clilol-ghcr
+    platforms:
+      - linux/amd64
+      - linux/arm64
+    repository: ghcr.io/mcornick/clilol
+    tags:
+      - latest
+      - "{{.Tag}}"
+  - bare: true
+    build: clilol
+    id: clilol-docker
+    platforms:
+      - linux/amd64
+      - linux/arm64
+    repository: mcornick/clilol
+    tags:
+      - latest
+      - "{{.Tag}}"
 milestones:
   - close: true
 nfpms:
@@ -114,16 +135,18 @@ nfpms:
       - archlinux
       - deb
       - rpm
-    homepage: https://github.com/mcornick/clilol
+    homepage: https://mcornick.com/clilol/
     license: MPL-2.0
     maintainer: Mark Cornick <mcornick@mcornick.com>
     vendor: Mark Cornick
+sboms:
+  - artifacts: archive
 scoop:
   bucket:
     name: scoop-bucket
     owner: mcornick
   description: A CLI for omg.lol
-  homepage: https://mcornick.com/clilol
+  homepage: https://mcornick.com/clilol/
   license: MPL-2.0
 signs:
   - artifacts: checksum

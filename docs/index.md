@@ -32,6 +32,24 @@ You can install clilol in any of these ways. (These are the only supported build
     scoop install clilol
     ```
 
+=== "Container Images"
+
+    I maintain container images on [GitHub](https://github.com/mcornick/clilol/pkgs/container/clilol) and [Docker Hub](https://hub.docker.com/repository/docker/mcornick/clilol).
+
+    ```bash
+    docker run --rm ghcr.io/mcornick/clilol
+    # or, for Docker Hub
+    docker run --rm mcornick/clilol
+    ```
+
+    Container manifests are signed with [Cosign](https://docs.sigstore.dev/cosign/overview/). The signatures are created with Cosign's "keyless" mode, which requires setting `COSIGN_EXPERIMENTAL=1` when using Cosign versions prior to 2.0.0:
+
+    ```bash
+    env COSIGN_EXPERIMENTAL=1 cosign verify ghcr.io/mcornick/clilol
+    # or, for Docker Hub
+    env COSIGN_EXPERIMENTAL=1 cosign verify mcornick/clilol
+    ```
+
 === "Binaries and Linux packages"
 
     I maintain binary releases on GitHub [here](https://github.com/mcornick/clilol/releases). Releases are built for macOS (universal), Linux (i386, amd64, arm64, and armv6) and Windows (i386, amd64). Linux packages are built in RPM, DEB, APK, and Arch Linux pkg.tar.zst formats.
