@@ -1,31 +1,25 @@
 {
-  "$id": "https://mcornick.com/mpg/config.schema.json",
+  "$id": "https://mcornick.com/clilol/config.schema.json",
   "$schema": "http://json-schema.org/draft-06/schema#",
   "additionalProperties": false,
-  "description": "mpg configuration file",
+  "description": "clilol configuration file",
   "properties": {
-    "digit": {
-      "default": true,
-      "description": "include digits in the password",
-      "type": "boolean"
+    "address": {
+      "default": "",
+      "description": "address on your omg.lol account",
+      "type": "string"
     },
-    "length": {
-      "default": 16,
-      "description": "length of password",
-      "minimum": 1,
-      "type": "integer"
+    "apikey": {
+      "default": "",
+      "description": "API key for your omg.lol account",
+      "type": "string"
     },
-    "lower": {
-      "default": true,
-      "description": "include lowercase in the password",
-      "type": "boolean"
-    },
-    "upper": {
-      "default": true,
-      "description": "include uppercase in the password",
-      "type": "boolean"
+    "email": {
+      "default": "",
+      "description": "email used to log into your omg.lol account",
+      "type": "string"
     }
   },
-  "title": "mpg config",
+  "title": "clilol config",
   "type": "object"
 }
