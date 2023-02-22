@@ -55,8 +55,8 @@ Specify the PURL name with the --name flag, and the URL with the
 			)
 			err := json.Unmarshal(body, &result)
 			cobra.CheckErr(err)
-			if !silent {
-				if !wantJson {
+			if !silentFlag {
+				if !jsonFlag {
 					if result.Request.Success {
 						fmt.Println(result.Response.Message)
 					} else {

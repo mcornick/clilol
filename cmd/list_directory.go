@@ -38,8 +38,8 @@ var listDirectoryCmd = &cobra.Command{
 		body := callAPIWithJSON(http.MethodGet, "/directory", nil, false)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
-		if !silent {
-			if !wantJson {
+		if !silentFlag {
+			if !jsonFlag {
 				if result.Request.Success {
 					fmt.Printf("%s\n\n", result.Response.Message)
 					for _, address := range result.Response.Directory {

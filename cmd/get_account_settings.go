@@ -47,8 +47,8 @@ var getAccountSettingsCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
-		if !silent {
-			if !wantJson {
+		if !silentFlag {
+			if !jsonFlag {
 				if result.Request.Success {
 					fmt.Println(result.Response.Message)
 					fmt.Printf("Owner: %s\n", result.Response.Settings.Owner)

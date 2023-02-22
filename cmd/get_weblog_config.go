@@ -71,8 +71,8 @@ to stdout.`,
 			)
 			err := json.Unmarshal(body, &result)
 			cobra.CheckErr(err)
-			if !silent {
-				if !wantJson {
+			if !silentFlag {
+				if !jsonFlag {
 					if result.Request.Success {
 						if getWeblogConfigFilename != "" {
 							err = os.WriteFile(

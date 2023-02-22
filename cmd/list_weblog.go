@@ -56,8 +56,8 @@ var listWeblogCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
-		if !silent {
-			if !wantJson {
+		if !silentFlag {
+			if !jsonFlag {
 				if result.Request.Success {
 					for _, entry := range result.Response.Entries {
 						fmt.Printf(

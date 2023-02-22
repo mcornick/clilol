@@ -57,8 +57,8 @@ Specify the theme name with the --name flag.`,
 		)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
-		if !silent {
-			if !wantJson {
+		if !silentFlag {
+			if !jsonFlag {
 				if result.Request.Success {
 					updatedAt, err := strconv.ParseInt(result.Response.Theme.Updated, 10, 64)
 					cobra.CheckErr(err)

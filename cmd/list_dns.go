@@ -51,8 +51,8 @@ var listDNSCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
-		if !silent {
-			if !wantJson {
+		if !silentFlag {
+			if !jsonFlag {
 				if result.Request.Success {
 					for _, record := range result.Response.DNS {
 						fmt.Printf(

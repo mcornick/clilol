@@ -50,8 +50,8 @@ var listThemeCmd = &cobra.Command{
 		body := callAPIWithJSON(http.MethodGet, "/theme/list", nil, false)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
-		if !silent {
-			if !wantJson {
+		if !silentFlag {
+			if !jsonFlag {
 				if result.Request.Success {
 					fmt.Println(result.Response.Message)
 					for _, theme := range result.Response.Themes {

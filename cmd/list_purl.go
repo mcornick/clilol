@@ -52,8 +52,8 @@ it defaults to your own address.`,
 		)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
-		if !silent {
-			if !wantJson {
+		if !silentFlag {
+			if !jsonFlag {
 				if result.Request.Success {
 					for _, purl := range result.Response.PURLs {
 						fmt.Printf(

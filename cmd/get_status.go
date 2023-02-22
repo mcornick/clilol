@@ -58,8 +58,8 @@ it defaults to your own address.`,
 		)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
-		if !silent {
-			if !wantJson {
+		if !silentFlag {
+			if !jsonFlag {
 				if result.Request.Success {
 					fmt.Printf(
 						"\nhttps://status.lol/%s/%s\n",

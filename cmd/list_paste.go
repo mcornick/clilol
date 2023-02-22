@@ -57,8 +57,8 @@ your own address.`,
 		)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
-		if !silent {
-			if !wantJson {
+		if !silentFlag {
+			if !jsonFlag {
 				if result.Request.Success {
 					for _, paste := range result.Response.Pastebin {
 						fmt.Printf(

@@ -58,8 +58,8 @@ Specify the ID with the --id flag.`,
 		)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
-		if !silent {
-			if !wantJson {
+		if !silentFlag {
+			if !jsonFlag {
 				if result.Request.Success {
 					fmt.Printf(
 						"%s (%s) modified on %s\n\n%s\n",

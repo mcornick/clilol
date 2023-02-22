@@ -56,8 +56,8 @@ See the status commands to get statuses for a single user.`,
 			body := callAPIWithJSON(http.MethodGet, url, nil, false)
 			err := json.Unmarshal(body, &result)
 			cobra.CheckErr(err)
-			if !silent {
-				if !wantJson {
+			if !silentFlag {
+				if !jsonFlag {
 					if result.Request.Success {
 						for _, status := range result.Response.Statuses {
 							fmt.Printf("@%s, %s\n", status.Address, status.RelativeTime)

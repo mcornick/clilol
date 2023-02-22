@@ -54,8 +54,8 @@ CSS. You'll need to do that on the website.`,
 			)
 			err := json.Unmarshal(body, &result)
 			cobra.CheckErr(err)
-			if !silent {
-				if !wantJson {
+			if !silentFlag {
+				if !jsonFlag {
 					if result.Request.Success {
 						fmt.Println(result.Response.Message)
 					} else {

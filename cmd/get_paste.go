@@ -58,8 +58,8 @@ it defaults to your own address.`,
 			)
 			err := json.Unmarshal(body, &result)
 			cobra.CheckErr(err)
-			if !silent {
-				if !wantJson {
+			if !silentFlag {
+				if !jsonFlag {
 					if result.Request.Success {
 						if getPasteFilename != "" {
 							err = os.WriteFile(getPasteFilename, []byte(result.Response.Paste.Content), 0o644)

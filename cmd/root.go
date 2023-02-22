@@ -9,7 +9,12 @@
 package cmd
 
 import (
+	"bytes"
+	"encoding/json"
+	"io"
+	"net/http"
 	"os"
+	"strings"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -18,10 +23,13 @@ import (
 const endpoint = "https://api.omg.lol"
 
 var (
-	silent   bool
-	wantJson bool
-	version  = "dev"
-	rootCmd  = &cobra.Command{
+	addressFlag string
+	idFlag      string
+	jsonFlag    bool
+	nameFlag    string
+	silentFlag  bool
+	version     = "dev"
+	rootCmd     = &cobra.Command{
 		Version: version,
 		Use:     "clilol",
 		Short:   "a cli for omg.lol",
@@ -50,14 +58,14 @@ func init() {
 		}
 	}
 	rootCmd.PersistentFlags().BoolVarP(
-		&silent,
+		&silentFlag,
 		"silent",
 		"s",
 		false,
 		"be silent",
 	)
 	rootCmd.PersistentFlags().BoolVarP(
-		&wantJson,
+		&jsonFlag,
 		"json",
 		"j",
 		false,
@@ -76,4 +84,42 @@ func init() {
 		),
 	)
 	rootCmd.DisableAutoGenTag = true
+}
+
+func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byte, error) {
+	request, err := http.NewRequest(method, endpoint+path, bodyReader)
+	if err != nil {
+		return nil, err
+	}
+	request.Header.Set("User-Agent", "clilol (https://github.com/mcornick/clilol)")
+	request.Header.Set("Content-Type", "application/json")
+	if auth {
+		request.Header.Set("Authorization", "Bearer "+viper.GetString("apikey"))
+	}
+	response, err := http.DefaultClient.Do(request)
+	if err != nil {
+		return nil, err
+	}
+	defer response.Body.Close()
+	body, err := io.ReadAll(response.Body)
+	if err != nil {
+		return nil, err
+	}
+	return body, nil
+}
+
+func callAPIWithJSON(method string, path string, params interface{}, auth bool) []byte {
+	jsonBody, err := json.Marshal(params)
+	cobra.CheckErr(err)
+	bodyReader := bytes.NewReader(jsonBody)
+	body, err := callAPI(method, path, bodyReader, auth)
+	cobra.CheckErr(err)
+	return body
+}
+
+func callAPIWithRawData(method string, path string, data string, auth bool) []byte {
+	bodyReader := strings.NewReader(data)
+	body, err := callAPI(method, path, bodyReader, auth)
+	cobra.CheckErr(err)
+	return body
 }

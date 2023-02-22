@@ -68,8 +68,8 @@ See the statuslog commands to get statuses for all users.`,
 				body, err = json.MarshalIndent(result, "", "    ")
 				cobra.CheckErr(err)
 			}
-			if !silent {
-				if !wantJson {
+			if !silentFlag {
+				if !jsonFlag {
 					if result.Request.Success {
 						for _, status := range result.Response.Statuses {
 							fmt.Printf("\nhttps://status.lol/%s/%s\n", status.Address, status.Id)

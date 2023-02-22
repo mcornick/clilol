@@ -65,8 +65,8 @@ var listAccountAddressesCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
-		if !silent {
-			if !wantJson {
+		if !silentFlag {
+			if !jsonFlag {
 				if result.Request.Success {
 					for _, address := range result.Response {
 						fmt.Println(address.Address)

@@ -46,8 +46,8 @@ var listAccountSessionsCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)
-		if !silent {
-			if !wantJson {
+		if !silentFlag {
+			if !jsonFlag {
 				if result.Request.Success {
 					for _, session := range result.Response {
 						fmt.Printf("\n%s\n", session.SessionID)
