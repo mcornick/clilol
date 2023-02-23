@@ -36,10 +36,7 @@ Specify the PURL name with the --name flag, and the URL with the
 				Listed bool   `json:"listed,omitempty"`
 			}
 			type Result struct {
-				Request struct {
-					StatusCode int  `json:"status_code"`
-					Success    bool `json:"success"`
-				} `json:"request"`
+				Request  Request `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 					Name    string `json:"name"`

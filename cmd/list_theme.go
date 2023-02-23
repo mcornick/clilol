@@ -38,10 +38,7 @@ var listThemeCmd = &cobra.Command{
 			ThemeColor    string `json:"theme-color"`
 		}
 		type Result struct {
-			Request struct {
-				StatusCode int  `json:"status_code"`
-				Success    bool `json:"success"`
-			} `json:"request"`
+			Request  Request `json:"request"`
 			Response struct {
 				Message string           `json:"message"`
 				Themes  map[string]Theme `json:"themes"`

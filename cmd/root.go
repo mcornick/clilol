@@ -38,6 +38,11 @@ See the subcommands for more information.`,
 	}
 )
 
+type Request struct {
+	StatusCode int  `json:"status_code"`
+	Success    bool `json:"success"`
+}
+
 func Execute() {
 	checkError(rootCmd.Execute())
 }

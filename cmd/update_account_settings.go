@@ -36,10 +36,7 @@ Specify the new settings with the flags listed below.`,
 				WebEditor     string `json:"web_editor,omitempty"`
 			}
 			type Result struct {
-				Request struct {
-					StatusCode int  `json:"status_code"`
-					Success    bool `json:"success"`
-				} `json:"request"`
+				Request  Request `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 				} `json:"response"`

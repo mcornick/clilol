@@ -31,10 +31,7 @@ it defaults to your own address.`,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
-			Request struct {
-				StatusCode int  `json:"status_code"`
-				Success    bool `json:"success"`
-			} `json:"request"`
+			Request  Request `json:"request"`
 			Response struct {
 				Message string `json:"message"`
 				Status  struct {

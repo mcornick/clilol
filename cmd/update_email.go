@@ -32,10 +32,7 @@ To specify multiple addresses, separate them with commas.`,
 				Destination string `json:"destination"`
 			}
 			type Result struct {
-				Request struct {
-					StatusCode int  `json:"status_code"`
-					Success    bool `json:"success"`
-				} `json:"request"`
+				Request  Request `json:"request"`
 				Response struct {
 					Message           string   `json:"message"`
 					DestinationString string   `json:"destination_string"`

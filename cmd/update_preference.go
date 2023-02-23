@@ -35,10 +35,7 @@ the --value flag.`,
 				Value string `json:"value"`
 			}
 			type Result struct {
-				Request struct {
-					StatusCode int  `json:"status_code"`
-					Success    bool `json:"success"`
-				} `json:"request"`
+				Request  Request `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 					Item    string `json:"item"`

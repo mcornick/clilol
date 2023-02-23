@@ -36,10 +36,7 @@ CSS. You'll need to do that on the website.`,
 				Content string `json:"content"`
 			}
 			type Result struct {
-				Request struct {
-					StatusCode int  `json:"status_code"`
-					Success    bool `json:"success"`
-				} `json:"request"`
+				Request  Request `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 					URL     string `json:"url"`

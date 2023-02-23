@@ -44,10 +44,7 @@ to change it, you'll still need to specify it again.`,
 				Content string `json:"content"`
 			}
 			type Result struct {
-				Request struct {
-					StatusCode int  `json:"status_code"`
-					Success    bool `json:"success"`
-				} `json:"request"`
+				Request  Request `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 					ID      string `json:"id"`

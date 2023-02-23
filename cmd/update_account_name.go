@@ -30,10 +30,7 @@ Specify the new name with the --name flag.`,
 			Name string `json:"name"`
 		}
 		type Result struct {
-			Request struct {
-				StatusCode int  `json:"status_code"`
-				Success    bool `json:"success"`
-			} `json:"request"`
+			Request  Request `json:"request"`
 			Response struct {
 				Message string `json:"message"`
 				Name    string `json:"name"`
