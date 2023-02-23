@@ -18,10 +18,10 @@ import (
 )
 
 var (
-	createStatusEmoji       string
-	createStatusStatus      string
-	createStatusExternalURL string
-	createStatusCmd         = &cobra.Command{
+	createStatusEmoji            string
+	createStatusStatus           string
+	createStatusSkipMastodonPost bool
+	createStatusCmd              = &cobra.Command{
 		Use:   "status",
 		Short: "Create a status",
 		Long: `Posts a status to status.lol.
@@ -33,15 +33,15 @@ You can specify an emoji with the --emoji flag. This must be an
 actual emoji, not a :emoji: style code. If not set, the sparkles
 emoji will be used.
 
-You can specify an external URL with the --external-url flag. This
-will be shown as a "Respond" link on the statuslog. If not set, no
-external URL will be used.`,
+If you have enabled cross-posting to Mastodon in your statuslog
+settings, you can skip cross-posting to Mastodon by setting the
+--skip-mastodon-post flag to true.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
 			type Input struct {
-				Emoji       string `json:"emoji"`
-				Content     string `json:"content"`
-				ExternalURL string `json:"external_url,omitempty"`
+				Emoji            string `json:"emoji"`
+				Content          string `json:"content"`
+				SkipMastodonPost bool   `json:"skip_mastodon_post,omitempty"`
 			}
 			type Result struct {
 				Request struct {
@@ -57,7 +57,11 @@ external URL will be used.`,
 				} `json:"response"`
 			}
 			var result Result
-			status := Input{createStatusEmoji, createStatusStatus, createStatusExternalURL}
+			status := Input{
+				createStatusEmoji,
+				createStatusStatus,
+				createStatusSkipMastodonPost,
+			}
 			body := callAPIWithParams(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/statuses/",
@@ -96,12 +100,11 @@ func init() {
 		"",
 		"Status text",
 	)
-	createStatusCmd.Flags().StringVarP(
-		&createStatusExternalURL,
-		"external-url",
-		"u",
-		"",
-		"External URL to add to status",
+	createStatusCmd.Flags().BoolVar(
+		&createStatusSkipMastodonPost,
+		"skip-mastodon-post",
+		false,
+		"Do not cross-post to Mastodon",
 	)
 	createCmd.AddCommand(createStatusCmd)
 }
