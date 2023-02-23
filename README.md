@@ -2,7 +2,7 @@
 
 clilol is a CLI for the various fun services offered by [omg.lol](https://omg.lol/). All of the services supported by the [omg.lol API](https://api.omg.lol) are supported.
 
-![Screenshot](clilol.gif "Screenshot")
+![Screenshot](docs/clilol.gif "Screenshot")
 
 Please see the full documentation in the `docs` directory, also available at https://mcornick.com/clilol/.
 
