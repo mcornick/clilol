@@ -58,21 +58,19 @@ it defaults to your own address.`,
 			)
 			err := json.Unmarshal(body, &result)
 			checkError(err)
-			if !silentFlag {
-				if !jsonFlag {
-					if result.Request.Success {
-						if getPasteFilename != "" {
-							err = os.WriteFile(getPasteFilename, []byte(result.Response.Paste.Content), 0o644)
-							checkError(err)
-						} else {
-							fmt.Println(result.Response.Paste.Content)
-						}
+			if !jsonFlag {
+				if result.Request.Success {
+					if getPasteFilename != "" {
+						err = os.WriteFile(getPasteFilename, []byte(result.Response.Paste.Content), 0o644)
+						checkError(err)
 					} else {
-						checkError(fmt.Errorf(result.Response.Message))
+						fmt.Println(result.Response.Paste.Content)
 					}
 				} else {
-					fmt.Println(string(body))
+					checkError(fmt.Errorf(result.Response.Message))
 				}
+			} else {
+				fmt.Println(string(body))
 			}
 		},
 	}

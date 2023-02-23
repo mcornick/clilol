@@ -51,24 +51,22 @@ var listDNSCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !silentFlag {
-			if !jsonFlag {
-				if result.Request.Success {
-					for _, record := range result.Response.DNS {
-						fmt.Printf(
-							"%s %s %s ; ID: %d\n",
-							record.Name,
-							record.Type,
-							record.Data,
-							record.ID,
-						)
-					}
-				} else {
-					checkError(fmt.Errorf(result.Response.Message))
+		if !jsonFlag {
+			if result.Request.Success {
+				for _, record := range result.Response.DNS {
+					fmt.Printf(
+						"%s %s %s ; ID: %d\n",
+						record.Name,
+						record.Type,
+						record.Data,
+						record.ID,
+					)
 				}
 			} else {
-				fmt.Println(string(body))
+				checkError(fmt.Errorf(result.Response.Message))
 			}
+		} else {
+			fmt.Println(string(body))
 		}
 	},
 }

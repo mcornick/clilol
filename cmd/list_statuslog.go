@@ -56,19 +56,17 @@ See the status commands to get statuses for a single user.`,
 			body := callAPIWithParams(http.MethodGet, url, nil, false)
 			err := json.Unmarshal(body, &result)
 			checkError(err)
-			if !silentFlag {
-				if !jsonFlag {
-					if result.Request.Success {
-						for _, status := range result.Response.Statuses {
-							fmt.Printf("@%s, %s\n", status.Address, status.RelativeTime)
-							fmt.Printf("  %s %s\n", status.Emoji, status.Content)
-						}
-					} else {
-						checkError(fmt.Errorf(result.Response.Message))
+			if !jsonFlag {
+				if result.Request.Success {
+					for _, status := range result.Response.Statuses {
+						fmt.Printf("@%s, %s\n", status.Address, status.RelativeTime)
+						fmt.Printf("  %s %s\n", status.Emoji, status.Content)
 					}
 				} else {
-					fmt.Println(string(body))
+					checkError(fmt.Errorf(result.Response.Message))
 				}
+			} else {
+				fmt.Println(string(body))
 			}
 		},
 	}

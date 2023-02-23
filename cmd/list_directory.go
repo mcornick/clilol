@@ -38,22 +38,20 @@ var listDirectoryCmd = &cobra.Command{
 		body := callAPIWithParams(http.MethodGet, "/directory", nil, false)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !silentFlag {
-			if !jsonFlag {
-				if result.Request.Success {
-					fmt.Printf("%s\n\n", result.Response.Message)
-					for _, address := range result.Response.Directory {
-						idnaProfile := idna.New()
-						decoded, err := idnaProfile.ToUnicode(address)
-						checkError(err)
-						fmt.Println(decoded)
-					}
-				} else {
-					checkError(fmt.Errorf(result.Response.Message))
+		if !jsonFlag {
+			if result.Request.Success {
+				fmt.Printf("%s\n\n", result.Response.Message)
+				for _, address := range result.Response.Directory {
+					idnaProfile := idna.New()
+					decoded, err := idnaProfile.ToUnicode(address)
+					checkError(err)
+					fmt.Println(decoded)
 				}
 			} else {
-				fmt.Println(string(body))
+				checkError(fmt.Errorf(result.Response.Message))
 			}
+		} else {
+			fmt.Println(string(body))
 		}
 	},
 }

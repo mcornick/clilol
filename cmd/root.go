@@ -29,7 +29,6 @@ var (
 	idFlag      string
 	jsonFlag    bool
 	nameFlag    string
-	silentFlag  bool
 	version     = "dev"
 	rootCmd     = &cobra.Command{
 		Version: version,
@@ -60,24 +59,11 @@ func init() {
 		}
 	}
 	rootCmd.PersistentFlags().BoolVarP(
-		&silentFlag,
-		"silent",
-		"s",
-		false,
-		"be silent",
-	)
-	rootCmd.PersistentFlags().BoolVarP(
 		&jsonFlag,
 		"json",
 		"j",
 		false,
 		"output json",
-	)
-	checkError(
-		viper.BindPFlag(
-			"silent",
-			rootCmd.PersistentFlags().Lookup("silent"),
-		),
 	)
 	checkError(
 		viper.BindPFlag(
@@ -141,7 +127,5 @@ func checkError(msg interface{}) {
 }
 
 func logInfo(msg interface{}) {
-	if !silentFlag {
-		log.Info(msg)
-	}
+	log.Info(msg)
 }

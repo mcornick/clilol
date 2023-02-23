@@ -65,20 +65,18 @@ var listAccountAddressesCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !silentFlag {
-			if !jsonFlag {
-				if result.Request.Success {
-					for _, address := range result.Response {
-						fmt.Println(address.Address)
-						fmt.Println(address.Message)
-						fmt.Printf("Registered %s\n", address.Registration.RelativeTime)
-					}
-				} else {
-					checkError(fmt.Errorf("%d", result.Request.StatusCode))
+		if !jsonFlag {
+			if result.Request.Success {
+				for _, address := range result.Response {
+					fmt.Println(address.Address)
+					fmt.Println(address.Message)
+					fmt.Printf("Registered %s\n", address.Registration.RelativeTime)
 				}
 			} else {
-				fmt.Println(string(body))
+				checkError(fmt.Errorf("%d", result.Request.StatusCode))
 			}
+		} else {
+			fmt.Println(string(body))
 		}
 	},
 }

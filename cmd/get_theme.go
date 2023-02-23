@@ -57,25 +57,23 @@ Specify the theme name with the --name flag.`,
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !silentFlag {
-			if !jsonFlag {
-				if result.Request.Success {
-					updatedAt, err := strconv.ParseInt(result.Response.Theme.Updated, 10, 64)
-					checkError(err)
-					fmt.Printf(
-						"%s: %s by %s (%s) updated %s\n",
-						nameFlag,
-						result.Response.Theme.Name,
-						result.Response.Theme.Author,
-						result.Response.Theme.AuthorURL,
-						time.Unix(updatedAt, 0),
-					)
-				} else {
-					checkError(fmt.Errorf("%d", result.Request.StatusCode))
-				}
+		if !jsonFlag {
+			if result.Request.Success {
+				updatedAt, err := strconv.ParseInt(result.Response.Theme.Updated, 10, 64)
+				checkError(err)
+				fmt.Printf(
+					"%s: %s by %s (%s) updated %s\n",
+					nameFlag,
+					result.Response.Theme.Name,
+					result.Response.Theme.Author,
+					result.Response.Theme.AuthorURL,
+					time.Unix(updatedAt, 0),
+				)
 			} else {
-				fmt.Println(string(body))
+				checkError(fmt.Errorf("%d", result.Request.StatusCode))
 			}
+		} else {
+			fmt.Println(string(body))
 		}
 	},
 }

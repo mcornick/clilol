@@ -56,21 +56,19 @@ it defaults to your own address.`,
 			)
 			err := json.Unmarshal(body, &result)
 			checkError(err)
-			if !silentFlag {
-				if !jsonFlag {
-					if result.Request.Success {
-						fmt.Printf(
-							"%s: %s (%d hits)\n",
-							result.Response.PURL.Name,
-							result.Response.PURL.URL,
-							result.Response.PURL.Counter,
-						)
-					} else {
-						checkError(fmt.Errorf(result.Response.Message))
-					}
+			if !jsonFlag {
+				if result.Request.Success {
+					fmt.Printf(
+						"%s: %s (%d hits)\n",
+						result.Response.PURL.Name,
+						result.Response.PURL.URL,
+						result.Response.PURL.Counter,
+					)
 				} else {
-					fmt.Println(string(body))
+					checkError(fmt.Errorf(result.Response.Message))
 				}
+			} else {
+				fmt.Println(string(body))
 			}
 		},
 	}

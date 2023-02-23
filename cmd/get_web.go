@@ -58,21 +58,19 @@ to stdout.`,
 			)
 			err := json.Unmarshal(body, &result)
 			checkError(err)
-			if !silentFlag {
-				if !jsonFlag {
-					if result.Request.Success {
-						if getWebFilename != "" {
-							err = os.WriteFile(getWebFilename, []byte(result.Response.Content), 0o644)
-							checkError(err)
-						} else {
-							fmt.Println(result.Response.Content)
-						}
+			if !jsonFlag {
+				if result.Request.Success {
+					if getWebFilename != "" {
+						err = os.WriteFile(getWebFilename, []byte(result.Response.Content), 0o644)
+						checkError(err)
 					} else {
-						checkError(fmt.Errorf(result.Response.Message))
+						fmt.Println(result.Response.Content)
 					}
 				} else {
-					fmt.Println(string(body))
+					checkError(fmt.Errorf(result.Response.Message))
 				}
+			} else {
+				fmt.Println(string(body))
 			}
 		},
 	}

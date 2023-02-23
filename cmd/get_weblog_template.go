@@ -49,25 +49,23 @@ to stdout.`,
 			)
 			err := json.Unmarshal(body, &result)
 			checkError(err)
-			if !silentFlag {
-				if !jsonFlag {
-					if result.Request.Success {
-						if getWeblogTemplateFilename != "" {
-							err = os.WriteFile(
-								getWeblogTemplateFilename,
-								[]byte(result.Response.Template),
-								0o644,
-							)
-							checkError(err)
-						} else {
-							fmt.Println(result.Response.Template)
-						}
+			if !jsonFlag {
+				if result.Request.Success {
+					if getWeblogTemplateFilename != "" {
+						err = os.WriteFile(
+							getWeblogTemplateFilename,
+							[]byte(result.Response.Template),
+							0o644,
+						)
+						checkError(err)
 					} else {
-						checkError(fmt.Errorf(result.Response.Message))
+						fmt.Println(result.Response.Template)
 					}
 				} else {
-					fmt.Println(string(body))
+					checkError(fmt.Errorf(result.Response.Message))
 				}
+			} else {
+				fmt.Println(string(body))
 			}
 		},
 	}

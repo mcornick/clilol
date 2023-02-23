@@ -18,7 +18,7 @@ import (
 )
 
 var listNowCmd = &cobra.Command{
-	Use:   "list",
+	Use:   "now",
 	Short: "List Now pages",
 	Long:  "Lists pages in the Now garden.",
 	Args:  cobra.NoArgs,
@@ -46,16 +46,12 @@ var listNowCmd = &cobra.Command{
 		body := callAPIWithParams(http.MethodGet, "/now/garden", nil, false)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !silentFlag {
-			if !jsonFlag {
-				if result.Request.Success {
-					logInfo(result.Response.Message)
-					for _, page := range result.Response.Garden {
-						fmt.Printf("\n%s (%s)\n", page.URL, page.Address)
-						fmt.Printf("last updated %s\n", page.Updated.RelativeTime)
-					}
-				} else {
-					logInfo(result.Response.Message)
+		if !jsonFlag {
+			if result.Request.Success {
+				logInfo(result.Response.Message)
+				for _, page := range result.Response.Garden {
+					fmt.Printf("\n%s (%s)\n", page.URL, page.Address)
+					fmt.Printf("last updated %s\n", page.Updated.RelativeTime)
 				}
 			} else {
 				checkError(fmt.Errorf(result.Response.Message))

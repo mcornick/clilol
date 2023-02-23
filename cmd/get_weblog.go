@@ -58,26 +58,24 @@ Specify the ID with the --id flag.`,
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !silentFlag {
-			if !jsonFlag {
-				if result.Request.Success {
-					fmt.Printf(
-						"%s (%s) modified on %s\n\n%s\n",
-						result.Response.Entry.Entry,
-						fmt.Sprintf(
-							"https://%s.weblog.lol%s",
-							result.Response.Entry.Address,
-							result.Response.Entry.Location,
-						),
-						time.Unix(result.Response.Entry.Date, 0),
-						result.Response.Entry.Body,
-					)
-				} else {
-					checkError(fmt.Errorf(result.Response.Message))
-				}
+		if !jsonFlag {
+			if result.Request.Success {
+				fmt.Printf(
+					"%s (%s) modified on %s\n\n%s\n",
+					result.Response.Entry.Entry,
+					fmt.Sprintf(
+						"https://%s.weblog.lol%s",
+						result.Response.Entry.Address,
+						result.Response.Entry.Location,
+					),
+					time.Unix(result.Response.Entry.Date, 0),
+					result.Response.Entry.Body,
+				)
 			} else {
-				fmt.Println(string(body))
+				checkError(fmt.Errorf(result.Response.Message))
 			}
+		} else {
+			fmt.Println(string(body))
 		}
 	},
 }

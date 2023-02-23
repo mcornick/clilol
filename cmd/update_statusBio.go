@@ -54,16 +54,14 @@ CSS. You'll need to do that on the website.`,
 			)
 			err := json.Unmarshal(body, &result)
 			checkError(err)
-			if !silentFlag {
-				if !jsonFlag {
-					if result.Request.Success {
-						logInfo(result.Response.Message)
-					} else {
-						checkError(fmt.Errorf(result.Response.Message))
-					}
+			if !jsonFlag {
+				if result.Request.Success {
+					logInfo(result.Response.Message)
 				} else {
-					fmt.Println(string(body))
+					checkError(fmt.Errorf(result.Response.Message))
 				}
+			} else {
+				fmt.Println(string(body))
 			}
 		},
 	}

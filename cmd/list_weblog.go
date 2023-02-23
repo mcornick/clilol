@@ -56,24 +56,22 @@ var listWeblogCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !silentFlag {
-			if !jsonFlag {
-				if result.Request.Success {
-					for _, entry := range result.Response.Entries {
-						fmt.Printf(
-							"%s: %s (%s) modified on %s\n",
-							entry.Entry,
-							strings.TrimRight(entry.Title, "\r\n"),
-							fmt.Sprintf("https://%s.weblog.lol%s", entry.Address, entry.Location),
-							time.Unix(entry.Date, 0),
-						)
-					}
-				} else {
-					checkError(fmt.Errorf(result.Response.Message))
+		if !jsonFlag {
+			if result.Request.Success {
+				for _, entry := range result.Response.Entries {
+					fmt.Printf(
+						"%s: %s (%s) modified on %s\n",
+						entry.Entry,
+						strings.TrimRight(entry.Title, "\r\n"),
+						fmt.Sprintf("https://%s.weblog.lol%s", entry.Address, entry.Location),
+						time.Unix(entry.Date, 0),
+					)
 				}
 			} else {
-				fmt.Println(string(body))
+				checkError(fmt.Errorf(result.Response.Message))
 			}
+		} else {
+			fmt.Println(string(body))
 		}
 	},
 }

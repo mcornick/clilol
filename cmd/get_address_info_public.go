@@ -61,18 +61,16 @@ var getAddressInfoPublicCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !silentFlag {
-			if !jsonFlag {
-				if result.Request.Success {
-					fmt.Println(result.Response.Registration.Message)
-					fmt.Println(result.Response.Expiration.Message)
-					fmt.Println(result.Response.Verification.Message)
-				} else {
-					checkError(fmt.Errorf(result.Response.Message))
-				}
+		if !jsonFlag {
+			if result.Request.Success {
+				fmt.Println(result.Response.Registration.Message)
+				fmt.Println(result.Response.Expiration.Message)
+				fmt.Println(result.Response.Verification.Message)
 			} else {
-				fmt.Println(string(body))
+				checkError(fmt.Errorf(result.Response.Message))
 			}
+		} else {
+			fmt.Println(string(body))
 		}
 	},
 }

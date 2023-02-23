@@ -58,28 +58,26 @@ it defaults to your own address.`,
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !silentFlag {
-			if !jsonFlag {
-				if result.Request.Success {
-					fmt.Printf(
-						"\nhttps://status.lol/%s/%s\n",
-						result.Response.Status.Address,
-						result.Response.Status.Id,
-					)
-					timestamp, err := strconv.Atoi(result.Response.Status.Created)
-					checkError(err)
-					fmt.Printf("  %s\n", time.Unix(int64(timestamp), 0))
-					fmt.Printf(
-						"  %s %s\n",
-						result.Response.Status.Emoji,
-						result.Response.Status.Content,
-					)
-				} else {
-					checkError(fmt.Errorf(result.Response.Message))
-				}
+		if !jsonFlag {
+			if result.Request.Success {
+				fmt.Printf(
+					"\nhttps://status.lol/%s/%s\n",
+					result.Response.Status.Address,
+					result.Response.Status.Id,
+				)
+				timestamp, err := strconv.Atoi(result.Response.Status.Created)
+				checkError(err)
+				fmt.Printf("  %s\n", time.Unix(int64(timestamp), 0))
+				fmt.Printf(
+					"  %s %s\n",
+					result.Response.Status.Emoji,
+					result.Response.Status.Content,
+				)
 			} else {
-				fmt.Println(string(body))
+				checkError(fmt.Errorf(result.Response.Message))
 			}
+		} else {
+			fmt.Println(string(body))
 		}
 	},
 }

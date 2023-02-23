@@ -46,17 +46,15 @@ to stdout.`,
 			)
 			err := json.Unmarshal(body, &result)
 			checkError(err)
-			if !silentFlag {
-				if !jsonFlag {
-					if getThemePreviewFilename != "" {
-						err = os.WriteFile(getThemePreviewFilename, []byte(result.Response.HTML), 0o644)
-						checkError(err)
-					} else {
-						fmt.Println(result.Response.HTML)
-					}
+			if !jsonFlag {
+				if getThemePreviewFilename != "" {
+					err = os.WriteFile(getThemePreviewFilename, []byte(result.Response.HTML), 0o644)
+					checkError(err)
 				} else {
-					fmt.Println(string(body))
+					fmt.Println(result.Response.HTML)
 				}
+			} else {
+				fmt.Println(string(body))
 			}
 		},
 	}

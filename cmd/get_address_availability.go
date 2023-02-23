@@ -49,22 +49,20 @@ var getAddressAvailabilityCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !silentFlag {
-			if !jsonFlag {
-				if result.Request.Success {
-					logInfo(result.Response.Message)
-					if result.Response.SeeAlso != nil {
-						fmt.Println("See also:")
-						for _, seeAlso := range result.Response.SeeAlso {
-							fmt.Println("  " + seeAlso)
-						}
+		if !jsonFlag {
+			if result.Request.Success {
+				logInfo(result.Response.Message)
+				if result.Response.SeeAlso != nil {
+					fmt.Println("See also:")
+					for _, seeAlso := range result.Response.SeeAlso {
+						fmt.Println("  " + seeAlso)
 					}
-				} else {
-					checkError(fmt.Errorf(result.Response.Message))
 				}
 			} else {
-				fmt.Println(string(body))
+				checkError(fmt.Errorf(result.Response.Message))
 			}
+		} else {
+			fmt.Println(string(body))
 		}
 	},
 }

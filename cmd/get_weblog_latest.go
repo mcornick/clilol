@@ -55,26 +55,24 @@ var getWeblogLatestCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !silentFlag {
-			if !jsonFlag {
-				if result.Request.Success {
-					fmt.Printf(
-						"%s (%s) modified on %s\n\n%s\n",
-						result.Response.Post.Entry,
-						fmt.Sprintf(
-							"https://%s.weblog.lol%s",
-							result.Response.Post.Address,
-							result.Response.Post.Location,
-						),
-						time.Unix(result.Response.Post.Date, 0),
-						result.Response.Post.Body,
-					)
-				} else {
-					checkError(fmt.Errorf(result.Response.Message))
-				}
+		if !jsonFlag {
+			if result.Request.Success {
+				fmt.Printf(
+					"%s (%s) modified on %s\n\n%s\n",
+					result.Response.Post.Entry,
+					fmt.Sprintf(
+						"https://%s.weblog.lol%s",
+						result.Response.Post.Address,
+						result.Response.Post.Location,
+					),
+					time.Unix(result.Response.Post.Date, 0),
+					result.Response.Post.Body,
+				)
 			} else {
-				fmt.Println(string(body))
+				checkError(fmt.Errorf(result.Response.Message))
 			}
+		} else {
+			fmt.Println(string(body))
 		}
 	},
 }

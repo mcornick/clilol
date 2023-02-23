@@ -47,20 +47,18 @@ var getAccountSettingsCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !silentFlag {
-			if !jsonFlag {
-				if result.Request.Success {
-					logInfo(result.Response.Message)
-					fmt.Printf("Owner: %s\n", result.Response.Settings.Owner)
-					fmt.Printf("Communication: %s\n", result.Response.Settings.Communication)
-					fmt.Printf("Date Format: %s\n", result.Response.Settings.DateFormat)
-					fmt.Printf("Web Editor: %s\n", result.Response.Settings.WebEditor)
-				} else {
-					checkError(fmt.Errorf(result.Response.Message))
-				}
+		if !jsonFlag {
+			if result.Request.Success {
+				logInfo(result.Response.Message)
+				fmt.Printf("Owner: %s\n", result.Response.Settings.Owner)
+				fmt.Printf("Communication: %s\n", result.Response.Settings.Communication)
+				fmt.Printf("Date Format: %s\n", result.Response.Settings.DateFormat)
+				fmt.Printf("Web Editor: %s\n", result.Response.Settings.WebEditor)
 			} else {
-				fmt.Println(string(body))
+				checkError(fmt.Errorf(result.Response.Message))
 			}
+		} else {
+			fmt.Println(string(body))
 		}
 	},
 }

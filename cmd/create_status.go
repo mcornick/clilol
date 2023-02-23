@@ -70,16 +70,14 @@ settings, you can skip cross-posting to Mastodon by setting the
 			)
 			err := json.Unmarshal(body, &result)
 			checkError(err)
-			if !silentFlag {
-				if !jsonFlag {
-					if result.Request.Success {
-						logInfo(result.Response.Message)
-					} else {
-						checkError(fmt.Errorf(result.Response.Message))
-					}
+			if !jsonFlag {
+				if result.Request.Success {
+					logInfo(result.Response.Message)
 				} else {
-					fmt.Println(string(body))
+					checkError(fmt.Errorf(result.Response.Message))
 				}
+			} else {
+				fmt.Println(string(body))
 			}
 		},
 	}
