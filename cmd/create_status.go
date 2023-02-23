@@ -35,7 +35,7 @@ emoji will be used.
 
 If you have enabled cross-posting to Mastodon in your statuslog
 settings, you can skip cross-posting to Mastodon by setting the
---skip-mastodon-post flag to true.`,
+--skip-mastodon-post flag.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
 			type Input struct {
