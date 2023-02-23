@@ -38,7 +38,7 @@ from stdin.`,
 				Listed  int    `json:"listed"`
 			}
 			type Result struct {
-				Request  Request `json:"request"`
+				Request  responseRequest `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 				} `json:"response"`

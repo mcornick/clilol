@@ -36,7 +36,7 @@ CSS. You'll need to do that on the website.`,
 				Content string `json:"content"`
 			}
 			type Result struct {
-				Request  Request `json:"request"`
+				Request  responseRequest `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 					URL     string `json:"url"`

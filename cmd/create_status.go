@@ -45,7 +45,7 @@ settings, you can skip cross-posting to Mastodon by setting the
 				SkipMastodonPost bool   `json:"skip_mastodon_post,omitempty"`
 			}
 			type Result struct {
-				Request  Request `json:"request"`
+				Request  responseRequest `json:"request"`
 				Response struct {
 					Message     string `json:"message"`
 					ID          string `json:"id"`

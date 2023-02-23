@@ -42,7 +42,7 @@ and the data with the --data flag.`,
 				TTL      int    `json:"ttl"`
 			}
 			type Result struct {
-				Request  Request `json:"request"`
+				Request  responseRequest `json:"request"`
 				Response struct {
 					Message  string `json:"message"`
 					DataSent struct {

@@ -44,7 +44,7 @@ from stdin.`,
 				Listed  int    `json:"listed,omitempty"`
 			}
 			type Result struct {
-				Request  Request `json:"request"`
+				Request  responseRequest `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 					Title   string `json:"title"`

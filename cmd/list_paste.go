@@ -31,7 +31,7 @@ your own address.`,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
-			Request  Request `json:"request"`
+			Request  responseRequest `json:"request"`
 			Response struct {
 				Message  string `json:"message"`
 				Pastebin []struct {

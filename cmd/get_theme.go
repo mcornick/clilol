@@ -27,7 +27,7 @@ Specify the theme name with the --name flag.`,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
-			Request  Request `json:"request"`
+			Request  responseRequest `json:"request"`
 			Response struct {
 				Theme struct {
 					ID            string `json:"id"`
