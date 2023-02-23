@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
 
@@ -48,7 +49,7 @@ var listNowCmd = &cobra.Command{
 		checkError(err)
 		if !jsonFlag {
 			if result.Request.Success {
-				logInfo(result.Response.Message)
+				log.Info(result.Response.Message)
 				for _, page := range result.Response.Garden {
 					fmt.Printf("\n%s (%s)\n", page.URL, page.Address)
 					fmt.Printf("last updated %s\n", page.Updated.RelativeTime)

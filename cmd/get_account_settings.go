@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -49,7 +50,7 @@ var getAccountSettingsCmd = &cobra.Command{
 		checkError(err)
 		if !jsonFlag {
 			if result.Request.Success {
-				logInfo(result.Response.Message)
+				log.Info(result.Response.Message)
 				fmt.Printf("Owner: %s\n", result.Response.Settings.Owner)
 				fmt.Printf("Communication: %s\n", result.Response.Settings.Communication)
 				fmt.Printf("Date Format: %s\n", result.Response.Settings.DateFormat)

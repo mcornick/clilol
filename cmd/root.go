@@ -125,7 +125,3 @@ func checkError(msg interface{}) {
 		log.Fatal(msg)
 	}
 }
-
-func logInfo(msg interface{}) {
-	log.Info(msg)
-}

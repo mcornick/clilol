@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -51,7 +52,7 @@ var getAddressAvailabilityCmd = &cobra.Command{
 		checkError(err)
 		if !jsonFlag {
 			if result.Request.Success {
-				logInfo(result.Response.Message)
+				log.Info(result.Response.Message)
 				if result.Response.SeeAlso != nil {
 					fmt.Println("See also:")
 					for _, seeAlso := range result.Response.SeeAlso {

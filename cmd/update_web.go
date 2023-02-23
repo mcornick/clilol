@@ -15,6 +15,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -70,7 +71,7 @@ be published.`,
 			checkError(err)
 			if !jsonFlag {
 				if result.Request.Success {
-					logInfo(result.Response.Message)
+					log.Info(result.Response.Message)
 				} else {
 					checkError(fmt.Errorf(result.Response.Message))
 				}

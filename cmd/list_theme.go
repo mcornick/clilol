@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
 
@@ -52,7 +53,7 @@ var listThemeCmd = &cobra.Command{
 		checkError(err)
 		if !jsonFlag {
 			if result.Request.Success {
-				logInfo(result.Response.Message)
+				log.Info(result.Response.Message)
 				for _, theme := range result.Response.Themes {
 					fmt.Printf("- %s\n", theme.ID)
 				}

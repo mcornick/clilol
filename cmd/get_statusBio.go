@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -54,7 +55,7 @@ Note that any custom CSS set on the bio is ignored.
 		checkError(err)
 		if !jsonFlag {
 			if result.Request.Success {
-				logInfo(result.Response.Message)
+				log.Info(result.Response.Message)
 				fmt.Printf("\n%s\n", result.Response.Bio)
 			} else {
 				checkError(fmt.Errorf(result.Response.Message))

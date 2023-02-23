@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -55,7 +56,7 @@ var getAccountInfoCmd = &cobra.Command{
 		checkError(err)
 		if !jsonFlag {
 			if result.Request.Success {
-				logInfo(result.Response.Message)
+				log.Info(result.Response.Message)
 				fmt.Printf("%s (%s)\n", result.Response.Name, result.Response.Email)
 				fmt.Printf("Created %s\n", result.Response.Created.RelativeTime)
 				fmt.Printf("Communication: %s\n", result.Response.Settings.Communication)
