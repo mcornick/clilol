@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -28,14 +29,14 @@ var listDNSCmd = &cobra.Command{
 			Response struct {
 				Message string `json:"message"`
 				DNS     []struct {
-					ID         int    `json:"id"`
-					Type       string `json:"type"`
-					Name       string `json:"name"`
-					Data       string `json:"data"`
-					Priority   int    `json:"priority"`
-					TTL        int    `json:"ttl"`
-					CreatedAt  string `json:"created_at"`
-					Updated_At string `json:"updated_at"`
+					ID        int       `json:"id"`
+					Type      string    `json:"type"`
+					Name      string    `json:"name"`
+					Data      string    `json:"data"`
+					Priority  int       `json:"priority"`
+					TTL       int       `json:"ttl"`
+					CreatedAt time.Time `json:"created_at"`
+					UpdatedAt time.Time `json:"updated_at"`
 				} `json:"dns"`
 			} `json:"response"`
 		}

@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
@@ -54,14 +55,14 @@ and the data with the --data flag.`,
 					} `json:"data_sent"`
 					ResponseReceived struct {
 						Data struct {
-							ID        int    `json:"id"`
-							Name      string `json:"name"`
-							Content   string `json:"content"`
-							TTL       int    `json:"ttl"`
-							Priority  int    `json:"priority"`
-							Type      string `json:"type"`
-							CreatedAt string `json:"created_at"`
-							UpdatedAt string `json:"updated_at"`
+							ID        int       `json:"id"`
+							Name      string    `json:"name"`
+							Content   string    `json:"content"`
+							TTL       int       `json:"ttl"`
+							Priority  int       `json:"priority"`
+							Type      string    `json:"type"`
+							CreatedAt time.Time `json:"created_at"`
+							UpdatedAt time.Time `json:"updated_at"`
 						} `json:"data"`
 					} `json:"response_received"`
 				} `json:"response"`
