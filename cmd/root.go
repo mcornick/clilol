@@ -72,6 +72,14 @@ func init() {
 		),
 	)
 	rootCmd.DisableAutoGenTag = true
+	log.FatalLevelStyle = lipgloss.NewStyle().
+		SetString("FATAL").
+		Bold(true).
+		MaxWidth(5).
+		Foreground(lipgloss.AdaptiveColor{
+			Light: "133",
+			Dark:  "134",
+		})
 }
 
 func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byte, error) {
@@ -114,14 +122,6 @@ func callAPIWithRawData(method string, path string, data string, auth bool) []by
 
 func checkError(msg interface{}) {
 	if msg != nil {
-		log.FatalLevelStyle = lipgloss.NewStyle().
-			SetString("FATAL").
-			Bold(true).
-			MaxWidth(5).
-			Foreground(lipgloss.AdaptiveColor{
-				Light: "133",
-				Dark:  "134",
-			})
 		log.Fatal(msg)
 	}
 }
