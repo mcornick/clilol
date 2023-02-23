@@ -71,7 +71,7 @@ func init() {
 		"name",
 		"n",
 		"",
-		"Name of the PURL",
+		"name of the PURL",
 	)
 	createPURLCmd.Flags().StringVarP(
 		&createPURLURL,
@@ -85,7 +85,7 @@ func init() {
 		"listed",
 		"l",
 		false,
-		"Create as listed (default false)",
+		"create as listed (default false)",
 	)
 	createCmd.AddCommand(createPURLCmd)
 }

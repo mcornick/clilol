@@ -61,7 +61,7 @@ func init() {
 		"id",
 		"i",
 		"",
-		"ID of the weblog entry",
+		"ID of the weblog entry to delete",
 	)
 	deleteCmd.AddCommand(deleteWeblogCmd)
 }

@@ -70,7 +70,7 @@ func init() {
 		"text",
 		"t",
 		"",
-		"New bio text",
+		"new bio text",
 	)
 	updateCmd.AddCommand(updateStatusBioCmd)
 }

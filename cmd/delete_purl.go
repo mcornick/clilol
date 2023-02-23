@@ -61,7 +61,7 @@ func init() {
 		"name",
 		"n",
 		"",
-		"Name of the PURL",
+		"name of the PURL to delete",
 	)
 	deleteCmd.AddCommand(deletePURLCmd)
 }

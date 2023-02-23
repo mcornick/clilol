@@ -64,7 +64,7 @@ func init() {
 		"title",
 		"t",
 		"",
-		"Title of the paste to delete",
+		"title of the paste to delete",
 	)
 	deleteCmd.AddCommand(deletePasteCmd)
 }

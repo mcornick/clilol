@@ -93,35 +93,35 @@ func init() {
 		"type",
 		"t",
 		"",
-		"Type of DNS record to create",
+		"type of DNS record to create",
 	)
 	createDNSCmd.Flags().StringVarP(
 		&nameFlag,
 		"name",
 		"n",
 		"",
-		"Name of the DNS record to create",
+		"name of the DNS record to create",
 	)
 	createDNSCmd.Flags().StringVarP(
 		&createDNSData,
 		"data",
 		"d",
 		"",
-		"Data to store in the DNS record",
+		"data to store in the DNS record",
 	)
 	createDNSCmd.Flags().IntVarP(
 		&createDNSPriority,
 		"priority",
 		"p",
 		0,
-		"Priority of the DNS record",
+		"priority of the DNS record",
 	)
 	createDNSCmd.Flags().IntVarP(
 		&createDNSTTL,
 		"ttl",
 		"T",
 		3600,
-		"Time to live of the DNS record",
+		"time to live of the DNS record",
 	)
 	createCmd.AddCommand(createDNSCmd)
 }

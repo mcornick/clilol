@@ -69,21 +69,21 @@ func init() {
 		"communication",
 		"c",
 		"",
-		"Communication preference",
+		"communication preference",
 	)
 	updateAccountSettingsCmd.Flags().StringVarP(
 		&accountSetSettingsDateFormat,
 		"date-format",
 		"d",
 		"",
-		"Date format preference",
+		"date format preference",
 	)
 	updateAccountSettingsCmd.Flags().StringVarP(
 		&accountSetSettingsWebEditor,
 		"web-editor",
 		"w",
 		"",
-		"Web editor preference",
+		"web editor preference",
 	)
 	updateAccountCmd.AddCommand(updateAccountSettingsCmd)
 }

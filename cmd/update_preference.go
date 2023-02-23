@@ -70,14 +70,14 @@ func init() {
 		"item",
 		"i",
 		"",
-		"Preference item to set",
+		"preference item to set",
 	)
 	updatePreferenceCmd.Flags().StringVarP(
 		&updatePreferenceValue,
 		"value",
 		"v",
 		"",
-		"Value to set it to",
+		"value to set it to",
 	)
 	updateCmd.AddCommand(updatePreferenceCmd)
 }

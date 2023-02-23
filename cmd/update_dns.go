@@ -101,35 +101,35 @@ func init() {
 		"type",
 		"t",
 		"",
-		"Updated DNS type",
+		"updated DNS type",
 	)
 	updateDNSCmd.Flags().StringVarP(
 		&nameFlag,
 		"name",
 		"n",
 		"",
-		"Updated record name",
+		"updated record name",
 	)
 	updateDNSCmd.Flags().StringVarP(
 		&updateDNSData,
 		"data",
 		"d",
 		"",
-		"Updated data",
+		"updated data",
 	)
 	updateDNSCmd.Flags().IntVarP(
 		&updateDNSPriority,
 		"priority",
 		"p",
 		0,
-		"Updated priority",
+		"ipdated priority",
 	)
 	updateDNSCmd.Flags().IntVarP(
 		&updateDNSTTL,
 		"ttl",
 		"T",
 		3600,
-		"Updated TTL",
+		"updated TTL",
 	)
 	updateCmd.AddCommand(updateDNSCmd)
 }

@@ -86,14 +86,14 @@ func init() {
 		"emoji",
 		"e",
 		"",
-		"Emoji to add to status (default sparkles)",
+		"emoji to add to status (default sparkles)",
 	)
 	updateStatusCmd.Flags().StringVarP(
 		&updateStatusStatus,
 		"text",
 		"t",
 		"",
-		"New status text",
+		"new status text",
 	)
 	updateCmd.AddCommand(updateStatusCmd)
 }

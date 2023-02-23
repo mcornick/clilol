@@ -63,7 +63,7 @@ func init() {
 		"name",
 		"n",
 		"",
-		"New name for the account",
+		"new name for the account",
 	)
 	updateAccountCmd.AddCommand(updateAccountNameCmd)
 }

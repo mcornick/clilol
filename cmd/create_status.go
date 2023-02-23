@@ -86,20 +86,20 @@ func init() {
 		"emoji",
 		"e",
 		"",
-		"Emoji to add to status (default sparkles)",
+		"emoji to add to status (default sparkles)",
 	)
 	createStatusCmd.Flags().StringVarP(
 		&createStatusStatus,
 		"text",
 		"t",
 		"",
-		"Status text",
+		"status text",
 	)
 	createStatusCmd.Flags().BoolVar(
 		&createStatusSkipMastodonPost,
 		"skip-mastodon-post",
 		false,
-		"Do not cross-post to Mastodon",
+		"do not cross-post to Mastodon",
 	)
 	createCmd.AddCommand(createStatusCmd)
 }

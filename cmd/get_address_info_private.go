@@ -83,7 +83,7 @@ func init() {
 		"address",
 		"a",
 		"",
-		"address whose availability to get",
+		"address whose info to get",
 	)
 	getAddressInfoCmd.AddCommand(getAddressInfoPrivateCmd)
 }
