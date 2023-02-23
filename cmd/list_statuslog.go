@@ -55,7 +55,7 @@ See the status commands to get statuses for a single user.`,
 			var result Result
 			body := callAPIWithParams(http.MethodGet, url, nil, false)
 			err := json.Unmarshal(body, &result)
-			cobra.CheckErr(err)
+			checkError(err)
 			if !silentFlag {
 				if !jsonFlag {
 					if result.Request.Success {
@@ -64,7 +64,7 @@ See the status commands to get statuses for a single user.`,
 							fmt.Printf("  %s %s\n", status.Emoji, status.Content)
 						}
 					} else {
-						cobra.CheckErr(fmt.Errorf(result.Response.Message))
+						checkError(fmt.Errorf(result.Response.Message))
 					}
 				} else {
 					fmt.Println(string(body))

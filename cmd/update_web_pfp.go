@@ -40,7 +40,7 @@ Specify an image file with the --filename flag.`,
 			}
 			var result Result
 			content, err := os.ReadFile(updateWebPFPFilename)
-			cobra.CheckErr(err)
+			checkError(err)
 			encoded := "data:text/plain;base64," + base64.StdEncoding.EncodeToString(content)
 			body := callAPIWithRawData(
 				http.MethodPost,
@@ -49,13 +49,13 @@ Specify an image file with the --filename flag.`,
 				true,
 			)
 			err = json.Unmarshal(body, &result)
-			cobra.CheckErr(err)
+			checkError(err)
 			if !silentFlag {
 				if !jsonFlag {
 					if result.Request.Success {
 						fmt.Println(result.Response.Message)
 					} else {
-						cobra.CheckErr(fmt.Errorf(result.Response.Message))
+						checkError(fmt.Errorf(result.Response.Message))
 					}
 				} else {
 					fmt.Println(string(body))

@@ -45,12 +45,12 @@ to stdout.`,
 				true,
 			)
 			err := json.Unmarshal(body, &result)
-			cobra.CheckErr(err)
+			checkError(err)
 			if !silentFlag {
 				if !jsonFlag {
 					if getThemePreviewFilename != "" {
 						err = os.WriteFile(getThemePreviewFilename, []byte(result.Response.HTML), 0o644)
-						cobra.CheckErr(err)
+						checkError(err)
 					} else {
 						fmt.Println(result.Response.HTML)
 					}

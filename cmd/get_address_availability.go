@@ -48,7 +48,7 @@ var getAddressAvailabilityCmd = &cobra.Command{
 			false,
 		)
 		err := json.Unmarshal(body, &result)
-		cobra.CheckErr(err)
+		checkError(err)
 		if !silentFlag {
 			if !jsonFlag {
 				if result.Request.Success {
@@ -60,7 +60,7 @@ var getAddressAvailabilityCmd = &cobra.Command{
 						}
 					}
 				} else {
-					cobra.CheckErr(fmt.Errorf(result.Response.Message))
+					checkError(fmt.Errorf(result.Response.Message))
 				}
 			} else {
 				fmt.Println(string(body))

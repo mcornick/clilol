@@ -48,7 +48,7 @@ to stdout.`,
 				true,
 			)
 			err := json.Unmarshal(body, &result)
-			cobra.CheckErr(err)
+			checkError(err)
 			if !silentFlag {
 				if !jsonFlag {
 					if result.Request.Success {
@@ -58,12 +58,12 @@ to stdout.`,
 								[]byte(result.Response.Template),
 								0o644,
 							)
-							cobra.CheckErr(err)
+							checkError(err)
 						} else {
 							fmt.Println(result.Response.Template)
 						}
 					} else {
-						cobra.CheckErr(fmt.Errorf(result.Response.Message))
+						checkError(fmt.Errorf(result.Response.Message))
 					}
 				} else {
 					fmt.Println(string(body))

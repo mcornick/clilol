@@ -16,6 +16,8 @@ import (
 	"os"
 	"strings"
 
+	"github.com/charmbracelet/lipgloss"
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -39,12 +41,12 @@ See the subcommands for more information.`,
 )
 
 func Execute() {
-	cobra.CheckErr(rootCmd.Execute())
+	checkError(rootCmd.Execute())
 }
 
 func init() {
 	configDir, err := os.UserConfigDir()
-	cobra.CheckErr(err)
+	checkError(err)
 	viper.SetConfigName("config")
 	viper.AddConfigPath("/etc/clilol/")
 	viper.AddConfigPath(configDir + "/clilol")
@@ -54,7 +56,7 @@ func init() {
 	if err != nil {
 		_, ok := err.(viper.ConfigFileNotFoundError)
 		if !ok {
-			cobra.CheckErr(err)
+			checkError(err)
 		}
 	}
 	rootCmd.PersistentFlags().BoolVarP(
@@ -71,13 +73,13 @@ func init() {
 		false,
 		"output json",
 	)
-	cobra.CheckErr(
+	checkError(
 		viper.BindPFlag(
 			"silent",
 			rootCmd.PersistentFlags().Lookup("silent"),
 		),
 	)
-	cobra.CheckErr(
+	checkError(
 		viper.BindPFlag(
 			"json",
 			rootCmd.PersistentFlags().Lookup("json"),
@@ -110,16 +112,30 @@ func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byt
 
 func callAPIWithParams(method string, path string, params interface{}, auth bool) []byte {
 	jsonBody, err := json.Marshal(params)
-	cobra.CheckErr(err)
+	checkError(err)
 	bodyReader := bytes.NewReader(jsonBody)
 	body, err := callAPI(method, path, bodyReader, auth)
-	cobra.CheckErr(err)
+	checkError(err)
 	return body
 }
 
 func callAPIWithRawData(method string, path string, data string, auth bool) []byte {
 	bodyReader := strings.NewReader(data)
 	body, err := callAPI(method, path, bodyReader, auth)
-	cobra.CheckErr(err)
+	checkError(err)
 	return body
+}
+
+func checkError(msg interface{}) {
+	if msg != nil {
+		log.FatalLevelStyle = lipgloss.NewStyle().
+			SetString("FATAL").
+			Bold(true).
+			MaxWidth(5).
+			Foreground(lipgloss.AdaptiveColor{
+				Light: "133",
+				Dark:  "134",
+			})
+		log.Fatal(msg)
+	}
 }

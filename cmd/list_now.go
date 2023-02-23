@@ -45,7 +45,7 @@ var listNowCmd = &cobra.Command{
 		var result Result
 		body := callAPIWithParams(http.MethodGet, "/now/garden", nil, false)
 		err := json.Unmarshal(body, &result)
-		cobra.CheckErr(err)
+		checkError(err)
 		if !silentFlag {
 			if !jsonFlag {
 				if result.Request.Success {
@@ -58,7 +58,7 @@ var listNowCmd = &cobra.Command{
 					fmt.Println(result.Response.Message)
 				}
 			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
+				checkError(fmt.Errorf(result.Response.Message))
 			}
 		} else {
 			fmt.Println(string(body))

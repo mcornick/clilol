@@ -58,18 +58,18 @@ to stdout.`,
 				false,
 			)
 			err := json.Unmarshal(body, &result)
-			cobra.CheckErr(err)
+			checkError(err)
 			if !silentFlag {
 				if !jsonFlag {
 					if result.Request.Success {
 						if getNowFilename != "" {
 							err = os.WriteFile(getNowFilename, []byte(result.Response.Now.Content), 0o644)
-							cobra.CheckErr(err)
+							checkError(err)
 						} else {
 							fmt.Println(result.Response.Now.Content)
 						}
 					} else {
-						cobra.CheckErr(fmt.Errorf(result.Response.Message))
+						checkError(fmt.Errorf(result.Response.Message))
 					}
 				} else {
 					fmt.Println(string(body))

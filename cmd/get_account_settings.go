@@ -46,7 +46,7 @@ var getAccountSettingsCmd = &cobra.Command{
 			true,
 		)
 		err := json.Unmarshal(body, &result)
-		cobra.CheckErr(err)
+		checkError(err)
 		if !silentFlag {
 			if !jsonFlag {
 				if result.Request.Success {
@@ -56,7 +56,7 @@ var getAccountSettingsCmd = &cobra.Command{
 					fmt.Printf("Date Format: %s\n", result.Response.Settings.DateFormat)
 					fmt.Printf("Web Editor: %s\n", result.Response.Settings.WebEditor)
 				} else {
-					cobra.CheckErr(fmt.Errorf(result.Response.Message))
+					checkError(fmt.Errorf(result.Response.Message))
 				}
 			} else {
 				fmt.Println(string(body))

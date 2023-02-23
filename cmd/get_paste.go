@@ -57,18 +57,18 @@ it defaults to your own address.`,
 				true,
 			)
 			err := json.Unmarshal(body, &result)
-			cobra.CheckErr(err)
+			checkError(err)
 			if !silentFlag {
 				if !jsonFlag {
 					if result.Request.Success {
 						if getPasteFilename != "" {
 							err = os.WriteFile(getPasteFilename, []byte(result.Response.Paste.Content), 0o644)
-							cobra.CheckErr(err)
+							checkError(err)
 						} else {
 							fmt.Println(result.Response.Paste.Content)
 						}
 					} else {
-						cobra.CheckErr(fmt.Errorf(result.Response.Message))
+						checkError(fmt.Errorf(result.Response.Message))
 					}
 				} else {
 					fmt.Println(string(body))

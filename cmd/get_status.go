@@ -57,7 +57,7 @@ it defaults to your own address.`,
 			false,
 		)
 		err := json.Unmarshal(body, &result)
-		cobra.CheckErr(err)
+		checkError(err)
 		if !silentFlag {
 			if !jsonFlag {
 				if result.Request.Success {
@@ -67,7 +67,7 @@ it defaults to your own address.`,
 						result.Response.Status.Id,
 					)
 					timestamp, err := strconv.Atoi(result.Response.Status.Created)
-					cobra.CheckErr(err)
+					checkError(err)
 					fmt.Printf("  %s\n", time.Unix(int64(timestamp), 0))
 					fmt.Printf(
 						"  %s %s\n",
@@ -75,7 +75,7 @@ it defaults to your own address.`,
 						result.Response.Status.Content,
 					)
 				} else {
-					cobra.CheckErr(fmt.Errorf(result.Response.Message))
+					checkError(fmt.Errorf(result.Response.Message))
 				}
 			} else {
 				fmt.Println(string(body))

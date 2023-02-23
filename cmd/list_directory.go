@@ -37,7 +37,7 @@ var listDirectoryCmd = &cobra.Command{
 		var result Result
 		body := callAPIWithParams(http.MethodGet, "/directory", nil, false)
 		err := json.Unmarshal(body, &result)
-		cobra.CheckErr(err)
+		checkError(err)
 		if !silentFlag {
 			if !jsonFlag {
 				if result.Request.Success {
@@ -45,11 +45,11 @@ var listDirectoryCmd = &cobra.Command{
 					for _, address := range result.Response.Directory {
 						idnaProfile := idna.New()
 						decoded, err := idnaProfile.ToUnicode(address)
-						cobra.CheckErr(err)
+						checkError(err)
 						fmt.Println(decoded)
 					}
 				} else {
-					cobra.CheckErr(fmt.Errorf(result.Response.Message))
+					checkError(fmt.Errorf(result.Response.Message))
 				}
 			} else {
 				fmt.Println(string(body))

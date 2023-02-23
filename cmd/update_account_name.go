@@ -47,13 +47,13 @@ Specify the new name with the --name flag.`,
 			true,
 		)
 		err := json.Unmarshal(body, &result)
-		cobra.CheckErr(err)
+		checkError(err)
 		if !silentFlag {
 			if !jsonFlag {
 				if result.Request.Success {
 					fmt.Println(result.Response.Message)
 				} else {
-					cobra.CheckErr(fmt.Errorf(result.Response.Message))
+					checkError(fmt.Errorf(result.Response.Message))
 				}
 			} else {
 				fmt.Println(string(body))

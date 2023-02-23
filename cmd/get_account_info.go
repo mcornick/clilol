@@ -52,7 +52,7 @@ var getAccountInfoCmd = &cobra.Command{
 			true,
 		)
 		err := json.Unmarshal(body, &result)
-		cobra.CheckErr(err)
+		checkError(err)
 		if !silentFlag {
 			if !jsonFlag {
 				if result.Request.Success {
@@ -61,7 +61,7 @@ var getAccountInfoCmd = &cobra.Command{
 					fmt.Printf("Created %s\n", result.Response.Created.RelativeTime)
 					fmt.Printf("Communication: %s\n", result.Response.Settings.Communication)
 				} else {
-					cobra.CheckErr(fmt.Errorf(result.Response.Message))
+					checkError(fmt.Errorf(result.Response.Message))
 				}
 			} else {
 				fmt.Println(string(body))
