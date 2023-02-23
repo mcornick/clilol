@@ -139,3 +139,9 @@ func checkError(msg interface{}) {
 		log.Fatal(msg)
 	}
 }
+
+func logInfo(msg interface{}) {
+	if !silentFlag {
+		log.Info(msg)
+	}
+}

@@ -50,7 +50,7 @@ var getAccountSettingsCmd = &cobra.Command{
 		if !silentFlag {
 			if !jsonFlag {
 				if result.Request.Success {
-					fmt.Println(result.Response.Message)
+					logInfo(result.Response.Message)
 					fmt.Printf("Owner: %s\n", result.Response.Settings.Owner)
 					fmt.Printf("Communication: %s\n", result.Response.Settings.Communication)
 					fmt.Printf("Date Format: %s\n", result.Response.Settings.DateFormat)

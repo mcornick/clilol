@@ -48,7 +48,7 @@ var getAddressExpirationCmd = &cobra.Command{
 		if !silentFlag {
 			if !jsonFlag {
 				if result.Request.Success {
-					fmt.Println(result.Response.Message)
+					logInfo(result.Response.Message)
 				} else {
 					checkError(fmt.Errorf(result.Response.Message))
 				}

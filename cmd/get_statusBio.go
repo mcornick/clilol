@@ -55,7 +55,7 @@ Note that any custom CSS set on the bio is ignored.
 		if !silentFlag {
 			if !jsonFlag {
 				if result.Request.Success {
-					fmt.Println(result.Response.Message)
+					logInfo(result.Response.Message)
 					fmt.Printf("\n%s\n", result.Response.Bio)
 				} else {
 					checkError(fmt.Errorf(result.Response.Message))

@@ -49,13 +49,13 @@ var listNowCmd = &cobra.Command{
 		if !silentFlag {
 			if !jsonFlag {
 				if result.Request.Success {
-					fmt.Println(result.Response.Message)
+					logInfo(result.Response.Message)
 					for _, page := range result.Response.Garden {
 						fmt.Printf("\n%s (%s)\n", page.URL, page.Address)
 						fmt.Printf("last updated %s\n", page.Updated.RelativeTime)
 					}
 				} else {
-					fmt.Println(result.Response.Message)
+					logInfo(result.Response.Message)
 				}
 			} else {
 				checkError(fmt.Errorf(result.Response.Message))

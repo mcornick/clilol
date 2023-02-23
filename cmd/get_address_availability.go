@@ -52,7 +52,7 @@ var getAddressAvailabilityCmd = &cobra.Command{
 		if !silentFlag {
 			if !jsonFlag {
 				if result.Request.Success {
-					fmt.Println(result.Response.Message)
+					logInfo(result.Response.Message)
 					if result.Response.SeeAlso != nil {
 						fmt.Println("See also:")
 						for _, seeAlso := range result.Response.SeeAlso {

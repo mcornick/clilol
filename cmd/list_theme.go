@@ -53,12 +53,12 @@ var listThemeCmd = &cobra.Command{
 		if !silentFlag {
 			if !jsonFlag {
 				if result.Request.Success {
-					fmt.Println(result.Response.Message)
+					logInfo(result.Response.Message)
 					for _, theme := range result.Response.Themes {
 						fmt.Printf("- %s\n", theme.ID)
 					}
 				} else {
-					fmt.Println(result.Response.Message)
+					logInfo(result.Response.Message)
 				}
 			} else {
 				checkError(fmt.Errorf(result.Response.Message))

@@ -73,7 +73,7 @@ settings, you can skip cross-posting to Mastodon by setting the
 			if !silentFlag {
 				if !jsonFlag {
 					if result.Request.Success {
-						fmt.Println(result.Response.Message)
+						logInfo(result.Response.Message)
 					} else {
 						checkError(fmt.Errorf(result.Response.Message))
 					}
