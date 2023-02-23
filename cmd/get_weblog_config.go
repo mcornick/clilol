@@ -71,23 +71,19 @@ to stdout.`,
 			)
 			err := json.Unmarshal(body, &result)
 			checkError(err)
-			if !jsonFlag {
-				if result.Request.Success {
-					if getWeblogConfigFilename != "" {
-						err = os.WriteFile(
-							getWeblogConfigFilename,
-							[]byte(result.Response.Configuration.Raw),
-							0o644,
-						)
-						checkError(err)
-					} else {
-						fmt.Println(result.Response.Configuration.Raw)
-					}
+			if result.Request.Success {
+				if getWeblogConfigFilename != "" {
+					err = os.WriteFile(
+						getWeblogConfigFilename,
+						[]byte(result.Response.Configuration.Raw),
+						0o644,
+					)
+					checkError(err)
 				} else {
-					checkError(fmt.Errorf(result.Response.Message))
+					fmt.Println(result.Response.Configuration.Raw)
 				}
 			} else {
-				fmt.Println(string(body))
+				checkError(fmt.Errorf(result.Response.Message))
 			}
 		},
 	}

@@ -47,18 +47,14 @@ var listNowCmd = &cobra.Command{
 		body := callAPIWithParams(http.MethodGet, "/now/garden", nil, false)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !jsonFlag {
-			if result.Request.Success {
-				log.Info(result.Response.Message)
-				for _, page := range result.Response.Garden {
-					fmt.Printf("\n%s (%s)\n", page.URL, page.Address)
-					fmt.Printf("last updated %s\n", page.Updated.RelativeTime)
-				}
-			} else {
-				checkError(fmt.Errorf(result.Response.Message))
+		if result.Request.Success {
+			log.Info(result.Response.Message)
+			for _, page := range result.Response.Garden {
+				fmt.Printf("\n%s (%s)\n", page.URL, page.Address)
+				fmt.Printf("last updated %s\n", page.Updated.RelativeTime)
 			}
 		} else {
-			fmt.Println(string(body))
+			checkError(fmt.Errorf(result.Response.Message))
 		}
 	},
 }

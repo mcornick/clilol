@@ -53,15 +53,11 @@ Note that any custom CSS set on the bio is ignored.
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !jsonFlag {
-			if result.Request.Success {
-				log.Info(result.Response.Message)
-				fmt.Printf("\n%s\n", result.Response.Bio)
-			} else {
-				checkError(fmt.Errorf(result.Response.Message))
-			}
+		if result.Request.Success {
+			log.Info(result.Response.Message)
+			fmt.Printf("\n%s\n", result.Response.Bio)
 		} else {
-			fmt.Println(string(body))
+			checkError(fmt.Errorf(result.Response.Message))
 		}
 	},
 }

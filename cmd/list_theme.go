@@ -51,17 +51,13 @@ var listThemeCmd = &cobra.Command{
 		body := callAPIWithParams(http.MethodGet, "/theme/list", nil, false)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !jsonFlag {
-			if result.Request.Success {
-				log.Info(result.Response.Message)
-				for _, theme := range result.Response.Themes {
-					fmt.Printf("- %s\n", theme.ID)
-				}
-			} else {
-				checkError(fmt.Errorf(result.Response.Message))
+		if result.Request.Success {
+			log.Info(result.Response.Message)
+			for _, theme := range result.Response.Themes {
+				fmt.Printf("- %s\n", theme.ID)
 			}
 		} else {
-			fmt.Println(string(body))
+			checkError(fmt.Errorf(result.Response.Message))
 		}
 	},
 }

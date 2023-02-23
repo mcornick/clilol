@@ -43,14 +43,10 @@ var getAccountNameCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !jsonFlag {
-			if result.Request.Success {
-				log.Info(result.Response.Message)
-			} else {
-				checkError(fmt.Errorf(result.Response.Message))
-			}
+		if result.Request.Success {
+			log.Info(result.Response.Message)
 		} else {
-			fmt.Println(string(body))
+			checkError(fmt.Errorf(result.Response.Message))
 		}
 	},
 }

@@ -54,17 +54,13 @@ var getAccountInfoCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !jsonFlag {
-			if result.Request.Success {
-				log.Info(result.Response.Message)
-				fmt.Printf("%s (%s)\n", result.Response.Name, result.Response.Email)
-				fmt.Printf("Created %s\n", result.Response.Created.RelativeTime)
-				fmt.Printf("Communication: %s\n", result.Response.Settings.Communication)
-			} else {
-				checkError(fmt.Errorf(result.Response.Message))
-			}
+		if result.Request.Success {
+			log.Info(result.Response.Message)
+			fmt.Printf("%s (%s)\n", result.Response.Name, result.Response.Email)
+			fmt.Printf("Created %s\n", result.Response.Created.RelativeTime)
+			fmt.Printf("Communication: %s\n", result.Response.Settings.Communication)
 		} else {
-			fmt.Println(string(body))
+			checkError(fmt.Errorf(result.Response.Message))
 		}
 	},
 }

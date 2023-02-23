@@ -46,19 +46,15 @@ var listAccountSessionsCmd = &cobra.Command{
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !jsonFlag {
-			if result.Request.Success {
-				for _, session := range result.Response {
-					fmt.Printf("\n%s\n", session.SessionID)
-					fmt.Println(session.UserAgent)
-					fmt.Println(session.CreatedIP)
-					fmt.Println(time.Unix(session.CreatedOn, 0))
-				}
-			} else {
-				checkError(fmt.Errorf("%d", result.Request.StatusCode))
+		if result.Request.Success {
+			for _, session := range result.Response {
+				fmt.Printf("\n%s\n", session.SessionID)
+				fmt.Println(session.UserAgent)
+				fmt.Println(session.CreatedIP)
+				fmt.Println(time.Unix(session.CreatedOn, 0))
 			}
 		} else {
-			fmt.Println(string(body))
+			checkError(fmt.Errorf("%d", result.Request.StatusCode))
 		}
 	},
 }

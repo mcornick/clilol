@@ -57,20 +57,16 @@ your own address.`,
 		)
 		err := json.Unmarshal(body, &result)
 		checkError(err)
-		if !jsonFlag {
-			if result.Request.Success {
-				for _, paste := range result.Response.Pastebin {
-					fmt.Printf(
-						"%s modified on %s\n",
-						paste.Title,
-						time.Unix(paste.ModifiedOn, 0),
-					)
-				}
-			} else {
-				checkError(fmt.Errorf(result.Response.Message))
+		if result.Request.Success {
+			for _, paste := range result.Response.Pastebin {
+				fmt.Printf(
+					"%s modified on %s\n",
+					paste.Title,
+					time.Unix(paste.ModifiedOn, 0),
+				)
 			}
 		} else {
-			fmt.Println(string(body))
+			checkError(fmt.Errorf(result.Response.Message))
 		}
 	},
 }

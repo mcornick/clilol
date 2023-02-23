@@ -27,7 +27,6 @@ const endpoint = "https://api.omg.lol"
 var (
 	addressFlag string
 	idFlag      string
-	jsonFlag    bool
 	nameFlag    string
 	version     = "dev"
 	rootCmd     = &cobra.Command{
@@ -58,19 +57,6 @@ func init() {
 			checkError(err)
 		}
 	}
-	rootCmd.PersistentFlags().BoolVarP(
-		&jsonFlag,
-		"json",
-		"j",
-		false,
-		"output json",
-	)
-	checkError(
-		viper.BindPFlag(
-			"json",
-			rootCmd.PersistentFlags().Lookup("json"),
-		),
-	)
 	rootCmd.DisableAutoGenTag = true
 	log.FatalLevelStyle = lipgloss.NewStyle().
 		SetString("FATAL").
