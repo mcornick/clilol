@@ -100,7 +100,11 @@ const completionSpec: Fig.Spec = {
               name: ["session"],
               description: "Delete a session",
               args: [
-                { name: "id", description: "ID of the session to delete" },
+                {
+                  name: "id",
+                  description: "ID of the session to delete",
+                  isDangerous: true,
+                },
               ],
             },
           ],
@@ -108,23 +112,45 @@ const completionSpec: Fig.Spec = {
         {
           name: ["dns"],
           description: "Delete a DNS record",
-          args: [{ name: "id", description: "ID of the record to delete" }],
+          args: [
+            {
+              name: "id",
+              description: "ID of the record to delete",
+              isDangerous: true,
+            },
+          ],
         },
         {
           name: ["paste"],
           description: "Delete a paste",
-          args: [{ name: "id", description: "ID of the paste to delete" }],
+          args: [
+            {
+              name: "id",
+              description: "ID of the paste to delete",
+              isDangerous: true,
+            },
+          ],
         },
         {
           name: ["purl"],
           description: "Delete a PURL",
-          args: [{ name: "id", description: "ID of the PURL to delete" }],
+          args: [
+            {
+              name: "id",
+              description: "ID of the PURL to delete",
+              isDangerous: true,
+            },
+          ],
         },
         {
           name: ["weblog"],
           description: "Delete a weblog entry",
           args: [
-            { name: "id", description: "ID of the weblog entry to delete" },
+            {
+              name: "id",
+              description: "ID of the weblog entry to delete",
+              isDangerous: true,
+            },
           ],
         },
       ],
