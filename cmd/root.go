@@ -44,7 +44,7 @@ type responseRequest struct {
 }
 
 func Execute() {
-	checkError(rootCmd.Execute())
+	rootCmd.Execute()
 }
 
 func init() {
