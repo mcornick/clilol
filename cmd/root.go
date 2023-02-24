@@ -66,23 +66,17 @@ func init() {
 
 func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byte, error) {
 	request, err := http.NewRequest(method, endpoint+path, bodyReader)
-	if err != nil {
-		return nil, err
-	}
+	cobra.CheckErr(err)
 	request.Header.Set("User-Agent", "clilol/"+version+" (https://github.com/mcornick/clilol)")
 	request.Header.Set("Content-Type", "application/json")
 	if auth {
 		request.Header.Set("Authorization", "Bearer "+viper.GetString("apikey"))
 	}
 	response, err := http.DefaultClient.Do(request)
-	if err != nil {
-		return nil, err
-	}
+	cobra.CheckErr(err)
 	defer response.Body.Close()
 	body, err := io.ReadAll(response.Body)
-	if err != nil {
-		return nil, err
-	}
+	cobra.CheckErr(err)
 	return body, nil
 }
 
