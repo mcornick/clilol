@@ -71,7 +71,7 @@ func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byt
 	if err != nil {
 		return nil, err
 	}
-	request.Header.Set("User-Agent", "clilol (https://github.com/mcornick/clilol)")
+	request.Header.Set("User-Agent", "clilol/"+version+" (https://github.com/mcornick/clilol)")
 	request.Header.Set("Content-Type", "application/json")
 	if auth {
 		request.Header.Set("Authorization", "Bearer "+viper.GetString("apikey"))
