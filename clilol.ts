@@ -1,3 +1,4 @@
+// @ts-ignore
 const completionSpec: Fig.Spec = {
   name: "clilol",
   description: "a cli for omg.lol",
