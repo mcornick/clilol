@@ -32,8 +32,8 @@ If you specify a filename with the --filename flag, the content of the file
 will be used. If you do not specify a filename, the content will be read
 from stdin.
 
-Set the --publish flag to true publish your webpage. By default, it will not
-be published.`,
+The webpage will be created as unpublished by default. To create a published
+webpage, use the --publish flag.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
 			type Input struct {

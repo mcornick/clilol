@@ -27,7 +27,11 @@ var (
 		Long: `Creates a PURL.
 
 Specify the PURL name with the --name flag, and the URL with the
---url flag.`,
+--url flag.
+
+The PURL will be created as unlisted by default. To create a listed
+PURL, use the --listed flag.
+`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
 			type Input struct {
