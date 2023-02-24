@@ -60,6 +60,7 @@ func init() {
 		"",
 		"address whose expiration to get",
 	)
-	getAddressExpirationCmd.MarkFlagRequired("address")
+	err := getAddressExpirationCmd.MarkFlagRequired("address")
+	cobra.CheckErr(err)
 	getAddressCmd.AddCommand(getAddressExpirationCmd)
 }

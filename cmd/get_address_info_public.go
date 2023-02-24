@@ -78,6 +78,7 @@ func init() {
 		"",
 		"address whose info to get",
 	)
-	getAddressInfoPublicCmd.MarkFlagRequired("address")
+	err := getAddressInfoPublicCmd.MarkFlagRequired("address")
+	cobra.CheckErr(err)
 	getAddressInfoCmd.AddCommand(getAddressInfoPublicCmd)
 }

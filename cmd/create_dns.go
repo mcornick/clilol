@@ -120,8 +120,11 @@ func init() {
 		3600,
 		"time to live of the DNS record",
 	)
-	createDNSCmd.MarkFlagRequired("type")
-	createDNSCmd.MarkFlagRequired("name")
-	createDNSCmd.MarkFlagRequired("data")
+	err := createDNSCmd.MarkFlagRequired("type")
+	cobra.CheckErr(err)
+	err = createDNSCmd.MarkFlagRequired("name")
+	cobra.CheckErr(err)
+	err = createDNSCmd.MarkFlagRequired("data")
+	cobra.CheckErr(err)
 	createCmd.AddCommand(createDNSCmd)
 }

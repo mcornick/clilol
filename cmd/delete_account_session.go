@@ -59,6 +59,7 @@ func init() {
 		"",
 		"ID of the session to delete",
 	)
-	deleteAccountSessionCmd.MarkFlagRequired("id")
+	err := deleteAccountSessionCmd.MarkFlagRequired("id")
+	cobra.CheckErr(err)
 	deleteAccountCmd.AddCommand(deleteAccountSessionCmd)
 }

@@ -109,6 +109,7 @@ func init() {
 		false,
 		"create paste as listed (default false)",
 	)
-	createPasteCmd.MarkFlagRequired("title")
+	err := createPasteCmd.MarkFlagRequired("title")
+	cobra.CheckErr(err)
 	createCmd.AddCommand(createPasteCmd)
 }

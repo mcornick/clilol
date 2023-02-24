@@ -59,6 +59,7 @@ func init() {
 		"",
 		"ID of the DNS record to delete",
 	)
-	deleteDNSCmd.MarkFlagRequired("id")
+	err := deleteDNSCmd.MarkFlagRequired("id")
+	cobra.CheckErr(err)
 	deleteCmd.AddCommand(deleteDNSCmd)
 }

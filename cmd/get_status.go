@@ -90,6 +90,7 @@ func init() {
 		"",
 		"ID of the status to get",
 	)
-	getStatusCmd.MarkFlagRequired("id")
+	err := getStatusCmd.MarkFlagRequired("id")
+	cobra.CheckErr(err)
 	getCmd.AddCommand(getStatusCmd)
 }

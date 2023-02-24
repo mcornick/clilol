@@ -82,6 +82,7 @@ func init() {
 		"",
 		"name of the PURL to get",
 	)
-	getPURLCmd.MarkFlagRequired("name")
+	err := getPURLCmd.MarkFlagRequired("name")
+	cobra.CheckErr(err)
 	getCmd.AddCommand(getPURLCmd)
 }

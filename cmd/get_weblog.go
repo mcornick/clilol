@@ -81,6 +81,7 @@ func init() {
 		"",
 		"ID of the entry to get",
 	)
-	getWeblogCmd.MarkFlagRequired("id")
+	err := getWeblogCmd.MarkFlagRequired("id")
+	cobra.CheckErr(err)
 	getCmd.AddCommand(getWeblogCmd)
 }

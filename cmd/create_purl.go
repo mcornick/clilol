@@ -87,7 +87,9 @@ func init() {
 		false,
 		"create as listed (default false)",
 	)
-	createPURLCmd.MarkFlagRequired("name")
-	createPURLCmd.MarkFlagRequired("url")
+	err := createPURLCmd.MarkFlagRequired("name")
+	cobra.CheckErr(err)
+	err = createPURLCmd.MarkFlagRequired("url")
+	cobra.CheckErr(err)
 	createCmd.AddCommand(createPURLCmd)
 }

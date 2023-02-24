@@ -91,7 +91,9 @@ func init() {
 		"",
 		"new status text",
 	)
-	updateStatusCmd.MarkFlagRequired("id")
-	updateStatusCmd.MarkFlagRequired("text")
+	err := updateStatusCmd.MarkFlagRequired("id")
+	cobra.CheckErr(err)
+	err = updateStatusCmd.MarkFlagRequired("text")
+	cobra.CheckErr(err)
 	updateCmd.AddCommand(updateStatusCmd)
 }

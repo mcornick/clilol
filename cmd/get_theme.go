@@ -79,6 +79,7 @@ func init() {
 		"",
 		"name of the theme",
 	)
-	getThemeCmd.MarkFlagRequired("name")
+	err := getThemeCmd.MarkFlagRequired("name")
+	cobra.CheckErr(err)
 	getCmd.AddCommand(getThemeCmd)
 }

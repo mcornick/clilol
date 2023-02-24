@@ -97,6 +97,7 @@ func init() {
 		false,
 		"do not cross-post to Mastodon",
 	)
-	createStatusCmd.MarkFlagRequired("text")
+	err := createStatusCmd.MarkFlagRequired("text")
+	cobra.CheckErr(err)
 	createCmd.AddCommand(createStatusCmd)
 }

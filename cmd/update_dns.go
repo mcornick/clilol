@@ -128,9 +128,13 @@ func init() {
 		3600,
 		"updated TTL",
 	)
-	updateDNSCmd.MarkFlagRequired("id")
-	updateDNSCmd.MarkFlagRequired("type")
-	updateDNSCmd.MarkFlagRequired("name")
-	updateDNSCmd.MarkFlagRequired("data")
+	err := updateDNSCmd.MarkFlagRequired("id")
+	cobra.CheckErr(err)
+	err = updateDNSCmd.MarkFlagRequired("type")
+	cobra.CheckErr(err)
+	err = updateDNSCmd.MarkFlagRequired("name")
+	cobra.CheckErr(err)
+	err = updateDNSCmd.MarkFlagRequired("data")
+	cobra.CheckErr(err)
 	updateCmd.AddCommand(updateDNSCmd)
 }

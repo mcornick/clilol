@@ -61,6 +61,7 @@ func init() {
 		"",
 		"new name for the account",
 	)
-	updateAccountNameCmd.MarkFlagRequired("name")
+	err := updateAccountNameCmd.MarkFlagRequired("name")
+	cobra.CheckErr(err)
 	updateAccountCmd.AddCommand(updateAccountNameCmd)
 }

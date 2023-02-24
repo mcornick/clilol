@@ -75,7 +75,9 @@ func init() {
 		"",
 		"value to set it to",
 	)
-	updatePreferenceCmd.MarkFlagRequired("item")
-	updatePreferenceCmd.MarkFlagRequired("value")
+	err := updatePreferenceCmd.MarkFlagRequired("item")
+	cobra.CheckErr(err)
+	err = updatePreferenceCmd.MarkFlagRequired("value")
+	cobra.CheckErr(err)
 	updateCmd.AddCommand(updatePreferenceCmd)
 }

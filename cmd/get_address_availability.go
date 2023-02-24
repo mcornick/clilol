@@ -70,6 +70,7 @@ func init() {
 		"",
 		"address whose availability to get",
 	)
-	getAddressAvailabilityCmd.MarkFlagRequired("address")
+	err := getAddressAvailabilityCmd.MarkFlagRequired("address")
+	cobra.CheckErr(err)
 	getAddressCmd.AddCommand(getAddressAvailabilityCmd)
 }

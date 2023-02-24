@@ -91,6 +91,7 @@ func init() {
 		"",
 		"file to write paste to (default stdout)",
 	)
-	getPasteCmd.MarkFlagRequired("title")
+	err := getPasteCmd.MarkFlagRequired("title")
+	cobra.CheckErr(err)
 	getCmd.AddCommand(getPasteCmd)
 }

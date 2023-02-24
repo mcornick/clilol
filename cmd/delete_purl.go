@@ -59,6 +59,7 @@ func init() {
 		"",
 		"name of the PURL to delete",
 	)
-	deletePURLCmd.MarkFlagRequired("name")
+	err := deletePURLCmd.MarkFlagRequired("name")
+	cobra.CheckErr(err)
 	deleteCmd.AddCommand(deletePURLCmd)
 }

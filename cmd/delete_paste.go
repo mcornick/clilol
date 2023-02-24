@@ -62,6 +62,7 @@ func init() {
 		"",
 		"title of the paste to delete",
 	)
-	deletePasteCmd.MarkFlagRequired("title")
+	err := deletePasteCmd.MarkFlagRequired("title")
+	cobra.CheckErr(err)
 	deleteCmd.AddCommand(deletePasteCmd)
 }

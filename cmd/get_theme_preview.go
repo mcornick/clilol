@@ -71,6 +71,7 @@ func init() {
 		"",
 		"file to write preview to (default stdout)",
 	)
-	getThemePreviewCmd.MarkFlagRequired("name")
+	err := getThemePreviewCmd.MarkFlagRequired("name")
+	cobra.CheckErr(err)
 	getThemeCmd.AddCommand(getThemePreviewCmd)
 }

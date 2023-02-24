@@ -59,6 +59,7 @@ func init() {
 		"",
 		"ID of the weblog entry to delete",
 	)
-	deleteWeblogCmd.MarkFlagRequired("id")
+	err := deleteWeblogCmd.MarkFlagRequired("id")
+	cobra.CheckErr(err)
 	deleteCmd.AddCommand(deleteWeblogCmd)
 }

@@ -68,6 +68,7 @@ func init() {
 		"",
 		"new bio text",
 	)
-	updateStatusBioCmd.MarkFlagRequired("text")
+	err := updateStatusBioCmd.MarkFlagRequired("text")
+	cobra.CheckErr(err)
 	updateCmd.AddCommand(updateStatusBioCmd)
 }

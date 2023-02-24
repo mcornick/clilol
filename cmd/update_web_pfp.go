@@ -64,6 +64,7 @@ func init() {
 		"",
 		"file to read PFP from (default stdin)",
 	)
-	updateWebPFPCmd.MarkFlagRequired("filename")
+	err := updateWebPFPCmd.MarkFlagRequired("filename")
+	cobra.CheckErr(err)
 	updateWebCmd.AddCommand(updateWebPFPCmd)
 }
