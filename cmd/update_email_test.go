@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func Test_updatEmail(t *testing.T) {
+func Test_updateEmail(t *testing.T) {
 	input := updateEmailInput{os.Getenv("CLILOL_EMAIL")}
 	updateResult, err := updateEmail(input)
 	if err != nil {
