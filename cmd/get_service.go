@@ -16,24 +16,23 @@ import (
 	"github.com/spf13/cobra"
 )
 
+type getServiceOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message   string `json:"message"`
+		Members   int    `json:"members"`
+		Addresses int    `json:"addresses"`
+		Profiles  int    `json:"profiles"`
+	} `json:"response"`
+}
+
 var getServiceCmd = &cobra.Command{
 	Use:   "service",
 	Short: "Get service stats",
 	Long:  "Gets statistics for omg.lol services.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message   string `json:"message"`
-				Members   int    `json:"members"`
-				Addresses int    `json:"addresses"`
-				Profiles  int    `json:"profiles"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(http.MethodGet, "/service/info", nil, false)
-		err := json.Unmarshal(body, &result)
+		result, err := getService()
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -41,6 +40,13 @@ var getServiceCmd = &cobra.Command{
 			cobra.CheckErr(fmt.Errorf(result.Response.Message))
 		}
 	},
+}
+
+func getService() (getServiceOutput, error) {
+	var result getServiceOutput
+	body := callAPIWithParams(http.MethodGet, "/service/info", nil, false)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }
 
 func init() {

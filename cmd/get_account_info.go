@@ -18,37 +18,33 @@ import (
 	"github.com/spf13/viper"
 )
 
+type getAccountInfoOutputResponse struct {
+	Message string `json:"message"`
+	Email   string `json:"email"`
+	Name    string `json:"name"`
+	Created struct {
+		UnixEpochTime int64     `json:"unix_epoch_time"`
+		ISO8601Time   time.Time `json:"iso_8601_time"`
+		RFC2822Time   string    `json:"rfc_2822_time"`
+		RelativeTime  string    `json:"relative_time"`
+	} `json:"created"`
+	Settings struct {
+		Communication string `json:"communication"`
+	} `json:"settings"`
+}
+type getAccountInfoOutput struct {
+	Request  resultRequest                `json:"request"`
+	Response getAccountInfoOutputResponse `json:"response"`
+}
+
 var getAccountInfoCmd = &cobra.Command{
 	Use:   "info",
 	Short: "Get info about your account",
 	Long:  "Gets information about your account",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string `json:"message"`
-				Email   string `json:"email"`
-				Name    string `json:"name"`
-				Created struct {
-					UnixEpochTime int64     `json:"unix_epoch_time"`
-					ISO8601Time   time.Time `json:"iso_8601_time"`
-					RFC2822Time   string    `json:"rfc_2822_time"`
-					RelativeTime  string    `json:"relative_time"`
-				} `json:"created"`
-				Settings struct {
-					Communication string `json:"communication"`
-				} `json:"settings"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/account/"+viper.GetString("email")+"/info",
-			nil,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		var result getAccountInfoOutput
+		result, err := getAccountInfo()
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -63,4 +59,16 @@ var getAccountInfoCmd = &cobra.Command{
 
 func init() {
 	getAccountCmd.AddCommand(getAccountInfoCmd)
+}
+
+func getAccountInfo() (getAccountInfoOutput, error) {
+	var result getAccountInfoOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/account/"+viper.GetString("email")+"/info",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

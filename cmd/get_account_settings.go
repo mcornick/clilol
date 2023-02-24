@@ -17,32 +17,27 @@ import (
 	"github.com/spf13/viper"
 )
 
+type getAccountSettingsOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message  string `json:"message"`
+		Settings struct {
+			Owner         string `json:"owner"`
+			Communication string `json:"communication"`
+			DateFormat    string `json:"date_format"`
+			WebEditor     string `json:"web_editor"`
+		} `json:"settings"`
+	} `json:"response"`
+}
+
 var getAccountSettingsCmd = &cobra.Command{
 	Use:   "settings",
 	Short: "Get your account settings",
 	Long:  "Gets the settings on your account.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message  string `json:"message"`
-				Settings struct {
-					Owner         string `json:"owner"`
-					Communication string `json:"communication"`
-					DateFormat    string `json:"date_format"`
-					WebEditor     string `json:"web_editor"`
-				} `json:"settings"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/account/"+viper.GetString("email")+"/settings",
-			nil,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		var result getAccountSettingsOutput
+		result, err := getAccountSettings()
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -58,4 +53,16 @@ var getAccountSettingsCmd = &cobra.Command{
 
 func init() {
 	getAccountCmd.AddCommand(getAccountSettingsCmd)
+}
+
+func getAccountSettings() (getAccountSettingsOutput, error) {
+	var result getAccountSettingsOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/account/"+viper.GetString("email")+"/settings",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

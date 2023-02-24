@@ -16,31 +16,25 @@ import (
 	"github.com/spf13/cobra"
 )
 
+type getAddressAvailabilityOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message      string   `json:"message"`
+		Punycode     string   `json:"punycode,omitempty"`
+		SeeAlso      []string `json:"see-also,omitempty"`
+		Address      string   `json:"address"`
+		Available    bool     `json:"available"`
+		Availability string   `json:"availability"`
+	} `json:"response"`
+}
+
 var getAddressAvailabilityCmd = &cobra.Command{
 	Use:   "availability [address]",
 	Short: "Get address availability",
 	Long:  "Gets the availability of an address.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message      string   `json:"message"`
-				Punycode     string   `json:"punycode,omitempty"`
-				SeeAlso      []string `json:"see-also,omitempty"`
-				Address      string   `json:"address"`
-				Available    bool     `json:"available"`
-				Availability string   `json:"availability"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/address/"+args[0]+"/availability",
-			nil,
-			false,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := getAddressAvailability(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -58,4 +52,16 @@ var getAddressAvailabilityCmd = &cobra.Command{
 
 func init() {
 	getAddressCmd.AddCommand(getAddressAvailabilityCmd)
+}
+
+func getAddressAvailability(address string) (getAddressAvailabilityOutput, error) {
+	var result getAddressAvailabilityOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+address+"/availability",
+		nil,
+		false,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }
