@@ -5,7 +5,6 @@ go 1.19
 require (
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/viper v1.15.0
-	github.com/withfig/autocomplete-tools/integrations/cobra v1.2.1
 	golang.org/x/net v0.7.0
 )
 
