@@ -17,23 +17,22 @@ import (
 	"golang.org/x/net/idna"
 )
 
+type listDirectoryOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message   string   `json:"message"`
+		URL       string   `json:"url"`
+		Directory []string `json:"directory"`
+	} `json:"response"`
+}
+
 var listDirectoryCmd = &cobra.Command{
 	Use:   "directory",
 	Short: "List the address directory",
 	Long:  "Lists the omg.lol address directory.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message   string   `json:"message"`
-				URL       string   `json:"url"`
-				Directory []string `json:"directory"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(http.MethodGet, "/directory", nil, false)
-		err := json.Unmarshal(body, &result)
+		result, err := listDirectory()
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Printf("%s\n\n", result.Response.Message)
@@ -51,4 +50,11 @@ var listDirectoryCmd = &cobra.Command{
 
 func init() {
 	listCmd.AddCommand(listDirectoryCmd)
+}
+
+func listDirectory() (listDirectoryOutput, error) {
+	var result listDirectoryOutput
+	body := callAPIWithParams(http.MethodGet, "/directory", nil, false)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

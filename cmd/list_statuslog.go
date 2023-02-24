@@ -16,6 +16,21 @@ import (
 	"github.com/spf13/cobra"
 )
 
+type listStatuslogOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message  string `json:"message"`
+		Statuses []struct {
+			Id           string `json:"id"`
+			Address      string `json:"address"`
+			Created      string `json:"created"`
+			RelativeTime string `json:"relative_time"`
+			Emoji        string `json:"emoji"`
+			Content      string `json:"content"`
+		} `json:"statuses"`
+	} `json:"response"`
+}
+
 var (
 	listStatuslogAll bool
 	listStatuslogCmd = &cobra.Command{
@@ -29,29 +44,7 @@ To see all statuses ever posted, use the --all flag.
 See the status commands to get statuses for a single user.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message  string `json:"message"`
-					Statuses []struct {
-						Id           string `json:"id"`
-						Address      string `json:"address"`
-						Created      string `json:"created"`
-						RelativeTime string `json:"relative_time"`
-						Emoji        string `json:"emoji"`
-						Content      string `json:"content"`
-					} `json:"statuses"`
-				} `json:"response"`
-			}
-			var url string
-			if listStatuslogAll {
-				url = "/statuslog/"
-			} else {
-				url = "/statuslog/latest/"
-			}
-			var result output
-			body := callAPIWithParams(http.MethodGet, url, nil, false)
-			err := json.Unmarshal(body, &result)
+			result, err := listStatuslog(listStatuslogAll)
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				for _, status := range result.Response.Statuses {
@@ -74,4 +67,17 @@ func init() {
 		"get the entire statuslog (default is latest statuses only)",
 	)
 	listCmd.AddCommand(listStatuslogCmd)
+}
+
+func listStatuslog(all bool) (listStatuslogOutput, error) {
+	var result listStatuslogOutput
+	var url string
+	if all {
+		url = "/statuslog/"
+	} else {
+		url = "/statuslog/latest/"
+	}
+	body := callAPIWithParams(http.MethodGet, url, nil, false)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

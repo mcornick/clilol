@@ -17,31 +17,30 @@ import (
 	"github.com/spf13/cobra"
 )
 
+type listNowOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		Garden  []struct {
+			Address string `json:"address"`
+			URL     string `json:"url"`
+			Updated struct {
+				UnixEpochTime int64     `json:"unix_epoch_time"`
+				ISO8601Time   time.Time `json:"iso_8601_time"`
+				RFC2822Time   string    `json:"rfc_2822_time"`
+				RelativeTime  string    `json:"relative_time"`
+			} `json:"updated"`
+		} `json:"garden"`
+	} `json:"response"`
+}
+
 var listNowCmd = &cobra.Command{
 	Use:   "now",
 	Short: "List Now pages",
 	Long:  "Lists pages in the Now garden.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string `json:"message"`
-				Garden  []struct {
-					Address string `json:"address"`
-					URL     string `json:"url"`
-					Updated struct {
-						UnixEpochTime int64     `json:"unix_epoch_time"`
-						ISO8601Time   time.Time `json:"iso_8601_time"`
-						RFC2822Time   string    `json:"rfc_2822_time"`
-						RelativeTime  string    `json:"relative_time"`
-					} `json:"updated"`
-				} `json:"garden"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(http.MethodGet, "/now/garden", nil, false)
-		err := json.Unmarshal(body, &result)
+		result, err := listNow()
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -57,4 +56,11 @@ var listNowCmd = &cobra.Command{
 
 func init() {
 	listCmd.AddCommand(listNowCmd)
+}
+
+func listNow() (listNowOutput, error) {
+	var result listNowOutput
+	body := callAPIWithParams(http.MethodGet, "/now/garden", nil, false)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }
