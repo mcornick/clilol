@@ -19,13 +19,6 @@ clilol list account sessions [flags]
   -h, --help   help for sessions
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol list account](clilol_list_account.md)	 - List information about your account

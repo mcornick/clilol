@@ -20,19 +20,12 @@ clilol create dns [flags]
 ### Options
 
 ```
-  -d, --data string    Data to store in the DNS record
+  -d, --data string    data to store in the DNS record
   -h, --help           help for dns
-  -n, --name string    Name of the DNS record to create
-  -p, --priority int   Priority of the DNS record
-  -T, --ttl int        Time to live of the DNS record (default 3600)
-  -t, --type string    Type of DNS record to create
-```
-
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
+  -n, --name string    name of the DNS record to create
+  -p, --priority int   priority of the DNS record
+  -T, --ttl int        time to live of the DNS record (default 3600)
+  -t, --type string    type of DNS record to create
 ```
 
 ### SEE ALSO

@@ -24,13 +24,6 @@ clilol get weblog template [flags]
   -h, --help              help for template
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol get weblog](clilol_get_weblog.md)	 - Get a weblog entry

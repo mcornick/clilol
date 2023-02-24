@@ -26,13 +26,6 @@ clilol update weblog template [flags]
   -h, --help              help for template
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol update weblog](clilol_update_weblog.md)	 - set your weblog config

@@ -26,13 +26,6 @@ clilol get status [flags]
   -i, --id string        ID of the status to get
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things

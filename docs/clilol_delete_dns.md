@@ -25,13 +25,6 @@ clilol delete dns [flags]
   -i, --id string   ID of the DNS record to delete
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol delete](clilol_delete.md)	 - Delete things

@@ -19,13 +19,6 @@ clilol get account settings [flags]
   -h, --help   help for settings
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol get account](clilol_get_account.md)	 - Get information about your account

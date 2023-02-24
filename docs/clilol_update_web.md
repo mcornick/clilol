@@ -28,13 +28,6 @@ clilol update web [flags]
   -p, --publish           publish the updated page (default false)
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things

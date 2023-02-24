@@ -19,14 +19,7 @@ clilol update account name [flags]
 
 ```
   -h, --help          help for name
-  -n, --name string   New name for the account
-```
-
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
+  -n, --name string   new name for the account
 ```
 
 ### SEE ALSO

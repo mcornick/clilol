@@ -29,13 +29,6 @@ clilol list status [flags]
   -l, --limit int        how many status(es) to get (default all)
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol list](clilol_list.md)	 - List things

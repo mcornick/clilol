@@ -27,17 +27,10 @@ clilol update status [flags]
 ### Options
 
 ```
-  -e, --emoji string   Emoji to add to status (default sparkles)
+  -e, --emoji string   emoji to add to status (default sparkles)
   -h, --help           help for status
   -i, --id string      ID of the status to update
-  -t, --text string    New status text
-```
-
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
+  -t, --text string    new status text
 ```
 
 ### SEE ALSO

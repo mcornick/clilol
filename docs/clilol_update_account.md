@@ -15,13 +15,6 @@ The account update group of commands allows you to set information about your om
   -h, --help   help for account
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things

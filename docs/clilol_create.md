@@ -15,13 +15,6 @@ These commands create things.
   -h, --help   help for create
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol](clilol.md)	 - a cli for omg.lol

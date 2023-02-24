@@ -28,13 +28,6 @@ clilol get now [flags]
   -h, --help              help for now
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things

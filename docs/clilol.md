@@ -13,9 +13,7 @@ See the subcommands for more information.
 ### Options
 
 ```
-  -h, --help     help for clilol
-  -j, --json     output json
-  -s, --silent   be silent
+  -h, --help   help for clilol
 ```
 
 ### SEE ALSO

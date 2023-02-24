@@ -25,13 +25,6 @@ clilol delete account session [flags]
   -i, --id string   ID of the session to delete
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol delete account](clilol_delete_account.md)	 - Delete information about your account

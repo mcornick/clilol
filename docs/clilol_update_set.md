@@ -25,13 +25,6 @@ clilol update set [flags]
   -l, --listed            create Now page as listed (default false)
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things

@@ -22,14 +22,7 @@ clilol delete paste [flags]
 
 ```
   -h, --help           help for paste
-  -t, --title string   Title of the paste to delete
-```
-
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
+  -t, --title string   title of the paste to delete
 ```
 
 ### SEE ALSO

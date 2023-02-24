@@ -21,20 +21,13 @@ clilol update dns [flags]
 ### Options
 
 ```
-  -d, --data string    Updated data
+  -d, --data string    updated data
   -h, --help           help for dns
   -i, --id string      ID of DNS record to update
-  -n, --name string    Updated record name
-  -p, --priority int   Updated priority
-  -T, --ttl int        Updated TTL (default 3600)
-  -t, --type string    Updated DNS type
-```
-
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
+  -n, --name string    updated record name
+  -p, --priority int   ipdated priority
+  -T, --ttl int        updated TTL (default 3600)
+  -t, --type string    updated DNS type
 ```
 
 ### SEE ALSO

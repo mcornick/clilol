@@ -23,14 +23,7 @@ clilol update status-bio [flags]
 
 ```
   -h, --help          help for status-bio
-  -t, --text string   New bio text
-```
-
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
+  -t, --text string   new bio text
 ```
 
 ### SEE ALSO

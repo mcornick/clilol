@@ -22,14 +22,7 @@ clilol delete weblog [flags]
 
 ```
   -h, --help        help for weblog
-  -i, --id string   ID of the weblog entry
-```
-
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
+  -i, --id string   ID of the weblog entry to delete
 ```
 
 ### SEE ALSO

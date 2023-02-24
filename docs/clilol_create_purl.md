@@ -20,16 +20,9 @@ clilol create purl [flags]
 
 ```
   -h, --help          help for purl
-  -l, --listed        Create as listed (default false)
-  -n, --name string   Name of the PURL
+  -l, --listed        create as listed (default false)
+  -n, --name string   name of the PURL
   -u, --url string    URL to redirect to
-```
-
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
 ```
 
 ### SEE ALSO

@@ -22,13 +22,6 @@ clilol update web pfp [flags]
   -h, --help              help for pfp
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol update web](clilol_update_web.md)	 - set webpage content

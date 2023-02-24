@@ -30,13 +30,6 @@ clilol create paste [flags]
   -t, --title string      title of the paste to create
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol create](clilol_create.md)	 - Create things

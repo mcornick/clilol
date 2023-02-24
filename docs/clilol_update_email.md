@@ -22,13 +22,6 @@ clilol update email [flags]
   -h, --help                 help for email
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things

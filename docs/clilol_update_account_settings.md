@@ -18,17 +18,10 @@ clilol update account settings [flags]
 ### Options
 
 ```
-  -c, --communication string   Communication preference
-  -d, --date-format string     Date format preference
+  -c, --communication string   communication preference
+  -d, --date-format string     date format preference
   -h, --help                   help for settings
-  -w, --web-editor string      Web editor preference
-```
-
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
+  -w, --web-editor string      web editor preference
 ```
 
 ### SEE ALSO

@@ -20,15 +20,8 @@ clilol update preference [flags]
 
 ```
   -h, --help           help for preference
-  -i, --item string    Preference item to set
-  -v, --value string   Value to set it to
-```
-
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
+  -i, --item string    preference item to set
+  -v, --value string   value to set it to
 ```
 
 ### SEE ALSO

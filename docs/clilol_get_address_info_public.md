@@ -16,15 +16,8 @@ clilol get address info public [flags]
 ### Options
 
 ```
-  -a, --address string   address whose availability to get
+  -a, --address string   address whose info to get
   -h, --help             help for public
-```
-
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
 ```
 
 ### SEE ALSO

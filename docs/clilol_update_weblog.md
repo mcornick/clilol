@@ -15,13 +15,6 @@ The account get group of commands allows you to set your weblog.lol configuratio
   -h, --help   help for weblog
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things

@@ -24,13 +24,6 @@ clilol create weblog [flags]
   -h, --help              help for weblog
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol create](clilol_create.md)	 - Create things

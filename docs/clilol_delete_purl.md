@@ -22,14 +22,7 @@ clilol delete purl [flags]
 
 ```
   -h, --help          help for purl
-  -n, --name string   Name of the PURL
-```
-
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
+  -n, --name string   name of the PURL to delete
 ```
 
 ### SEE ALSO

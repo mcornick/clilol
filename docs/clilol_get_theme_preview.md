@@ -27,13 +27,6 @@ clilol get theme preview [flags]
   -n, --name string       name of the theme
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol get theme](clilol_get_theme.md)	 - Get theme information

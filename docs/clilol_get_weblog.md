@@ -22,13 +22,6 @@ clilol get weblog [flags]
   -i, --id string   ID of the entry to get
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things

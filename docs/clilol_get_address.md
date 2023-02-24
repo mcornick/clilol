@@ -15,13 +15,6 @@ The address get group of commands gets information about omg.lol addresses.
   -h, --help   help for address
 ```
 
-### Options inherited from parent commands
-
-```
-  -j, --json     output json
-  -s, --silent   be silent
-```
-
 ### SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things
