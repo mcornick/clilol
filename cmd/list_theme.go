@@ -36,14 +36,14 @@ var listThemeCmd = &cobra.Command{
 			SampleProfile string `json:"sample_profile"`
 			ThemeColor    string `json:"theme-color"`
 		}
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string           `json:"message"`
 				Themes  map[string]Theme `json:"themes"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(http.MethodGet, "/theme/list", nil, false)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)

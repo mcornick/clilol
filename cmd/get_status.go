@@ -28,7 +28,7 @@ The address can be specified with the --address flag. If not set,
 it defaults to your own address.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
@@ -41,7 +41,7 @@ it defaults to your own address.`,
 				} `json:"status"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		if addressFlag == "" {
 			addressFlag = viper.GetString("address")
 		}

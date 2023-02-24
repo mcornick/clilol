@@ -36,12 +36,12 @@ settings, you can skip cross-posting to Mastodon by setting the
 --skip-mastodon-post flag.`,
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			type Input struct {
+			type input struct {
 				Emoji            string `json:"emoji"`
 				Content          string `json:"content"`
 				SkipMastodonPost bool   `json:"skip_mastodon_post,omitempty"`
 			}
-			type Result struct {
+			type output struct {
 				Request  resultRequest `json:"request"`
 				Response struct {
 					Message     string `json:"message"`
@@ -51,8 +51,8 @@ settings, you can skip cross-posting to Mastodon by setting the
 					ExternalURL string `json:"external_url"`
 				} `json:"response"`
 			}
-			var result Result
-			status := Input{
+			var result output
+			status := input{
 				createStatusEmoji,
 				args[0],
 				createStatusSkipMastodonPost,

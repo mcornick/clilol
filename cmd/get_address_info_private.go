@@ -23,7 +23,7 @@ var getAddressInfoPrivateCmd = &cobra.Command{
 	Long:  "Gets private information about an address.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Address      string `json:"address"`
@@ -51,7 +51,7 @@ var getAddressInfoPrivateCmd = &cobra.Command{
 				Owner string `json:"owner"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(
 			http.MethodGet,
 			"/address/"+args[0]+"/info",

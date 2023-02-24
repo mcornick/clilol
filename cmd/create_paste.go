@@ -38,19 +38,19 @@ The paste will be created as unlisted by default. To create a listed
 paste, use the --listed flag.`,
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			type Input struct {
+			type input struct {
 				Title   string `json:"title"`
 				Content string `json:"content"`
 				Listed  int    `json:"listed,omitempty"`
 			}
-			type Result struct {
+			type output struct {
 				Request  resultRequest `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 					Title   string `json:"title"`
 				} `json:"response"`
 			}
-			var result Result
+			var result output
 			var listed int
 			var content string
 			if createPasteFilename != "" {
@@ -67,7 +67,7 @@ paste, use the --listed flag.`,
 			} else {
 				listed = 0
 			}
-			paste := Input{args[0], content, listed}
+			paste := input{args[0], content, listed}
 			body := callAPIWithParams(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/pastebin",

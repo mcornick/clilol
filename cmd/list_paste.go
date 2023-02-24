@@ -30,7 +30,7 @@ Unlisted pastes are only included when the --address flag is set to
 your own address.`,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message  string `json:"message"`
@@ -42,7 +42,7 @@ your own address.`,
 				} `json:"pastebin"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		if addressFlag == "" {
 			addressFlag = viper.GetString("address")
 		}

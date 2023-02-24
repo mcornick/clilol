@@ -24,7 +24,7 @@ var getWeblogLatestCmd = &cobra.Command{
 	Long:  "Gets your weblog's latest entry",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
@@ -43,7 +43,7 @@ var getWeblogLatestCmd = &cobra.Command{
 				} `json:"post"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(
 			http.MethodGet,
 			"/address/"+viper.GetString("address")+"/weblog/post/latest",

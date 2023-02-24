@@ -22,7 +22,7 @@ var getServiceCmd = &cobra.Command{
 	Long:  "Gets statistics for omg.lol services.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message   string `json:"message"`
@@ -31,7 +31,7 @@ var getServiceCmd = &cobra.Command{
 				Profiles  int    `json:"profiles"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(http.MethodGet, "/service/info", nil, false)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)

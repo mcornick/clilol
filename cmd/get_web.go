@@ -30,7 +30,7 @@ to that file. If you do not specify a filename, the content will be written
 to stdout.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type Result struct {
+			type output struct {
 				Request  resultRequest `json:"request"`
 				Response struct {
 					Message  string `json:"message"`
@@ -46,7 +46,7 @@ to stdout.`,
 					Modified string `json:"modified"`
 				} `json:"response"`
 			}
-			var result Result
+			var result output
 			body := callAPIWithParams(
 				http.MethodGet,
 				"/address/"+viper.GetString("address")+"/web",

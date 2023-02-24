@@ -24,7 +24,7 @@ var listAccountSessionsCmd = &cobra.Command{
 	Long:  "Lists the active sessions on your account.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response []struct {
 				SessionID string `json:"session_id"`
@@ -34,7 +34,7 @@ var listAccountSessionsCmd = &cobra.Command{
 				ExpiresOn int64  `json:"expires_on"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(
 			http.MethodGet,
 			"/account/"+viper.GetString("email")+"/sessions",

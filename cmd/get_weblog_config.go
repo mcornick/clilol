@@ -30,7 +30,7 @@ to that file. If you do not specify a filename, the content will be written
 to stdout.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type Result struct {
+			type output struct {
 				Request  resultRequest `json:"request"`
 				Response struct {
 					Message       string `json:"message"`
@@ -50,16 +50,16 @@ to stdout.`,
 							RecentPostsFormat           string `json:"recent-posts-format"`
 							PostListFormat              string `json:"post-list-format"`
 							SearchStatus                string `json:"search-status"`
-							SearchResultsSuccessMessage string `json:"search-results-success-message"`
-							SearchResultsFailureMessage string `json:"search-results-failure-message"`
-							SearchResultsFormat         string `json:"search-results-format"`
+							SearchoutputsSuccessMessage string `json:"search-results-success-message"`
+							SearchoutputsFailureMessage string `json:"search-results-failure-message"`
+							SearchoutputsFormat         string `json:"search-results-format"`
 						} `json:"object"`
 						JSON string `json:"json"`
 						Raw  string `json:"raw"`
 					} `json:"configuration"`
 				} `json:"response"`
 			}
-			var result Result
+			var result output
 			body := callAPIWithParams(
 				http.MethodGet,
 				"/address/"+viper.GetString("address")+"/weblog/configuration",

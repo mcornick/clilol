@@ -29,7 +29,7 @@ To see all statuses ever posted, use the --all flag.
 See the status commands to get statuses for a single user.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type Result struct {
+			type output struct {
 				Request  resultRequest `json:"request"`
 				Response struct {
 					Message  string `json:"message"`
@@ -49,7 +49,7 @@ See the status commands to get statuses for a single user.`,
 			} else {
 				url = "/statuslog/latest/"
 			}
-			var result Result
+			var result output
 			body := callAPIWithParams(http.MethodGet, url, nil, false)
 			err := json.Unmarshal(body, &result)
 			cobra.CheckErr(err)

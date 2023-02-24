@@ -35,17 +35,17 @@ The Now page will be created as unlisted by default. To create a listed
 Now page, use the --listed flag.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type Input struct {
+			type input struct {
 				Content string `json:"content"`
 				Listed  int    `json:"listed"`
 			}
-			type Result struct {
+			type output struct {
 				Request  resultRequest `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 				} `json:"response"`
 			}
-			var result Result
+			var result output
 			var listed int
 			var content string
 			if updateNowFilename != "" {
@@ -62,7 +62,7 @@ Now page, use the --listed flag.`,
 			} else {
 				listed = 0
 			}
-			nowPage := Input{content, listed}
+			nowPage := input{content, listed}
 			body := callAPIWithParams(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/now",

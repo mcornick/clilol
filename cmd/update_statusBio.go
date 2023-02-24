@@ -28,18 +28,18 @@ Note that the omg.lol API does not permit you to change any custom
 CSS. You'll need to do that on the website.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type Input struct {
+		type input struct {
 			Content string `json:"content"`
 		}
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
 				URL     string `json:"url"`
 			} `json:"response"`
 		}
-		var result Result
-		bio := Input{args[0]}
+		var result output
+		bio := input{args[0]}
 		body := callAPIWithParams(
 			http.MethodPost,
 			"/address/"+viper.GetString("address")+"/statuses/bio/",

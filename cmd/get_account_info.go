@@ -24,7 +24,7 @@ var getAccountInfoCmd = &cobra.Command{
 	Long:  "Gets information about your account",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
@@ -41,7 +41,7 @@ var getAccountInfoCmd = &cobra.Command{
 				} `json:"settings"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(
 			http.MethodGet,
 			"/account/"+viper.GetString("email")+"/info",

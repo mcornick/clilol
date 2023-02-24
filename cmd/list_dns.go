@@ -24,7 +24,7 @@ var listDNSCmd = &cobra.Command{
 	Long:  "Lists all of your DNS records.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
@@ -40,7 +40,7 @@ var listDNSCmd = &cobra.Command{
 				} `json:"dns"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(
 			http.MethodGet,
 			"/address/"+viper.GetString("address")+"/dns",

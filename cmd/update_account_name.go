@@ -23,18 +23,18 @@ var updateAccountNameCmd = &cobra.Command{
 	Long:  "Sets the name on your account.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type Input struct {
+		type input struct {
 			Name string `json:"name"`
 		}
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
 				Name    string `json:"name"`
 			} `json:"response"`
 		}
-		var result Result
-		account := Input{args[0]}
+		var result output
+		account := input{args[0]}
 		body := callAPIWithParams(
 			http.MethodPost,
 			"/account/"+viper.GetString("email")+"/name",

@@ -27,10 +27,10 @@ var (
 To specify multiple addresses, separate them with commas.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type Input struct {
+			type input struct {
 				Destination string `json:"destination"`
 			}
-			type Result struct {
+			type output struct {
 				Request  resultRequest `json:"request"`
 				Response struct {
 					Message           string   `json:"message"`
@@ -40,8 +40,8 @@ To specify multiple addresses, separate them with commas.`,
 					EmailAddress      string   `json:"email_address"`
 				} `json:"response"`
 			}
-			var result Result
-			email := Input{updateEmailDestination}
+			var result output
+			email := input{updateEmailDestination}
 			body := callAPIWithParams(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/email",

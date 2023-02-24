@@ -24,7 +24,7 @@ var getWeblogCmd = &cobra.Command{
 	Long:  "Gets one of your weblog entries by ID.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
@@ -44,7 +44,7 @@ var getWeblogCmd = &cobra.Command{
 				} `json:"entry"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(
 			http.MethodGet,
 			"/address/"+viper.GetString("address")+"/weblog/entry/"+args[0],

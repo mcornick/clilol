@@ -23,14 +23,14 @@ var getAccountNameCmd = &cobra.Command{
 	Long:  "Gets the name on your account.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
 				Name    string `json:"name"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(
 			http.MethodGet,
 			"/account/"+viper.GetString("email")+"/name",

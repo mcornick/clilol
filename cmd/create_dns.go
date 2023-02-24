@@ -27,14 +27,14 @@ var (
 		Long:  "Creates a DNS record.",
 		Args:  cobra.ExactArgs(3),
 		Run: func(cmd *cobra.Command, args []string) {
-			type Input struct {
+			type input struct {
 				Type     string `json:"type"`
 				Name     string `json:"name"`
 				Data     string `json:"data"`
 				Priority int    `json:"priority"`
 				TTL      int    `json:"ttl"`
 			}
-			type Result struct {
+			type output struct {
 				Request  resultRequest `json:"request"`
 				Response struct {
 					Message  string `json:"message"`
@@ -59,8 +59,8 @@ var (
 					} `json:"response_received"`
 				} `json:"response"`
 			}
-			var result Result
-			dns := Input{args[2], args[1], args[3], createDNSPriority, createDNSTTL}
+			var result output
+			dns := input{args[2], args[1], args[3], createDNSPriority, createDNSTTL}
 			body := callAPIWithParams(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/dns",

@@ -29,12 +29,12 @@ PURL, use the --listed flag.
 `,
 		Args: cobra.ExactArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
-			type Input struct {
+			type input struct {
 				Name   string `json:"name"`
 				URL    string `json:"url"`
 				Listed bool   `json:"listed,omitempty"`
 			}
-			type Result struct {
+			type output struct {
 				Request  resultRequest `json:"request"`
 				Response struct {
 					Message string `json:"message"`
@@ -42,8 +42,8 @@ PURL, use the --listed flag.
 					URL     string `json:"url"`
 				} `json:"response"`
 			}
-			var result Result
-			purl := Input{args[0], args[1], createPURLListed}
+			var result output
+			purl := input{args[0], args[1], createPURLListed}
 			body := callAPIWithParams(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/purl",

@@ -35,17 +35,17 @@ The webpage will be created as unpublished by default. To create a published
 webpage, use the --publish flag.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type Input struct {
+			type input struct {
 				Publish bool   `json:"publish,omitempty"`
 				Content string `json:"content"`
 			}
-			type Result struct {
+			type output struct {
 				Request  resultRequest `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 				} `json:"response"`
 			}
-			var result Result
+			var result output
 			var content string
 			if updateWebFilename != "" {
 				input, err := os.ReadFile(updateWebFilename)
@@ -56,7 +56,7 @@ webpage, use the --publish flag.`,
 				cobra.CheckErr(err)
 				content = string(stdin)
 			}
-			webPage := Input{updateWebPublish, content}
+			webPage := input{updateWebPublish, content}
 			body := callAPIWithParams(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/web",

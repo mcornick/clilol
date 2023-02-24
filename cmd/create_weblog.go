@@ -31,7 +31,7 @@ will be used. If you do not specify a filename, the content will be read
 from stdin.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type Result struct {
+			type output struct {
 				Request  resultRequest `json:"request"`
 				Response struct {
 					Message string `json:"message"`
@@ -52,7 +52,7 @@ from stdin.`,
 					} `json:"entry"`
 				} `json:"response"`
 			}
-			var result Result
+			var result output
 			var content string
 			if createWeblogFilename != "" {
 				input, err := os.ReadFile(createWeblogFilename)

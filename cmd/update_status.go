@@ -36,12 +36,12 @@ the existing emoji if you don't specify one, so if you don't want
 to change it, you'll still need to specify it again.`,
 		Args: cobra.ExactArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
-			type Input struct {
+			type input struct {
 				Id      string `json:"id"`
 				Emoji   string `json:"emoji"`
 				Content string `json:"content"`
 			}
-			type Result struct {
+			type output struct {
 				Request  resultRequest `json:"request"`
 				Response struct {
 					Message string `json:"message"`
@@ -49,8 +49,8 @@ to change it, you'll still need to specify it again.`,
 					URL     string `json:"url"`
 				} `json:"response"`
 			}
-			var result Result
-			status := Input{args[0], updateStatusEmoji, args[1]}
+			var result output
+			status := input{args[0], updateStatusEmoji, args[1]}
 			body := callAPIWithParams(
 				http.MethodPatch,
 				"/address/"+viper.GetString("address")+"/statuses/",

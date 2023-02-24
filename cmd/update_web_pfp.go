@@ -25,13 +25,13 @@ var updateWebPFPCmd = &cobra.Command{
 	Long:  "Sets your profile picture.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		content, err := os.ReadFile(args[0])
 		cobra.CheckErr(err)
 		encoded := "data:text/plain;base64," + base64.StdEncoding.EncodeToString(content)

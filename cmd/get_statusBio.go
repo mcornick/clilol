@@ -29,7 +29,7 @@ Note that any custom CSS set on the bio is ignored.
 `,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
@@ -37,7 +37,7 @@ Note that any custom CSS set on the bio is ignored.
 				Css     string `json:"css"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		if addressFlag == "" {
 			addressFlag = viper.GetString("address")
 		}

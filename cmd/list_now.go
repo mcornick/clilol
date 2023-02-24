@@ -23,7 +23,7 @@ var listNowCmd = &cobra.Command{
 	Long:  "Lists pages in the Now garden.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
@@ -39,7 +39,7 @@ var listNowCmd = &cobra.Command{
 				} `json:"garden"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(http.MethodGet, "/now/garden", nil, false)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)

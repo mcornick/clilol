@@ -23,7 +23,7 @@ var listDirectoryCmd = &cobra.Command{
 	Long:  "Lists the omg.lol address directory.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message   string   `json:"message"`
@@ -31,7 +31,7 @@ var listDirectoryCmd = &cobra.Command{
 				Directory []string `json:"directory"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(http.MethodGet, "/directory", nil, false)
 		err := json.Unmarshal(body, &result)
 		cobra.CheckErr(err)

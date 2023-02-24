@@ -24,7 +24,7 @@ var listAccountAddressesCmd = &cobra.Command{
 	Long:  "Lists the addresses on your account.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response []struct {
 				Address      string `json:"address"`
@@ -53,7 +53,7 @@ var listAccountAddressesCmd = &cobra.Command{
 				} `json:"preferences"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(
 			http.MethodGet,
 			"/account/"+viper.GetString("email")+"/addresses",

@@ -23,11 +23,11 @@ var updatePreferenceCmd = &cobra.Command{
 	Long:  "Sets omg.lol preferences.",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		type Input struct {
+		type input struct {
 			Item  string `json:"item"`
 			Value string `json:"value"`
 		}
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
@@ -35,8 +35,8 @@ var updatePreferenceCmd = &cobra.Command{
 				Value   string `json:"value"`
 			} `json:"response"`
 		}
-		var result Result
-		pref := Input{args[0], args[1]}
+		var result output
+		pref := input{args[0], args[1]}
 		body := callAPIWithParams(
 			http.MethodPost,
 			"/preferences/"+viper.GetString("address"),

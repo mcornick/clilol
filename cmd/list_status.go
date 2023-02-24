@@ -35,7 +35,7 @@ flag. If not set, it will return all statuses for the user.
 See the statuslog commands to get statuses for all users.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type Result struct {
+			type output struct {
 				Request  resultRequest `json:"request"`
 				Response struct {
 					Message  string `json:"message"`
@@ -48,7 +48,7 @@ See the statuslog commands to get statuses for all users.`,
 					} `json:"statuses"`
 				} `json:"response"`
 			}
-			var result Result
+			var result output
 			if addressFlag == "" {
 				addressFlag = viper.GetString("address")
 			}

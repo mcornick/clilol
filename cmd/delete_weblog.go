@@ -26,13 +26,13 @@ Note that you won't be asked to confirm deletion.
 Be sure you know what you're doing.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(
 			http.MethodDelete,
 			"/address/"+viper.GetString("address")+"/weblog/delete/"+args[0],

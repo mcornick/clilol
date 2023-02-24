@@ -24,7 +24,7 @@ var getThemeCmd = &cobra.Command{
 	Long:  "Gets information about a theme.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Theme struct {
@@ -43,7 +43,7 @@ var getThemeCmd = &cobra.Command{
 				} `json:"theme"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(
 			http.MethodGet,
 			"/theme/"+args[0]+"/info",

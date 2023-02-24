@@ -22,14 +22,14 @@ var getAddressExpirationCmd = &cobra.Command{
 	Long:  "Gets the expiration of an address.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type Result struct {
+		type output struct {
 			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
 				Expired bool   `json:"expired"`
 			} `json:"response"`
 		}
-		var result Result
+		var result output
 		body := callAPIWithParams(
 			http.MethodGet,
 			"/address/"+args[0]+"/expiration",

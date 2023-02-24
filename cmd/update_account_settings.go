@@ -29,19 +29,19 @@ var (
 Specify the new settings with the flags listed below.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type Input struct {
+			type input struct {
 				Communication string `json:"communication,omitempty"`
 				DateFormat    string `json:"date_format,omitempty"`
 				WebEditor     string `json:"web_editor,omitempty"`
 			}
-			type Result struct {
+			type output struct {
 				Request  resultRequest `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 				} `json:"response"`
 			}
-			var result Result
-			account := Input{accountSetSettingsCommunication, accountSetSettingsDateFormat, accountSetSettingsWebEditor}
+			var result output
+			account := input{accountSetSettingsCommunication, accountSetSettingsDateFormat, accountSetSettingsWebEditor}
 			body := callAPIWithParams(
 				http.MethodPost,
 				"/account/"+viper.GetString("email")+"/settings",
