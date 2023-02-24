@@ -81,5 +81,6 @@ func init() {
 		"",
 		"ID of the entry to get",
 	)
+	getWeblogCmd.MarkFlagRequired("id")
 	getCmd.AddCommand(getWeblogCmd)
 }

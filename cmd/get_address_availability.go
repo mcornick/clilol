@@ -21,8 +21,10 @@ import (
 var getAddressAvailabilityCmd = &cobra.Command{
 	Use:   "availability",
 	Short: "Get address availability",
-	Long:  `Gets the availability of an address.`,
-	Args:  cobra.NoArgs,
+	Long: `Gets the availability of an address.
+	
+Specify the address with the --address flag.`,
+	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
 			Request  responseRequest `json:"request"`
@@ -69,5 +71,6 @@ func init() {
 		"",
 		"address whose availability to get",
 	)
+	getAddressAvailabilityCmd.MarkFlagRequired("address")
 	getAddressCmd.AddCommand(getAddressAvailabilityCmd)
 }

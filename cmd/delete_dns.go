@@ -60,5 +60,6 @@ func init() {
 		"",
 		"ID of the DNS record to delete",
 	)
+	deleteDNSCmd.MarkFlagRequired("id")
 	deleteCmd.AddCommand(deleteDNSCmd)
 }

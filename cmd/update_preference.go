@@ -76,5 +76,7 @@ func init() {
 		"",
 		"value to set it to",
 	)
+	updatePreferenceCmd.MarkFlagRequired("item")
+	updatePreferenceCmd.MarkFlagRequired("value")
 	updateCmd.AddCommand(updatePreferenceCmd)
 }

@@ -21,8 +21,10 @@ import (
 var getAddressInfoPrivateCmd = &cobra.Command{
 	Use:   "private",
 	Short: "Get private information about an address",
-	Long:  `Gets private information about an address.`,
-	Args:  cobra.NoArgs,
+	Long: `Gets private information about an address.
+	
+Specify the address with the --address flag.`,
+	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
 			Request  responseRequest `json:"request"`
@@ -82,5 +84,6 @@ func init() {
 		"",
 		"address whose info to get",
 	)
+	getAddressInfoPrivateCmd.MarkFlagRequired("address")
 	getAddressInfoCmd.AddCommand(getAddressInfoPrivateCmd)
 }

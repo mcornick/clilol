@@ -91,5 +91,6 @@ func init() {
 		"",
 		"file to write paste to (default stdout)",
 	)
+	getPasteCmd.MarkFlagRequired("title")
 	getCmd.AddCommand(getPasteCmd)
 }

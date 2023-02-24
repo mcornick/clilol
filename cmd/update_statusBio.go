@@ -69,5 +69,6 @@ func init() {
 		"",
 		"new bio text",
 	)
+	updateStatusBioCmd.MarkFlagRequired("text")
 	updateCmd.AddCommand(updateStatusBioCmd)
 }

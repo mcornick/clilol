@@ -21,8 +21,10 @@ import (
 var getAddressInfoPublicCmd = &cobra.Command{
 	Use:   "public",
 	Short: "Get public information about an address",
-	Long:  `Gets public information about an address.`,
-	Args:  cobra.NoArgs,
+	Long: `Gets public information about an address.
+	
+Specify the address with the --address flag.`,
+	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
 			Request  responseRequest `json:"request"`
@@ -76,5 +78,6 @@ func init() {
 		"",
 		"address whose info to get",
 	)
+	getAddressInfoPublicCmd.MarkFlagRequired("address")
 	getAddressInfoCmd.AddCommand(getAddressInfoPublicCmd)
 }

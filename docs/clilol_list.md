@@ -20,7 +20,7 @@ These commands list things.
 * [clilol](clilol.md)	 - a cli for omg.lol
 * [clilol list account](clilol_list_account.md)	 - List information about your account
 * [clilol list directory](clilol_list_directory.md)	 - List the address directory
-* [clilol list dns](clilol_list_dns.md)	 - List all dns records
+* [clilol list dns](clilol_list_dns.md)	 - List your dns records
 * [clilol list now](clilol_list_now.md)	 - List Now pages
 * [clilol list paste](clilol_list_paste.md)	 - List pastes
 * [clilol list purl](clilol_list_purl.md)	 - List all PURLs

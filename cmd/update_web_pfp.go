@@ -65,5 +65,6 @@ func init() {
 		"",
 		"file to read PFP from (default stdin)",
 	)
+	updateWebPFPCmd.MarkFlagRequired("filename")
 	updateWebCmd.AddCommand(updateWebPFPCmd)
 }

@@ -79,5 +79,6 @@ func init() {
 		"",
 		"name of the theme",
 	)
+	getThemeCmd.MarkFlagRequired("name")
 	getCmd.AddCommand(getThemeCmd)
 }

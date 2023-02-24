@@ -63,5 +63,6 @@ func init() {
 		"",
 		"title of the paste to delete",
 	)
+	deletePasteCmd.MarkFlagRequired("title")
 	deleteCmd.AddCommand(deletePasteCmd)
 }

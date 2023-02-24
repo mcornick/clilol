@@ -62,5 +62,6 @@ func init() {
 		"",
 		"new name for the account",
 	)
+	updateAccountNameCmd.MarkFlagRequired("name")
 	updateAccountCmd.AddCommand(updateAccountNameCmd)
 }

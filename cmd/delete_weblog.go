@@ -60,5 +60,6 @@ func init() {
 		"",
 		"ID of the weblog entry to delete",
 	)
+	deleteWeblogCmd.MarkFlagRequired("id")
 	deleteCmd.AddCommand(deleteWeblogCmd)
 }

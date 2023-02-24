@@ -60,5 +60,6 @@ func init() {
 		"",
 		"name of the PURL to delete",
 	)
+	deletePURLCmd.MarkFlagRequired("name")
 	deleteCmd.AddCommand(deletePURLCmd)
 }

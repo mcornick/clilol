@@ -88,5 +88,7 @@ func init() {
 		false,
 		"create as listed (default false)",
 	)
+	createPURLCmd.MarkFlagRequired("name")
+	createPURLCmd.MarkFlagRequired("url")
 	createCmd.AddCommand(createPURLCmd)
 }

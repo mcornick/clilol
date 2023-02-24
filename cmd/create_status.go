@@ -98,5 +98,6 @@ func init() {
 		false,
 		"do not cross-post to Mastodon",
 	)
+	createStatusCmd.MarkFlagRequired("text")
 	createCmd.AddCommand(createStatusCmd)
 }

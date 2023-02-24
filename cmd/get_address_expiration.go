@@ -21,8 +21,10 @@ import (
 var getAddressExpirationCmd = &cobra.Command{
 	Use:   "expiration",
 	Short: "Get address expiration",
-	Long:  `Gets the expiration of an address.`,
-	Args:  cobra.NoArgs,
+	Long: `Gets the expiration of an address.
+	
+Specify the address with the --address flag.`,
+	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
 			Request  responseRequest `json:"request"`
@@ -59,5 +61,6 @@ func init() {
 		"",
 		"address whose expiration to get",
 	)
+	getAddressExpirationCmd.MarkFlagRequired("address")
 	getAddressCmd.AddCommand(getAddressExpirationCmd)
 }

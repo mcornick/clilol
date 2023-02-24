@@ -82,5 +82,6 @@ func init() {
 		"",
 		"name of the PURL to get",
 	)
+	getPURLCmd.MarkFlagRequired("name")
 	getCmd.AddCommand(getPURLCmd)
 }

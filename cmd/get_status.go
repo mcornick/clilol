@@ -90,5 +90,6 @@ func init() {
 		"",
 		"ID of the status to get",
 	)
+	getStatusCmd.MarkFlagRequired("id")
 	getCmd.AddCommand(getStatusCmd)
 }

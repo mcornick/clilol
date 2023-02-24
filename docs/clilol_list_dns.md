@@ -3,7 +3,7 @@ title: "clilol list dns"
 ---
 ## clilol list dns
 
-List all dns records
+List your dns records
 
 ### Synopsis
 

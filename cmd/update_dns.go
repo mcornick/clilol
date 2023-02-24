@@ -129,5 +129,9 @@ func init() {
 		3600,
 		"updated TTL",
 	)
+	updateDNSCmd.MarkFlagRequired("id")
+	updateDNSCmd.MarkFlagRequired("type")
+	updateDNSCmd.MarkFlagRequired("name")
+	updateDNSCmd.MarkFlagRequired("data")
 	updateCmd.AddCommand(updateDNSCmd)
 }

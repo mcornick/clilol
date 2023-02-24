@@ -92,5 +92,7 @@ func init() {
 		"",
 		"new status text",
 	)
+	updateStatusCmd.MarkFlagRequired("id")
+	updateStatusCmd.MarkFlagRequired("text")
 	updateCmd.AddCommand(updateStatusCmd)
 }

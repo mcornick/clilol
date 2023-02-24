@@ -60,5 +60,6 @@ func init() {
 		"",
 		"ID of the session to delete",
 	)
+	deleteAccountSessionCmd.MarkFlagRequired("id")
 	deleteAccountCmd.AddCommand(deleteAccountSessionCmd)
 }

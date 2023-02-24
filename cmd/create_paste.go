@@ -110,5 +110,6 @@ func init() {
 		false,
 		"create paste as listed (default false)",
 	)
+	createPasteCmd.MarkFlagRequired("title")
 	createCmd.AddCommand(createPasteCmd)
 }

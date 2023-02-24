@@ -121,5 +121,8 @@ func init() {
 		3600,
 		"time to live of the DNS record",
 	)
+	createDNSCmd.MarkFlagRequired("type")
+	createDNSCmd.MarkFlagRequired("name")
+	createDNSCmd.MarkFlagRequired("data")
 	createCmd.AddCommand(createDNSCmd)
 }

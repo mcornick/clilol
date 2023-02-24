@@ -8,6 +8,8 @@ Get address availability
 ### Synopsis
 
 Gets the availability of an address.
+	
+Specify the address with the --address flag.
 
 ```
 clilol get address availability [flags]

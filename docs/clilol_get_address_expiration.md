@@ -8,6 +8,8 @@ Get address expiration
 ### Synopsis
 
 Gets the expiration of an address.
+	
+Specify the address with the --address flag.
 
 ```
 clilol get address expiration [flags]

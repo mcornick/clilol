@@ -71,5 +71,6 @@ func init() {
 		"",
 		"file to write preview to (default stdout)",
 	)
+	getThemePreviewCmd.MarkFlagRequired("name")
 	getThemeCmd.AddCommand(getThemePreviewCmd)
 }
