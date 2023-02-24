@@ -14,16 +14,13 @@ import (
 	"net/http"
 
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 var getAddressExpirationCmd = &cobra.Command{
-	Use:   "expiration",
+	Use:   "expiration [address]",
 	Short: "Get address expiration",
-	Long: `Gets the expiration of an address.
-	
-Specify the address with the --address flag.`,
-	Args: cobra.NoArgs,
+	Long:  "Gets the expiration of an address.",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
 			Request  responseRequest `json:"request"`
@@ -33,12 +30,9 @@ Specify the address with the --address flag.`,
 			} `json:"response"`
 		}
 		var result Result
-		if addressFlag == "" {
-			addressFlag = viper.GetString("address")
-		}
 		body := callAPIWithParams(
 			http.MethodGet,
-			"/address/"+addressFlag+"/expiration",
+			"/address/"+args[0]+"/expiration",
 			nil,
 			false,
 		)
@@ -53,14 +47,5 @@ Specify the address with the --address flag.`,
 }
 
 func init() {
-	getAddressExpirationCmd.Flags().StringVarP(
-		&addressFlag,
-		"address",
-		"a",
-		"",
-		"address whose expiration to get",
-	)
-	err := getAddressExpirationCmd.MarkFlagRequired("address")
-	cobra.CheckErr(err)
 	getAddressCmd.AddCommand(getAddressExpirationCmd)
 }

@@ -9,17 +9,14 @@ set the name on your account
 
 Sets the name on your account.
 
-Specify the new name with the --name flag.
-
 ```
-clilol update account name [flags]
+clilol update account name [name] [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help          help for name
-  -n, --name string   new name for the account
+  -h, --help   help for name
 ```
 
 ### SEE ALSO

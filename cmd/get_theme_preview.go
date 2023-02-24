@@ -20,16 +20,14 @@ import (
 var (
 	getThemePreviewFilename string
 	getThemePreviewCmd      = &cobra.Command{
-		Use:   "preview",
+		Use:   "preview [theme-name]",
 		Short: "Get theme preview",
 		Long: `Gets an HTML preview of a theme.
-
-Specify the theme name with the --name flag.
 
 If you specify a filename with the --filename flag, the content will be written
 to that file. If you do not specify a filename, the content will be written
 to stdout.`,
-		Args: cobra.NoArgs,
+		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			type Result struct {
 				Response struct {
@@ -40,7 +38,7 @@ to stdout.`,
 			var result Result
 			body := callAPIWithParams(
 				http.MethodGet,
-				"/theme/"+nameFlag+"/preview",
+				"/theme/"+args[0]+"/preview",
 				nil,
 				true,
 			)
@@ -58,20 +56,11 @@ to stdout.`,
 
 func init() {
 	getThemePreviewCmd.Flags().StringVarP(
-		&nameFlag,
-		"name",
-		"n",
-		"",
-		"name of the theme",
-	)
-	getThemePreviewCmd.Flags().StringVarP(
 		&getThemePreviewFilename,
 		"filename",
 		"f",
 		"",
 		"file to write preview to (default stdout)",
 	)
-	err := getThemePreviewCmd.MarkFlagRequired("name")
-	cobra.CheckErr(err)
 	getThemeCmd.AddCommand(getThemePreviewCmd)
 }

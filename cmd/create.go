@@ -15,7 +15,7 @@ import (
 var createCmd = &cobra.Command{
 	Use:   "create",
 	Short: "Create things",
-	Long:  `These commands create things.`,
+	Long:  "These commands create things.",
 }
 
 func init() {

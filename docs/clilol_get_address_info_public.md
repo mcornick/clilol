@@ -8,18 +8,15 @@ Get public information about an address
 ### Synopsis
 
 Gets public information about an address.
-	
-Specify the address with the --address flag.
 
 ```
-clilol get address info public [flags]
+clilol get address info public [address] [flags]
 ```
 
 ### Options
 
 ```
-  -a, --address string   address whose info to get
-  -h, --help             help for public
+  -h, --help   help for public
 ```
 
 ### SEE ALSO

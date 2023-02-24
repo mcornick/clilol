@@ -19,52 +19,38 @@ import (
 	"github.com/spf13/viper"
 )
 
-var (
-	updateWebPFPFilename string
-	updateWebPFPCmd      = &cobra.Command{
-		Use:   "pfp",
-		Short: "set your profile picture",
-		Long: `Sets your profile picture.
-
-Specify an image file with the --filename flag.`,
-		Args: cobra.NoArgs,
-		Run: func(cmd *cobra.Command, args []string) {
-			type Result struct {
-				Request  responseRequest `json:"request"`
-				Response struct {
-					Message string `json:"message"`
-				} `json:"response"`
-			}
-			var result Result
-			content, err := os.ReadFile(updateWebPFPFilename)
-			cobra.CheckErr(err)
-			encoded := "data:text/plain;base64," + base64.StdEncoding.EncodeToString(content)
-			body := callAPIWithRawData(
-				http.MethodPost,
-				"/address/"+viper.GetString("address")+"/pfp",
-				encoded,
-				true,
-			)
-			err = json.Unmarshal(body, &result)
-			cobra.CheckErr(err)
-			if result.Request.Success {
-				fmt.Println(result.Response.Message)
-			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
-			}
-		},
-	}
-)
+var updateWebPFPCmd = &cobra.Command{
+	Use:   "pfp [filename]",
+	Short: "set your profile picture",
+	Long:  "Sets your profile picture.",
+	Args:  cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		type Result struct {
+			Request  responseRequest `json:"request"`
+			Response struct {
+				Message string `json:"message"`
+			} `json:"response"`
+		}
+		var result Result
+		content, err := os.ReadFile(args[0])
+		cobra.CheckErr(err)
+		encoded := "data:text/plain;base64," + base64.StdEncoding.EncodeToString(content)
+		body := callAPIWithRawData(
+			http.MethodPost,
+			"/address/"+viper.GetString("address")+"/pfp",
+			encoded,
+			true,
+		)
+		err = json.Unmarshal(body, &result)
+		cobra.CheckErr(err)
+		if result.Request.Success {
+			fmt.Println(result.Response.Message)
+		} else {
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+		}
+	},
+}
 
 func init() {
-	updateWebPFPCmd.Flags().StringVarP(
-		&updateWebPFPFilename,
-		"filename",
-		"f",
-		"",
-		"file to read PFP from (default stdin)",
-	)
-	err := updateWebPFPCmd.MarkFlagRequired("filename")
-	cobra.CheckErr(err)
 	updateWebCmd.AddCommand(updateWebPFPCmd)
 }

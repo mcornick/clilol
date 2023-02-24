@@ -9,19 +9,14 @@ set a preference
 
 Sets omg.lol preferences.
 
-Specify the preference item with the --item flag, and the value with
-the --value flag.
-
 ```
-clilol update preference [flags]
+clilol update preference [item] [value] [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help           help for preference
-  -i, --item string    preference item to set
-  -v, --value string   value to set it to
+  -h, --help   help for preference
 ```
 
 ### SEE ALSO

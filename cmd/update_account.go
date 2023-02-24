@@ -15,7 +15,7 @@ import (
 var updateAccountCmd = &cobra.Command{
 	Use:   "account",
 	Short: "Update information about your account",
-	Long:  `The account update group of commands allows you to set information about your omg.lol account.`,
+	Long:  "The account update group of commands allows you to set information about your omg.lol account.",
 }
 
 func init() {

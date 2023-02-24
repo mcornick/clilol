@@ -8,18 +8,15 @@ Get address availability
 ### Synopsis
 
 Gets the availability of an address.
-	
-Specify the address with the --address flag.
 
 ```
-clilol get address availability [flags]
+clilol get address availability [address] [flags]
 ```
 
 ### Options
 
 ```
-  -a, --address string   address whose availability to get
-  -h, --help             help for availability
+  -h, --help   help for availability
 ```
 
 ### SEE ALSO

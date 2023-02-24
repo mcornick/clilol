@@ -18,10 +18,9 @@ import (
 )
 
 var (
-	updateStatusEmoji  string
-	updateStatusStatus string
-	updateStatusCmd    = &cobra.Command{
-		Use:   "status",
+	updateStatusEmoji string
+	updateStatusCmd   = &cobra.Command{
+		Use:   "status [id] [text]",
 		Short: "Update a status",
 		Long: `Updates a status on status.lol.
 Specify the ID of the status to update with the --id flag. The
@@ -35,7 +34,7 @@ actual emoji, not a :emoji: style code. If not set, the sparkles
 emoji will be used. Note that the omg.lol API does not preserve
 the existing emoji if you don't specify one, so if you don't want
 to change it, you'll still need to specify it again.`,
-		Args: cobra.NoArgs,
+		Args: cobra.ExactArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
 			type Input struct {
 				Id      string `json:"id"`
@@ -51,7 +50,7 @@ to change it, you'll still need to specify it again.`,
 				} `json:"response"`
 			}
 			var result Result
-			status := Input{idFlag, updateStatusEmoji, updateStatusStatus}
+			status := Input{args[0], updateStatusEmoji, args[1]}
 			body := callAPIWithParams(
 				http.MethodPatch,
 				"/address/"+viper.GetString("address")+"/statuses/",
@@ -71,29 +70,11 @@ to change it, you'll still need to specify it again.`,
 
 func init() {
 	updateStatusCmd.Flags().StringVarP(
-		&idFlag,
-		"id",
-		"i",
-		"",
-		"ID of the status to update",
-	)
-	updateStatusCmd.Flags().StringVarP(
 		&updateStatusEmoji,
 		"emoji",
 		"e",
 		"",
 		"emoji to add to status (default sparkles)",
 	)
-	updateStatusCmd.Flags().StringVarP(
-		&updateStatusStatus,
-		"text",
-		"t",
-		"",
-		"new status text",
-	)
-	err := updateStatusCmd.MarkFlagRequired("id")
-	cobra.CheckErr(err)
-	err = updateStatusCmd.MarkFlagRequired("text")
-	cobra.CheckErr(err)
 	updateCmd.AddCommand(updateStatusCmd)
 }

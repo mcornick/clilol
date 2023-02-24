@@ -18,15 +18,13 @@ import (
 )
 
 var deletePURLCmd = &cobra.Command{
-	Use:   "purl",
+	Use:   "purl [name]",
 	Short: "Delete a PURL",
 	Long: `Deletes a PURL.
 
-Specify the PURL name with the --name flag.
-
 Note that you won't be asked to confirm deletion.
 Be sure you know what you're doing.`,
-	Args: cobra.NoArgs,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
 			Request  responseRequest `json:"request"`
@@ -37,7 +35,7 @@ Be sure you know what you're doing.`,
 		var result Result
 		body := callAPIWithParams(
 			http.MethodDelete,
-			"/address/"+viper.GetString("address")+"/purl/"+nameFlag,
+			"/address/"+viper.GetString("address")+"/purl/"+args[0],
 			nil,
 			true,
 		)
@@ -52,14 +50,5 @@ Be sure you know what you're doing.`,
 }
 
 func init() {
-	deletePURLCmd.Flags().StringVarP(
-		&nameFlag,
-		"name",
-		"n",
-		"",
-		"name of the PURL to delete",
-	)
-	err := deletePURLCmd.MarkFlagRequired("name")
-	cobra.CheckErr(err)
 	deleteCmd.AddCommand(deletePURLCmd)
 }

@@ -9,8 +9,6 @@ Get a weblog entry
 
 Gets one of your weblog entries by ID.
 
-Specify the ID with the --id flag.
-
 ```
 clilol get weblog [flags]
 ```
@@ -18,8 +16,7 @@ clilol get weblog [flags]
 ### Options
 
 ```
-  -h, --help        help for weblog
-  -i, --id string   ID of the entry to get
+  -h, --help   help for weblog
 ```
 
 ### SEE ALSO

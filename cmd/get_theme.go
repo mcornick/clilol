@@ -19,12 +19,10 @@ import (
 )
 
 var getThemeCmd = &cobra.Command{
-	Use:   "theme",
+	Use:   "theme [theme-name]",
 	Short: "Get theme information",
-	Long: `Gets information about a theme.
-
-Specify the theme name with the --name flag.`,
-	Args: cobra.NoArgs,
+	Long:  "Gets information about a theme.",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
 			Request  responseRequest `json:"request"`
@@ -48,7 +46,7 @@ Specify the theme name with the --name flag.`,
 		var result Result
 		body := callAPIWithParams(
 			http.MethodGet,
-			"/theme/"+nameFlag+"/info",
+			"/theme/"+args[0]+"/info",
 			nil,
 			true,
 		)
@@ -59,7 +57,7 @@ Specify the theme name with the --name flag.`,
 			cobra.CheckErr(err)
 			fmt.Printf(
 				"%s: %s by %s (%s) updated %s\n",
-				nameFlag,
+				result.Response.Theme.ID,
 				result.Response.Theme.Name,
 				result.Response.Theme.Author,
 				result.Response.Theme.AuthorURL,
@@ -72,14 +70,5 @@ Specify the theme name with the --name flag.`,
 }
 
 func init() {
-	getThemeCmd.Flags().StringVarP(
-		&nameFlag,
-		"name",
-		"n",
-		"",
-		"name of the theme",
-	)
-	err := getThemeCmd.MarkFlagRequired("name")
-	cobra.CheckErr(err)
 	getCmd.AddCommand(getThemeCmd)
 }

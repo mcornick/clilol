@@ -18,12 +18,10 @@ import (
 )
 
 var updateAccountNameCmd = &cobra.Command{
-	Use:   "name",
+	Use:   "name [name]",
 	Short: "set the name on your account",
-	Long: `Sets the name on your account.
-
-Specify the new name with the --name flag.`,
-	Args: cobra.NoArgs,
+	Long:  "Sets the name on your account.",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		type Input struct {
 			Name string `json:"name"`
@@ -36,7 +34,7 @@ Specify the new name with the --name flag.`,
 			} `json:"response"`
 		}
 		var result Result
-		account := Input{nameFlag}
+		account := Input{args[0]}
 		body := callAPIWithParams(
 			http.MethodPost,
 			"/account/"+viper.GetString("email")+"/name",
@@ -54,14 +52,5 @@ Specify the new name with the --name flag.`,
 }
 
 func init() {
-	updateAccountNameCmd.Flags().StringVarP(
-		&nameFlag,
-		"name",
-		"n",
-		"",
-		"new name for the account",
-	)
-	err := updateAccountNameCmd.MarkFlagRequired("name")
-	cobra.CheckErr(err)
 	updateAccountCmd.AddCommand(updateAccountNameCmd)
 }

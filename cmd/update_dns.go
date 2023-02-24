@@ -19,20 +19,13 @@ import (
 )
 
 var (
-	updateDNSType     string
-	updateDNSData     string
 	updateDNSPriority int
 	updateDNSTTL      int
 	updateDNSCmd      = &cobra.Command{
-		Use:   "dns",
+		Use:   "dns [id] [name] [type] [data]",
 		Short: "Update a DNS record",
-		Long: `Updates a DNS record.
-
-Specify the ID of the DNS record with the --id flag,
-the type of DNS record with the --type flag,
-the name of the record with the --name flag,
-and the data with the --data flag.`,
-		Args: cobra.NoArgs,
+		Long:  "Updates a DNS record.",
+		Args:  cobra.ExactArgs(4),
 		Run: func(cmd *cobra.Command, args []string) {
 			type Input struct {
 				Type     string `json:"type"`
@@ -67,10 +60,10 @@ and the data with the --data flag.`,
 				} `json:"response"`
 			}
 			var result Result
-			dns := Input{updateDNSType, nameFlag, updateDNSData, updateDNSPriority, updateDNSTTL}
+			dns := Input{args[2], args[1], args[3], updateDNSPriority, updateDNSTTL}
 			body := callAPIWithParams(
 				http.MethodPatch,
-				"/address/"+viper.GetString("address")+"/dns/"+idFlag,
+				"/address/"+viper.GetString("address")+"/dns/"+args[0],
 				dns,
 				true,
 			)
@@ -86,40 +79,12 @@ and the data with the --data flag.`,
 )
 
 func init() {
-	updateDNSCmd.Flags().StringVarP(
-		&idFlag,
-		"id",
-		"i",
-		"",
-		"ID of DNS record to update",
-	)
-	updateDNSCmd.Flags().StringVarP(
-		&updateDNSType,
-		"type",
-		"t",
-		"",
-		"updated DNS type",
-	)
-	updateDNSCmd.Flags().StringVarP(
-		&nameFlag,
-		"name",
-		"n",
-		"",
-		"updated record name",
-	)
-	updateDNSCmd.Flags().StringVarP(
-		&updateDNSData,
-		"data",
-		"d",
-		"",
-		"updated data",
-	)
 	updateDNSCmd.Flags().IntVarP(
 		&updateDNSPriority,
 		"priority",
 		"p",
 		0,
-		"ipdated priority",
+		"updated priority",
 	)
 	updateDNSCmd.Flags().IntVarP(
 		&updateDNSTTL,
@@ -128,13 +93,5 @@ func init() {
 		3600,
 		"updated TTL",
 	)
-	err := updateDNSCmd.MarkFlagRequired("id")
-	cobra.CheckErr(err)
-	err = updateDNSCmd.MarkFlagRequired("type")
-	cobra.CheckErr(err)
-	err = updateDNSCmd.MarkFlagRequired("name")
-	cobra.CheckErr(err)
-	err = updateDNSCmd.MarkFlagRequired("data")
-	cobra.CheckErr(err)
 	updateCmd.AddCommand(updateDNSCmd)
 }

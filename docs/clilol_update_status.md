@@ -21,7 +21,7 @@ the existing emoji if you don't specify one, so if you don't want
 to change it, you'll still need to specify it again.
 
 ```
-clilol update status [flags]
+clilol update status [id] [text] [flags]
 ```
 
 ### Options
@@ -29,8 +29,6 @@ clilol update status [flags]
 ```
   -e, --emoji string   emoji to add to status (default sparkles)
   -h, --help           help for status
-  -i, --id string      ID of the status to update
-  -t, --text string    new status text
 ```
 
 ### SEE ALSO

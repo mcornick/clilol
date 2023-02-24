@@ -9,20 +9,17 @@ Delete a DNS record
 
 Deletes a DNS record.
 
-Specify the record ID with the --id flag.
-
 Note that you won't be asked to confirm deletion.
 Be sure you know what you're doing.
 
 ```
-clilol delete dns [flags]
+clilol delete dns [id] [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help        help for dns
-  -i, --id string   ID of the DNS record to delete
+  -h, --help   help for dns
 ```
 
 ### SEE ALSO

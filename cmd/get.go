@@ -15,7 +15,7 @@ import (
 var getCmd = &cobra.Command{
 	Use:   "get",
 	Short: "Get things",
-	Long:  `These commands get things.`,
+	Long:  "These commands get things.",
 }
 
 func init() {

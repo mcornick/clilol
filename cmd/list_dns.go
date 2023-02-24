@@ -21,7 +21,7 @@ import (
 var listDNSCmd = &cobra.Command{
 	Use:   "dns",
 	Short: "List your dns records",
-	Long:  `Lists all of your DNS records.`,
+	Long:  "Lists all of your DNS records.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {

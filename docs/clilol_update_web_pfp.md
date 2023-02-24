@@ -9,17 +9,14 @@ set your profile picture
 
 Sets your profile picture.
 
-Specify an image file with the --filename flag.
-
 ```
-clilol update web pfp [flags]
+clilol update web pfp [filename] [flags]
 ```
 
 ### Options
 
 ```
-  -f, --filename string   file to read PFP from (default stdin)
-  -h, --help              help for pfp
+  -h, --help   help for pfp
 ```
 
 ### SEE ALSO

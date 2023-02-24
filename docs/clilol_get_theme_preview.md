@@ -9,14 +9,12 @@ Get theme preview
 
 Gets an HTML preview of a theme.
 
-Specify the theme name with the --name flag.
-
 If you specify a filename with the --filename flag, the content will be written
 to that file. If you do not specify a filename, the content will be written
 to stdout.
 
 ```
-clilol get theme preview [flags]
+clilol get theme preview [theme-name] [flags]
 ```
 
 ### Options
@@ -24,7 +22,6 @@ clilol get theme preview [flags]
 ```
   -f, --filename string   file to write preview to (default stdout)
   -h, --help              help for preview
-  -n, --name string       name of the theme
 ```
 
 ### SEE ALSO

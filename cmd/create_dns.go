@@ -19,19 +19,13 @@ import (
 )
 
 var (
-	createDNSType     string
-	createDNSData     string
 	createDNSPriority int
 	createDNSTTL      int
 	createDNSCmd      = &cobra.Command{
-		Use:   "dns",
+		Use:   "dns [name] [type] [data]",
 		Short: "Create a DNS record",
-		Long: `Creates a DNS record.
-
-Specify the type of DNS record with the --type flag,
-the name of the record with the --name flag,
-and the data with the --data flag.`,
-		Args: cobra.NoArgs,
+		Long:  "Creates a DNS record.",
+		Args:  cobra.ExactArgs(3),
 		Run: func(cmd *cobra.Command, args []string) {
 			type Input struct {
 				Type     string `json:"type"`
@@ -66,7 +60,7 @@ and the data with the --data flag.`,
 				} `json:"response"`
 			}
 			var result Result
-			dns := Input{createDNSType, nameFlag, createDNSData, createDNSPriority, createDNSTTL}
+			dns := Input{args[2], args[1], args[3], createDNSPriority, createDNSTTL}
 			body := callAPIWithParams(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/dns",
@@ -85,27 +79,6 @@ and the data with the --data flag.`,
 )
 
 func init() {
-	createDNSCmd.Flags().StringVarP(
-		&createDNSType,
-		"type",
-		"t",
-		"",
-		"type of DNS record to create",
-	)
-	createDNSCmd.Flags().StringVarP(
-		&nameFlag,
-		"name",
-		"n",
-		"",
-		"name of the DNS record to create",
-	)
-	createDNSCmd.Flags().StringVarP(
-		&createDNSData,
-		"data",
-		"d",
-		"",
-		"data to store in the DNS record",
-	)
 	createDNSCmd.Flags().IntVarP(
 		&createDNSPriority,
 		"priority",
@@ -120,11 +93,5 @@ func init() {
 		3600,
 		"time to live of the DNS record",
 	)
-	err := createDNSCmd.MarkFlagRequired("type")
-	cobra.CheckErr(err)
-	err = createDNSCmd.MarkFlagRequired("name")
-	cobra.CheckErr(err)
-	err = createDNSCmd.MarkFlagRequired("data")
-	cobra.CheckErr(err)
 	createCmd.AddCommand(createDNSCmd)
 }

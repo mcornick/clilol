@@ -18,15 +18,13 @@ import (
 )
 
 var deleteAccountSessionCmd = &cobra.Command{
-	Use:   "session",
+	Use:   "session [id]",
 	Short: "Delete a session",
 	Long: `Deletes an active session, logging it out.
 
-Specify the session ID with the --id flag.
-
 Note that you won't be asked to confirm deletion.
 Be sure you know what you're doing.`,
-	Args: cobra.NoArgs,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
 			Request  responseRequest `json:"request"`
@@ -37,7 +35,7 @@ Be sure you know what you're doing.`,
 		var result Result
 		body := callAPIWithParams(
 			http.MethodDelete,
-			"/account/"+viper.GetString("email")+"/sessions/"+idFlag,
+			"/account/"+viper.GetString("email")+"/sessions/"+args[0],
 			nil,
 			true,
 		)
@@ -52,14 +50,5 @@ Be sure you know what you're doing.`,
 }
 
 func init() {
-	deleteAccountSessionCmd.Flags().StringVarP(
-		&idFlag,
-		"id",
-		"i",
-		"",
-		"ID of the session to delete",
-	)
-	err := deleteAccountSessionCmd.MarkFlagRequired("id")
-	cobra.CheckErr(err)
 	deleteAccountCmd.AddCommand(deleteAccountSessionCmd)
 }

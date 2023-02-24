@@ -21,10 +21,8 @@ import (
 var getWeblogCmd = &cobra.Command{
 	Use:   "weblog",
 	Short: "Get a weblog entry",
-	Long: `Gets one of your weblog entries by ID.
-
-Specify the ID with the --id flag.`,
-	Args: cobra.NoArgs,
+	Long:  "Gets one of your weblog entries by ID.",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
 			Request  responseRequest `json:"request"`
@@ -49,7 +47,7 @@ Specify the ID with the --id flag.`,
 		var result Result
 		body := callAPIWithParams(
 			http.MethodGet,
-			"/address/"+viper.GetString("address")+"/weblog/entry/"+idFlag,
+			"/address/"+viper.GetString("address")+"/weblog/entry/"+args[0],
 			nil,
 			true,
 		)
@@ -74,14 +72,5 @@ Specify the ID with the --id flag.`,
 }
 
 func init() {
-	getWeblogCmd.Flags().StringVarP(
-		&idFlag,
-		"id",
-		"i",
-		"",
-		"ID of the entry to get",
-	)
-	err := getWeblogCmd.MarkFlagRequired("id")
-	cobra.CheckErr(err)
 	getCmd.AddCommand(getWeblogCmd)
 }

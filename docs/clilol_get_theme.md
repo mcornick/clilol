@@ -9,17 +9,14 @@ Get theme information
 
 Gets information about a theme.
 
-Specify the theme name with the --name flag.
-
 ```
-clilol get theme [flags]
+clilol get theme [theme-name] [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help          help for theme
-  -n, --name string   name of the theme
+  -h, --help   help for theme
 ```
 
 ### SEE ALSO

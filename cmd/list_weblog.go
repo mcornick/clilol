@@ -22,7 +22,7 @@ import (
 var listWeblogCmd = &cobra.Command{
 	Use:   "weblog",
 	Short: "List all weblog entries",
-	Long:  `Lists all of your weblog entries.`,
+	Long:  "Lists all of your weblog entries.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {

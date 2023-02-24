@@ -15,16 +15,13 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 var getAddressInfoPrivateCmd = &cobra.Command{
-	Use:   "private",
+	Use:   "private [name]",
 	Short: "Get private information about an address",
-	Long: `Gets private information about an address.
-	
-Specify the address with the --address flag.`,
-	Args: cobra.NoArgs,
+	Long:  "Gets private information about an address.",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
 			Request  responseRequest `json:"request"`
@@ -55,12 +52,9 @@ Specify the address with the --address flag.`,
 			} `json:"response"`
 		}
 		var result Result
-		if addressFlag == "" {
-			addressFlag = viper.GetString("address")
-		}
 		body := callAPIWithParams(
 			http.MethodGet,
-			"/address/"+addressFlag+"/info",
+			"/address/"+args[0]+"/info",
 			nil,
 			true,
 		)
@@ -77,14 +71,5 @@ Specify the address with the --address flag.`,
 }
 
 func init() {
-	getAddressInfoPrivateCmd.Flags().StringVarP(
-		&addressFlag,
-		"address",
-		"a",
-		"",
-		"address whose info to get",
-	)
-	err := getAddressInfoPrivateCmd.MarkFlagRequired("address")
-	cobra.CheckErr(err)
 	getAddressInfoCmd.AddCommand(getAddressInfoPrivateCmd)
 }

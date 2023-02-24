@@ -9,7 +9,6 @@ Create a status
 
 Posts a status to status.lol.
 
-Specify the status text with the --text flag.
 Quote the text if it contains spaces.
 
 You can specify an emoji with the --emoji flag. This must be an
@@ -21,7 +20,7 @@ settings, you can skip cross-posting to Mastodon by setting the
 --skip-mastodon-post flag.
 
 ```
-clilol create status [flags]
+clilol create status [text] [flags]
 ```
 
 ### Options
@@ -30,7 +29,6 @@ clilol create status [flags]
   -e, --emoji string         emoji to add to status (default sparkles)
   -h, --help                 help for status
       --skip-mastodon-post   do not cross-post to Mastodon
-  -t, --text string          status text
 ```
 
 ### SEE ALSO

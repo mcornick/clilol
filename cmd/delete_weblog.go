@@ -18,15 +18,13 @@ import (
 )
 
 var deleteWeblogCmd = &cobra.Command{
-	Use:   "weblog",
+	Use:   "weblog [id]",
 	Short: "Delete a weblog entry",
 	Long: `Deletes a weblog entry.
 
-Specify the weblog entry ID with the --id flag.
-
 Note that you won't be asked to confirm deletion.
 Be sure you know what you're doing.`,
-	Args: cobra.NoArgs,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
 			Request  responseRequest `json:"request"`
@@ -37,7 +35,7 @@ Be sure you know what you're doing.`,
 		var result Result
 		body := callAPIWithParams(
 			http.MethodDelete,
-			"/address/"+viper.GetString("address")+"/weblog/delete/"+idFlag,
+			"/address/"+viper.GetString("address")+"/weblog/delete/"+args[0],
 			nil,
 			true,
 		)
@@ -52,14 +50,5 @@ Be sure you know what you're doing.`,
 }
 
 func init() {
-	deleteWeblogCmd.Flags().StringVarP(
-		&idFlag,
-		"id",
-		"i",
-		"",
-		"ID of the weblog entry to delete",
-	)
-	err := deleteWeblogCmd.MarkFlagRequired("id")
-	cobra.CheckErr(err)
 	deleteCmd.AddCommand(deleteWeblogCmd)
 }

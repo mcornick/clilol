@@ -20,7 +20,7 @@ import (
 var getAccountSettingsCmd = &cobra.Command{
 	Use:   "settings",
 	Short: "Get your account settings",
-	Long:  `Gets the settings on your account.`,
+	Long:  "Gets the settings on your account.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {

@@ -20,17 +20,14 @@ import (
 
 var (
 	getPasteFilename string
-	getPasteTitle    string
 	getPasteCmd      = &cobra.Command{
-		Use:   "paste",
+		Use:   "paste [title]",
 		Short: "Get a paste",
 		Long: `Gets a paste by title.
 
-Specify the title with the --title flag.
-
 The address can be specified with the --address flag. If not set,
 it defaults to your own address.`,
-		Args: cobra.NoArgs,
+		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			type Result struct {
 				Request  responseRequest `json:"request"`
@@ -49,7 +46,7 @@ it defaults to your own address.`,
 			}
 			body := callAPIWithParams(
 				http.MethodGet,
-				"/address/"+addressFlag+"/pastebin/"+getPasteTitle,
+				"/address/"+addressFlag+"/pastebin/"+args[0],
 				nil,
 				true,
 			)
@@ -78,20 +75,11 @@ func init() {
 		"address whose paste to get",
 	)
 	getPasteCmd.Flags().StringVarP(
-		&getPasteTitle,
-		"title",
-		"t",
-		"",
-		"title of the paste to get",
-	)
-	getPasteCmd.Flags().StringVarP(
 		&getPasteFilename,
 		"filename",
 		"f",
 		"",
 		"file to write paste to (default stdout)",
 	)
-	err := getPasteCmd.MarkFlagRequired("title")
-	cobra.CheckErr(err)
 	getCmd.AddCommand(getPasteCmd)
 }

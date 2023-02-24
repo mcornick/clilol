@@ -18,20 +18,16 @@ import (
 )
 
 var (
-	createPURLURL    string
 	createPURLListed bool
 	createPURLCmd    = &cobra.Command{
-		Use:   "purl",
+		Use:   "purl [name] [url]",
 		Short: "Create a PURL",
 		Long: `Creates a PURL.
-
-Specify the PURL name with the --name flag, and the URL with the
---url flag.
 
 The PURL will be created as unlisted by default. To create a listed
 PURL, use the --listed flag.
 `,
-		Args: cobra.NoArgs,
+		Args: cobra.ExactArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
 			type Input struct {
 				Name   string `json:"name"`
@@ -47,7 +43,7 @@ PURL, use the --listed flag.
 				} `json:"response"`
 			}
 			var result Result
-			purl := Input{nameFlag, createPURLURL, createPURLListed}
+			purl := Input{args[0], args[1], createPURLListed}
 			body := callAPIWithParams(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/purl",
@@ -66,20 +62,6 @@ PURL, use the --listed flag.
 )
 
 func init() {
-	createPURLCmd.Flags().StringVarP(
-		&nameFlag,
-		"name",
-		"n",
-		"",
-		"name of the PURL",
-	)
-	createPURLCmd.Flags().StringVarP(
-		&createPURLURL,
-		"url",
-		"u",
-		"",
-		"URL to redirect to",
-	)
 	createPURLCmd.Flags().BoolVarP(
 		&createPURLListed,
 		"listed",
@@ -87,9 +69,5 @@ func init() {
 		false,
 		"create as listed (default false)",
 	)
-	err := createPURLCmd.MarkFlagRequired("name")
-	cobra.CheckErr(err)
-	err = createPURLCmd.MarkFlagRequired("url")
-	cobra.CheckErr(err)
 	createCmd.AddCommand(createPURLCmd)
 }

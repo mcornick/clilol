@@ -15,7 +15,7 @@ import (
 var updateCmd = &cobra.Command{
 	Use:   "update",
 	Short: "Update things",
-	Long:  `These commands update things.`,
+	Long:  "These commands update things.",
 }
 
 func init() {

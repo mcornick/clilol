@@ -21,7 +21,7 @@ import (
 var getAccountInfoCmd = &cobra.Command{
 	Use:   "info",
 	Short: "Get info about your account",
-	Long:  `Gets information about your account`,
+	Long:  "Gets information about your account",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {

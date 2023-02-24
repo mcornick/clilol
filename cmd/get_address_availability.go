@@ -14,16 +14,13 @@ import (
 	"net/http"
 
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 var getAddressAvailabilityCmd = &cobra.Command{
-	Use:   "availability",
+	Use:   "availability [address]",
 	Short: "Get address availability",
-	Long: `Gets the availability of an address.
-	
-Specify the address with the --address flag.`,
-	Args: cobra.NoArgs,
+	Long:  "Gets the availability of an address.",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
 			Request  responseRequest `json:"request"`
@@ -37,12 +34,9 @@ Specify the address with the --address flag.`,
 			} `json:"response"`
 		}
 		var result Result
-		if addressFlag == "" {
-			addressFlag = viper.GetString("address")
-		}
 		body := callAPIWithParams(
 			http.MethodGet,
-			"/address/"+addressFlag+"/availability",
+			"/address/"+args[0]+"/availability",
 			nil,
 			false,
 		)
@@ -63,14 +57,5 @@ Specify the address with the --address flag.`,
 }
 
 func init() {
-	getAddressAvailabilityCmd.Flags().StringVarP(
-		&addressFlag,
-		"address",
-		"a",
-		"",
-		"address whose availability to get",
-	)
-	err := getAddressAvailabilityCmd.MarkFlagRequired("address")
-	cobra.CheckErr(err)
 	getAddressCmd.AddCommand(getAddressAvailabilityCmd)
 }

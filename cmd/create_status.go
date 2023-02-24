@@ -19,14 +19,12 @@ import (
 
 var (
 	createStatusEmoji            string
-	createStatusStatus           string
 	createStatusSkipMastodonPost bool
 	createStatusCmd              = &cobra.Command{
-		Use:   "status",
+		Use:   "status [text]",
 		Short: "Create a status",
 		Long: `Posts a status to status.lol.
 
-Specify the status text with the --text flag.
 Quote the text if it contains spaces.
 
 You can specify an emoji with the --emoji flag. This must be an
@@ -36,7 +34,7 @@ emoji will be used.
 If you have enabled cross-posting to Mastodon in your statuslog
 settings, you can skip cross-posting to Mastodon by setting the
 --skip-mastodon-post flag.`,
-		Args: cobra.NoArgs,
+		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			type Input struct {
 				Emoji            string `json:"emoji"`
@@ -56,7 +54,7 @@ settings, you can skip cross-posting to Mastodon by setting the
 			var result Result
 			status := Input{
 				createStatusEmoji,
-				createStatusStatus,
+				args[0],
 				createStatusSkipMastodonPost,
 			}
 			body := callAPIWithParams(
@@ -84,20 +82,11 @@ func init() {
 		"",
 		"emoji to add to status (default sparkles)",
 	)
-	createStatusCmd.Flags().StringVarP(
-		&createStatusStatus,
-		"text",
-		"t",
-		"",
-		"status text",
-	)
 	createStatusCmd.Flags().BoolVar(
 		&createStatusSkipMastodonPost,
 		"skip-mastodon-post",
 		false,
 		"do not cross-post to Mastodon",
 	)
-	err := createStatusCmd.MarkFlagRequired("text")
-	cobra.CheckErr(err)
 	createCmd.AddCommand(createStatusCmd)
 }

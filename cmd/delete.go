@@ -15,7 +15,7 @@ import (
 var deleteCmd = &cobra.Command{
 	Use:   "delete",
 	Short: "Delete things",
-	Long:  `These commands delete things.`,
+	Long:  "These commands delete things.",
 }
 
 func init() {

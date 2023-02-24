@@ -15,7 +15,7 @@ import (
 var updateWeblogCmd = &cobra.Command{
 	Use:   "weblog",
 	Short: "set your weblog config",
-	Long:  `The account get group of commands allows you to set your weblog.lol configuration.`,
+	Long:  "The account get group of commands allows you to set your weblog.lol configuration.",
 }
 
 func init() {

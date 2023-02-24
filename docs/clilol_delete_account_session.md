@@ -9,20 +9,17 @@ Delete a session
 
 Deletes an active session, logging it out.
 
-Specify the session ID with the --id flag.
-
 Note that you won't be asked to confirm deletion.
 Be sure you know what you're doing.
 
 ```
-clilol delete account session [flags]
+clilol delete account session [id] [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help        help for session
-  -i, --id string   ID of the session to delete
+  -h, --help   help for session
 ```
 
 ### SEE ALSO

@@ -20,15 +20,13 @@ import (
 )
 
 var getStatusCmd = &cobra.Command{
-	Use:   "status",
+	Use:   "status [id]",
 	Short: "Get status",
 	Long: `Gets a single status for a single user from status.lol.
 
-Specify the status ID with the --id flag.
-
 The address can be specified with the --address flag. If not set,
 it defaults to your own address.`,
-	Args: cobra.NoArgs,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
 			Request  responseRequest `json:"request"`
@@ -49,7 +47,7 @@ it defaults to your own address.`,
 		}
 		body := callAPIWithParams(
 			http.MethodGet,
-			"/address/"+addressFlag+"/statuses/"+idFlag,
+			"/address/"+addressFlag+"/statuses/"+args[0],
 			nil,
 			false,
 		)
@@ -83,14 +81,5 @@ func init() {
 		"",
 		"address whose status to get",
 	)
-	getStatusCmd.Flags().StringVarP(
-		&idFlag,
-		"id",
-		"i",
-		"",
-		"ID of the status to get",
-	)
-	err := getStatusCmd.MarkFlagRequired("id")
-	cobra.CheckErr(err)
 	getCmd.AddCommand(getStatusCmd)
 }

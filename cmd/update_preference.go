@@ -17,67 +17,42 @@ import (
 	"github.com/spf13/viper"
 )
 
-var (
-	updatePreferenceItem  string
-	updatePreferenceValue string
-	updatePreferenceCmd   = &cobra.Command{
-		Use:   "preference",
-		Short: "set a preference",
-		Long: `Sets omg.lol preferences.
-
-Specify the preference item with the --item flag, and the value with
-the --value flag.`,
-		Args: cobra.NoArgs,
-		Run: func(cmd *cobra.Command, args []string) {
-			type Input struct {
-				Item  string `json:"item"`
-				Value string `json:"value"`
-			}
-			type Result struct {
-				Request  responseRequest `json:"request"`
-				Response struct {
-					Message string `json:"message"`
-					Item    string `json:"item"`
-					Value   string `json:"value"`
-				} `json:"response"`
-			}
-			var result Result
-			pref := Input{updatePreferenceItem, updatePreferenceValue}
-			body := callAPIWithParams(
-				http.MethodPost,
-				"/preferences/"+viper.GetString("address"),
-				pref,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
-			cobra.CheckErr(err)
-			if result.Request.Success {
-				fmt.Println(result.Response.Message)
-			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
-			}
-		},
-	}
-)
+var updatePreferenceCmd = &cobra.Command{
+	Use:   "preference [item] [value]",
+	Short: "set a preference",
+	Long:  "Sets omg.lol preferences.",
+	Args:  cobra.ExactArgs(2),
+	Run: func(cmd *cobra.Command, args []string) {
+		type Input struct {
+			Item  string `json:"item"`
+			Value string `json:"value"`
+		}
+		type Result struct {
+			Request  responseRequest `json:"request"`
+			Response struct {
+				Message string `json:"message"`
+				Item    string `json:"item"`
+				Value   string `json:"value"`
+			} `json:"response"`
+		}
+		var result Result
+		pref := Input{args[0], args[1]}
+		body := callAPIWithParams(
+			http.MethodPost,
+			"/preferences/"+viper.GetString("address"),
+			pref,
+			true,
+		)
+		err := json.Unmarshal(body, &result)
+		cobra.CheckErr(err)
+		if result.Request.Success {
+			fmt.Println(result.Response.Message)
+		} else {
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+		}
+	},
+}
 
 func init() {
-	updatePreferenceCmd.Flags().StringVarP(
-		&updatePreferenceItem,
-		"item",
-		"i",
-		"",
-		"preference item to set",
-	)
-	updatePreferenceCmd.Flags().StringVarP(
-		&updatePreferenceValue,
-		"value",
-		"v",
-		"",
-		"value to set it to",
-	)
-	err := updatePreferenceCmd.MarkFlagRequired("item")
-	cobra.CheckErr(err)
-	err = updatePreferenceCmd.MarkFlagRequired("value")
-	cobra.CheckErr(err)
 	updateCmd.AddCommand(updatePreferenceCmd)
 }

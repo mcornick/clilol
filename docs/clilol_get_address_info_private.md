@@ -8,18 +8,15 @@ Get private information about an address
 ### Synopsis
 
 Gets private information about an address.
-	
-Specify the address with the --address flag.
 
 ```
-clilol get address info private [flags]
+clilol get address info private [name] [flags]
 ```
 
 ### Options
 
 ```
-  -a, --address string   address whose info to get
-  -h, --help             help for private
+  -h, --help   help for private
 ```
 
 ### SEE ALSO

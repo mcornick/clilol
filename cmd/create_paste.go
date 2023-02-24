@@ -20,17 +20,15 @@ import (
 )
 
 var (
-	createPasteTitle    string
 	createPasteFilename string
 	createPasteListed   bool
 	createPasteCmd      = &cobra.Command{
-		Use:   "paste",
+		Use:   "paste [title]",
 		Short: "Create or update a paste",
 		Long: `Create or update a paste in your pastebin.
 
-Specify a title with the --title flag. If the title is already in use,
-that paste will be updated. If the title is not in use, a new paste will
-be created.
+If the specified title is already in use, that paste will be updated.
+If the title is not in use, a new paste will be created.
 
 If you specify a filename with the --filename flag, the content of the file
 will be used. If you do not specify a filename, the content will be read
@@ -38,7 +36,7 @@ from stdin.
 
 The paste will be created as unlisted by default. To create a listed
 paste, use the --listed flag.`,
-		Args: cobra.NoArgs,
+		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			type Input struct {
 				Title   string `json:"title"`
@@ -69,7 +67,7 @@ paste, use the --listed flag.`,
 			} else {
 				listed = 0
 			}
-			paste := Input{createPasteTitle, content, listed}
+			paste := Input{args[0], content, listed}
 			body := callAPIWithParams(
 				http.MethodPost,
 				"/address/"+viper.GetString("address")+"/pastebin",
@@ -89,13 +87,6 @@ paste, use the --listed flag.`,
 
 func init() {
 	createPasteCmd.Flags().StringVarP(
-		&createPasteTitle,
-		"title",
-		"t",
-		"",
-		"title of the paste to create",
-	)
-	createPasteCmd.Flags().StringVarP(
 		&createPasteFilename,
 		"filename",
 		"f",
@@ -109,7 +100,5 @@ func init() {
 		false,
 		"create paste as listed (default false)",
 	)
-	err := createPasteCmd.MarkFlagRequired("title")
-	cobra.CheckErr(err)
 	createCmd.AddCommand(createPasteCmd)
 }

@@ -9,13 +9,11 @@ Get status
 
 Gets a single status for a single user from status.lol.
 
-Specify the status ID with the --id flag.
-
 The address can be specified with the --address flag. If not set,
 it defaults to your own address.
 
 ```
-clilol get status [flags]
+clilol get status [id] [flags]
 ```
 
 ### Options
@@ -23,7 +21,6 @@ clilol get status [flags]
 ```
   -a, --address string   address whose status to get
   -h, --help             help for status
-  -i, --id string        ID of the status to get
 ```
 
 ### SEE ALSO

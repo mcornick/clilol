@@ -9,20 +9,17 @@ Delete a PURL
 
 Deletes a PURL.
 
-Specify the PURL name with the --name flag.
-
 Note that you won't be asked to confirm deletion.
 Be sure you know what you're doing.
 
 ```
-clilol delete purl [flags]
+clilol delete purl [name] [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help          help for purl
-  -n, --name string   name of the PURL to delete
+  -h, --help   help for purl
 ```
 
 ### SEE ALSO

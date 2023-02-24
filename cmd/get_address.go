@@ -15,7 +15,7 @@ import (
 var getAddressCmd = &cobra.Command{
 	Use:   "address",
 	Short: "Get information about an address",
-	Long:  `The address get group of commands gets information about omg.lol addresses.`,
+	Long:  "The address get group of commands gets information about omg.lol addresses.",
 }
 
 func init() {
