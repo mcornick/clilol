@@ -12,14 +12,13 @@ Sets your email forwarding address(es).
 To specify multiple addresses, separate them with commas.
 
 ```
-clilol update email [flags]
+clilol update email [address] [flags]
 ```
 
 ### Options
 
 ```
-  -d, --destination string   address(es) to forward to
-  -h, --help                 help for email
+  -h, --help   help for email
 ```
 
 ### SEE ALSO

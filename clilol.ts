@@ -676,6 +676,9 @@ const completionSpec: Fig.Spec = {
             {
               name: ["email"],
               description: "set email forwarding address(es)",
+              args: [
+                { name: "address", description: "address(es) to forward to" },
+              ],
             },
             {
               name: ["preference"],
