@@ -42,7 +42,10 @@ type responseRequest struct {
 }
 
 func Execute() {
-	rootCmd.Execute()
+	err := rootCmd.Execute()
+	if err != nil {
+		os.Exit(1)
+	}
 }
 
 func init() {
