@@ -16,36 +16,35 @@ import (
 	"github.com/spf13/cobra"
 )
 
+type Theme struct {
+	ID            string `json:"id"`
+	Name          string `json:"name"`
+	Created       string `json:"created"`
+	Updated       string `json:"updated"`
+	Author        string `json:"author"`
+	AuthorURL     string `json:"author_url"`
+	Version       string `json:"version"`
+	License       string `json:"license"`
+	Description   string `json:"description"`
+	PreviewCSS    string `json:"preview_css"`
+	SampleProfile string `json:"sample_profile"`
+	ThemeColor    string `json:"theme-color"`
+}
+type listThemeOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string           `json:"message"`
+		Themes  map[string]Theme `json:"themes"`
+	} `json:"response"`
+}
+
 var listThemeCmd = &cobra.Command{
 	Use:   "theme",
 	Short: "List profile themes",
 	Long:  "Lists the available profile themes.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type Theme struct {
-			ID            string `json:"id"`
-			Name          string `json:"name"`
-			Created       string `json:"created"`
-			Updated       string `json:"updated"`
-			Author        string `json:"author"`
-			AuthorURL     string `json:"author_url"`
-			Version       string `json:"version"`
-			License       string `json:"license"`
-			Description   string `json:"description"`
-			PreviewCSS    string `json:"preview_css"`
-			SampleProfile string `json:"sample_profile"`
-			ThemeColor    string `json:"theme-color"`
-		}
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string           `json:"message"`
-				Themes  map[string]Theme `json:"themes"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(http.MethodGet, "/theme/list", nil, false)
-		err := json.Unmarshal(body, &result)
+		result, err := listTheme()
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -60,4 +59,11 @@ var listThemeCmd = &cobra.Command{
 
 func init() {
 	listCmd.AddCommand(listThemeCmd)
+}
+
+func listTheme() (listThemeOutput, error) {
+	var result listThemeOutput
+	body := callAPIWithParams(http.MethodGet, "/theme/list", nil, false)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

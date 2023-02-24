@@ -18,49 +18,43 @@ import (
 	"github.com/spf13/viper"
 )
 
+type listAccountAddressesOutput struct {
+	Request  resultRequest `json:"request"`
+	Response []struct {
+		Address      string `json:"address"`
+		Message      string `json:"message"`
+		Registration struct {
+			Message       string    `json:"message"`
+			UnixEpochTime int       `json:"unix_epoch_time"`
+			ISO8601Time   time.Time `json:"iso_8601_time"`
+			RFC2822Time   string    `json:"rfc_2822_time"`
+			RelativeTime  string    `json:"relative_time"`
+		} `json:"registration"`
+		Expiration struct {
+			Expired       bool      `json:"expired"`
+			WillExpire    bool      `json:"will_expire"`
+			UnixEpochTime int       `json:"unix_epoch_time"`
+			ISO8601Time   time.Time `json:"iso_8601_time"`
+			RFC2822Time   string    `json:"rfc_2822_time"`
+			RelativeTime  string    `json:"relative_time"`
+		} `json:"expiration"`
+		Preferences struct {
+			IncludeInDirectory string `json:"include_in_directory"`
+			ShowOnDashboard    string `json:"show_on_dashboard"`
+			Statuslog          struct {
+				MastodonPosting bool `json:"mastodon_posting"`
+			} `json:"statuslog"`
+		} `json:"preferences"`
+	} `json:"response"`
+}
+
 var listAccountAddressesCmd = &cobra.Command{
 	Use:   "addresses",
 	Short: "List your addresses",
 	Long:  "Lists the addresses on your account.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response []struct {
-				Address      string `json:"address"`
-				Message      string `json:"message"`
-				Registration struct {
-					Message       string    `json:"message"`
-					UnixEpochTime int       `json:"unix_epoch_time"`
-					ISO8601Time   time.Time `json:"iso_8601_time"`
-					RFC2822Time   string    `json:"rfc_2822_time"`
-					RelativeTime  string    `json:"relative_time"`
-				} `json:"registration"`
-				Expiration struct {
-					Expired       bool      `json:"expired"`
-					WillExpire    bool      `json:"will_expire"`
-					UnixEpochTime int       `json:"unix_epoch_time"`
-					ISO8601Time   time.Time `json:"iso_8601_time"`
-					RFC2822Time   string    `json:"rfc_2822_time"`
-					RelativeTime  string    `json:"relative_time"`
-				} `json:"expiration"`
-				Preferences struct {
-					IncludeInDirectory string `json:"include_in_directory"`
-					ShowOnDashboard    string `json:"show_on_dashboard"`
-					Statuslog          struct {
-						MastodonPosting bool `json:"mastodon_posting"`
-					} `json:"statuslog"`
-				} `json:"preferences"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/account/"+viper.GetString("email")+"/addresses",
-			nil,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := listAccountAddresses()
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			for _, address := range result.Response {
@@ -76,4 +70,17 @@ var listAccountAddressesCmd = &cobra.Command{
 
 func init() {
 	listAccountCmd.AddCommand(listAccountAddressesCmd)
+}
+
+func listAccountAddresses() (listAccountAddressesOutput, error) {
+	var result listAccountAddressesOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/account/"+viper.GetString("email")+"/addresses",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	cobra.CheckErr(err)
+	return result, err
 }

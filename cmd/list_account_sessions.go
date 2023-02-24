@@ -18,30 +18,24 @@ import (
 	"github.com/spf13/viper"
 )
 
+type listAccountSessionsOutput struct {
+	Request  resultRequest `json:"request"`
+	Response []struct {
+		SessionID string `json:"session_id"`
+		UserAgent string `json:"user_agent"`
+		CreatedIP string `json:"created_ip"`
+		CreatedOn int64  `json:"created_on"`
+		ExpiresOn int64  `json:"expires_on"`
+	} `json:"response"`
+}
+
 var listAccountSessionsCmd = &cobra.Command{
 	Use:   "sessions",
 	Short: "List your sessions",
 	Long:  "Lists the active sessions on your account.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response []struct {
-				SessionID string `json:"session_id"`
-				UserAgent string `json:"user_agent"`
-				CreatedIP string `json:"created_ip"`
-				CreatedOn int64  `json:"created_on"`
-				ExpiresOn int64  `json:"expires_on"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/account/"+viper.GetString("email")+"/sessions",
-			nil,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := listAccountSessions()
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			for _, session := range result.Response {
@@ -58,4 +52,16 @@ var listAccountSessionsCmd = &cobra.Command{
 
 func init() {
 	listAccountCmd.AddCommand(listAccountSessionsCmd)
+}
+
+func listAccountSessions() (listAccountSessionsOutput, error) {
+	var result listAccountSessionsOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/account/"+viper.GetString("email")+"/sessions",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }
