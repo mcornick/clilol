@@ -32,7 +32,7 @@ CSS. You'll need to do that on the website.`,
 			Content string `json:"content"`
 		}
 		type Result struct {
-			Request  responseRequest `json:"request"`
+			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
 				URL     string `json:"url"`

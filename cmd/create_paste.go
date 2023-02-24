@@ -44,7 +44,7 @@ paste, use the --listed flag.`,
 				Listed  int    `json:"listed,omitempty"`
 			}
 			type Result struct {
-				Request  responseRequest `json:"request"`
+				Request  resultRequest `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 					Title   string `json:"title"`

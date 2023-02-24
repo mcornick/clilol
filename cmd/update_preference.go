@@ -28,7 +28,7 @@ var updatePreferenceCmd = &cobra.Command{
 			Value string `json:"value"`
 		}
 		type Result struct {
-			Request  responseRequest `json:"request"`
+			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
 				Item    string `json:"item"`

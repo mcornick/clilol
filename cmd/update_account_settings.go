@@ -35,7 +35,7 @@ Specify the new settings with the flags listed below.`,
 				WebEditor     string `json:"web_editor,omitempty"`
 			}
 			type Result struct {
-				Request  responseRequest `json:"request"`
+				Request  resultRequest `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 				} `json:"response"`

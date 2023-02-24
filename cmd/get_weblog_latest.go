@@ -25,7 +25,7 @@ var getWeblogLatestCmd = &cobra.Command{
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
-			Request  responseRequest `json:"request"`
+			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
 				Post    struct {

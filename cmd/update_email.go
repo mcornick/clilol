@@ -31,7 +31,7 @@ To specify multiple addresses, separate them with commas.`,
 				Destination string `json:"destination"`
 			}
 			type Result struct {
-				Request  responseRequest `json:"request"`
+				Request  resultRequest `json:"request"`
 				Response struct {
 					Message           string   `json:"message"`
 					DestinationString string   `json:"destination_string"`

@@ -25,7 +25,7 @@ var listAccountAddressesCmd = &cobra.Command{
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
-			Request  responseRequest `json:"request"`
+			Request  resultRequest `json:"request"`
 			Response []struct {
 				Address      string `json:"address"`
 				Message      string `json:"message"`

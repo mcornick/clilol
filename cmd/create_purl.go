@@ -35,7 +35,7 @@ PURL, use the --listed flag.
 				Listed bool   `json:"listed,omitempty"`
 			}
 			type Result struct {
-				Request  responseRequest `json:"request"`
+				Request  resultRequest `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 					Name    string `json:"name"`

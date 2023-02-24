@@ -27,7 +27,7 @@ var updateAccountNameCmd = &cobra.Command{
 			Name string `json:"name"`
 		}
 		type Result struct {
-			Request  responseRequest `json:"request"`
+			Request  resultRequest `json:"request"`
 			Response struct {
 				Message string `json:"message"`
 				Name    string `json:"name"`

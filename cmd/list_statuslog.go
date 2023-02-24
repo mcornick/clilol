@@ -30,7 +30,7 @@ See the status commands to get statuses for a single user.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
 			type Result struct {
-				Request  responseRequest `json:"request"`
+				Request  resultRequest `json:"request"`
 				Response struct {
 					Message  string `json:"message"`
 					Statuses []struct {

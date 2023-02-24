@@ -40,7 +40,7 @@ Now page, use the --listed flag.`,
 				Listed  int    `json:"listed"`
 			}
 			type Result struct {
-				Request  responseRequest `json:"request"`
+				Request  resultRequest `json:"request"`
 				Response struct {
 					Message string `json:"message"`
 				} `json:"response"`

@@ -34,7 +34,7 @@ See the subcommands for more information.`,
 	}
 )
 
-type responseRequest struct {
+type resultRequest struct {
 	StatusCode int  `json:"status_code"`
 	Success    bool `json:"success"`
 }

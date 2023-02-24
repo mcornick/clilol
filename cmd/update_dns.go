@@ -35,7 +35,7 @@ var (
 				TTL      int    `json:"ttl"`
 			}
 			type Result struct {
-				Request  responseRequest `json:"request"`
+				Request  resultRequest `json:"request"`
 				Response struct {
 					Message  string `json:"message"`
 					DataSent struct {

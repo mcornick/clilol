@@ -25,7 +25,7 @@ var listAccountSessionsCmd = &cobra.Command{
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		type Result struct {
-			Request  responseRequest `json:"request"`
+			Request  resultRequest `json:"request"`
 			Response []struct {
 				SessionID string `json:"session_id"`
 				UserAgent string `json:"user_agent"`
