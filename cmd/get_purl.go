@@ -52,7 +52,7 @@ it defaults to your own address.`,
 				true,
 			)
 			err := json.Unmarshal(body, &result)
-			checkError(err)
+			cobra.CheckErr(err)
 			if result.Request.Success {
 				fmt.Printf(
 					"%s: %s (%d hits)\n",
@@ -61,7 +61,7 @@ it defaults to your own address.`,
 					result.Response.PURL.Counter,
 				)
 			} else {
-				checkError(fmt.Errorf(result.Response.Message))
+				cobra.CheckErr(fmt.Errorf(result.Response.Message))
 			}
 		},
 	}

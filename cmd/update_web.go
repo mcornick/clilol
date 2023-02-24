@@ -15,7 +15,6 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -50,11 +49,11 @@ webpage, use the --publish flag.`,
 			var content string
 			if updateWebFilename != "" {
 				input, err := os.ReadFile(updateWebFilename)
-				checkError(err)
+				cobra.CheckErr(err)
 				content = string(input)
 			} else {
 				stdin, err := io.ReadAll(os.Stdin)
-				checkError(err)
+				cobra.CheckErr(err)
 				content = string(stdin)
 			}
 			webPage := Input{updateWebPublish, content}
@@ -65,11 +64,11 @@ webpage, use the --publish flag.`,
 				true,
 			)
 			err := json.Unmarshal(body, &result)
-			checkError(err)
+			cobra.CheckErr(err)
 			if result.Request.Success {
-				log.Info(result.Response.Message)
+				fmt.Println(result.Response.Message)
 			} else {
-				checkError(fmt.Errorf(result.Response.Message))
+				cobra.CheckErr(fmt.Errorf(result.Response.Message))
 			}
 		},
 	}

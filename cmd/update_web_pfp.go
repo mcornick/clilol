@@ -15,7 +15,6 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -38,7 +37,7 @@ Specify an image file with the --filename flag.`,
 			}
 			var result Result
 			content, err := os.ReadFile(updateWebPFPFilename)
-			checkError(err)
+			cobra.CheckErr(err)
 			encoded := "data:text/plain;base64," + base64.StdEncoding.EncodeToString(content)
 			body := callAPIWithRawData(
 				http.MethodPost,
@@ -47,11 +46,11 @@ Specify an image file with the --filename flag.`,
 				true,
 			)
 			err = json.Unmarshal(body, &result)
-			checkError(err)
+			cobra.CheckErr(err)
 			if result.Request.Success {
-				log.Info(result.Response.Message)
+				fmt.Println(result.Response.Message)
 			} else {
-				checkError(fmt.Errorf(result.Response.Message))
+				cobra.CheckErr(fmt.Errorf(result.Response.Message))
 			}
 		},
 	}

@@ -52,14 +52,14 @@ See the status commands to get statuses for a single user.`,
 			var result Result
 			body := callAPIWithParams(http.MethodGet, url, nil, false)
 			err := json.Unmarshal(body, &result)
-			checkError(err)
+			cobra.CheckErr(err)
 			if result.Request.Success {
 				for _, status := range result.Response.Statuses {
 					fmt.Printf("@%s, %s\n", status.Address, status.RelativeTime)
 					fmt.Printf("  %s %s\n", status.Emoji, status.Content)
 				}
 			} else {
-				checkError(fmt.Errorf(result.Response.Message))
+				cobra.CheckErr(fmt.Errorf(result.Response.Message))
 			}
 		},
 	}

@@ -65,13 +65,13 @@ Specify the address with the --address flag.`,
 			true,
 		)
 		err := json.Unmarshal(body, &result)
-		checkError(err)
+		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Registration.Message)
 			fmt.Println(result.Response.Expiration.Message)
 			fmt.Println(result.Response.Verification.Message)
 		} else {
-			checkError(fmt.Errorf(result.Response.Message))
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
 		}
 	},
 }

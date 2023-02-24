@@ -61,7 +61,7 @@ var listAccountAddressesCmd = &cobra.Command{
 			true,
 		)
 		err := json.Unmarshal(body, &result)
-		checkError(err)
+		cobra.CheckErr(err)
 		if result.Request.Success {
 			for _, address := range result.Response {
 				fmt.Println(address.Address)
@@ -69,7 +69,7 @@ var listAccountAddressesCmd = &cobra.Command{
 				fmt.Printf("Registered %s\n", address.Registration.RelativeTime)
 			}
 		} else {
-			checkError(fmt.Errorf("%d", result.Request.StatusCode))
+			cobra.CheckErr(fmt.Errorf("%d", result.Request.StatusCode))
 		}
 	},
 }

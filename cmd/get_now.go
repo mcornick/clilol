@@ -55,16 +55,16 @@ to stdout.`,
 				false,
 			)
 			err := json.Unmarshal(body, &result)
-			checkError(err)
+			cobra.CheckErr(err)
 			if result.Request.Success {
 				if getNowFilename != "" {
 					err = os.WriteFile(getNowFilename, []byte(result.Response.Now.Content), 0o644)
-					checkError(err)
+					cobra.CheckErr(err)
 				} else {
 					fmt.Println(result.Response.Now.Content)
 				}
 			} else {
-				checkError(fmt.Errorf(result.Response.Message))
+				cobra.CheckErr(fmt.Errorf(result.Response.Message))
 			}
 		},
 	}

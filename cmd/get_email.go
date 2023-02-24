@@ -13,7 +13,6 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -42,11 +41,11 @@ var getEmailCmd = &cobra.Command{
 			true,
 		)
 		err := json.Unmarshal(body, &result)
-		checkError(err)
+		cobra.CheckErr(err)
 		if result.Request.Success {
-			log.Info(result.Response.Message)
+			fmt.Println(result.Response.Message)
 		} else {
-			checkError(fmt.Errorf(result.Response.Message))
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
 		}
 	},
 }

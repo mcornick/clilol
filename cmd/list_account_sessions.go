@@ -42,7 +42,7 @@ var listAccountSessionsCmd = &cobra.Command{
 			true,
 		)
 		err := json.Unmarshal(body, &result)
-		checkError(err)
+		cobra.CheckErr(err)
 		if result.Request.Success {
 			for _, session := range result.Response {
 				fmt.Printf("\n%s\n", session.SessionID)
@@ -51,7 +51,7 @@ var listAccountSessionsCmd = &cobra.Command{
 				fmt.Println(time.Unix(session.CreatedOn, 0))
 			}
 		} else {
-			checkError(fmt.Errorf("%d", result.Request.StatusCode))
+			cobra.CheckErr(fmt.Errorf("%d", result.Request.StatusCode))
 		}
 	},
 }

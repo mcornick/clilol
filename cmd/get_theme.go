@@ -53,10 +53,10 @@ Specify the theme name with the --name flag.`,
 			true,
 		)
 		err := json.Unmarshal(body, &result)
-		checkError(err)
+		cobra.CheckErr(err)
 		if result.Request.Success {
 			updatedAt, err := strconv.ParseInt(result.Response.Theme.Updated, 10, 64)
-			checkError(err)
+			cobra.CheckErr(err)
 			fmt.Printf(
 				"%s: %s by %s (%s) updated %s\n",
 				nameFlag,
@@ -66,7 +66,7 @@ Specify the theme name with the --name flag.`,
 				time.Unix(updatedAt, 0),
 			)
 		} else {
-			checkError(fmt.Errorf("%d", result.Request.StatusCode))
+			cobra.CheckErr(fmt.Errorf("%d", result.Request.StatusCode))
 		}
 	},
 }

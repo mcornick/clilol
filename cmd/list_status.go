@@ -59,7 +59,7 @@ See the statuslog commands to get statuses for all users.`,
 				false,
 			)
 			err := json.Unmarshal(body, &result)
-			checkError(err)
+			cobra.CheckErr(err)
 			if listStatusLimit > 0 {
 				result.Response.Statuses = result.Response.Statuses[:listStatusLimit]
 			}
@@ -67,12 +67,12 @@ See the statuslog commands to get statuses for all users.`,
 				for _, status := range result.Response.Statuses {
 					fmt.Printf("\nhttps://status.lol/%s/%s\n", status.Address, status.Id)
 					timestamp, err := strconv.Atoi(status.Created)
-					checkError(err)
+					cobra.CheckErr(err)
 					fmt.Printf("  %s\n", time.Unix(int64(timestamp), 0))
 					fmt.Printf("  %s %s\n", status.Emoji, status.Content)
 				}
 			} else {
-				checkError(fmt.Errorf(result.Response.Message))
+				cobra.CheckErr(fmt.Errorf(result.Response.Message))
 			}
 		},
 	}

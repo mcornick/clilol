@@ -25,7 +25,7 @@ var manCmd = &cobra.Command{
 			Title:   "Mark Cornick",
 			Section: "1",
 		}
-		checkError(doc.GenManTree(rootCmd, header, "."))
+		cobra.CheckErr(doc.GenManTree(rootCmd, header, "."))
 	},
 }
 

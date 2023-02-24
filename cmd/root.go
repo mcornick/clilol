@@ -16,8 +16,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/charmbracelet/lipgloss"
-	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -49,7 +47,7 @@ func Execute() {
 
 func init() {
 	configDir, err := os.UserConfigDir()
-	checkError(err)
+	cobra.CheckErr(err)
 	viper.SetConfigName("config")
 	viper.AddConfigPath("/etc/clilol/")
 	viper.AddConfigPath(configDir + "/clilol")
@@ -59,18 +57,10 @@ func init() {
 	if err != nil {
 		_, ok := err.(viper.ConfigFileNotFoundError)
 		if !ok {
-			checkError(err)
+			cobra.CheckErr(err)
 		}
 	}
 	rootCmd.DisableAutoGenTag = true
-	log.FatalLevelStyle = lipgloss.NewStyle().
-		SetString("FATAL").
-		Bold(true).
-		MaxWidth(5).
-		Foreground(lipgloss.AdaptiveColor{
-			Light: "133",
-			Dark:  "134",
-		})
 }
 
 func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byte, error) {
@@ -97,22 +87,16 @@ func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byt
 
 func callAPIWithParams(method string, path string, params interface{}, auth bool) []byte {
 	jsonBody, err := json.Marshal(params)
-	checkError(err)
+	cobra.CheckErr(err)
 	bodyReader := bytes.NewReader(jsonBody)
 	body, err := callAPI(method, path, bodyReader, auth)
-	checkError(err)
+	cobra.CheckErr(err)
 	return body
 }
 
 func callAPIWithRawData(method string, path string, data string, auth bool) []byte {
 	bodyReader := strings.NewReader(data)
 	body, err := callAPI(method, path, bodyReader, auth)
-	checkError(err)
+	cobra.CheckErr(err)
 	return body
-}
-
-func checkError(msg interface{}) {
-	if msg != nil {
-		log.Fatal(msg)
-	}
 }

@@ -52,7 +52,7 @@ var listWeblogCmd = &cobra.Command{
 			true,
 		)
 		err := json.Unmarshal(body, &result)
-		checkError(err)
+		cobra.CheckErr(err)
 		if result.Request.Success {
 			for _, entry := range result.Response.Entries {
 				fmt.Printf(
@@ -64,7 +64,7 @@ var listWeblogCmd = &cobra.Command{
 				)
 			}
 		} else {
-			checkError(fmt.Errorf(result.Response.Message))
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
 		}
 	},
 }

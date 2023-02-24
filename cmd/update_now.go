@@ -15,7 +15,6 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -51,11 +50,11 @@ Now page, use the --listed flag.`,
 			var content string
 			if updateNowFilename != "" {
 				input, err := os.ReadFile(updateNowFilename)
-				checkError(err)
+				cobra.CheckErr(err)
 				content = string(input)
 			} else {
 				stdin, err := io.ReadAll(os.Stdin)
-				checkError(err)
+				cobra.CheckErr(err)
 				content = string(stdin)
 			}
 			if updateNowListed {
@@ -71,11 +70,11 @@ Now page, use the --listed flag.`,
 				true,
 			)
 			err := json.Unmarshal(body, &result)
-			checkError(err)
+			cobra.CheckErr(err)
 			if result.Request.Success {
-				log.Info(result.Response.Message)
+				fmt.Println(result.Response.Message)
 			} else {
-				checkError(fmt.Errorf(result.Response.Message))
+				cobra.CheckErr(fmt.Errorf(result.Response.Message))
 			}
 		},
 	}

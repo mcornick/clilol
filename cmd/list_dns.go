@@ -48,7 +48,7 @@ var listDNSCmd = &cobra.Command{
 			true,
 		)
 		err := json.Unmarshal(body, &result)
-		checkError(err)
+		cobra.CheckErr(err)
 		if result.Request.Success {
 			for _, record := range result.Response.DNS {
 				fmt.Printf(
@@ -60,7 +60,7 @@ var listDNSCmd = &cobra.Command{
 				)
 			}
 		} else {
-			checkError(fmt.Errorf(result.Response.Message))
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
 		}
 	},
 }

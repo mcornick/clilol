@@ -54,7 +54,7 @@ it defaults to your own address.`,
 			false,
 		)
 		err := json.Unmarshal(body, &result)
-		checkError(err)
+		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Printf(
 				"\nhttps://status.lol/%s/%s\n",
@@ -62,7 +62,7 @@ it defaults to your own address.`,
 				result.Response.Status.Id,
 			)
 			timestamp, err := strconv.Atoi(result.Response.Status.Created)
-			checkError(err)
+			cobra.CheckErr(err)
 			fmt.Printf("  %s\n", time.Unix(int64(timestamp), 0))
 			fmt.Printf(
 				"  %s %s\n",

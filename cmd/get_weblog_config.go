@@ -67,7 +67,7 @@ to stdout.`,
 				true,
 			)
 			err := json.Unmarshal(body, &result)
-			checkError(err)
+			cobra.CheckErr(err)
 			if result.Request.Success {
 				if getWeblogConfigFilename != "" {
 					err = os.WriteFile(
@@ -75,12 +75,12 @@ to stdout.`,
 						[]byte(result.Response.Configuration.Raw),
 						0o644,
 					)
-					checkError(err)
+					cobra.CheckErr(err)
 				} else {
 					fmt.Println(result.Response.Configuration.Raw)
 				}
 			} else {
-				checkError(fmt.Errorf(result.Response.Message))
+				cobra.CheckErr(fmt.Errorf(result.Response.Message))
 			}
 		},
 	}

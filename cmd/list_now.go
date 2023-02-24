@@ -14,7 +14,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
 
@@ -43,15 +42,15 @@ var listNowCmd = &cobra.Command{
 		var result Result
 		body := callAPIWithParams(http.MethodGet, "/now/garden", nil, false)
 		err := json.Unmarshal(body, &result)
-		checkError(err)
+		cobra.CheckErr(err)
 		if result.Request.Success {
-			log.Info(result.Response.Message)
+			fmt.Println(result.Response.Message)
 			for _, page := range result.Response.Garden {
 				fmt.Printf("\n%s (%s)\n", page.URL, page.Address)
 				fmt.Printf("last updated %s\n", page.Updated.RelativeTime)
 			}
 		} else {
-			checkError(fmt.Errorf(result.Response.Message))
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
 		}
 	},
 }

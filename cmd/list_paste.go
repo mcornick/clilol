@@ -53,7 +53,7 @@ your own address.`,
 			addressFlag == viper.GetString("address"),
 		)
 		err := json.Unmarshal(body, &result)
-		checkError(err)
+		cobra.CheckErr(err)
 		if result.Request.Success {
 			for _, paste := range result.Response.Pastebin {
 				fmt.Printf(
@@ -63,7 +63,7 @@ your own address.`,
 				)
 			}
 		} else {
-			checkError(fmt.Errorf(result.Response.Message))
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
 		}
 	},
 }
