@@ -13,6 +13,11 @@ jobs:
         run: go build -v ./...
       - name: Test
         run: go test -v ./...
+        env:
+          CLILOL_ADDRESS: clilol-testing
+          CLILOL_APIKEY: ${{ secrets.CLILOL_APIKEY }}
+          CLILOL_EMAIL: mark@markcornick.com
+          CLILOL_NAME: Mark Cornick
 name: Run tests
 "on":
   - push
