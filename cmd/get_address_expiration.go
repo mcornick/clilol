@@ -16,27 +16,21 @@ import (
 	"github.com/spf13/cobra"
 )
 
+type getAddressExpirationOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		Expired bool   `json:"expired"`
+	} `json:"response"`
+}
+
 var getAddressExpirationCmd = &cobra.Command{
 	Use:   "expiration [address]",
 	Short: "Get address expiration",
 	Long:  "Gets the expiration of an address.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string `json:"message"`
-				Expired bool   `json:"expired"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/address/"+args[0]+"/expiration",
-			nil,
-			false,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := getAddressExpiration(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -48,4 +42,16 @@ var getAddressExpirationCmd = &cobra.Command{
 
 func init() {
 	getAddressCmd.AddCommand(getAddressExpirationCmd)
+}
+
+func getAddressExpiration(address string) (getAddressExpirationOutput, error) {
+	var result getAddressExpirationOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+address+"/expiration",
+		nil,
+		false,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

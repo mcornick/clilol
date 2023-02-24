@@ -17,30 +17,24 @@ import (
 	"github.com/spf13/viper"
 )
 
+type getEmailOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message           string   `json:"message"`
+		DestinationString string   `json:"destination_string"`
+		DestinationArray  []string `json:"destination_array"`
+		Address           string   `json:"address"`
+		EmailAddress      string   `json:"email_address"`
+	} `json:"response"`
+}
+
 var getEmailCmd = &cobra.Command{
 	Use:   "email",
 	Short: "Get email forwarding address(es)",
 	Long:  "Gets your email forwarding address(es).",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message           string   `json:"message"`
-				DestinationString string   `json:"destination_string"`
-				DestinationArray  []string `json:"destination_array"`
-				Address           string   `json:"address"`
-				EmailAddress      string   `json:"email_address"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/address/"+viper.GetString("address")+"/email",
-			nil,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := getEmail()
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -52,4 +46,16 @@ var getEmailCmd = &cobra.Command{
 
 func init() {
 	getCmd.AddCommand(getEmailCmd)
+}
+
+func getEmail() (getEmailOutput, error) {
+	var result getEmailOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+viper.GetString("address")+"/email",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

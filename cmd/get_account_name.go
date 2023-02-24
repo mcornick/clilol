@@ -17,27 +17,21 @@ import (
 	"github.com/spf13/viper"
 )
 
+type getAccountNameOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		Name    string `json:"name"`
+	} `json:"response"`
+}
+
 var getAccountNameCmd = &cobra.Command{
 	Use:   "name",
 	Short: "Get your account name",
 	Long:  "Gets the name on your account.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string `json:"message"`
-				Name    string `json:"name"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/account/"+viper.GetString("email")+"/name",
-			nil,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := getAccountName()
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -49,4 +43,16 @@ var getAccountNameCmd = &cobra.Command{
 
 func init() {
 	getAccountCmd.AddCommand(getAccountNameCmd)
+}
+
+func getAccountName() (getAccountNameOutput, error) {
+	var result getAccountNameOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/account/"+viper.GetString("email")+"/name",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

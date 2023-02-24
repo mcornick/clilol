@@ -17,48 +17,42 @@ import (
 	"github.com/spf13/cobra"
 )
 
+type getAddressInfoPrivateOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Address      string `json:"address"`
+		Message      string `json:"message"`
+		Registration struct {
+			Message       string    `json:"message"`
+			UnixEpochTime int64     `json:"unix_epoch_time"`
+			ISO8601Time   time.Time `json:"iso_8601_time"`
+			RFC2822Time   string    `json:"rfc_2822_time"`
+			RelativeTime  string    `json:"relative_time"`
+		} `json:"registration"`
+		Expiration struct {
+			Message       string    `json:"message"`
+			Expired       bool      `json:"expired"`
+			WillExpire    bool      `json:"will_expire"`
+			UnixEpochTime int64     `json:"unix_epoch_time"`
+			ISO8601Time   time.Time `json:"iso_8601_time"`
+			RFC2822Time   string    `json:"rfc_2822_time"`
+			RelativeTime  string    `json:"relative_time"`
+		} `json:"expiration"`
+		Verification struct {
+			Message  string `json:"message"`
+			Verified bool   `json:"verified"`
+		} `json:"verification"`
+		Owner string `json:"owner"`
+	} `json:"response"`
+}
+
 var getAddressInfoPrivateCmd = &cobra.Command{
 	Use:   "private [name]",
 	Short: "Get private information about an address",
 	Long:  "Gets private information about an address.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Address      string `json:"address"`
-				Message      string `json:"message"`
-				Registration struct {
-					Message       string    `json:"message"`
-					UnixEpochTime int64     `json:"unix_epoch_time"`
-					ISO8601Time   time.Time `json:"iso_8601_time"`
-					RFC2822Time   string    `json:"rfc_2822_time"`
-					RelativeTime  string    `json:"relative_time"`
-				} `json:"registration"`
-				Expiration struct {
-					Message       string    `json:"message"`
-					Expired       bool      `json:"expired"`
-					WillExpire    bool      `json:"will_expire"`
-					UnixEpochTime int64     `json:"unix_epoch_time"`
-					ISO8601Time   time.Time `json:"iso_8601_time"`
-					RFC2822Time   string    `json:"rfc_2822_time"`
-					RelativeTime  string    `json:"relative_time"`
-				} `json:"expiration"`
-				Verification struct {
-					Message  string `json:"message"`
-					Verified bool   `json:"verified"`
-				} `json:"verification"`
-				Owner string `json:"owner"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/address/"+args[0]+"/info",
-			nil,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := getAddressInfoPrivate(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Registration.Message)
@@ -72,4 +66,16 @@ var getAddressInfoPrivateCmd = &cobra.Command{
 
 func init() {
 	getAddressInfoCmd.AddCommand(getAddressInfoPrivateCmd)
+}
+
+func getAddressInfoPrivate(name string) (getAddressInfoPrivateOutput, error) {
+	var result getAddressInfoPrivateOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+name+"/info",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

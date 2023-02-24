@@ -17,36 +17,31 @@ import (
 	"github.com/spf13/viper"
 )
 
+type updateEmailInput struct {
+	Destination string `json:"destination"`
+}
+type updateEmailOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message           string   `json:"message"`
+		DestinationString string   `json:"destination_string"`
+		DestinationArray  []string `json:"destination_array"`
+		Address           string   `json:"address"`
+		EmailAddress      string   `json:"email_address"`
+	} `json:"response"`
+}
+
 var updateEmailCmd = &cobra.Command{
 	Use:   "email [address]",
 	Short: "set email forwarding address(es)",
 	Long: `Sets your email forwarding address(es).
 	
 To specify multiple addresses, separate them with commas.`,
-	Args: cobra.NoArgs,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type input struct {
-			Destination string `json:"destination"`
-		}
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message           string   `json:"message"`
-				DestinationString string   `json:"destination_string"`
-				DestinationArray  []string `json:"destination_array"`
-				Address           string   `json:"address"`
-				EmailAddress      string   `json:"email_address"`
-			} `json:"response"`
-		}
-		var result output
-		email := input{args[0]}
-		body := callAPIWithParams(
-			http.MethodPost,
-			"/address/"+viper.GetString("address")+"/email",
-			email,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		var result updateEmailOutput
+		email := updateEmailInput{args[0]}
+		result, err := updateEmail(email)
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -58,4 +53,16 @@ To specify multiple addresses, separate them with commas.`,
 
 func init() {
 	updateCmd.AddCommand(updateEmailCmd)
+}
+
+func updateEmail(params updateEmailInput) (updateEmailOutput, error) {
+	var result updateEmailOutput
+	body := callAPIWithParams(
+		http.MethodPost,
+		"/address/"+viper.GetString("address")+"/email",
+		params,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }
