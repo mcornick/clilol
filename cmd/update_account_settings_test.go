@@ -13,6 +13,7 @@ import (
 )
 
 func Test_updateAccountSettings(t *testing.T) {
+	t.Parallel()
 	updateResult, err := updateAccountSettings("email_ok", "iso_8601", "advanced")
 	if err != nil {
 		t.Errorf("updateAccountSettings() error = %v", err)

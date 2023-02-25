@@ -14,6 +14,7 @@ import (
 )
 
 func Test_getService(t *testing.T) {
+	t.Parallel()
 	result, err := getService()
 	if err != nil {
 		t.Errorf("getService() error = %v", err)

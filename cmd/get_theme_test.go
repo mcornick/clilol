@@ -14,6 +14,7 @@ import (
 )
 
 func Test_getTheme(t *testing.T) {
+	t.Parallel()
 	result, err := getTheme("Default")
 	if err != nil {
 		t.Errorf("getTheme() error = %v", err)

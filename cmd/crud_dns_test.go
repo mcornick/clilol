@@ -17,6 +17,7 @@ import (
 )
 
 func Test_crudDNS(t *testing.T) {
+	t.Parallel()
 	expectedName := "localhost." + os.Getenv("CLILOL_ADDRESS")
 	expectedType := "A"
 	expectedData := "127.0.0.1"

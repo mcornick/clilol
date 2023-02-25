@@ -14,6 +14,7 @@ import (
 )
 
 func Test_getAddressExpiration(t *testing.T) {
+	t.Parallel()
 	result, err := getAddressExpiration(os.Getenv("CLILOL_ADDRESS"))
 	if err != nil {
 		t.Errorf("getAddressExpiration() error = %v", err)

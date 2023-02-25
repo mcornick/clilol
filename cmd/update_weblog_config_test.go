@@ -13,6 +13,7 @@ import (
 )
 
 func Test_updateWeblogConfig(t *testing.T) {
+	t.Parallel()
 	updateResult, err := updateWeblogConfig("testdata/weblog_config.txt")
 	if err != nil {
 		t.Errorf("updateWeblogConfig() error = %v", err)

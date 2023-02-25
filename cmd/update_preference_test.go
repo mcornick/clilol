@@ -13,6 +13,7 @@ import (
 )
 
 func Test_updatePreference(t *testing.T) {
+	t.Parallel()
 	result, err := updatePreference("foo", "bar")
 	if err != nil {
 		t.Errorf("updatePreference() error = %v", err)

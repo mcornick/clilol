@@ -14,6 +14,7 @@ import (
 )
 
 func Test_getWeblogConfig(t *testing.T) {
+	t.Parallel()
 	result, err := getWeblogConfig()
 	if err != nil {
 		t.Errorf("getWeblogConfig() error = %v", err)

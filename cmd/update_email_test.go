@@ -14,6 +14,7 @@ import (
 )
 
 func Test_updateEmail(t *testing.T) {
+	t.Parallel()
 	input := updateEmailInput{os.Getenv("CLILOL_EMAIL")}
 	updateResult, err := updateEmail(input)
 	if err != nil {

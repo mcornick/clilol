@@ -16,6 +16,7 @@ import (
 )
 
 func Test_crudStatus(t *testing.T) {
+	t.Parallel()
 	expectedText := "this is a created status"
 	createResult, err := createStatus(expectedText, "🧪", true)
 	if err != nil {

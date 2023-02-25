@@ -16,6 +16,7 @@ import (
 )
 
 func Test_listAccountAddresses(t *testing.T) {
+	t.Parallel()
 	result, err := listAccountAddresses()
 	if err != nil {
 		t.Errorf("listAccountAddresses() error = %v", err)

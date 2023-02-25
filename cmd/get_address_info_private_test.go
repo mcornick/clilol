@@ -14,6 +14,7 @@ import (
 )
 
 func Test_getAddressInfoPrivate(t *testing.T) {
+	t.Parallel()
 	result, err := getAddressInfoPrivate(os.Getenv("CLILOL_ADDRESS"))
 	if err != nil {
 		t.Errorf("getAddressInfoPrivate() error = %v", err)

@@ -16,6 +16,7 @@ import (
 )
 
 func Test_listNow(t *testing.T) {
+	t.Parallel()
 	result, err := listNow()
 	if err != nil {
 		t.Errorf("listNow() error = %v", err)

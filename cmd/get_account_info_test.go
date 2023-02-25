@@ -15,6 +15,7 @@ import (
 )
 
 func Test_getAccountInfo(t *testing.T) {
+	t.Parallel()
 	result, err := getAccountInfo()
 	if err != nil {
 		t.Errorf("getAccountInfo() error = %v", err)

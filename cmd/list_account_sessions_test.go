@@ -13,6 +13,7 @@ import (
 )
 
 func Test_listAccountSessions(t *testing.T) {
+	t.Parallel()
 	result, err := listAccountSessions()
 	if err != nil {
 		t.Errorf("listAccountSessions() error = %v", err)

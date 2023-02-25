@@ -13,6 +13,7 @@ import (
 )
 
 func Test_updateWeblogTemplate(t *testing.T) {
+	t.Parallel()
 	updateResult, err := updateWeblogTemplate("testdata/weblog_template.txt")
 	if err != nil {
 		t.Errorf("updateWeblogTemplate() error = %v", err)

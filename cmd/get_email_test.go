@@ -14,6 +14,7 @@ import (
 )
 
 func Test_getEmail(t *testing.T) {
+	t.Parallel()
 	getResult, err := getEmail()
 	if err != nil {
 		t.Errorf("getEmail() error = %v", err)

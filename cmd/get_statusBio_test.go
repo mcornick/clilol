@@ -15,6 +15,7 @@ import (
 )
 
 func Test_getStatusBio(t *testing.T) {
+	t.Parallel()
 	result, err := getStatusBio(os.Getenv("CLILOL_ADDRESS"))
 	if err != nil {
 		t.Errorf("getStatusBio() error = %v", err)
