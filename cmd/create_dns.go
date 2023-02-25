@@ -18,6 +18,40 @@ import (
 	"github.com/spf13/viper"
 )
 
+type createDNSInput struct {
+	Type     string `json:"type"`
+	Name     string `json:"name"`
+	Data     string `json:"data"`
+	Priority int    `json:"priority"`
+	TTL      int    `json:"ttl"`
+}
+
+type createDNSOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message  string `json:"message"`
+		DataSent struct {
+			Type     string `json:"type"`
+			Priority int    `json:"priority"`
+			TTL      int    `json:"ttl"`
+			Name     string `json:"name"`
+			Content  string `json:"content"`
+		} `json:"data_sent"`
+		ResponseReceived struct {
+			Data struct {
+				ID        int       `json:"id"`
+				Name      string    `json:"name"`
+				Content   string    `json:"content"`
+				TTL       int       `json:"ttl"`
+				Priority  int       `json:"priority"`
+				Type      string    `json:"type"`
+				CreatedAt time.Time `json:"created_at"`
+				UpdatedAt time.Time `json:"updated_at"`
+			} `json:"data"`
+		} `json:"response_received"`
+	} `json:"response"`
+}
+
 var (
 	createDNSPriority int
 	createDNSTTL      int
@@ -27,47 +61,7 @@ var (
 		Long:  "Creates a DNS record.",
 		Args:  cobra.ExactArgs(3),
 		Run: func(cmd *cobra.Command, args []string) {
-			type input struct {
-				Type     string `json:"type"`
-				Name     string `json:"name"`
-				Data     string `json:"data"`
-				Priority int    `json:"priority"`
-				TTL      int    `json:"ttl"`
-			}
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message  string `json:"message"`
-					DataSent struct {
-						Type     string `json:"type"`
-						Priority int    `json:"priority"`
-						TTL      int    `json:"ttl"`
-						Name     string `json:"name"`
-						Content  string `json:"content"`
-					} `json:"data_sent"`
-					ResponseReceived struct {
-						Data struct {
-							ID        int       `json:"id"`
-							Name      string    `json:"name"`
-							Content   string    `json:"content"`
-							TTL       int       `json:"ttl"`
-							Priority  int       `json:"priority"`
-							Type      string    `json:"type"`
-							CreatedAt time.Time `json:"created_at"`
-							UpdatedAt time.Time `json:"updated_at"`
-						} `json:"data"`
-					} `json:"response_received"`
-				} `json:"response"`
-			}
-			var result output
-			dns := input{args[2], args[1], args[3], createDNSPriority, createDNSTTL}
-			body := callAPIWithParams(
-				http.MethodPost,
-				"/address/"+viper.GetString("address")+"/dns",
-				dns,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := createDNS(args[0], args[1], args[2], createDNSPriority, createDNSTTL)
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
@@ -94,4 +88,17 @@ func init() {
 		"time to live of the DNS record",
 	)
 	createCmd.AddCommand(createDNSCmd)
+}
+
+func createDNS(name string, recordType string, data string, priority int, ttl int) (createDNSOutput, error) {
+	var result createDNSOutput
+	dns := createDNSInput{recordType, name, data, priority, ttl}
+	body := callAPIWithParams(
+		http.MethodPost,
+		"/address/"+viper.GetString("address")+"/dns",
+		dns,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

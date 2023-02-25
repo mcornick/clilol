@@ -17,6 +17,22 @@ import (
 	"github.com/spf13/viper"
 )
 
+type createStatusInput struct {
+	Emoji            string `json:"emoji"`
+	Content          string `json:"content"`
+	SkipMastodonPost bool   `json:"skip_mastodon_post,omitempty"`
+}
+type createStatusOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message     string `json:"message"`
+		ID          string `json:"id"`
+		Status      string `json:"status"`
+		URL         string `json:"url"`
+		ExternalURL string `json:"external_url"`
+	} `json:"response"`
+}
+
 var (
 	createStatusEmoji            string
 	createStatusSkipMastodonPost bool
@@ -36,34 +52,7 @@ settings, you can skip cross-posting to Mastodon by setting the
 --skip-mastodon-post flag.`,
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			type input struct {
-				Emoji            string `json:"emoji"`
-				Content          string `json:"content"`
-				SkipMastodonPost bool   `json:"skip_mastodon_post,omitempty"`
-			}
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message     string `json:"message"`
-					ID          string `json:"id"`
-					Status      string `json:"status"`
-					URL         string `json:"url"`
-					ExternalURL string `json:"external_url"`
-				} `json:"response"`
-			}
-			var result output
-			status := input{
-				createStatusEmoji,
-				args[0],
-				createStatusSkipMastodonPost,
-			}
-			body := callAPIWithParams(
-				http.MethodPost,
-				"/address/"+viper.GetString("address")+"/statuses/",
-				status,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := createStatus(args[0], createStatusEmoji, createStatusSkipMastodonPost)
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
@@ -89,4 +78,17 @@ func init() {
 		"do not cross-post to Mastodon",
 	)
 	createCmd.AddCommand(createStatusCmd)
+}
+
+func createStatus(text string, emoji string, skipMastodonPost bool) (createStatusOutput, error) {
+	var result createStatusOutput
+	status := createStatusInput{emoji, text, skipMastodonPost}
+	body := callAPIWithParams(
+		http.MethodPost,
+		"/address/"+viper.GetString("address")+"/statuses/",
+		status,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

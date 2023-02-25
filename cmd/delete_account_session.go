@@ -17,6 +17,13 @@ import (
 	"github.com/spf13/viper"
 )
 
+type deleteAccountSessionOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+	} `json:"response"`
+}
+
 var deleteAccountSessionCmd = &cobra.Command{
 	Use:   "session [id]",
 	Short: "Delete a session",
@@ -26,20 +33,7 @@ Note that you won't be asked to confirm deletion.
 Be sure you know what you're doing.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string `json:"message"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(
-			http.MethodDelete,
-			"/account/"+viper.GetString("email")+"/sessions/"+args[0],
-			nil,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := deleteAccountSession(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -51,4 +45,16 @@ Be sure you know what you're doing.`,
 
 func init() {
 	deleteAccountCmd.AddCommand(deleteAccountSessionCmd)
+}
+
+func deleteAccountSession(id string) (deleteAccountSessionOutput, error) {
+	var result deleteAccountSessionOutput
+	body := callAPIWithParams(
+		http.MethodDelete,
+		"/account/"+viper.GetString("email")+"/sessions/"+id,
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

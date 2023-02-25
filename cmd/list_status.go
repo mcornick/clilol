@@ -19,6 +19,20 @@ import (
 	"github.com/spf13/viper"
 )
 
+type listStatusOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message  string `json:"message"`
+		Statuses []struct {
+			Id      string `json:"id"`
+			Address string `json:"address"`
+			Created string `json:"created"`
+			Emoji   string `json:"emoji"`
+			Content string `json:"content"`
+		} `json:"statuses"`
+	} `json:"response"`
+}
+
 var (
 	listStatusLimit int
 	listStatusCmd   = &cobra.Command{
@@ -35,34 +49,8 @@ flag. If not set, it will return all statuses for the user.
 See the statuslog commands to get statuses for all users.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message  string `json:"message"`
-					Statuses []struct {
-						Id      string `json:"id"`
-						Address string `json:"address"`
-						Created string `json:"created"`
-						Emoji   string `json:"emoji"`
-						Content string `json:"content"`
-					} `json:"statuses"`
-				} `json:"response"`
-			}
-			var result output
-			if addressFlag == "" {
-				addressFlag = viper.GetString("address")
-			}
-			body := callAPIWithParams(
-				http.MethodGet,
-				"/address/"+addressFlag+"/statuses/",
-				nil,
-				false,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := listStatus(addressFlag, listStatusLimit)
 			cobra.CheckErr(err)
-			if listStatusLimit > 0 {
-				result.Response.Statuses = result.Response.Statuses[:listStatusLimit]
-			}
 			if result.Request.Success {
 				for _, status := range result.Response.Statuses {
 					fmt.Printf("\nhttps://status.lol/%s/%s\n", status.Address, status.Id)
@@ -94,4 +82,22 @@ func init() {
 		"how many status(es) to get (default all)",
 	)
 	listCmd.AddCommand(listStatusCmd)
+}
+
+func listStatus(address string, limit int) (listStatusOutput, error) {
+	var result listStatusOutput
+	if address == "" {
+		address = viper.GetString("address")
+	}
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+address+"/statuses/",
+		nil,
+		false,
+	)
+	err := json.Unmarshal(body, &result)
+	if limit > 0 && err == nil {
+		result.Response.Statuses = result.Response.Statuses[:limit]
+	}
+	return result, err
 }

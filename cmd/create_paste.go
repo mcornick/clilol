@@ -11,13 +11,24 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
-	"os"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
+
+type createPasteInput struct {
+	Title   string `json:"title"`
+	Content string `json:"content"`
+	Listed  int    `json:"listed,omitempty"`
+}
+type createPasteOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		Title   string `json:"title"`
+	} `json:"response"`
+}
 
 var (
 	createPasteFilename string
@@ -38,43 +49,7 @@ The paste will be created as unlisted by default. To create a listed
 paste, use the --listed flag.`,
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			type input struct {
-				Title   string `json:"title"`
-				Content string `json:"content"`
-				Listed  int    `json:"listed,omitempty"`
-			}
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message string `json:"message"`
-					Title   string `json:"title"`
-				} `json:"response"`
-			}
-			var result output
-			var listed int
-			var content string
-			if createPasteFilename != "" {
-				input, err := os.ReadFile(createPasteFilename)
-				cobra.CheckErr(err)
-				content = string(input)
-			} else {
-				stdin, err := io.ReadAll(os.Stdin)
-				cobra.CheckErr(err)
-				content = string(stdin)
-			}
-			if createPasteListed {
-				listed = 1
-			} else {
-				listed = 0
-			}
-			paste := input{args[0], content, listed}
-			body := callAPIWithParams(
-				http.MethodPost,
-				"/address/"+viper.GetString("address")+"/pastebin",
-				paste,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := createPaste(args[0], createPasteFilename, createPasteListed)
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
@@ -101,4 +76,23 @@ func init() {
 		"create paste as listed (default false)",
 	)
 	createCmd.AddCommand(createPasteCmd)
+}
+
+func createPaste(title, content string, listed bool) (createPasteOutput, error) {
+	var result createPasteOutput
+	var listedInt int
+	if listed {
+		listedInt = 1
+	} else {
+		listedInt = 0
+	}
+	paste := createPasteInput{title, content, listedInt}
+	body := callAPIWithParams(
+		http.MethodPost,
+		"/address/"+viper.GetString("address")+"/pastebin",
+		paste,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

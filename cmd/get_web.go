@@ -18,6 +18,23 @@ import (
 	"github.com/spf13/viper"
 )
 
+type getWebOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message  string `json:"message"`
+		Content  string `json:"content"`
+		Type     string `json:"type"`
+		Theme    string `json:"theme"`
+		CSS      string `json:"css"`
+		Head     string `json:"head"`
+		Verified int    `json:"verified"`
+		PFP      string `json:"pfp"`
+		Metadata string `json:"metadata"`
+		Branding string `json:"branding"`
+		Modified string `json:"modified"`
+	} `json:"response"`
+}
+
 var (
 	getWebFilename string
 	getWebCmd      = &cobra.Command{
@@ -30,30 +47,7 @@ to that file. If you do not specify a filename, the content will be written
 to stdout.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message  string `json:"message"`
-					Content  string `json:"content"`
-					Type     string `json:"type"`
-					Theme    string `json:"theme"`
-					CSS      string `json:"css"`
-					Head     string `json:"head"`
-					Verified int    `json:"verified"`
-					PFP      string `json:"pfp"`
-					Metadata string `json:"metadata"`
-					Branding string `json:"branding"`
-					Modified string `json:"modified"`
-				} `json:"response"`
-			}
-			var result output
-			body := callAPIWithParams(
-				http.MethodGet,
-				"/address/"+viper.GetString("address")+"/web",
-				nil,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := getWeb()
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				if getWebFilename != "" {
@@ -78,4 +72,16 @@ func init() {
 		"file to write webpage to (default stdout)",
 	)
 	getCmd.AddCommand(getWebCmd)
+}
+
+func getWeb() (getWebOutput, error) {
+	var result getWebOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+viper.GetString("address")+"/web",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

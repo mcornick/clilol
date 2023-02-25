@@ -17,6 +17,21 @@ import (
 	"github.com/spf13/viper"
 )
 
+type updateStatusInput struct {
+	Id      string `json:"id"`
+	Emoji   string `json:"emoji"`
+	Content string `json:"content"`
+}
+
+type updateStatusOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		ID      string `json:"id"`
+		URL     string `json:"url"`
+	} `json:"response"`
+}
+
 var (
 	updateStatusEmoji string
 	updateStatusCmd   = &cobra.Command{
@@ -36,28 +51,7 @@ the existing emoji if you don't specify one, so if you don't want
 to change it, you'll still need to specify it again.`,
 		Args: cobra.ExactArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
-			type input struct {
-				Id      string `json:"id"`
-				Emoji   string `json:"emoji"`
-				Content string `json:"content"`
-			}
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message string `json:"message"`
-					ID      string `json:"id"`
-					URL     string `json:"url"`
-				} `json:"response"`
-			}
-			var result output
-			status := input{args[0], updateStatusEmoji, args[1]}
-			body := callAPIWithParams(
-				http.MethodPatch,
-				"/address/"+viper.GetString("address")+"/statuses/",
-				status,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := updateStatus(args[0], args[1])
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
@@ -77,4 +71,17 @@ func init() {
 		"emoji to add to status (default sparkles)",
 	)
 	updateCmd.AddCommand(updateStatusCmd)
+}
+
+func updateStatus(id string, text string) (updateStatusOutput, error) {
+	var result updateStatusOutput
+	status := updateStatusInput{id, updateStatusEmoji, text}
+	body := callAPIWithParams(
+		http.MethodPatch,
+		"/address/"+viper.GetString("address")+"/statuses/",
+		status,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

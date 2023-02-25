@@ -17,6 +17,20 @@ import (
 	"github.com/spf13/viper"
 )
 
+type createPURLInput struct {
+	Name   string `json:"name"`
+	URL    string `json:"url"`
+	Listed bool   `json:"listed,omitempty"`
+}
+type createPURLOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		Name    string `json:"name"`
+		URL     string `json:"url"`
+	} `json:"response"`
+}
+
 var (
 	createPURLListed bool
 	createPURLCmd    = &cobra.Command{
@@ -29,28 +43,7 @@ PURL, use the --listed flag.
 `,
 		Args: cobra.ExactArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
-			type input struct {
-				Name   string `json:"name"`
-				URL    string `json:"url"`
-				Listed bool   `json:"listed,omitempty"`
-			}
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message string `json:"message"`
-					Name    string `json:"name"`
-					URL     string `json:"url"`
-				} `json:"response"`
-			}
-			var result output
-			purl := input{args[0], args[1], createPURLListed}
-			body := callAPIWithParams(
-				http.MethodPost,
-				"/address/"+viper.GetString("address")+"/purl",
-				purl,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := createPURL(args[0], args[1], createPURLListed)
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
@@ -70,4 +63,17 @@ func init() {
 		"create as listed (default false)",
 	)
 	createCmd.AddCommand(createPURLCmd)
+}
+
+func createPURL(name string, url string, listed bool) (createPURLOutput, error) {
+	var result createPURLOutput
+	purl := createPURLInput{name, url, listed}
+	body := callAPIWithParams(
+		http.MethodPost,
+		"/address/"+viper.GetString("address")+"/purl",
+		purl,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

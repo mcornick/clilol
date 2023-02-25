@@ -17,6 +17,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
+type getThemePreviewOutput struct {
+	Response struct {
+		Message string `json:"message"`
+		HTML    string `json:"html"`
+	} `json:"response"`
+}
+
 var (
 	getThemePreviewFilename string
 	getThemePreviewCmd      = &cobra.Command{
@@ -29,20 +36,7 @@ to that file. If you do not specify a filename, the content will be written
 to stdout.`,
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			type output struct {
-				Response struct {
-					Message string `json:"message"`
-					HTML    string `json:"html"`
-				} `json:"response"`
-			}
-			var result output
-			body := callAPIWithParams(
-				http.MethodGet,
-				"/theme/"+args[0]+"/preview",
-				nil,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := getThemePreview(args[0])
 			cobra.CheckErr(err)
 			if getThemePreviewFilename != "" {
 				err = os.WriteFile(getThemePreviewFilename, []byte(result.Response.HTML), 0o644)
@@ -63,4 +57,16 @@ func init() {
 		"file to write preview to (default stdout)",
 	)
 	getThemeCmd.AddCommand(getThemePreviewCmd)
+}
+
+func getThemePreview(name string) (getThemePreviewOutput, error) {
+	var result getThemePreviewOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/theme/"+name+"/preview",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

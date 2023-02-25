@@ -18,6 +18,40 @@ import (
 	"github.com/spf13/viper"
 )
 
+type updateDNSInput struct {
+	Type     string `json:"type"`
+	Name     string `json:"name"`
+	Data     string `json:"data"`
+	Priority int    `json:"priority"`
+	TTL      int    `json:"ttl"`
+}
+
+type updateDNSOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message  string `json:"message"`
+		DataSent struct {
+			Type     string `json:"type"`
+			Priority int    `json:"priority"`
+			TTL      int    `json:"ttl"`
+			Name     string `json:"name"`
+			Content  string `json:"content"`
+		} `json:"data_sent"`
+		ResponseReceived struct {
+			Data struct {
+				ID        int       `json:"id"`
+				Name      string    `json:"name"`
+				Content   string    `json:"content"`
+				TTL       int       `json:"ttl"`
+				Priority  int       `json:"priority"`
+				Type      string    `json:"type"`
+				CreatedAt time.Time `json:"created_at"`
+				UpdatedAt time.Time `json:"updated_at"`
+			} `json:"data"`
+		} `json:"response_received"`
+	} `json:"response"`
+}
+
 var (
 	updateDNSPriority int
 	updateDNSTTL      int
@@ -27,47 +61,7 @@ var (
 		Long:  "Updates a DNS record.",
 		Args:  cobra.ExactArgs(4),
 		Run: func(cmd *cobra.Command, args []string) {
-			type input struct {
-				Type     string `json:"type"`
-				Name     string `json:"name"`
-				Data     string `json:"data"`
-				Priority int    `json:"priority"`
-				TTL      int    `json:"ttl"`
-			}
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message  string `json:"message"`
-					DataSent struct {
-						Type     string `json:"type"`
-						Priority int    `json:"priority"`
-						TTL      int    `json:"ttl"`
-						Name     string `json:"name"`
-						Content  string `json:"content"`
-					} `json:"data_sent"`
-					ResponseReceived struct {
-						Data struct {
-							ID        int       `json:"id"`
-							Name      string    `json:"name"`
-							Content   string    `json:"content"`
-							TTL       int       `json:"ttl"`
-							Priority  int       `json:"priority"`
-							Type      string    `json:"type"`
-							CreatedAt time.Time `json:"created_at"`
-							UpdatedAt time.Time `json:"updated_at"`
-						} `json:"data"`
-					} `json:"response_received"`
-				} `json:"response"`
-			}
-			var result output
-			dns := input{args[2], args[1], args[3], updateDNSPriority, updateDNSTTL}
-			body := callAPIWithParams(
-				http.MethodPatch,
-				"/address/"+viper.GetString("address")+"/dns/"+args[0],
-				dns,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := updateDNS(args[0], args[1], args[2], args[3], updateDNSPriority, updateDNSTTL)
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
@@ -94,4 +88,17 @@ func init() {
 		"updated TTL",
 	)
 	updateCmd.AddCommand(updateDNSCmd)
+}
+
+func updateDNS(id string, name string, recordType string, data string, priority int, ttl int) (updateDNSOutput, error) {
+	var result updateDNSOutput
+	dns := updateDNSInput{recordType, name, data, priority, ttl}
+	body := callAPIWithParams(
+		http.MethodPatch,
+		"/address/"+viper.GetString("address")+"/dns/"+id,
+		dns,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

@@ -19,6 +19,13 @@ import (
 	"github.com/spf13/viper"
 )
 
+type updateWeblogTemplateOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+	} `json:"response"`
+}
+
 var (
 	updateWeblogTemplateFilename string
 	updateWeblogTemplateCmd      = &cobra.Command{
@@ -33,30 +40,7 @@ will be used. If you do not specify a filename, the content will be read
 from stdin.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message string `json:"message"`
-				} `json:"response"`
-			}
-			var result output
-			var content string
-			if updateWeblogTemplateFilename != "" {
-				input, err := os.ReadFile(updateWeblogTemplateFilename)
-				cobra.CheckErr(err)
-				content = string(input)
-			} else {
-				stdin, err := io.ReadAll(os.Stdin)
-				cobra.CheckErr(err)
-				content = string(stdin)
-			}
-			body := callAPIWithRawData(
-				http.MethodPost,
-				"/address/"+viper.GetString("address")+"/weblog/template",
-				content,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := updateWeblogTemplate(updateWeblogTemplateFilename)
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
@@ -76,4 +60,26 @@ func init() {
 		"file to read template from (default stdin)",
 	)
 	updateWeblogCmd.AddCommand(updateWeblogTemplateCmd)
+}
+
+func updateWeblogTemplate(filename string) (updateWeblogTemplateOutput, error) {
+	var result updateWeblogTemplateOutput
+	var content string
+	if filename != "" {
+		input, err := os.ReadFile(filename)
+		cobra.CheckErr(err)
+		content = string(input)
+	} else {
+		stdin, err := io.ReadAll(os.Stdin)
+		cobra.CheckErr(err)
+		content = string(stdin)
+	}
+	body := callAPIWithRawData(
+		http.MethodPost,
+		"/address/"+viper.GetString("address")+"/weblog/template",
+		content,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

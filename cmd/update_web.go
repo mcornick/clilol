@@ -19,6 +19,18 @@ import (
 	"github.com/spf13/viper"
 )
 
+type updateWebInput struct {
+	Publish bool   `json:"publish,omitempty"`
+	Content string `json:"content"`
+}
+
+type updateWebOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+	} `json:"response"`
+}
+
 var (
 	updateWebFilename string
 	updateWebPublish  bool
@@ -35,35 +47,7 @@ The webpage will be created as unpublished by default. To create a published
 webpage, use the --publish flag.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type input struct {
-				Publish bool   `json:"publish,omitempty"`
-				Content string `json:"content"`
-			}
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message string `json:"message"`
-				} `json:"response"`
-			}
-			var result output
-			var content string
-			if updateWebFilename != "" {
-				input, err := os.ReadFile(updateWebFilename)
-				cobra.CheckErr(err)
-				content = string(input)
-			} else {
-				stdin, err := io.ReadAll(os.Stdin)
-				cobra.CheckErr(err)
-				content = string(stdin)
-			}
-			webPage := input{updateWebPublish, content}
-			body := callAPIWithParams(
-				http.MethodPost,
-				"/address/"+viper.GetString("address")+"/web",
-				webPage,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := updateWeb(updateWebFilename)
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
@@ -91,4 +75,27 @@ func init() {
 	)
 
 	updateCmd.AddCommand(updateWebCmd)
+}
+
+func updateWeb(filename string) (updateWebOutput, error) {
+	var result updateWebOutput
+	var content string
+	if filename != "" {
+		updateWebInput, err := os.ReadFile(filename)
+		cobra.CheckErr(err)
+		content = string(updateWebInput)
+	} else {
+		stdin, err := io.ReadAll(os.Stdin)
+		cobra.CheckErr(err)
+		content = string(stdin)
+	}
+	webPage := updateWebInput{updateWebPublish, content}
+	body := callAPIWithParams(
+		http.MethodPost,
+		"/address/"+viper.GetString("address")+"/web",
+		webPage,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

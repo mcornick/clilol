@@ -15,8 +15,19 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
+
+type getPasteOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		Paste   struct {
+			Title      string `json:"title"`
+			Content    string `json:"content"`
+			ModifiedOn int64  `json:"modified_on"`
+		} `json:"paste"`
+	} `json:"response"`
+}
 
 var (
 	getPasteFilename string
@@ -29,28 +40,7 @@ The address can be specified with the --address flag. If not set,
 it defaults to your own address.`,
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message string `json:"message"`
-					Paste   struct {
-						Title      string `json:"title"`
-						Content    string `json:"content"`
-						ModifiedOn int64  `json:"modified_on"`
-					} `json:"paste"`
-				} `json:"response"`
-			}
-			var result output
-			if addressFlag == "" {
-				addressFlag = viper.GetString("address")
-			}
-			body := callAPIWithParams(
-				http.MethodGet,
-				"/address/"+addressFlag+"/pastebin/"+args[0],
-				nil,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := getPaste(addressFlag, args[0])
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				if getPasteFilename != "" {
@@ -82,4 +72,16 @@ func init() {
 		"file to write paste to (default stdout)",
 	)
 	getCmd.AddCommand(getPasteCmd)
+}
+
+func getPaste(address string, title string) (getPasteOutput, error) {
+	var result getPasteOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+address+"/pastebin/"+title,
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

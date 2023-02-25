@@ -18,6 +18,14 @@ import (
 	"github.com/spf13/viper"
 )
 
+type getWeblogTemplateOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message  string `json:"message"`
+		Template string `json:"template"`
+	} `json:"response"`
+}
+
 var (
 	getWeblogTemplateFilename string
 	getWeblogTemplateCmd      = &cobra.Command{
@@ -30,21 +38,7 @@ to that file. If you do not specify a filename, the content will be written
 to stdout.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message  string `json:"message"`
-					Template string `json:"template"`
-				} `json:"response"`
-			}
-			var result output
-			body := callAPIWithParams(
-				http.MethodGet,
-				"/address/"+viper.GetString("address")+"/weblog/template",
-				nil,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := getWeblogTemplate()
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				if getWeblogTemplateFilename != "" {
@@ -73,4 +67,16 @@ func init() {
 		"file to write template to (default stdout)",
 	)
 	getWeblogCmd.AddCommand(getWeblogTemplateCmd)
+}
+
+func getWeblogTemplate() (getWeblogTemplateOutput, error) {
+	var result getWeblogTemplateOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+viper.GetString("address")+"/weblog/template",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }
