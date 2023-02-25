@@ -34,7 +34,6 @@ You can install clilol in any of these ways. (These are the only supported build
 
     ```bash
     docker run --rm ghcr.io/mcornick/clilol
-    # or, for Docker Hub
     docker run --rm mcornick/clilol
     ```
 
@@ -42,7 +41,6 @@ You can install clilol in any of these ways. (These are the only supported build
 
     ```bash
     cosign verify ghcr.io/mcornick/clilol --certificate-identity-regexp "https://github.com/mcornick/clilol.*" --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
-    # or, for Docker Hub
     cosign verify mcornick/clilol --certificate-identity-regexp "https://github.com/mcornick/clilol.*" --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
    ```
 
