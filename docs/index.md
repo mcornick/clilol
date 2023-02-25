@@ -11,82 +11,82 @@ Please see the links in the navigation menu to the left to learn about all the d
 
 You can install clilol in any of these ways. (These are the only supported builds of omglol. I don't submit them to "official" repositories, at least not yet. If you find a problem with anyone else's build, please try my builds instead.)
 
-=== "Homebrew"
+### Homebrew
 
-    I maintain a [Homebrew](https://brew.sh/) tap.
+I maintain a [Homebrew](https://brew.sh/) tap.
 
-    ```bash
-    brew install mcornick/tap/clilol
-    ```
+```bash
+brew install mcornick/tap/clilol
+```
 
-=== "Scoop"
+### Scoop
 
-    I maintain a [Scoop](https://scoop.sh/) bucket.
+I maintain a [Scoop](https://scoop.sh/) bucket.
 
-    ```powershell
-    scoop bucket add mcornick https://github.com/mcornick/scoop-bucket.git
-    scoop install clilol
-    ```
+```powershell
+scoop bucket add mcornick https://github.com/mcornick/scoop-bucket.git
+scoop install clilol
+```
 
-=== "Container Images"
+### Container Images
 
-    I maintain container images on [GitHub](https://github.com/mcornick/clilol/pkgs/container/clilol) and [Docker Hub](https://hub.docker.com/repository/docker/mcornick/clilol).
+I maintain container images on [GitHub](https://github.com/mcornick/clilol/pkgs/container/clilol) and [Docker Hub](https://hub.docker.com/repository/docker/mcornick/clilol).
 
-    ```bash
-    docker run --rm ghcr.io/mcornick/clilol
-    docker run --rm mcornick/clilol
-    ```
+```bash
+docker run --rm ghcr.io/mcornick/clilol
+docker run --rm mcornick/clilol
+```
 
-    Container manifests are signed with [Cosign](https://docs.sigstore.dev/cosign/overview/). The signatures are created with Cosign's "keyless" mode, which requires Cosign version >= 2.0.0:
+Container manifests are signed with [Cosign](https://docs.sigstore.dev/cosign/overview/). The signatures are created with Cosign's "keyless" mode, which requires Cosign version >= 2.0.0:
 
-    ```bash
-    cosign verify ghcr.io/mcornick/clilol --certificate-identity-regexp "https://github.com/mcornick/clilol.*" --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
-    cosign verify mcornick/clilol --certificate-identity-regexp "https://github.com/mcornick/clilol.*" --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
-   ```
+```bash
+cosign verify ghcr.io/mcornick/clilol --certificate-identity-regexp "https://github.com/mcornick/clilol.*" --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
+cosign verify mcornick/clilol --certificate-identity-regexp "https://github.com/mcornick/clilol.*" --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
+```
 
-=== "Binaries and Linux packages"
+### Binaries and Linux packages
 
-    I maintain binary releases on GitHub [here](https://github.com/mcornick/clilol/releases). Releases are built for macOS (universal), Linux (i386, amd64, arm64, and armv6) and Windows (i386, amd64). Linux packages are built in RPM, DEB, APK, and Arch Linux pkg.tar.zst formats.
+I maintain binary releases on GitHub [here](https://github.com/mcornick/clilol/releases). Releases are built for macOS (universal), Linux (i386, amd64, arm64, and armv6) and Windows (i386, amd64). Linux packages are built in RPM, DEB, APK, and Arch Linux pkg.tar.zst formats.
 
-    Binary checksums included on the release pages are signed with my [GPG key](https://github.com/mcornick.gpg).
+Binary checksums included on the release pages are signed with my [GPG key](https://github.com/mcornick.gpg).
 
-=== "YUM Repository"
+### YUM Repository
 
-    RPM packages are also available from my Gemfury repository.
+RPM packages are also available from my Gemfury repository.
 
-    ```
-    # /etc/yum.repos.d/mcornick.repo
-    [fury]
-    name=mcornick yum repo
-    baseurl=https://yum.fury.io/mcornick/
-    enabled=1
-    gpgcheck=0
-    ```
+```
+# /etc/yum.repos.d/mcornick.repo
+[fury]
+name=mcornick yum repo
+baseurl=https://yum.fury.io/mcornick/
+enabled=1
+gpgcheck=0
+```
 
-=== "APT Repository"
+### APT Repository
 
-    DEB packages are also available from my Gemfury repository.
+DEB packages are also available from my Gemfury repository.
 
-    ```
-    # /etc/apt/sources.list.d/mcornick.list
-    deb [trusted=yes] https://apt.fury.io/mcornick/ /
-    ```
+```
+# /etc/apt/sources.list.d/mcornick.list
+deb [trusted=yes] https://apt.fury.io/mcornick/ /
+```
 
-=== "Arch User Repository"
+### Arch User Repository
 
-    I maintain an [AUR](https://wiki.archlinux.org/title/Arch_User_Repository) for clilol.
+I maintain an [AUR](https://wiki.archlinux.org/title/Arch_User_Repository) for clilol.
 
-    ```
-    git clone https://github.com/mcornick/clilol-aur.git
-    cd clilol-aur
-    makepkg -i
-    ```
+```
+git clone https://github.com/mcornick/clilol-aur.git
+cd clilol-aur
+makepkg -i
+```
 
-=== "From source"
+### From source
 
-    The usual: `go install github.com/mcornick/clilol@latest`
+The usual: `go install github.com/mcornick/clilol@latest`
 
-    While I do not build or test for platforms other than the ones listed under the Binaries tab, clilol _should_ still work on any platform supported by Go, and if you find that it does not, feel free to file a GitHub issue and I'll take a look.
+While I do not build or test for platforms other than the ones listed under the Binaries tab, clilol _should_ still work on any platform supported by Go, and if you find that it does not, feel free to file a GitHub issue and I'll take a look.
 
 ## Configuration File
 
