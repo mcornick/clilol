@@ -14,7 +14,6 @@ import (
 )
 
 func Test_getAddressAvailability(t *testing.T) {
-	t.Parallel()
 	result, err := getAddressAvailability(os.Getenv("CLILOL_ADDRESS"))
 	if err != nil {
 		t.Errorf("getAddressAvailability() error = %v", err)

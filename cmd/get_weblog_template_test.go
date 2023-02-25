@@ -14,7 +14,6 @@ import (
 )
 
 func Test_getWeblogTemplate(t *testing.T) {
-	t.Parallel()
 	result, err := getWeblogTemplate()
 	if err != nil {
 		t.Errorf("getWeblogTemplate() error = %v", err)

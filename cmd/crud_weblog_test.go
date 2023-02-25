@@ -15,7 +15,6 @@ import (
 )
 
 func Test_crudWeblog(t *testing.T) {
-	t.Parallel()
 	createResult, err := createWeblog("testdata/create_weblog.txt")
 	if err != nil {
 		t.Errorf("createWeblog() error = %v", err)

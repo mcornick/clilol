@@ -13,7 +13,6 @@ import (
 )
 
 func Test_updateWebPFP(t *testing.T) {
-	t.Parallel()
 	updateResult, err := updateWebPFP("testdata/pfp.gif")
 	if err != nil {
 		t.Errorf("updateWebPFP() error = %v", err)

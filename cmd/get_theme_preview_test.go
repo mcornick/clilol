@@ -14,7 +14,6 @@ import (
 )
 
 func Test_getThemePreview(t *testing.T) {
-	t.Parallel()
 	result, err := getThemePreview("Default")
 	if err != nil {
 		t.Errorf("getThemePreview() error = %v", err)

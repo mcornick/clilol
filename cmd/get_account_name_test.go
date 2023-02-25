@@ -14,7 +14,6 @@ import (
 )
 
 func Test_getAccountName(t *testing.T) {
-	t.Parallel()
 	result, err := getAccountName()
 	if err != nil {
 		t.Errorf("getAccountName() error = %v", err)

@@ -13,7 +13,6 @@ import (
 )
 
 func Test_updateNow(t *testing.T) {
-	t.Parallel()
 	updateResult, err := updateNow("testdata/now_page.txt", false)
 	if err != nil {
 		t.Errorf("updateNow() error = %v", err)

@@ -16,7 +16,6 @@ import (
 )
 
 func Test_listDirectory(t *testing.T) {
-	t.Parallel()
 	result, err := listDirectory()
 	if err != nil {
 		t.Errorf("listDirectory() error = %v", err)

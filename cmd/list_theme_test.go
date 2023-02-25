@@ -15,7 +15,6 @@ import (
 )
 
 func Test_listTheme(t *testing.T) {
-	t.Parallel()
 	result, err := listTheme()
 	if err != nil {
 		t.Errorf("listTheme() error = %v", err)

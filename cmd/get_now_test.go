@@ -15,7 +15,6 @@ import (
 )
 
 func Test_getNow(t *testing.T) {
-	t.Parallel()
 	result, err := getNow(os.Getenv("CLILOL_ADDRESS"))
 	if err != nil {
 		t.Errorf("getNow() error = %v", err)

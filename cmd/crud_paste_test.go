@@ -16,7 +16,6 @@ import (
 )
 
 func Test_crudPaste(t *testing.T) {
-	t.Parallel()
 	expectedTitle := "createdpaste"
 	createResult, err := createPaste(expectedTitle, "testdata/create_paste.txt", false)
 	if err != nil {

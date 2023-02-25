@@ -14,7 +14,6 @@ import (
 )
 
 func Test_updateAccountName(t *testing.T) {
-	t.Parallel()
 	updateResult, err := updateAccountName(os.Getenv("CLILOL_NAME"))
 	if err != nil {
 		t.Errorf("updateAccountName() error = %v", err)

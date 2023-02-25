@@ -16,7 +16,6 @@ import (
 )
 
 func Test_listStatuslog(t *testing.T) {
-	t.Parallel()
 	result, err := listStatuslog(false)
 	if err != nil {
 		t.Errorf("listStatuslog() error = %v", err)

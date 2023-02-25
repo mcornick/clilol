@@ -14,7 +14,6 @@ import (
 )
 
 func Test_getWeb(t *testing.T) {
-	t.Parallel()
 	result, err := getWeb()
 	if err != nil {
 		t.Errorf("getWeb() error = %v", err)

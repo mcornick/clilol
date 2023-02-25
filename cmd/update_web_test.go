@@ -13,7 +13,6 @@ import (
 )
 
 func Test_updateWeb(t *testing.T) {
-	t.Parallel()
 	updateResult, err := updateWeb("testdata/web.txt")
 	if err != nil {
 		t.Errorf("updateWeb() error = %v", err)

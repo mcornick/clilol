@@ -16,7 +16,6 @@ import (
 )
 
 func Test_crudPURL(t *testing.T) {
-	t.Parallel()
 	expectedName := "createdpurl"
 	expectedURL := "https://example.com"
 	createResult, err := createPURL(expectedName, expectedURL, false)
