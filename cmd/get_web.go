@@ -27,7 +27,7 @@ type getWebOutput struct {
 		Theme    string `json:"theme"`
 		CSS      string `json:"css"`
 		Head     string `json:"head"`
-		Verified int    `json:"verified"`
+		Verified bool   `json:"verified"`
 		PFP      string `json:"pfp"`
 		Metadata string `json:"metadata"`
 		Branding string `json:"branding"`
