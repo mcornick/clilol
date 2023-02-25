@@ -59,4 +59,14 @@ func Test_crudStatus(t *testing.T) {
 	if updateResult.Request.StatusCode != 200 {
 		t.Errorf("updateStatus() = %v, want %v", updateResult.Request.StatusCode, 200)
 	}
+
+	deleteResult, err := deleteStatus(statusID)
+	if err != nil {
+		t.Errorf("deleteStatus() error = %v", err)
+		return
+	}
+	expectedMessage := "OK, that status has been deleted."
+	if deleteResult.Response.Message != expectedMessage {
+		t.Errorf("deleteStatus() = %v , want %v", deleteResult.Response.Message, expectedMessage)
+	}
 }
