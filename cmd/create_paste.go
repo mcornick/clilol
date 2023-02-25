@@ -11,7 +11,9 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
+	"os"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -78,19 +80,29 @@ func init() {
 	createCmd.AddCommand(createPasteCmd)
 }
 
-func createPaste(title, content string, listed bool) (createPasteOutput, error) {
+func createPaste(title, filename string, listed bool) (createPasteOutput, error) {
 	var result createPasteOutput
+	var content string
 	var listedInt int
+	if filename != "" {
+		input, err := os.ReadFile(filename)
+		cobra.CheckErr(err)
+		content = string(input)
+	} else {
+		stdin, err := io.ReadAll(os.Stdin)
+		cobra.CheckErr(err)
+		content = string(stdin)
+	}
 	if listed {
 		listedInt = 1
 	} else {
 		listedInt = 0
 	}
-	paste := createPasteInput{title, content, listedInt}
+	params := createPasteInput{title, content, listedInt}
 	body := callAPIWithParams(
 		http.MethodPost,
 		"/address/"+viper.GetString("address")+"/pastebin",
-		paste,
+		params,
 		true,
 	)
 	err := json.Unmarshal(body, &result)

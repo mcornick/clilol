@@ -51,7 +51,7 @@ the existing emoji if you don't specify one, so if you don't want
 to change it, you'll still need to specify it again.`,
 		Args: cobra.ExactArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
-			result, err := updateStatus(args[0], args[1])
+			result, err := updateStatus(args[0], args[1], updateStatusEmoji)
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
@@ -73,9 +73,9 @@ func init() {
 	updateCmd.AddCommand(updateStatusCmd)
 }
 
-func updateStatus(id string, text string) (updateStatusOutput, error) {
+func updateStatus(id string, text string, emoji string) (updateStatusOutput, error) {
 	var result updateStatusOutput
-	status := updateStatusInput{id, updateStatusEmoji, text}
+	status := updateStatusInput{id, emoji, text}
 	body := callAPIWithParams(
 		http.MethodPatch,
 		"/address/"+viper.GetString("address")+"/statuses/",
