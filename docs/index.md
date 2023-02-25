@@ -38,13 +38,13 @@ You can install clilol in any of these ways. (These are the only supported build
     docker run --rm mcornick/clilol
     ```
 
-    Container manifests are signed with [Cosign](https://docs.sigstore.dev/cosign/overview/). The signatures are created with Cosign's "keyless" mode, which requires setting `COSIGN_EXPERIMENTAL=1` when using Cosign versions prior to 2.0.0:
+    Container manifests are signed with [Cosign](https://docs.sigstore.dev/cosign/overview/). The signatures are created with Cosign's "keyless" mode, which requires Cosign version >= 2.0.0:
 
     ```bash
-    env COSIGN_EXPERIMENTAL=1 cosign verify ghcr.io/mcornick/clilol
+    cosign verify ghcr.io/mcornick/clilol --certificate-identity-regexp "https://github.com/mcornick/clilol.*" --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
     # or, for Docker Hub
-    env COSIGN_EXPERIMENTAL=1 cosign verify mcornick/clilol
-    ```
+    cosign verify mcornick/clilol --certificate-identity-regexp "https://github.com/mcornick/clilol.*" --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
+   ```
 
 === "Binaries and Linux packages"
 
