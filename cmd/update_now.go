@@ -19,6 +19,18 @@ import (
 	"github.com/spf13/viper"
 )
 
+type updateNowInput struct {
+	Content string `json:"content"`
+	Listed  int    `json:"listed"`
+}
+
+type updateNowOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+	} `json:"response"`
+}
+
 var (
 	updateNowFilename string
 	updateNowListed   bool
@@ -35,41 +47,7 @@ The Now page will be created as unlisted by default. To create a listed
 Now page, use the --listed flag.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type input struct {
-				Content string `json:"content"`
-				Listed  int    `json:"listed"`
-			}
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message string `json:"message"`
-				} `json:"response"`
-			}
-			var result output
-			var listed int
-			var content string
-			if updateNowFilename != "" {
-				input, err := os.ReadFile(updateNowFilename)
-				cobra.CheckErr(err)
-				content = string(input)
-			} else {
-				stdin, err := io.ReadAll(os.Stdin)
-				cobra.CheckErr(err)
-				content = string(stdin)
-			}
-			if updateNowListed {
-				listed = 1
-			} else {
-				listed = 0
-			}
-			nowPage := input{content, listed}
-			body := callAPIWithParams(
-				http.MethodPost,
-				"/address/"+viper.GetString("address")+"/now",
-				nowPage,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := updateNow(updateNowFilename, updateNowListed)
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
@@ -96,4 +74,33 @@ func init() {
 		"create Now page as listed (default false)",
 	)
 	updateCmd.AddCommand(updateNowCmd)
+}
+
+func updateNow(filename string, listed bool) (updateNowOutput, error) {
+	var result updateNowOutput
+	var listedB int
+	var content string
+	if filename != "" {
+		updateNowInput, err := os.ReadFile(filename)
+		cobra.CheckErr(err)
+		content = string(updateNowInput)
+	} else {
+		stdin, err := io.ReadAll(os.Stdin)
+		cobra.CheckErr(err)
+		content = string(stdin)
+	}
+	if listed {
+		listedB = 1
+	} else {
+		listedB = 0
+	}
+	nowPage := updateNowInput{content, listedB}
+	body := callAPIWithParams(
+		http.MethodPost,
+		"/address/"+viper.GetString("address")+"/now",
+		nowPage,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

@@ -18,40 +18,34 @@ import (
 	"github.com/spf13/viper"
 )
 
+type getWeblogOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		Entry   struct {
+			Address  string `json:"address"`
+			Location string `json:"location"`
+			Title    string `json:"title"`
+			Date     int64  `json:"date"`
+			Type     string `json:"type"`
+			Status   string `json:"status"`
+			Source   string `json:"source"`
+			Body     string `json:"body"`
+			Output   string `json:"output"`
+			Metadata string `json:"metadata"`
+			Entry    string `json:"entry"`
+			ID       string `json:"id"`
+		} `json:"entry"`
+	} `json:"response"`
+}
+
 var getWeblogCmd = &cobra.Command{
 	Use:   "weblog",
 	Short: "Get a weblog entry",
 	Long:  "Gets one of your weblog entries by ID.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string `json:"message"`
-				Entry   struct {
-					Address  string `json:"address"`
-					Location string `json:"location"`
-					Title    string `json:"title"`
-					Date     int64  `json:"date"`
-					Type     string `json:"type"`
-					Status   string `json:"status"`
-					Source   string `json:"source"`
-					Body     string `json:"body"`
-					Output   string `json:"output"`
-					Metadata string `json:"metadata"`
-					Entry    string `json:"entry"`
-					ID       string `json:"id"`
-				} `json:"entry"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/address/"+viper.GetString("address")+"/weblog/entry/"+args[0],
-			nil,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := getWeblog(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Printf(
@@ -73,4 +67,16 @@ var getWeblogCmd = &cobra.Command{
 
 func init() {
 	getCmd.AddCommand(getWeblogCmd)
+}
+
+func getWeblog(id string) (getWeblogOutput, error) {
+	var result getWeblogOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+viper.GetString("address")+"/weblog/entry/"+id,
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

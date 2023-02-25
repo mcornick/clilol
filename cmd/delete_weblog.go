@@ -17,6 +17,13 @@ import (
 	"github.com/spf13/viper"
 )
 
+type deleteWeblogOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+	} `json:"response"`
+}
+
 var deleteWeblogCmd = &cobra.Command{
 	Use:   "weblog [id]",
 	Short: "Delete a weblog entry",
@@ -26,20 +33,7 @@ Note that you won't be asked to confirm deletion.
 Be sure you know what you're doing.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string `json:"message"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(
-			http.MethodDelete,
-			"/address/"+viper.GetString("address")+"/weblog/delete/"+args[0],
-			nil,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := deleteWeblog(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -51,4 +45,16 @@ Be sure you know what you're doing.`,
 
 func init() {
 	deleteCmd.AddCommand(deleteWeblogCmd)
+}
+
+func deleteWeblog(id string) (deleteWeblogOutput, error) {
+	var result deleteWeblogOutput
+	body := callAPIWithParams(
+		http.MethodDelete,
+		"/address/"+viper.GetString("address")+"/weblog/delete/"+id,
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

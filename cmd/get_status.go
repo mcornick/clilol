@@ -19,6 +19,20 @@ import (
 	"github.com/spf13/viper"
 )
 
+type getStatusOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		Status  struct {
+			Id      string `json:"id"`
+			Address string `json:"address"`
+			Created string `json:"created"`
+			Emoji   string `json:"emoji"`
+			Content string `json:"content"`
+		} `json:"status"`
+	} `json:"response"`
+}
+
 var getStatusCmd = &cobra.Command{
 	Use:   "status [id]",
 	Short: "Get status",
@@ -28,30 +42,7 @@ The address can be specified with the --address flag. If not set,
 it defaults to your own address.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string `json:"message"`
-				Status  struct {
-					Id      string `json:"id"`
-					Address string `json:"address"`
-					Created string `json:"created"`
-					Emoji   string `json:"emoji"`
-					Content string `json:"content"`
-				} `json:"status"`
-			} `json:"response"`
-		}
-		var result output
-		if addressFlag == "" {
-			addressFlag = viper.GetString("address")
-		}
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/address/"+addressFlag+"/statuses/"+args[0],
-			nil,
-			false,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := getStatus(addressFlag, args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Printf(
@@ -68,7 +59,7 @@ it defaults to your own address.`,
 				result.Response.Status.Content,
 			)
 		} else {
-			fmt.Println(string(body))
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
 		}
 	},
 }
@@ -82,4 +73,19 @@ func init() {
 		"address whose status to get",
 	)
 	getCmd.AddCommand(getStatusCmd)
+}
+
+func getStatus(address string, id string) (getStatusOutput, error) {
+	var result getStatusOutput
+	if address == "" {
+		address = viper.GetString("address")
+	}
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+address+"/statuses/"+id,
+		nil,
+		false,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

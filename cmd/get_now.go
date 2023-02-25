@@ -18,6 +18,18 @@ import (
 	"github.com/spf13/viper"
 )
 
+type getNowOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		Now     struct {
+			Content string `json:"content"`
+			Updated int64  `json:"updated"`
+			Listed  int    `json:"listed"`
+		} `json:"now"`
+	} `json:"response"`
+}
+
 var (
 	getNowFilename string
 	getNowCmd      = &cobra.Command{
@@ -33,28 +45,7 @@ to that file. If you do not specify a filename, the content will be written
 to stdout.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message string `json:"message"`
-					Now     struct {
-						Content string `json:"content"`
-						Updated int64  `json:"updated"`
-						Listed  int    `json:"listed"`
-					} `json:"now"`
-				} `json:"response"`
-			}
-			var result output
-			if addressFlag == "" {
-				addressFlag = viper.GetString("address")
-			}
-			body := callAPIWithParams(
-				http.MethodGet,
-				"/address/"+addressFlag+"/now",
-				nil,
-				false,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := getNow(addressFlag)
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				if getNowFilename != "" {
@@ -86,4 +77,19 @@ func init() {
 		"file to write Now page to (default stdout)",
 	)
 	getCmd.AddCommand(getNowCmd)
+}
+
+func getNow(address string) (getNowOutput, error) {
+	var result getNowOutput
+	if address == "" {
+		address = viper.GetString("address")
+	}
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+address+"/now",
+		nil,
+		false,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

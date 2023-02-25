@@ -17,6 +17,13 @@ import (
 	"github.com/spf13/viper"
 )
 
+type deletePasteOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+	} `json:"response"`
+}
+
 var deletePasteCmd = &cobra.Command{
 	Use:   "paste [title]",
 	Short: "Delete a paste",
@@ -28,20 +35,7 @@ Note that you won't be asked to confirm deletion.
 Be sure you know what you're doing.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string `json:"message"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(
-			http.MethodDelete,
-			"/address/"+viper.GetString("address")+"/pastebin/"+args[0],
-			nil,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := deletePaste(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -53,4 +47,16 @@ Be sure you know what you're doing.`,
 
 func init() {
 	deleteCmd.AddCommand(deletePasteCmd)
+}
+
+func deletePaste(title string) (deletePasteOutput, error) {
+	var result deletePasteOutput
+	body := callAPIWithParams(
+		http.MethodDelete,
+		"/address/"+viper.GetString("address")+"/pastebin/"+title,
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

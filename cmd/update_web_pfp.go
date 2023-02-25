@@ -19,29 +19,20 @@ import (
 	"github.com/spf13/viper"
 )
 
+type updateWebPFPOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+	} `json:"response"`
+}
+
 var updateWebPFPCmd = &cobra.Command{
 	Use:   "pfp [filename]",
 	Short: "set your profile picture",
 	Long:  "Sets your profile picture.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string `json:"message"`
-			} `json:"response"`
-		}
-		var result output
-		content, err := os.ReadFile(args[0])
-		cobra.CheckErr(err)
-		encoded := "data:text/plain;base64," + base64.StdEncoding.EncodeToString(content)
-		body := callAPIWithRawData(
-			http.MethodPost,
-			"/address/"+viper.GetString("address")+"/pfp",
-			encoded,
-			true,
-		)
-		err = json.Unmarshal(body, &result)
+		result, err := updateWebPFP(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -53,4 +44,19 @@ var updateWebPFPCmd = &cobra.Command{
 
 func init() {
 	updateWebCmd.AddCommand(updateWebPFPCmd)
+}
+
+func updateWebPFP(filename string) (updateWebPFPOutput, error) {
+	var result updateWebPFPOutput
+	content, err := os.ReadFile(filename)
+	cobra.CheckErr(err)
+	encoded := "data:text/plain;base64," + base64.StdEncoding.EncodeToString(content)
+	body := callAPIWithRawData(
+		http.MethodPost,
+		"/address/"+viper.GetString("address")+"/pfp",
+		encoded,
+		true,
+	)
+	err = json.Unmarshal(body, &result)
+	return result, err
 }

@@ -18,6 +18,19 @@ import (
 	"github.com/spf13/viper"
 )
 
+type listPasteOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message  string `json:"message"`
+		Pastebin []struct {
+			Title      string `json:"title"`
+			Content    string `json:"content"`
+			ModifiedOn int64  `json:"modified_on"`
+			Listed     int    `json:"listed,omitempty"`
+		} `json:"pastebin"`
+	} `json:"response"`
+}
+
 var listPasteCmd = &cobra.Command{
 	Use:   "paste",
 	Short: "List pastes",
@@ -30,29 +43,7 @@ Unlisted pastes are only included when the --address flag is set to
 your own address.`,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message  string `json:"message"`
-				Pastebin []struct {
-					Title      string `json:"title"`
-					Content    string `json:"content"`
-					ModifiedOn int64  `json:"modified_on"`
-					Listed     int    `json:"listed,omitempty"`
-				} `json:"pastebin"`
-			} `json:"response"`
-		}
-		var result output
-		if addressFlag == "" {
-			addressFlag = viper.GetString("address")
-		}
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/address/"+addressFlag+"/pastebin",
-			nil,
-			addressFlag == viper.GetString("address"),
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := listPaste(addressFlag)
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			for _, paste := range result.Response.Pastebin {
@@ -77,4 +68,19 @@ func init() {
 		"address whose pastes to list",
 	)
 	listCmd.AddCommand(listPasteCmd)
+}
+
+func listPaste(address string) (listPasteOutput, error) {
+	var result listPasteOutput
+	if address == "" {
+		address = viper.GetString("address")
+	}
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+address+"/pastebin",
+		nil,
+		address == viper.GetString("address"),
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

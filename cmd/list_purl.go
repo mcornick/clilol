@@ -17,6 +17,18 @@ import (
 	"github.com/spf13/viper"
 )
 
+type listPURLOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		PURLs   []struct {
+			Name    string `json:"name"`
+			URL     string `json:"url"`
+			Counter int    `json:"counter"`
+		} `json:"purls"`
+	} `json:"response"`
+}
+
 var listPURLCmd = &cobra.Command{
 	Use:   "purl",
 	Short: "List all PURLs",
@@ -26,28 +38,7 @@ The address can be specified with the --address flag. If not set,
 it defaults to your own address.`,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string `json:"message"`
-				PURLs   []struct {
-					Name    string `json:"name"`
-					URL     string `json:"url"`
-					Counter int    `json:"counter"`
-				} `json:"purls"`
-			} `json:"response"`
-		}
-		var result output
-		if addressFlag == "" {
-			addressFlag = viper.GetString("address")
-		}
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/address/"+addressFlag+"/purls",
-			nil,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := listPURL(addressFlag)
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			for _, purl := range result.Response.PURLs {
@@ -73,4 +64,19 @@ func init() {
 		"address whose PURLs to get",
 	)
 	listCmd.AddCommand(listPURLCmd)
+}
+
+func listPURL(address string) (listPURLOutput, error) {
+	var result listPURLOutput
+	if address == "" {
+		address = viper.GetString("address")
+	}
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+address+"/purls",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

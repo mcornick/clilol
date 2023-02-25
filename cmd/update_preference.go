@@ -17,33 +17,26 @@ import (
 	"github.com/spf13/viper"
 )
 
+type updatePreferenceInput struct {
+	Item  string `json:"item"`
+	Value string `json:"value"`
+}
+type updatePreferenceOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		Item    string `json:"item"`
+		Value   string `json:"value"`
+	} `json:"response"`
+}
+
 var updatePreferenceCmd = &cobra.Command{
 	Use:   "preference [item] [value]",
 	Short: "set a preference",
 	Long:  "Sets omg.lol preferences.",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		type input struct {
-			Item  string `json:"item"`
-			Value string `json:"value"`
-		}
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string `json:"message"`
-				Item    string `json:"item"`
-				Value   string `json:"value"`
-			} `json:"response"`
-		}
-		var result output
-		pref := input{args[0], args[1]}
-		body := callAPIWithParams(
-			http.MethodPost,
-			"/preferences/"+viper.GetString("address"),
-			pref,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := updatePreference(args[0], args[1])
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -55,4 +48,17 @@ var updatePreferenceCmd = &cobra.Command{
 
 func init() {
 	updateCmd.AddCommand(updatePreferenceCmd)
+}
+
+func updatePreference(item string, value string) (updatePreferenceOutput, error) {
+	var result updatePreferenceOutput
+	pref := updatePreferenceInput{item, value}
+	body := callAPIWithParams(
+		http.MethodPost,
+		"/preferences/"+viper.GetString("address"),
+		pref,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

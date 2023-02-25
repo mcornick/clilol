@@ -17,6 +17,15 @@ import (
 	"github.com/spf13/viper"
 )
 
+type getStatusBioOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		Bio     string `json:"bio"`
+		Css     string `json:"css"`
+	} `json:"response"`
+}
+
 var getStatusBioCmd = &cobra.Command{
 	Use:   "status-bio",
 	Short: "Get status bio",
@@ -29,25 +38,7 @@ Note that any custom CSS set on the bio is ignored.
 `,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string `json:"message"`
-				Bio     string `json:"bio"`
-				Css     string `json:"css"`
-			} `json:"response"`
-		}
-		var result output
-		if addressFlag == "" {
-			addressFlag = viper.GetString("address")
-		}
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/address/"+addressFlag+"/statuses/bio/",
-			nil,
-			false,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := getStatusBio(addressFlag)
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -67,4 +58,19 @@ func init() {
 		"address whose status bio to get",
 	)
 	getCmd.AddCommand(getStatusBioCmd)
+}
+
+func getStatusBio(address string) (getStatusBioOutput, error) {
+	var result getStatusBioOutput
+	if address == "" {
+		address = viper.GetString("address")
+	}
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+address+"/statuses/bio/",
+		nil,
+		false,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

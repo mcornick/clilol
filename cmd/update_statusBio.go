@@ -17,6 +17,18 @@ import (
 	"github.com/spf13/viper"
 )
 
+type updateStatusBioInput struct {
+	Content string `json:"content"`
+}
+
+type updateStatusBioOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		URL     string `json:"url"`
+	} `json:"response"`
+}
+
 var updateStatusBioCmd = &cobra.Command{
 	Use:   "status-bio [text]",
 	Short: "Update your status bio",
@@ -28,25 +40,7 @@ Note that the omg.lol API does not permit you to change any custom
 CSS. You'll need to do that on the website.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type input struct {
-			Content string `json:"content"`
-		}
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Message string `json:"message"`
-				URL     string `json:"url"`
-			} `json:"response"`
-		}
-		var result output
-		bio := input{args[0]}
-		body := callAPIWithParams(
-			http.MethodPost,
-			"/address/"+viper.GetString("address")+"/statuses/bio/",
-			bio,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := updateStatusBio(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
@@ -58,4 +52,17 @@ CSS. You'll need to do that on the website.`,
 
 func init() {
 	updateCmd.AddCommand(updateStatusBioCmd)
+}
+
+func updateStatusBio(text string) (updateStatusBioOutput, error) {
+	var result updateStatusBioOutput
+	bio := updateStatusBioInput{text}
+	body := callAPIWithParams(
+		http.MethodPost,
+		"/address/"+viper.GetString("address")+"/statuses/bio/",
+		bio,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

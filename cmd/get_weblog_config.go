@@ -18,6 +18,36 @@ import (
 	"github.com/spf13/viper"
 )
 
+type getWeblogConfigOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message       string `json:"message"`
+		Configuration struct {
+			Object struct {
+				WeblogTitle                 string `json:"weblog-title"`
+				WeblogDescription           string `json:"weblog-description"`
+				Author                      string `json:"author"`
+				Separator                   string `json:"separator"`
+				TagPath                     string `json:"tag-path"`
+				Timezone                    string `json:"timezone"`
+				DateFormat                  string `json:"date-format"`
+				DefaultPost                 string `json:"default-post"`
+				FeedPostCount               string `json:"feed-post-count"`
+				PostPathFormat              string `json:"post-path-format"`
+				RecentPostsCount            string `json:"recent-posts-count"`
+				RecentPostsFormat           string `json:"recent-posts-format"`
+				PostListFormat              string `json:"post-list-format"`
+				SearchStatus                string `json:"search-status"`
+				SearchoutputsSuccessMessage string `json:"search-results-success-message"`
+				SearchoutputsFailureMessage string `json:"search-results-failure-message"`
+				SearchoutputsFormat         string `json:"search-results-format"`
+			} `json:"object"`
+			JSON string `json:"json"`
+			Raw  string `json:"raw"`
+		} `json:"configuration"`
+	} `json:"response"`
+}
+
 var (
 	getWeblogConfigFilename string
 	getWeblogConfigCmd      = &cobra.Command{
@@ -30,43 +60,7 @@ to that file. If you do not specify a filename, the content will be written
 to stdout.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			type output struct {
-				Request  resultRequest `json:"request"`
-				Response struct {
-					Message       string `json:"message"`
-					Configuration struct {
-						Object struct {
-							WeblogTitle                 string `json:"weblog-title"`
-							WeblogDescription           string `json:"weblog-description"`
-							Author                      string `json:"author"`
-							Separator                   string `json:"separator"`
-							TagPath                     string `json:"tag-path"`
-							Timezone                    string `json:"timezone"`
-							DateFormat                  string `json:"date-format"`
-							DefaultPost                 string `json:"default-post"`
-							FeedPostCount               string `json:"feed-post-count"`
-							PostPathFormat              string `json:"post-path-format"`
-							RecentPostsCount            string `json:"recent-posts-count"`
-							RecentPostsFormat           string `json:"recent-posts-format"`
-							PostListFormat              string `json:"post-list-format"`
-							SearchStatus                string `json:"search-status"`
-							SearchoutputsSuccessMessage string `json:"search-results-success-message"`
-							SearchoutputsFailureMessage string `json:"search-results-failure-message"`
-							SearchoutputsFormat         string `json:"search-results-format"`
-						} `json:"object"`
-						JSON string `json:"json"`
-						Raw  string `json:"raw"`
-					} `json:"configuration"`
-				} `json:"response"`
-			}
-			var result output
-			body := callAPIWithParams(
-				http.MethodGet,
-				"/address/"+viper.GetString("address")+"/weblog/configuration",
-				nil,
-				true,
-			)
-			err := json.Unmarshal(body, &result)
+			result, err := getWeblogConfig()
 			cobra.CheckErr(err)
 			if result.Request.Success {
 				if getWeblogConfigFilename != "" {
@@ -95,4 +89,16 @@ func init() {
 		"file to write configuration to (default stdout)",
 	)
 	getWeblogCmd.AddCommand(getWeblogConfigCmd)
+}
+
+func getWeblogConfig() (getWeblogConfigOutput, error) {
+	var result getWeblogConfigOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+viper.GetString("address")+"/weblog/configuration",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

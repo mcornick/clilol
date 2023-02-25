@@ -18,39 +18,33 @@ import (
 	"github.com/spf13/cobra"
 )
 
+type getThemeOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Theme struct {
+			ID            string `json:"id"`
+			Name          string `json:"name"`
+			Created       string `json:"created"`
+			Updated       string `json:"updated"`
+			Author        string `json:"author"`
+			AuthorURL     string `json:"author_url"`
+			Version       string `json:"version"`
+			License       string `json:"license"`
+			Description   string `json:"description"`
+			PreviewCSS    string `json:"preview_css"`
+			SampleProfile string `json:"sample_profile"`
+			ThemeColor    string `json:"theme-color"`
+		} `json:"theme"`
+	} `json:"response"`
+}
+
 var getThemeCmd = &cobra.Command{
 	Use:   "theme [theme-name]",
 	Short: "Get theme information",
 	Long:  "Gets information about a theme.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		type output struct {
-			Request  resultRequest `json:"request"`
-			Response struct {
-				Theme struct {
-					ID            string `json:"id"`
-					Name          string `json:"name"`
-					Created       string `json:"created"`
-					Updated       string `json:"updated"`
-					Author        string `json:"author"`
-					AuthorURL     string `json:"author_url"`
-					Version       string `json:"version"`
-					License       string `json:"license"`
-					Description   string `json:"description"`
-					PreviewCSS    string `json:"preview_css"`
-					SampleProfile string `json:"sample_profile"`
-					ThemeColor    string `json:"theme-color"`
-				} `json:"theme"`
-			} `json:"response"`
-		}
-		var result output
-		body := callAPIWithParams(
-			http.MethodGet,
-			"/theme/"+args[0]+"/info",
-			nil,
-			true,
-		)
-		err := json.Unmarshal(body, &result)
+		result, err := getTheme(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {
 			updatedAt, err := strconv.ParseInt(result.Response.Theme.Updated, 10, 64)
@@ -71,4 +65,16 @@ var getThemeCmd = &cobra.Command{
 
 func init() {
 	getCmd.AddCommand(getThemeCmd)
+}
+
+func getTheme(name string) (getThemeOutput, error) {
+	var result getThemeOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/theme/"+name+"/info",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }
