@@ -80,7 +80,7 @@ func init() {
 
 func updateAccountSettings(communication string, dateFormat string, webEditor string) (updateAccountSettingsOutput, error) {
 	var result updateAccountSettingsOutput
-	account := updateAccountSettingsInput{communication, communication, webEditor}
+	account := updateAccountSettingsInput{communication, dateFormat, webEditor}
 	body := callAPIWithParams(
 		http.MethodPost,
 		"/account/"+viper.GetString("email")+"/settings",
