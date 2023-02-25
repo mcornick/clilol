@@ -7,10 +7,6 @@ __clilol__ is a CLI for the various fun services offered by [omg.lol](https://om
 
 Please see the links in the navigation menu to the left to learn about all the different commands provided by clilol.
 
-!!! Note
-
-    clilol is still under heavy development, and things may still change before a 1.0.0 release. _Caveat lector_.
-
 ## Installation
 
 You can install clilol in any of these ways. (These are the only supported builds of omglol. I don't submit them to "official" repositories, at least not yet. If you find a problem with anyone else's build, please try my builds instead.)
