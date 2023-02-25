@@ -35,8 +35,8 @@ var (
 	updateNowFilename string
 	updateNowListed   bool
 	updateNowCmd      = &cobra.Command{
-		Use:   "set",
-		Short: "set Now page content",
+		Use:   "now",
+		Short: "update Now page content",
 		Long: `Sets your Now page content.
 
 If you specify a filename with the --filename flag, the content of the file

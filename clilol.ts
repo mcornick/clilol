@@ -725,7 +725,7 @@ const completionSpec: Fig.Spec = {
                 { name: "value", description: "value to set" },
               ],
             },
-            { name: ["set"], description: "set Now page content" },
+            { name: ["now"], description: "update Now page content" },
             {
               name: ["status"],
               description: "Update a status",

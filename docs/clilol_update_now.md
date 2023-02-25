@@ -1,9 +1,9 @@
 ---
-title: "clilol update set"
+title: "clilol update now"
 ---
-## clilol update set
+## clilol update now
 
-set Now page content
+update Now page content
 
 ### Synopsis
 
@@ -17,14 +17,14 @@ The Now page will be created as unlisted by default. To create a listed
 Now page, use the --listed flag.
 
 ```
-clilol update set [flags]
+clilol update now [flags]
 ```
 
 ### Options
 
 ```
   -f, --filename string   file to read Now page from (default stdin)
-  -h, --help              help for set
+  -h, --help              help for now
   -l, --listed            create Now page as listed (default false)
 ```
 
