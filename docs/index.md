@@ -129,6 +129,10 @@ The file should look like one of these, substituting your own details:
     ```
 A [JSON Schema](config.schema.json) for the configuration file is available, for editors that support it.
 
+!!! Note
+
+    Your email address is only needed to identify your account for the `clilol account` commands. It is not used by clilol for anything else, such as spamming you.
+
 ## Environment Variables
 
 Configuration is also possible using environment variables:
@@ -140,8 +144,6 @@ export CLILOL_APIKEY="0123456789abcdef0123456789abcdef"
 ```
 
 Environment variables take precedence over any configuration file.
-
-Your email address is only needed to identify your account for the `clilol account` commands. It is not used by clilol for anything else, such as spamming you.
 
 ## Contributing to clilol
 
