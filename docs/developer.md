@@ -15,7 +15,7 @@ export CLILOL_EMAIL="tomservo@gizmonics.invalid"
 export CLILOL_NAME="Tom Servo's test address"
 ```
 
-With those set, the tests should run successfully.
+With those set, the tests should run successfully, unless there is some issue connecting to omg.lol (which does happen from time to time, because omg.lol is on the same internet as jerks running botnets.)
 
 ## Contributing to clilol
 
