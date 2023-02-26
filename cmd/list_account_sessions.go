@@ -26,6 +26,7 @@ type listAccountSessionsOutput struct {
 		CreatedIP string `json:"created_ip"`
 		CreatedOn int64  `json:"created_on"`
 		ExpiresOn int64  `json:"expires_on"`
+		UpdatedOn int64  `json:"updated_on"`
 	} `json:"response"`
 }
 
