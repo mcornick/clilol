@@ -21,8 +21,8 @@ func Test_listDirectory(t *testing.T) {
 		t.Errorf("listDirectory() error = %v", err)
 		return
 	}
-	// NOTE: assumes the test address is unlisted
-	if slices.Contains(result.Response.Directory, os.Getenv("CLILOL_ADDRESS")) {
-		t.Errorf("listDirectory() = %v, want %v", result.Response.Directory, os.Getenv("CLILOL_ADDRESS"))
+	if slices.Contains(result.Directory, os.Getenv("CLILOL_ADDRESS")) {
+		t.Errorf("listDirectory() = %v, want %v", result.Directory, os.Getenv("CLILOL_ADDRESS"))
+		return
 	}
 }
