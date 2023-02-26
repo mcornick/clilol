@@ -141,7 +141,7 @@ export CLILOL_APIKEY="0123456789abcdef0123456789abcdef"
 
 Environment variables take precedence over any configuration file.
 
-Your email address is only needed for the `clilol account` commands. It is not used by clilol for anything else, such as spamming you. If you don't use the `clilol account` commands, feel free to not specify it.
+Your email address is only needed to identify your account for the `clilol account` commands. It is not used by clilol for anything else, such as spamming you.
 
 ## Contributing to clilol
 
