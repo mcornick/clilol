@@ -11,6 +11,7 @@ package cmd
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -64,6 +65,13 @@ func init() {
 	rootCmd.DisableAutoGenTag = true
 }
 
+func checkConfig(key string) error {
+	if viper.GetString(key) == "" {
+		return fmt.Errorf("no " + key + " set")
+	}
+	return nil
+}
+
 func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byte, error) {
 	request, err := http.NewRequest(method, endpoint+path, bodyReader)
 	if err != nil {
@@ -72,6 +80,10 @@ func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byt
 	request.Header.Set("User-Agent", "clilol/"+version+" (https://github.com/mcornick/clilol)")
 	request.Header.Set("Content-Type", "application/json")
 	if auth {
+		err := checkConfig("apikey")
+		if err != nil {
+			return nil, err
+		}
 		request.Header.Set("Authorization", "Bearer "+viper.GetString("apikey"))
 	}
 	response, err := http.DefaultClient.Do(request)

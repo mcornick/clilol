@@ -77,6 +77,8 @@ func init() {
 }
 
 func updateNow(filename string, listed bool) (updateNowOutput, error) {
+	err := checkConfig("address")
+	cobra.CheckErr(err)
 	var result updateNowOutput
 	var listedB int
 	var content string
@@ -101,6 +103,6 @@ func updateNow(filename string, listed bool) (updateNowOutput, error) {
 		nowPage,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

@@ -50,6 +50,8 @@ func init() {
 }
 
 func updateAccountName(name string) (updateAccountNameOutput, error) {
+	err := checkConfig("email")
+	cobra.CheckErr(err)
 	var result updateAccountNameOutput
 	account := updateAccountNameInput{name}
 	body := callAPIWithParams(
@@ -58,6 +60,6 @@ func updateAccountName(name string) (updateAccountNameOutput, error) {
 		account,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

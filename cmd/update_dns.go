@@ -91,6 +91,8 @@ func init() {
 }
 
 func updateDNS(id string, name string, recordType string, data string, priority int, ttl int) (updateDNSOutput, error) {
+	err := checkConfig("address")
+	cobra.CheckErr(err)
 	var result updateDNSOutput
 	dns := updateDNSInput{recordType, name, data, priority, ttl}
 	body := callAPIWithParams(
@@ -99,6 +101,6 @@ func updateDNS(id string, name string, recordType string, data string, priority 
 		dns,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

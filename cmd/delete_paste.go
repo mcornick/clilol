@@ -50,6 +50,8 @@ func init() {
 }
 
 func deletePaste(title string) (deletePasteOutput, error) {
+	err := checkConfig("address")
+	cobra.CheckErr(err)
 	var result deletePasteOutput
 	body := callAPIWithParams(
 		http.MethodDelete,
@@ -57,6 +59,6 @@ func deletePaste(title string) (deletePasteOutput, error) {
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

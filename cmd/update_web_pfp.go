@@ -47,6 +47,8 @@ func init() {
 }
 
 func updateWebPFP(filename string) (updateWebPFPOutput, error) {
+	err := checkConfig("address")
+	cobra.CheckErr(err)
 	var result updateWebPFPOutput
 	content, err := os.ReadFile(filename)
 	cobra.CheckErr(err)

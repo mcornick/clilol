@@ -55,6 +55,8 @@ func init() {
 }
 
 func listAccountSessions() (listAccountSessionsOutput, error) {
+	err := checkConfig("email")
+	cobra.CheckErr(err)
 	var result listAccountSessionsOutput
 	body := callAPIWithParams(
 		http.MethodGet,
@@ -62,6 +64,6 @@ func listAccountSessions() (listAccountSessionsOutput, error) {
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

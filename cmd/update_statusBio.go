@@ -55,6 +55,8 @@ func init() {
 }
 
 func updateStatusBio(text string) (updateStatusBioOutput, error) {
+	err := checkConfig("address")
+	cobra.CheckErr(err)
 	var result updateStatusBioOutput
 	bio := updateStatusBioInput{text}
 	body := callAPIWithParams(
@@ -63,6 +65,6 @@ func updateStatusBio(text string) (updateStatusBioOutput, error) {
 		bio,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

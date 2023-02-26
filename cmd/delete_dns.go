@@ -48,6 +48,8 @@ func init() {
 }
 
 func deleteDNS(id string) (deleteDNSOutput, error) {
+	err := checkConfig("address")
+	cobra.CheckErr(err)
 	var result deleteDNSOutput
 	body := callAPIWithParams(
 		http.MethodDelete,
@@ -55,6 +57,6 @@ func deleteDNS(id string) (deleteDNSOutput, error) {
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

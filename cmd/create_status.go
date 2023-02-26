@@ -81,6 +81,8 @@ func init() {
 }
 
 func createStatus(text string, emoji string, skipMastodonPost bool) (createStatusOutput, error) {
+	err := checkConfig("address")
+	cobra.CheckErr(err)
 	var result createStatusOutput
 	status := createStatusInput{emoji, text, skipMastodonPost}
 	body := callAPIWithParams(
@@ -89,6 +91,6 @@ func createStatus(text string, emoji string, skipMastodonPost bool) (createStatu
 		status,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

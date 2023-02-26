@@ -48,6 +48,8 @@ func init() {
 }
 
 func deleteAccountSession(id string) (deleteAccountSessionOutput, error) {
+	err := checkConfig("email")
+	cobra.CheckErr(err)
 	var result deleteAccountSessionOutput
 	body := callAPIWithParams(
 		http.MethodDelete,
@@ -55,6 +57,6 @@ func deleteAccountSession(id string) (deleteAccountSessionOutput, error) {
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

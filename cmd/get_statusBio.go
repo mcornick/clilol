@@ -61,6 +61,8 @@ func init() {
 }
 
 func getStatusBio(address string) (getStatusBioOutput, error) {
+	err := checkConfig("address")
+	cobra.CheckErr(err)
 	var result getStatusBioOutput
 	if address == "" {
 		address = viper.GetString("address")
@@ -71,6 +73,6 @@ func getStatusBio(address string) (getStatusBioOutput, error) {
 		nil,
 		false,
 	)
-	err := json.Unmarshal(body, &result)
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

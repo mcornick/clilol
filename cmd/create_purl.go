@@ -66,6 +66,8 @@ func init() {
 }
 
 func createPURL(name string, url string, listed bool) (createPURLOutput, error) {
+	err := checkConfig("address")
+	cobra.CheckErr(err)
 	var result createPURLOutput
 	purl := createPURLInput{name, url, listed}
 	body := callAPIWithParams(
@@ -74,6 +76,6 @@ func createPURL(name string, url string, listed bool) (createPURLOutput, error) 
 		purl,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

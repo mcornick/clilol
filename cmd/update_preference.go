@@ -51,6 +51,8 @@ func init() {
 }
 
 func updatePreference(item string, value string) (updatePreferenceOutput, error) {
+	err := checkConfig("address")
+	cobra.CheckErr(err)
 	var result updatePreferenceOutput
 	pref := updatePreferenceInput{item, value}
 	body := callAPIWithParams(
@@ -59,6 +61,6 @@ func updatePreference(item string, value string) (updatePreferenceOutput, error)
 		pref,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	err = json.Unmarshal(body, &result)
 	return result, err
 }
