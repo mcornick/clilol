@@ -9,78 +9,41 @@
 package cmd
 
 import (
-	"encoding/json"
 	"fmt"
-	"net/http"
-	"time"
 
+	"github.com/ejstreet/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
-type createDNSInput struct {
-	Type     string `json:"type"`
-	Name     string `json:"name"`
-	Data     string `json:"data"`
-	Priority int    `json:"priority"`
-	TTL      int    `json:"ttl"`
-}
-
-type createDNSOutput struct {
-	Request  resultRequest `json:"request"`
-	Response struct {
-		Message  string `json:"message"`
-		DataSent struct {
-			Type     string `json:"type"`
-			Priority int    `json:"priority"`
-			TTL      int    `json:"ttl"`
-			Name     string `json:"name"`
-			Content  string `json:"content"`
-		} `json:"data_sent"`
-		ResponseReceived struct {
-			Data struct {
-				ID        int       `json:"id"`
-				Name      string    `json:"name"`
-				Content   string    `json:"content"`
-				TTL       int       `json:"ttl"`
-				Priority  int       `json:"priority"`
-				Type      string    `json:"type"`
-				CreatedAt time.Time `json:"created_at"`
-				UpdatedAt time.Time `json:"updated_at"`
-			} `json:"data"`
-		} `json:"response_received"`
-	} `json:"response"`
-}
-
 var (
-	createDNSPriority int
-	createDNSTTL      int
+	createDNSPriority int64
+	createDNSTTL      int64
 	createDNSCmd      = &cobra.Command{
 		Use:   "dns [name] [type] [data]",
 		Short: "Create a DNS record",
 		Long:  "Creates a DNS record.",
 		Args:  cobra.ExactArgs(3),
-		Run: func(cmd *cobra.Command, args []string) {
-			result, err := createDNS(args[0], args[1], args[2], createDNSPriority, createDNSTTL)
-			cobra.CheckErr(err)
-			if result.Request.Success {
-				fmt.Println(result.Response.Message)
-			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
-			}
+		Run: func(cmd *cobra.Command, args []string) { // result, err := createDNS(args[0], args[1], args[2], createDNSPriority, createDNSTTL)
+			name := args[0]
+			recordType := args[1]
+			data := args[2]
+			err := createDNS(name, recordType, data, createDNSPriority, createDNSTTL)
+			handleAPIError(err)
+			fmt.Printf("DNS record %s created\n", name)
 		},
 	}
 )
 
 func init() {
-	createDNSCmd.Flags().IntVarP(
+	createDNSCmd.Flags().Int64VarP(
 		&createDNSPriority,
 		"priority",
 		"p",
 		0,
 		"priority of the DNS record",
 	)
-	createDNSCmd.Flags().IntVarP(
+	createDNSCmd.Flags().Int64VarP(
 		&createDNSTTL,
 		"ttl",
 		"T",
@@ -90,15 +53,10 @@ func init() {
 	createCmd.AddCommand(createDNSCmd)
 }
 
-func createDNS(name string, recordType string, data string, priority int, ttl int) (createDNSOutput, error) {
-	var result createDNSOutput
-	dns := createDNSInput{recordType, name, data, priority, ttl}
-	body := callAPIWithParams(
-		http.MethodPost,
-		"/address/"+viper.GetString("address")+"/dns",
-		dns,
-		true,
-	)
-	err := json.Unmarshal(body, &result)
-	return result, err
+func createDNS(name string, recordType string, data string, priority int64, ttl int64) error {
+	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
+	cobra.CheckErr(err)
+	dnsEntry := omglol.NewDNSEntry(recordType, name, data, ttl, priority)
+	_, err = client.CreateDNSRecord(viper.GetString("address"), *dnsEntry)
+	return err
 }

@@ -20,6 +20,7 @@ These commands get things.
 * [clilol](clilol.md)	 - a cli for omg.lol
 * [clilol get account](clilol_get_account.md)	 - Get information about your account
 * [clilol get address](clilol_get_address.md)	 - Get information about an address
+* [clilol get dns](clilol_get_dns.md)	 - Get a DNS record
 * [clilol get email](clilol_get_email.md)	 - Get email forwarding address(es)
 * [clilol get now](clilol_get_now.md)	 - Get a Now page
 * [clilol get paste](clilol_get_paste.md)	 - Get a paste

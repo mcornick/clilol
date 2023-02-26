@@ -10,7 +10,6 @@ package cmd
 
 import (
 	"os"
-	"strconv"
 	"testing"
 
 	"golang.org/x/exp/slices"
@@ -20,21 +19,11 @@ func Test_crudDNS(t *testing.T) {
 	expectedName := "localhost." + os.Getenv("CLILOL_ADDRESS")
 	expectedType := "A"
 	expectedData := "127.0.0.1"
-	createResult, err := createDNS("localhost", expectedType, expectedData, 0, 3600)
+	err := createDNS("localhost", expectedType, expectedData, 0, 3600)
 	if err != nil {
 		t.Errorf("createDNS() error = %v", err)
 		return
 	}
-	if createResult.Response.ResponseReceived.Data.Name != expectedName {
-		t.Errorf("createDNS() = %v, want %v", createResult.Response.ResponseReceived.Data.Name, expectedName)
-	}
-	if createResult.Response.ResponseReceived.Data.Type != expectedType {
-		t.Errorf("createDNS() = %v, want %v", createResult.Response.ResponseReceived.Data.Type, expectedType)
-	}
-	if createResult.Response.ResponseReceived.Data.Content != expectedData {
-		t.Errorf("createDNS() = %v, want %v", createResult.Response.ResponseReceived.Data.Content, expectedData)
-	}
-	recordID := strconv.Itoa(createResult.Response.ResponseReceived.Data.ID)
 
 	listResult, err := listDNS()
 	if err != nil {
@@ -47,32 +36,25 @@ func Test_crudDNS(t *testing.T) {
 	}
 	if !slices.Contains(expectedNames, expectedName) {
 		t.Errorf("listDNS() = %v, want %v", expectedNames, expectedName)
+		return
 	}
 
-	// https://github.com/neatnik/omg.lol/issues/584
+	getResult, err := getDNS(expectedName, expectedType, expectedData, 0, 3600)
+	if err != nil {
+		t.Errorf("getDNS() error = %v", err)
+		return
+	}
+	recordID := getResult.ID
 
-	// updateResult, err := updateDNS(recordID, "localghost", expectedType, expectedData, 0, 3600)
-	// if err != nil {
-	// 	t.Errorf("updateDNS() error = %v", err)
-	// 	return
-	// }
-	// if updateResult.Response.ResponseReceived.Data.Name != expectedName {
-	// 	t.Errorf("updateDNS() = %v, want %v", updateResult.Response.ResponseReceived.Data.Name, expectedName)
-	// }
-	// if updateResult.Response.ResponseReceived.Data.Type != expectedType {
-	// 	t.Errorf("updateDNS() = %v, want %v", updateResult.Response.ResponseReceived.Data.Type, expectedType)
-	// }
-	// if updateResult.Response.ResponseReceived.Data.Content != expectedData {
-	// 	t.Errorf("updateDNS() = %v, want %v", updateResult.Response.ResponseReceived.Data.Content, expectedData)
-	// }
+	err = updateDNS(recordID, "localghost", expectedType, expectedData, 0, 3600)
+	if err != nil {
+		t.Errorf("updateDNS() error = %v", err)
+		return
+	}
 
-	deleteResult, err := deleteDNS(recordID)
+	err = deleteDNS(recordID)
 	if err != nil {
 		t.Errorf("deleteDNS() error = %v", err)
 		return
-	}
-	expectedMessage := "OK, your DNS record has been deleted."
-	if deleteResult.Response.Message != expectedMessage {
-		t.Errorf("deleteDNS() = %v , want %v", deleteResult.Response.Message, expectedMessage)
 	}
 }
