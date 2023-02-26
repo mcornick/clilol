@@ -25,7 +25,7 @@ type listAccountAddressesOutput struct {
 		Message      string `json:"message"`
 		Registration struct {
 			Message       string    `json:"message"`
-			UnixEpochTime int       `json:"unix_epoch_time"`
+			UnixEpochTime int64     `json:"unix_epoch_time"`
 			ISO8601Time   time.Time `json:"iso_8601_time"`
 			RFC2822Time   string    `json:"rfc_2822_time"`
 			RelativeTime  string    `json:"relative_time"`
@@ -33,7 +33,7 @@ type listAccountAddressesOutput struct {
 		Expiration struct {
 			Expired       bool      `json:"expired"`
 			WillExpire    bool      `json:"will_expire"`
-			UnixEpochTime int       `json:"unix_epoch_time"`
+			UnixEpochTime int64     `json:"unix_epoch_time"`
 			ISO8601Time   time.Time `json:"iso_8601_time"`
 			RFC2822Time   string    `json:"rfc_2822_time"`
 			RelativeTime  string    `json:"relative_time"`
