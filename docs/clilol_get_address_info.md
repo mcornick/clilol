@@ -7,7 +7,11 @@ Get information about an address
 
 ### Synopsis
 
-The address get group of commands gets information about omg.lol addresses.
+Gets information about an address.
+
+```
+clilol get address info [address] [flags]
+```
 
 ### Options
 
@@ -18,6 +22,4 @@ The address get group of commands gets information about omg.lol addresses.
 ### SEE ALSO
 
 * [clilol get address](clilol_get_address.md)	 - Get information about an address
-* [clilol get address info private](clilol_get_address_info_private.md)	 - Get private information about an address
-* [clilol get address info public](clilol_get_address_info_public.md)	 - Get public information about an address
 

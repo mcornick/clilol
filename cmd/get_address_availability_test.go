@@ -19,8 +19,8 @@ func Test_getAddressAvailability(t *testing.T) {
 		t.Errorf("getAddressAvailability() error = %v", err)
 		return
 	}
-	expected := "This address is not available."
-	if result.Response.Message != expected {
-		t.Errorf("getAddressAvailability() = %v, want %v", result.Response.Message, expected)
+	expected := "unavailable"
+	if result.Availability != expected {
+		t.Errorf("getAddressAvailability() = %v, want %v", result.Availability, expected)
 	}
 }

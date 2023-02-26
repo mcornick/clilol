@@ -9,24 +9,12 @@
 package cmd
 
 import (
-	"encoding/json"
 	"fmt"
-	"net/http"
 
+	"github.com/ejstreet/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
-
-type getAddressAvailabilityOutput struct {
-	Request  resultRequest `json:"request"`
-	Response struct {
-		Message      string   `json:"message"`
-		Punycode     string   `json:"punycode,omitempty"`
-		SeeAlso      []string `json:"see-also,omitempty"`
-		Address      string   `json:"address"`
-		Available    bool     `json:"available"`
-		Availability string   `json:"availability"`
-	} `json:"response"`
-}
 
 var getAddressAvailabilityCmd = &cobra.Command{
 	Use:   "availability [address]",
@@ -34,19 +22,10 @@ var getAddressAvailabilityCmd = &cobra.Command{
 	Long:  "Gets the availability of an address.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		result, err := getAddressAvailability(args[0])
-		cobra.CheckErr(err)
-		if result.Request.Success {
-			fmt.Println(result.Response.Message)
-			if result.Response.SeeAlso != nil {
-				fmt.Println("See also:")
-				for _, seeAlso := range result.Response.SeeAlso {
-					fmt.Println("  " + seeAlso)
-				}
-			}
-		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
-		}
+		address := args[0]
+		result, err := getAddressAvailability(address)
+		handleAPIError(err)
+		fmt.Printf("%s is %s\n", address, result.Availability)
 	},
 }
 
@@ -54,14 +33,9 @@ func init() {
 	getAddressCmd.AddCommand(getAddressAvailabilityCmd)
 }
 
-func getAddressAvailability(address string) (getAddressAvailabilityOutput, error) {
-	var result getAddressAvailabilityOutput
-	body := callAPIWithParams(
-		http.MethodGet,
-		"/address/"+address+"/availability",
-		nil,
-		false,
-	)
-	err := json.Unmarshal(body, &result)
-	return result, err
+func getAddressAvailability(address string) (*omglol.AddressAvailability, error) {
+	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
+	cobra.CheckErr(err)
+	availability, err := client.GetAddressAvailability(address)
+	return availability, err
 }

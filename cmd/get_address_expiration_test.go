@@ -19,7 +19,7 @@ func Test_getAddressExpiration(t *testing.T) {
 		t.Errorf("getAddressExpiration() error = %v", err)
 		return
 	}
-	if result.Response.Expired {
-		t.Errorf("getAddressExpiration() = %v, want false", result.Response.Message)
+	if result {
+		t.Errorf("getAddressExpiration() = %v, want false", result)
 	}
 }
