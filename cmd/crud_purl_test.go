@@ -18,16 +18,10 @@ import (
 func Test_crudPURL(t *testing.T) {
 	expectedName := "createdpurl"
 	expectedURL := "https://example.com"
-	createResult, err := createPURL(expectedName, expectedURL, false)
+	err := createPURL(expectedName, expectedURL, false)
 	if err != nil {
 		t.Errorf("createPURL() error = %v", err)
 		return
-	}
-	if createResult.Response.Name != expectedName {
-		t.Errorf("createPURL() = %v, want %v", createResult.Response.Name, expectedName)
-	}
-	if createResult.Response.URL != expectedURL {
-		t.Errorf("createPURL() = %v, want %v", createResult.Response.URL, expectedURL)
 	}
 
 	listResult, err := listPURL(os.Getenv("CLILOL_ADDRESS"))
@@ -36,11 +30,12 @@ func Test_crudPURL(t *testing.T) {
 		return
 	}
 	var expectedNames []string
-	for _, status := range listResult.Response.PURLs {
+	for _, status := range listResult {
 		expectedNames = append(expectedNames, status.Name)
 	}
 	if !slices.Contains(expectedNames, expectedName) {
 		t.Errorf("listPURL() = %v, want %v", expectedNames, expectedName)
+		return
 	}
 
 	getResult, err := getPURL(os.Getenv("CLILOL_ADDRESS"), expectedName)
@@ -48,17 +43,14 @@ func Test_crudPURL(t *testing.T) {
 		t.Errorf("getPURL() error = %v", err)
 		return
 	}
-	if getResult.Response.PURL.Name != expectedName {
-		t.Errorf("getPURL() = %v, want %v", getResult.Response.PURL.Name, expectedName)
+	if getResult.Name != expectedName {
+		t.Errorf("getPURL() = %v, want %v", getResult.Name, expectedName)
+		return
 	}
 
-	deleteResult, err := deletePURL(expectedName)
+	err = deletePURL(expectedName)
 	if err != nil {
 		t.Errorf("deletePURL() error = %v", err)
 		return
-	}
-	expectedMessage := "OK, that PURL has been deleted."
-	if deleteResult.Response.Message != expectedMessage {
-		t.Errorf("deletePURL() = %v , want %v", deleteResult.Response.Message, expectedMessage)
 	}
 }

@@ -40,6 +40,25 @@ type resultRequest struct {
 	Success    bool `json:"success"`
 }
 
+type apiError struct {
+	Request struct {
+		StatusCode int  `json:"status_code"`
+		Success    bool `json:"success"`
+	} `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+	}
+}
+
+func handleAPIError(err error) {
+	if err != nil {
+		var apiErr apiError
+		parts := strings.Split(err.Error(), ", body: ")
+		cobra.CheckErr(json.Unmarshal([]byte(parts[1]), &apiErr))
+		cobra.CheckErr(apiErr.Response.Message)
+	}
+}
+
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
