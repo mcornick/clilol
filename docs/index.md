@@ -105,26 +105,26 @@ The file should look like one of these, substituting your own details:
 
     ```yaml
     ---
-    address: example
-    email: example@example.com
-    apikey: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    address: tomservo
+    email: tomservo@gizmonics.invalid
+    apikey: 0123456789abcdef0123456789abcdef
     ```
 
 === "config.toml"
 
     ```toml
-    address = "example"
-    email = "example@example.com"
-    apikey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    address = "tomservo"
+    email = "tomservo@gizmonics.invalid"
+    apikey = "0123456789abcdef0123456789abcdef"
     ```
 
 === "config.json"
 
     ```json
     {
-      "address": "example",
-      "email": "example@example.com",
-      "apikey": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+      "address": "tomservo",
+      "email": "tomservo@gizmonics.invalid",
+      "apikey": "0123456789abcdef0123456789abcdef"
     }
     ```
 A [JSON Schema](config.schema.json) for the configuration file is available, for editors that support it.
@@ -134,9 +134,9 @@ A [JSON Schema](config.schema.json) for the configuration file is available, for
 Configuration is also possible using environment variables:
 
 ```sh
-export CLILOL_ADDRESS="example"
-export CLILOL_EMAIL="example@example.com"
-export CLILOL_APIKEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+export CLILOL_ADDRESS="tomservo"
+export CLILOL_EMAIL="tomservo@gizmonics.invalid"
+export CLILOL_APIKEY="0123456789abcdef0123456789abcdef"
 ```
 
 Environment variables take precedence over any configuration file.
