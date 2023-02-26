@@ -71,8 +71,6 @@ func init() {
 }
 
 func listPaste(address string) (listPasteOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result listPasteOutput
 	if address == "" {
 		address = viper.GetString("address")
@@ -83,6 +81,6 @@ func listPaste(address string) (listPasteOutput, error) {
 		nil,
 		address == viper.GetString("address"),
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

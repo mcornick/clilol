@@ -46,8 +46,6 @@ func init() {
 }
 
 func getAccountName() (getAccountNameOutput, error) {
-	err := checkConfig("email")
-	cobra.CheckErr(err)
 	var result getAccountNameOutput
 	body := callAPIWithParams(
 		http.MethodGet,
@@ -55,6 +53,6 @@ func getAccountName() (getAccountNameOutput, error) {
 		nil,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

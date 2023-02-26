@@ -65,14 +65,12 @@ func init() {
 			cobra.CheckErr(err)
 		}
 	}
-	rootCmd.DisableAutoGenTag = true
-}
-
-func checkConfig(key string) error {
-	if viper.GetString(key) == "" {
-		return fmt.Errorf("no " + key + " set")
+	for _, key := range []string{"address", "apikey", "email"} {
+		if viper.GetString(key) == "" {
+			cobra.CheckErr(fmt.Errorf("no " + key + " set"))
+		}
 	}
-	return nil
+	rootCmd.DisableAutoGenTag = true
 }
 
 func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byte, error) {
@@ -83,10 +81,6 @@ func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byt
 	request.Header.Set("User-Agent", "clilol/"+version+" (https://github.com/mcornick/clilol)")
 	request.Header.Set("Content-Type", "application/json")
 	if auth {
-		err := checkConfig("apikey")
-		if err != nil {
-			return nil, err
-		}
 		request.Header.Set("Authorization", "Bearer "+viper.GetString("apikey"))
 	}
 	response, err := http.DefaultClient.Do(request)

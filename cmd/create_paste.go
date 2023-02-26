@@ -81,8 +81,6 @@ func init() {
 }
 
 func createPaste(title, filename string, listed bool) (createPasteOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result createPasteOutput
 	var content string
 	var listedInt int
@@ -107,6 +105,6 @@ func createPaste(title, filename string, listed bool) (createPasteOutput, error)
 		params,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

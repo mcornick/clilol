@@ -48,8 +48,6 @@ func init() {
 }
 
 func deleteStatus(id string) (deleteStatusOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result deleteStatusOutput
 	body := callAPIWithParams(
 		http.MethodDelete,
@@ -57,6 +55,6 @@ func deleteStatus(id string) (deleteStatusOutput, error) {
 		nil,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

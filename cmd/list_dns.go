@@ -64,8 +64,6 @@ func init() {
 }
 
 func listDNS() (listDNSOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result listDNSOutput
 	body := callAPIWithParams(
 		http.MethodGet,
@@ -73,6 +71,6 @@ func listDNS() (listDNSOutput, error) {
 		nil,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

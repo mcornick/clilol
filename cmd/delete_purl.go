@@ -48,8 +48,6 @@ func init() {
 }
 
 func deletePURL(name string) (deletePURLOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result deletePURLOutput
 	body := callAPIWithParams(
 		http.MethodDelete,
@@ -57,6 +55,6 @@ func deletePURL(name string) (deletePURLOutput, error) {
 		nil,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

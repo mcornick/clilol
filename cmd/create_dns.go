@@ -91,8 +91,6 @@ func init() {
 }
 
 func createDNS(name string, recordType string, data string, priority int, ttl int) (createDNSOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result createDNSOutput
 	dns := createDNSInput{recordType, name, data, priority, ttl}
 	body := callAPIWithParams(
@@ -101,6 +99,6 @@ func createDNS(name string, recordType string, data string, priority int, ttl in
 		dns,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

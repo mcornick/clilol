@@ -78,8 +78,6 @@ func init() {
 }
 
 func updateWeb(filename string) (updateWebOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result updateWebOutput
 	var content string
 	if filename != "" {
@@ -98,6 +96,6 @@ func updateWeb(filename string) (updateWebOutput, error) {
 		webPage,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

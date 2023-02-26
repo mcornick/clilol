@@ -73,8 +73,6 @@ func init() {
 }
 
 func listAccountAddresses() (listAccountAddressesOutput, error) {
-	err := checkConfig("email")
-	cobra.CheckErr(err)
 	var result listAccountAddressesOutput
 	body := callAPIWithParams(
 		http.MethodGet,
@@ -82,7 +80,7 @@ func listAccountAddresses() (listAccountAddressesOutput, error) {
 		nil,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	cobra.CheckErr(err)
 	return result, err
 }

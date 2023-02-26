@@ -79,8 +79,6 @@ func init() {
 }
 
 func updateAccountSettings(communication string, dateFormat string, webEditor string) (updateAccountSettingsOutput, error) {
-	err := checkConfig("email")
-	cobra.CheckErr(err)
 	var result updateAccountSettingsOutput
 	account := updateAccountSettingsInput{communication, dateFormat, webEditor}
 	body := callAPIWithParams(
@@ -89,6 +87,6 @@ func updateAccountSettings(communication string, dateFormat string, webEditor st
 		account,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

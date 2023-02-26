@@ -70,8 +70,6 @@ func init() {
 }
 
 func getWeblog(id string) (getWeblogOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result getWeblogOutput
 	body := callAPIWithParams(
 		http.MethodGet,
@@ -79,6 +77,6 @@ func getWeblog(id string) (getWeblogOutput, error) {
 		nil,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

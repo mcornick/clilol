@@ -76,8 +76,6 @@ func init() {
 }
 
 func createWeblog(filename string) (createWeblogOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result createWeblogOutput
 	var content string
 	if filename != "" {
@@ -95,6 +93,6 @@ func createWeblog(filename string) (createWeblogOutput, error) {
 		content,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

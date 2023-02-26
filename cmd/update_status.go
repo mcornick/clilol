@@ -74,8 +74,6 @@ func init() {
 }
 
 func updateStatus(id string, text string, emoji string) (updateStatusOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result updateStatusOutput
 	status := updateStatusInput{id, emoji, text}
 	body := callAPIWithParams(
@@ -84,6 +82,6 @@ func updateStatus(id string, text string, emoji string) (updateStatusOutput, err
 		status,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

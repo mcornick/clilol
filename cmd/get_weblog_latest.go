@@ -69,8 +69,6 @@ func init() {
 }
 
 func getWeblogLatest() (getWeblogLatestOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result getWeblogLatestOutput
 	body := callAPIWithParams(
 		http.MethodGet,
@@ -78,6 +76,6 @@ func getWeblogLatest() (getWeblogLatestOutput, error) {
 		nil,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

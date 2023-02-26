@@ -67,8 +67,6 @@ func init() {
 }
 
 func listPURL(address string) (listPURLOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result listPURLOutput
 	if address == "" {
 		address = viper.GetString("address")
@@ -79,6 +77,6 @@ func listPURL(address string) (listPURLOutput, error) {
 		nil,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

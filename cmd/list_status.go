@@ -85,8 +85,6 @@ func init() {
 }
 
 func listStatus(address string, limit int) (listStatusOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result listStatusOutput
 	if address == "" {
 		address = viper.GetString("address")
@@ -97,7 +95,7 @@ func listStatus(address string, limit int) (listStatusOutput, error) {
 		nil,
 		false,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	if limit > 0 && err == nil {
 		result.Response.Statuses = result.Response.Statuses[:limit]
 	}

@@ -48,8 +48,6 @@ func init() {
 }
 
 func deleteWeblog(id string) (deleteWeblogOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result deleteWeblogOutput
 	body := callAPIWithParams(
 		http.MethodDelete,
@@ -57,6 +55,6 @@ func deleteWeblog(id string) (deleteWeblogOutput, error) {
 		nil,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }

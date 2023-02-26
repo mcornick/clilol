@@ -75,8 +75,6 @@ func init() {
 }
 
 func getWeb() (getWebOutput, error) {
-	err := checkConfig("address")
-	cobra.CheckErr(err)
 	var result getWebOutput
 	body := callAPIWithParams(
 		http.MethodGet,
@@ -84,6 +82,6 @@ func getWeb() (getWebOutput, error) {
 		nil,
 		true,
 	)
-	err = json.Unmarshal(body, &result)
+	err := json.Unmarshal(body, &result)
 	return result, err
 }
