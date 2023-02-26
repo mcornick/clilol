@@ -54,6 +54,9 @@ func init() {
 	viper.AddConfigPath("/etc/clilol/")
 	viper.AddConfigPath(configDir + "/clilol")
 	viper.SetEnvPrefix("clilol")
+	viper.SetDefault("address", "")
+	viper.SetDefault("apikey", "")
+	viper.SetDefault("email", "")
 	viper.AutomaticEnv()
 	err = viper.ReadInConfig()
 	if err != nil {
