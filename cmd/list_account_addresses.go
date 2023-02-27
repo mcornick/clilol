@@ -17,10 +17,11 @@ import (
 )
 
 var listAccountAddressesCmd = &cobra.Command{
-	Use:   "addresses",
-	Short: "List addresses on your account",
-	Long:  "Lists addresses on your account.",
-	Args:  cobra.NoArgs,
+	Use:     "addresses",
+	Aliases: []string{"address"},
+	Short:   "List addresses on your account",
+	Long:    "Lists addresses on your account.",
+	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		addresses, err := listAccountAddresses()
 		handleAPIError(err)

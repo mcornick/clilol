@@ -18,10 +18,11 @@ import (
 )
 
 var listAccountSessionsCmd = &cobra.Command{
-	Use:   "sessions",
-	Short: "List sessions on your account",
-	Long:  "Lists active sessions on your account.",
-	Args:  cobra.NoArgs,
+	Use:     "sessions",
+	Aliases: []string{"session"},
+	Short:   "List sessions on your account",
+	Long:    "Lists active sessions on your account.",
+	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		sessions, err := listAccountSessions()
 		handleAPIError(err)

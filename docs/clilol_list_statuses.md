@@ -1,7 +1,7 @@
 ---
-title: "clilol list status"
+title: "clilol list statuses"
 ---
-## clilol list status
+## clilol list statuses
 
 List statuses
 
@@ -18,14 +18,14 @@ flag. If not set, it will return all statuses for the user.
 See the statuslog commands to get statuses for all users.
 
 ```
-clilol list status [flags]
+clilol list statuses [flags]
 ```
 
 ### Options
 
 ```
   -a, --address string   address whose status(es) to get
-  -h, --help             help for status
+  -h, --help             help for statuses
   -l, --limit int        how many status(es) to get (default all)
 ```
 

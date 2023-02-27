@@ -40,10 +40,11 @@ type listWeblogOutput struct {
 }
 
 var listWeblogCmd = &cobra.Command{
-	Use:   "weblog",
-	Short: "List all weblog entries",
-	Long:  "Lists all of your weblog entries.",
-	Args:  cobra.NoArgs,
+	Use:     "weblogs",
+	Aliases: []string{"weblog"},
+	Short:   "List all weblog entries",
+	Long:    "Lists all of your weblog entries.",
+	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		result, err := listWeblog()
 		cobra.CheckErr(err)

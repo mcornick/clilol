@@ -1,7 +1,7 @@
 ---
-title: "clilol list weblog"
+title: "clilol list weblogs"
 ---
-## clilol list weblog
+## clilol list weblogs
 
 List all weblog entries
 
@@ -10,13 +10,13 @@ List all weblog entries
 Lists all of your weblog entries.
 
 ```
-clilol list weblog [flags]
+clilol list weblogs [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for weblog
+  -h, --help   help for weblogs
 ```
 
 ### SEE ALSO

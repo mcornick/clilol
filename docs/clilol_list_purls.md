@@ -1,7 +1,7 @@
 ---
-title: "clilol list purl"
+title: "clilol list purls"
 ---
-## clilol list purl
+## clilol list purls
 
 List all PURLs
 
@@ -13,14 +13,14 @@ The address can be specified with the --address flag. If not set,
 it defaults to your own address.
 
 ```
-clilol list purl [flags]
+clilol list purls [flags]
 ```
 
 ### Options
 
 ```
   -a, --address string   address whose PURLs to get
-  -h, --help             help for purl
+  -h, --help             help for purls
 ```
 
 ### SEE ALSO

@@ -1,7 +1,7 @@
 ---
-title: "clilol list theme"
+title: "clilol list themes"
 ---
-## clilol list theme
+## clilol list themes
 
 List profile themes
 
@@ -10,13 +10,13 @@ List profile themes
 Lists the available profile themes.
 
 ```
-clilol list theme [flags]
+clilol list themes [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for theme
+  -h, --help   help for themes
 ```
 
 ### SEE ALSO

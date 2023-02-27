@@ -32,8 +32,9 @@ type listPasteOutput struct {
 }
 
 var listPasteCmd = &cobra.Command{
-	Use:   "paste",
-	Short: "List pastes",
+	Use:     "pastes",
+	Aliases: []string{"paste"},
+	Short:   "List pastes",
 	Long: `Lists pastes for a user.
 
 The address can be specified with the --address flag. If not set,

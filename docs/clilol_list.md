@@ -22,10 +22,10 @@ These commands list things.
 * [clilol list directory](clilol_list_directory.md)	 - List the address directory
 * [clilol list dns](clilol_list_dns.md)	 - List your dns records
 * [clilol list now](clilol_list_now.md)	 - List Now pages
-* [clilol list paste](clilol_list_paste.md)	 - List pastes
-* [clilol list purl](clilol_list_purl.md)	 - List all PURLs
-* [clilol list status](clilol_list_status.md)	 - List statuses
+* [clilol list pastes](clilol_list_pastes.md)	 - List pastes
+* [clilol list purls](clilol_list_purls.md)	 - List all PURLs
+* [clilol list statuses](clilol_list_statuses.md)	 - List statuses
 * [clilol list statuslog](clilol_list_statuslog.md)	 - List the statuslog
-* [clilol list theme](clilol_list_theme.md)	 - List profile themes
-* [clilol list weblog](clilol_list_weblog.md)	 - List all weblog entries
+* [clilol list themes](clilol_list_themes.md)	 - List profile themes
+* [clilol list weblogs](clilol_list_weblogs.md)	 - List all weblog entries
 

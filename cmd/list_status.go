@@ -36,8 +36,9 @@ type listStatusOutput struct {
 var (
 	listStatusLimit int
 	listStatusCmd   = &cobra.Command{
-		Use:   "status",
-		Short: "List statuses",
+		Use:     "statuses",
+		Aliases: []string{"status"},
+		Short:   "List statuses",
 		Long: `Lists statuses for a single user from status.lol.
 
 The address can be specified with the --address flag. If not set,

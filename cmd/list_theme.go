@@ -39,10 +39,11 @@ type listThemeOutput struct {
 }
 
 var listThemeCmd = &cobra.Command{
-	Use:   "theme",
-	Short: "List profile themes",
-	Long:  "Lists the available profile themes.",
-	Args:  cobra.NoArgs,
+	Use:     "themes",
+	Aliases: []string{"theme"},
+	Short:   "List profile themes",
+	Long:    "Lists the available profile themes.",
+	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		result, err := listTheme()
 		cobra.CheckErr(err)

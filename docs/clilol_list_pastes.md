@@ -1,7 +1,7 @@
 ---
-title: "clilol list paste"
+title: "clilol list pastes"
 ---
-## clilol list paste
+## clilol list pastes
 
 List pastes
 
@@ -16,14 +16,14 @@ Unlisted pastes are only included when the --address flag is set to
 your own address.
 
 ```
-clilol list paste [flags]
+clilol list pastes [flags]
 ```
 
 ### Options
 
 ```
   -a, --address string   address whose pastes to list
-  -h, --help             help for paste
+  -h, --help             help for pastes
 ```
 
 ### SEE ALSO
