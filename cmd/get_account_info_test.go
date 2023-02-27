@@ -10,7 +10,6 @@ package cmd
 
 import (
 	"os"
-	"reflect"
 	"testing"
 )
 
@@ -20,11 +19,7 @@ func Test_getAccountInfo(t *testing.T) {
 		t.Errorf("getAccountInfo() error = %v", err)
 		return
 	}
-	expected := resultRequest{StatusCode: 200, Success: true}
-	if !reflect.DeepEqual(result.Request, expected) {
-		t.Errorf("getAccountInfo() = %v, want %v", result.Request, expected)
-	}
-	if result.Response.Email != os.Getenv("CLILOL_EMAIL") {
-		t.Errorf("getAccountInfo() = %v, want %v", result.Response.Email, os.Getenv("CLILOL_EMAIL"))
+	if result.Email != os.Getenv("CLILOL_EMAIL") {
+		t.Errorf("getAccountInfo() = %v, want %v", result.Email, os.Getenv("CLILOL_EMAIL"))
 	}
 }

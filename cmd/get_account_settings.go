@@ -9,26 +9,12 @@
 package cmd
 
 import (
-	"encoding/json"
 	"fmt"
-	"net/http"
 
+	"github.com/ejstreet/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
-
-type getAccountSettingsOutput struct {
-	Request  resultRequest `json:"request"`
-	Response struct {
-		Message  string `json:"message"`
-		Settings struct {
-			Owner         string `json:"owner"`
-			Communication string `json:"communication"`
-			DateFormat    string `json:"date_format"`
-			WebEditor     string `json:"web_editor"`
-		} `json:"settings"`
-	} `json:"response"`
-}
 
 var getAccountSettingsCmd = &cobra.Command{
 	Use:   "settings",
@@ -36,18 +22,13 @@ var getAccountSettingsCmd = &cobra.Command{
 	Long:  "Gets the settings on your account.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		var result getAccountSettingsOutput
+		// var result getAccountSettingsOutput
 		result, err := getAccountSettings()
-		cobra.CheckErr(err)
-		if result.Request.Success {
-			fmt.Println(result.Response.Message)
-			fmt.Printf("Owner: %s\n", result.Response.Settings.Owner)
-			fmt.Printf("Communication: %s\n", result.Response.Settings.Communication)
-			fmt.Printf("Date Format: %s\n", result.Response.Settings.DateFormat)
-			fmt.Printf("Web Editor: %s\n", result.Response.Settings.WebEditor)
-		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
-		}
+		handleAPIError(err)
+		fmt.Printf("Owner: %s\n", result.Owner)
+		fmt.Printf("Communication: %s\n", *result.Communication)
+		fmt.Printf("Date Format: %s\n", *result.DateFormat)
+		fmt.Printf("Web Editor: %s\n", *result.WebEditor)
 	},
 }
 
@@ -55,14 +36,9 @@ func init() {
 	getAccountCmd.AddCommand(getAccountSettingsCmd)
 }
 
-func getAccountSettings() (getAccountSettingsOutput, error) {
-	var result getAccountSettingsOutput
-	body := callAPIWithParams(
-		http.MethodGet,
-		"/account/"+viper.GetString("email")+"/settings",
-		nil,
-		true,
-	)
-	err := json.Unmarshal(body, &result)
-	return result, err
+func getAccountSettings() (omglol.AccountSettings, error) {
+	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
+	cobra.CheckErr(err)
+	settings, err := client.GetAccountSettings()
+	return *settings, err
 }

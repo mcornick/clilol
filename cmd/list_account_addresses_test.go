@@ -21,11 +21,12 @@ func Test_listAccountAddresses(t *testing.T) {
 		t.Errorf("listAccountAddresses() error = %v", err)
 		return
 	}
-	var returnedAddresses []string
-	for _, address := range result.Response {
-		returnedAddresses = append(returnedAddresses, address.Address)
+	var addresses []string
+	for _, address := range result {
+		addresses = append(addresses, address.Address)
 	}
-	if !slices.Contains(returnedAddresses, os.Getenv("CLILOL_ADDRESS")) {
-		t.Errorf("listAccountAddresses() = %v, want %v", returnedAddresses, os.Getenv("CLILOL_ADDRESS"))
+	if !slices.Contains(addresses, os.Getenv("CLILOL_ADDRESS")) {
+		t.Errorf("addresses = %v, want %v", addresses, os.Getenv("CLILOL_ADDRESS"))
+		return
 	}
 }
