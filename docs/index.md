@@ -154,3 +154,4 @@ To verify signatures on commits to clilol, you might need [my GPG public key](ht
 Thanks to the following people for helping to improve clilol:
 
 - [Andy Piper](https://github.com/andypiper)
+- [Elliott Street](https://github.com/ejstreet)
