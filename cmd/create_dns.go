@@ -24,7 +24,7 @@ var (
 		Short: "Create a DNS record",
 		Long:  "Creates a DNS record.",
 		Args:  cobra.ExactArgs(3),
-		Run: func(cmd *cobra.Command, args []string) { // result, err := createDNS(args[0], args[1], args[2], createDNSPriority, createDNSTTL)
+		Run: func(cmd *cobra.Command, args []string) {
 			name := args[0]
 			recordType := args[1]
 			data := args[2]

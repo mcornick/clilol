@@ -32,19 +32,6 @@ func init() {
 	updateAccountCmd.AddCommand(updateAccountNameCmd)
 }
 
-// func updateAccountName(name string) (updateAccountNameOutput, error) {
-// 	var result updateAccountNameOutput
-// 	account := updateAccountNameInput{name}
-// 	body := callAPIWithParams(
-// 		http.MethodPost,
-// 		"/account/"+viper.GetString("email")+"/name",
-// 		account,
-// 		true,
-// 	)
-// 	err := json.Unmarshal(body, &result)
-// 	return result, err
-// }
-
 func updateAccountName(name string) error {
 	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
 	cobra.CheckErr(err)
