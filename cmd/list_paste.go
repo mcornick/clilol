@@ -9,27 +9,13 @@
 package cmd
 
 import (
-	"encoding/json"
 	"fmt"
-	"net/http"
 	"time"
 
+	"github.com/ejstreet/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
-
-type listPasteOutput struct {
-	Request  resultRequest `json:"request"`
-	Response struct {
-		Message  string `json:"message"`
-		Pastebin []struct {
-			Title      string `json:"title"`
-			Content    string `json:"content"`
-			ModifiedOn int64  `json:"modified_on"`
-			Listed     int    `json:"listed,omitempty"`
-		} `json:"pastebin"`
-	} `json:"response"`
-}
 
 var listPasteCmd = &cobra.Command{
 	Use:     "pastes",
@@ -45,17 +31,13 @@ your own address.`,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		result, err := listPaste(addressFlag)
-		cobra.CheckErr(err)
-		if result.Request.Success {
-			for _, paste := range result.Response.Pastebin {
-				fmt.Printf(
-					"%s modified on %s\n",
-					paste.Title,
-					time.Unix(paste.ModifiedOn, 0),
-				)
-			}
-		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+		handleAPIError(err)
+		for _, paste := range result {
+			fmt.Printf(
+				"%s modified on %s\n",
+				paste.Title,
+				time.Unix(*paste.ModifiedOn, 0),
+			)
 		}
 	},
 }
@@ -71,17 +53,12 @@ func init() {
 	listCmd.AddCommand(listPasteCmd)
 }
 
-func listPaste(address string) (listPasteOutput, error) {
-	var result listPasteOutput
+func listPaste(address string) ([]omglol.Paste, error) {
 	if address == "" {
 		address = viper.GetString("address")
 	}
-	body := callAPIWithParams(
-		http.MethodGet,
-		"/address/"+address+"/pastebin",
-		nil,
-		address == viper.GetString("address"),
-	)
-	err := json.Unmarshal(body, &result)
-	return result, err
+	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
+	cobra.CheckErr(err)
+	pastes, err := client.ListPastes(address)
+	return *pastes, err
 }

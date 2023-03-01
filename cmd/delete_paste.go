@@ -9,20 +9,12 @@
 package cmd
 
 import (
-	"encoding/json"
 	"fmt"
-	"net/http"
 
+	"github.com/ejstreet/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
-
-type deletePasteOutput struct {
-	Request  resultRequest `json:"request"`
-	Response struct {
-		Message string `json:"message"`
-	} `json:"response"`
-}
 
 var deletePasteCmd = &cobra.Command{
 	Use:   "paste [title]",
@@ -35,13 +27,10 @@ Note that you won't be asked to confirm deletion.
 Be sure you know what you're doing.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		result, err := deletePaste(args[0])
-		cobra.CheckErr(err)
-		if result.Request.Success {
-			fmt.Println(result.Response.Message)
-		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
-		}
+		title := args[0]
+		err := deletePaste(title)
+		handleAPIError(err)
+		fmt.Printf("Paste %s deleted\n", title)
 	},
 }
 
@@ -49,14 +38,9 @@ func init() {
 	deleteCmd.AddCommand(deletePasteCmd)
 }
 
-func deletePaste(title string) (deletePasteOutput, error) {
-	var result deletePasteOutput
-	body := callAPIWithParams(
-		http.MethodDelete,
-		"/address/"+viper.GetString("address")+"/pastebin/"+title,
-		nil,
-		true,
-	)
-	err := json.Unmarshal(body, &result)
-	return result, err
+func deletePaste(title string) error {
+	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
+	cobra.CheckErr(err)
+	err = client.DeletePaste(viper.GetString("address"), title)
+	return err
 }

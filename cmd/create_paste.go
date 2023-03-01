@@ -9,28 +9,14 @@
 package cmd
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
-	"net/http"
 	"os"
 
+	"github.com/ejstreet/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
-
-type createPasteInput struct {
-	Title   string `json:"title"`
-	Content string `json:"content"`
-	Listed  int    `json:"listed,omitempty"`
-}
-type createPasteOutput struct {
-	Request  resultRequest `json:"request"`
-	Response struct {
-		Message string `json:"message"`
-		Title   string `json:"title"`
-	} `json:"response"`
-}
 
 var (
 	createPasteFilename string
@@ -51,13 +37,10 @@ The paste will be created as unlisted by default. To create a listed
 paste, use the --listed flag.`,
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			result, err := createPaste(args[0], createPasteFilename, createPasteListed)
-			cobra.CheckErr(err)
-			if result.Request.Success {
-				fmt.Println(result.Response.Message)
-			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
-			}
+			title := args[0]
+			err := createPaste(title, createPasteFilename, createPasteListed)
+			handleAPIError(err)
+			fmt.Printf("Paste %s created\n", title)
 		},
 	}
 )
@@ -80,10 +63,8 @@ func init() {
 	createCmd.AddCommand(createPasteCmd)
 }
 
-func createPaste(title, filename string, listed bool) (createPasteOutput, error) {
-	var result createPasteOutput
+func createPaste(title string, filename string, listed bool) error {
 	var content string
-	var listedInt int
 	if filename != "" {
 		input, err := os.ReadFile(filename)
 		cobra.CheckErr(err)
@@ -93,18 +74,9 @@ func createPaste(title, filename string, listed bool) (createPasteOutput, error)
 		cobra.CheckErr(err)
 		content = string(stdin)
 	}
-	if listed {
-		listedInt = 1
-	} else {
-		listedInt = 0
-	}
-	params := createPasteInput{title, content, listedInt}
-	body := callAPIWithParams(
-		http.MethodPost,
-		"/address/"+viper.GetString("address")+"/pastebin",
-		params,
-		true,
-	)
-	err := json.Unmarshal(body, &result)
-	return result, err
+	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
+	cobra.CheckErr(err)
+	paste := omglol.NewPaste(title, content, listed)
+	err = client.CreatePaste(viper.GetString("address"), *paste)
+	return err
 }

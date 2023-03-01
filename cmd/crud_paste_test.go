@@ -17,13 +17,10 @@ import (
 
 func Test_crudPaste(t *testing.T) {
 	expectedTitle := "createdpaste"
-	createResult, err := createPaste(expectedTitle, "testdata/create_paste.txt", false)
+	err := createPaste(expectedTitle, "testdata/create_paste.txt", false)
 	if err != nil {
 		t.Errorf("createPaste() error = %v", err)
 		return
-	}
-	if createResult.Response.Title != expectedTitle {
-		t.Errorf("createPaste() = %v, want %v", createResult.Response.Title, expectedTitle)
 	}
 
 	listResult, err := listPaste(os.Getenv("CLILOL_ADDRESS"))
@@ -32,7 +29,7 @@ func Test_crudPaste(t *testing.T) {
 		return
 	}
 	var expectedTitles []string
-	for _, status := range listResult.Response.Pastebin {
+	for _, status := range listResult {
 		expectedTitles = append(expectedTitles, status.Title)
 	}
 	if !slices.Contains(expectedTitles, expectedTitle) {
@@ -44,17 +41,13 @@ func Test_crudPaste(t *testing.T) {
 		t.Errorf("getPaste() error = %v", err)
 		return
 	}
-	if getResult.Response.Paste.Title != expectedTitle {
-		t.Errorf("getPaste() = %v, want %v", getResult.Response.Paste.Title, expectedTitle)
+	if getResult.Title != expectedTitle {
+		t.Errorf("getPaste() = %v, want %v", getResult.Title, expectedTitle)
 	}
 
-	deleteResult, err := deletePaste(expectedTitle)
+	err = deletePaste(expectedTitle)
 	if err != nil {
 		t.Errorf("deletePaste() error = %v", err)
 		return
-	}
-	expectedMessage := "OK, that paste has been deleted."
-	if deleteResult.Response.Message != expectedMessage {
-		t.Errorf("deletePaste() = %v , want %v", deleteResult.Response.Message, expectedMessage)
 	}
 }
