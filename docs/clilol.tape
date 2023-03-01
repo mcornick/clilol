@@ -1,7 +1,7 @@
 Output clilol.gif
 Require clilol
 Set FontSize 12
-Set FontFamily "Fira Code"
+Set FontFamily "MonoLisa Variable"
 Set Theme "Dracula"
 Set Width 640
 Set Height 480
