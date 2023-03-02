@@ -18,8 +18,9 @@ import (
 )
 
 var updateEmailCmd = &cobra.Command{
-	Use:   "email [address]",
-	Short: "set email forwarding address(es)",
+	Use:     "email [address]",
+	Aliases: []string{"emails"},
+	Short:   "set email forwarding address(es)",
 	Long: `Sets your email forwarding address(es).
 	
 To specify multiple addresses, separate them with commas.`,
