@@ -19,7 +19,7 @@ func Test_getEmail(t *testing.T) {
 		t.Errorf("getEmail() error = %v", err)
 		return
 	}
-	if getResult.Response.DestinationString != os.Getenv("CLILOL_EMAIL") {
-		t.Errorf("getEmail() = %v, want %v", getResult.Response.DestinationString, os.Getenv("CLILOL_EMAIL"))
+	if getResult[0] != os.Getenv("CLILOL_EMAIL") {
+		t.Errorf("getEmail() = %v, want %v", getResult[0], os.Getenv("CLILOL_EMAIL"))
 	}
 }
