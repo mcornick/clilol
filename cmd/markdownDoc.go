@@ -31,7 +31,8 @@ var markdownDocCmd = &cobra.Command{
 		linkHandler := func(name string) string {
 			return name
 		}
-		_ = doc.GenMarkdownTreeCustom(rootCmd, "docs", filePrepender, linkHandler)
+		err := doc.GenMarkdownTreeCustom(rootCmd, "docs", filePrepender, linkHandler)
+		cobra.CheckErr(err)
 	},
 }
 
