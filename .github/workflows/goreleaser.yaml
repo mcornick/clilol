@@ -17,6 +17,7 @@ jobs:
       - uses: anchore/sbom-action/download-syft@main
         with:
           syft-version: v0.69.0
+      - uses: imjasonh/setup-crane@v0.1
       - id: import_gpg
         uses: crazy-max/ghaction-import-gpg@v5
         with:
@@ -48,13 +49,17 @@ jobs:
           args: release --clean
           distribution: goreleaser-pro
           version: latest
-      - env:
-          COSIGN_EXPERIMENTAL: 1
-        run: cosign sign ghcr.io/mcornick/clilol
+      - run: echo "full_ref_ghcr=$(crane digest ghcr.io/mcornick/clilol:latest --full-ref)" >> $GITHUB_ENV
+        shell: bash
+      - run: echo "full_ref_docker=$(crane digest mcornick/clilol:latest --full-ref)" >> $GITHUB_ENV
         shell: bash
       - env:
           COSIGN_EXPERIMENTAL: 1
-        run: cosign sign mcornick/clilol
+        run: cosign sign $full_ref_ghcr
+        shell: bash
+      - env:
+          COSIGN_EXPERIMENTAL: 1
+        run: cosign sign $full_ref_docker
         shell: bash
       - run: rm /home/runner/gpgkey.asc
         shell: bash
