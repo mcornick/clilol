@@ -9,17 +9,23 @@
 package cmd
 
 import (
+	"os"
 	"testing"
 )
 
 func Test_updateWeb(t *testing.T) {
-	updateResult, err := updateWeb("testdata/web.txt")
+	content, err := os.ReadFile("testdata/web.txt")
+	if err != nil {
+		t.Errorf("os.ReadFile() error = %v", err)
+		return
+	}
+	publish := true
+	published, err := updateWeb(content, publish)
 	if err != nil {
 		t.Errorf("updateWeb() error = %v", err)
 		return
 	}
-	expected := "Your web content has been saved."
-	if updateResult.Response.Message != expected {
-		t.Errorf("updateWeb() = %v, want %v", updateResult.Response.Message, expected)
+	if !published {
+		t.Errorf("updateWeb() published = %v, want %v", published, true)
 	}
 }

@@ -9,31 +9,12 @@
 package cmd
 
 import (
-	"encoding/json"
-	"fmt"
-	"net/http"
 	"os"
 
+	"github.com/ejstreet/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
-
-type getWebOutput struct {
-	Request  resultRequest `json:"request"`
-	Response struct {
-		Message  string `json:"message"`
-		Content  string `json:"content"`
-		Type     string `json:"type"`
-		Theme    string `json:"theme"`
-		CSS      string `json:"css"`
-		Head     string `json:"head"`
-		Verified bool   `json:"verified"`
-		PFP      string `json:"pfp"`
-		Metadata string `json:"metadata"`
-		Branding string `json:"branding"`
-		Modified string `json:"modified"`
-	} `json:"response"`
-}
 
 var (
 	getWebFilename string
@@ -47,18 +28,15 @@ to that file. If you do not specify a filename, the content will be written
 to stdout.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			result, err := getWeb()
-			cobra.CheckErr(err)
-			if result.Request.Success {
-				if getWebFilename != "" {
-					err = os.WriteFile(getWebFilename, []byte(result.Response.Content), 0o644)
-					cobra.CheckErr(err)
-				} else {
-					fmt.Println(result.Response.Content)
-				}
+			content, err := getWeb()
+			handleAPIError(err)
+			var writeErr error
+			if getWebFilename != "" {
+				writeErr = os.WriteFile(getWebFilename, content, 0o644)
 			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
+				_, writeErr = os.Stdout.Write(content)
 			}
+			cobra.CheckErr(writeErr)
 		},
 	}
 )
@@ -74,14 +52,13 @@ func init() {
 	getCmd.AddCommand(getWebCmd)
 }
 
-func getWeb() (getWebOutput, error) {
-	var result getWebOutput
-	body := callAPIWithParams(
-		http.MethodGet,
-		"/address/"+viper.GetString("address")+"/web",
-		nil,
-		true,
-	)
-	err := json.Unmarshal(body, &result)
-	return result, err
+func getWeb() ([]byte, error) {
+	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
+	cobra.CheckErr(err)
+	content, err := client.GetWeb(viper.GetString("address"))
+	if err != nil {
+		return nil, err
+	} else {
+		return content.ContentBytes, nil
+	}
 }
