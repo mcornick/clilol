@@ -33,6 +33,7 @@ Note that you won't be asked to confirm deletion.
 Be sure you know what you're doing.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		result, err := deleteStatus(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {

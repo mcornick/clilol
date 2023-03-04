@@ -23,6 +23,7 @@ var listAccountAddressesCmd = &cobra.Command{
 	Long:    "Lists addresses on your account.",
 	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		addresses, err := listAccountAddresses()
 		handleAPIError(err)
 		for _, address := range addresses {

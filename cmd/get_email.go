@@ -24,6 +24,7 @@ var getEmailCmd = &cobra.Command{
 	Long:    "Gets your email forwarding address(es).",
 	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		result, err := getEmail()
 		handleAPIError(err)
 		if len(result) > 1 {

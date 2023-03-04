@@ -50,6 +50,7 @@ flag. If not set, it will return all statuses for the user.
 See the statuslog commands to get statuses for all users.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
+			validateConfig()
 			result, err := listStatus(addressFlag, listStatusLimit)
 			cobra.CheckErr(err)
 			if result.Request.Success {

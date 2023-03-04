@@ -22,6 +22,7 @@ var updateAccountNameCmd = &cobra.Command{
 	Long:  "Sets the name on your account.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		err := updateAccountName(args[0])
 		handleAPIError(err)
 		fmt.Println("Name updated.")

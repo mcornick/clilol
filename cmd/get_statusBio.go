@@ -38,6 +38,7 @@ Note that any custom CSS set on the bio is ignored.
 `,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		result, err := getStatusBio(addressFlag)
 		cobra.CheckErr(err)
 		if result.Request.Success {

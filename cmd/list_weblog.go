@@ -46,6 +46,7 @@ var listWeblogCmd = &cobra.Command{
 	Long:    "Lists all of your weblog entries.",
 	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		result, err := listWeblog()
 		cobra.CheckErr(err)
 		if result.Request.Success {

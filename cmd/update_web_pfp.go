@@ -32,6 +32,7 @@ var updateWebPFPCmd = &cobra.Command{
 	Long:  "Sets your profile picture.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		result, err := updateWebPFP(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {
