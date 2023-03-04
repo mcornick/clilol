@@ -19,7 +19,7 @@ jobs:
       - run: pip install mkdocs-git-revision-date-localized-plugin pillow cairosvg mike
       - run: git config user.name mcornick
       - run: git config user.email mcornick@mcornick.com
-      - run: ./jsonSchema.sh
+      - run: ./scripts/jsonSchema.sh
       - run: mike deploy --push --update-aliases 0.9 latest --config-file mkdocs.insiders.yml --force
 name: mkdocs
 "on":
