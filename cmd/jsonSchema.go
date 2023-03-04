@@ -24,7 +24,7 @@ var jsonSchemaCmd = &cobra.Command{
 		type Config struct {
 			Address string `json:"address" jsonschema:"omg.lol address,description=An omg.lol address that you own,example=tomservo"`
 			APIKey  string `json:"apikey" jsonschema:"omg.lol API key,description=Your omg.lol API key,example=0123456789abcdef0123456789abcdef"`
-			Email   string `json:"email,omitempty" jsonschema:"email address,description=The email address you use to log in to omg.lol,example=tomservo@gizmonics.invalid"`
+			Email   string `json:"email" jsonschema:"email address,description=The email address you use to log in to omg.lol,example=tomservo@gizmonics.invalid"`
 		}
 		schema, err := jsonschema.Reflect(&Config{}).MarshalJSON()
 		cobra.CheckErr(err)
