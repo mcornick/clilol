@@ -1,8 +1,5 @@
-# Title for the gitleaks configuration file.
 title = "clilol"
 [extend]
 useDefault = true
 [allowlist]
-regexes = [
-  '''0123456789abcdef0123456789abcdef''',
-]
+regexes = ["0123456789abcdef0123456789abcdef"]
