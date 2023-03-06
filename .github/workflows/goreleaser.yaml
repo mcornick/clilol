@@ -22,7 +22,7 @@ jobs:
       - uses: anchore/sbom-action/download-syft@f65c4834e1593b609f21ba7f2f3f5af6136c33dc # main
         with:
           syft-version: v0.69.0
-      - uses: imjasonh/setup-crane@5146f708a817ea23476677995bf2133943b9be0b # v0.1
+      - uses: imjasonh/setup-crane@00c9e93efa4e1138c9a7a5c594acd6c75a2fbf0c # v0.3
       - id: import_gpg
         uses: crazy-max/ghaction-import-gpg@111c56156bcc6918c056dbef52164cfa583dc549 # v5.2.0
         with:
