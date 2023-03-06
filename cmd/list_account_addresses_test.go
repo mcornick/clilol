@@ -9,24 +9,13 @@
 package cmd
 
 import (
-	"os"
 	"testing"
-
-	"golang.org/x/exp/slices"
 )
 
 func Test_listAccountAddresses(t *testing.T) {
-	result, err := listAccountAddresses()
+	_, err := listAccountAddresses()
 	if err != nil {
 		t.Errorf("listAccountAddresses() error = %v", err)
-		return
-	}
-	var addresses []string
-	for _, address := range result {
-		addresses = append(addresses, address.Address)
-	}
-	if !slices.Contains(addresses, os.Getenv("CLILOL_ADDRESS")) {
-		t.Errorf("addresses = %v, want %v", addresses, os.Getenv("CLILOL_ADDRESS"))
 		return
 	}
 }

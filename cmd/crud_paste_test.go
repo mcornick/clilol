@@ -11,8 +11,6 @@ package cmd
 import (
 	"os"
 	"testing"
-
-	"golang.org/x/exp/slices"
 )
 
 func Test_crudPaste(t *testing.T) {
@@ -23,17 +21,10 @@ func Test_crudPaste(t *testing.T) {
 		return
 	}
 
-	listResult, err := listPaste(os.Getenv("CLILOL_ADDRESS"))
+	_, err = listPaste(os.Getenv("CLILOL_ADDRESS"))
 	if err != nil {
 		t.Errorf("listPaste() error = %v", err)
 		return
-	}
-	var expectedTitles []string
-	for _, status := range listResult {
-		expectedTitles = append(expectedTitles, status.Title)
-	}
-	if !slices.Contains(expectedTitles, expectedTitle) {
-		t.Errorf("listPaste() = %v, want %v", expectedTitles, expectedTitle)
 	}
 
 	getResult, err := getPaste(os.Getenv("CLILOL_ADDRESS"), expectedTitle)

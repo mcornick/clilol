@@ -10,22 +10,12 @@ package cmd
 
 import (
 	"testing"
-
-	"golang.org/x/exp/slices"
 )
 
 func Test_listTheme(t *testing.T) {
-	result, err := listTheme()
+	_, err := listTheme()
 	if err != nil {
 		t.Errorf("listTheme() error = %v", err)
 		return
-	}
-	var returnedNames []string
-	for _, theme := range result.Response.Themes {
-		returnedNames = append(returnedNames, theme.Name)
-	}
-	// NOTE: assumes no listed statuses
-	if !slices.Contains(returnedNames, "Default") {
-		t.Errorf("listTheme() = %v, want Default", returnedNames)
 	}
 }

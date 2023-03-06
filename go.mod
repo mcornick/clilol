@@ -7,7 +7,6 @@ require (
 	github.com/invopop/jsonschema v0.7.0
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/viper v1.15.0
-	golang.org/x/exp v0.0.0-20230224173230-c95f2b4c22f2
 	golang.org/x/net v0.7.0
 )
 

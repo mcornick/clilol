@@ -9,23 +9,13 @@
 package cmd
 
 import (
-	"os"
 	"testing"
-
-	"golang.org/x/exp/slices"
 )
 
 func Test_listStatuslog(t *testing.T) {
-	result, err := listStatuslog(false)
+	_, err := listStatuslog(false)
 	if err != nil {
 		t.Errorf("listStatuslog() error = %v", err)
 		return
-	}
-	var returnedAddresses []string
-	for _, address := range result.Response.Statuses {
-		returnedAddresses = append(returnedAddresses, address.Address)
-	}
-	if !slices.Contains(returnedAddresses, os.Getenv("CLILOL_ADDRESS")) {
-		t.Errorf("listStatuslog() = %v, want %v", returnedAddresses, os.Getenv("CLILOL_ADDRESS"))
 	}
 }

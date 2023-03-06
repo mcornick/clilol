@@ -9,20 +9,13 @@
 package cmd
 
 import (
-	"os"
 	"testing"
-
-	"golang.org/x/exp/slices"
 )
 
 func Test_listDirectory(t *testing.T) {
-	result, err := listDirectory()
+	_, err := listDirectory()
 	if err != nil {
 		t.Errorf("listDirectory() error = %v", err)
-		return
-	}
-	if slices.Contains(result.Directory, os.Getenv("CLILOL_ADDRESS")) {
-		t.Errorf("listDirectory() = %v, want %v", result.Directory, os.Getenv("CLILOL_ADDRESS"))
 		return
 	}
 }

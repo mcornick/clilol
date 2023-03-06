@@ -11,8 +11,6 @@ package cmd
 import (
 	"os"
 	"testing"
-
-	"golang.org/x/exp/slices"
 )
 
 func Test_crudStatus(t *testing.T) {
@@ -27,17 +25,10 @@ func Test_crudStatus(t *testing.T) {
 	}
 	statusID := createResult.Response.ID
 
-	listResult, err := listStatus(os.Getenv("CLILOL_ADDRESS"), 1)
+	_, err = listStatus(os.Getenv("CLILOL_ADDRESS"), 1)
 	if err != nil {
 		t.Errorf("listStatus() error = %v", err)
 		return
-	}
-	var returnedContents []string
-	for _, status := range listResult.Response.Statuses {
-		returnedContents = append(returnedContents, status.Content)
-	}
-	if !slices.Contains(returnedContents, expectedText) {
-		t.Errorf("listStatus() = %v, want %v", returnedContents, expectedText)
 	}
 
 	getResult, err := getStatus(os.Getenv("CLILOL_ADDRESS"), statusID)

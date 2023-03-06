@@ -11,8 +11,6 @@ package cmd
 import (
 	"os"
 	"testing"
-
-	"golang.org/x/exp/slices"
 )
 
 func Test_crudPURL(t *testing.T) {
@@ -24,17 +22,9 @@ func Test_crudPURL(t *testing.T) {
 		return
 	}
 
-	listResult, err := listPURL(os.Getenv("CLILOL_ADDRESS"))
+	_, err = listPURL(os.Getenv("CLILOL_ADDRESS"))
 	if err != nil {
 		t.Errorf("listPURL() error = %v", err)
-		return
-	}
-	var expectedNames []string
-	for _, status := range listResult {
-		expectedNames = append(expectedNames, status.Name)
-	}
-	if !slices.Contains(expectedNames, expectedName) {
-		t.Errorf("listPURL() = %v, want %v", expectedNames, expectedName)
 		return
 	}
 

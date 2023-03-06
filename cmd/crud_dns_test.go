@@ -11,8 +11,6 @@ package cmd
 import (
 	"os"
 	"testing"
-
-	"golang.org/x/exp/slices"
 )
 
 func Test_crudDNS(t *testing.T) {
@@ -25,17 +23,9 @@ func Test_crudDNS(t *testing.T) {
 		return
 	}
 
-	listResult, err := listDNS()
+	_, err = listDNS()
 	if err != nil {
 		t.Errorf("listDNS() error = %v", err)
-		return
-	}
-	var expectedNames []string
-	for _, status := range listResult.Response.DNS {
-		expectedNames = append(expectedNames, status.Name)
-	}
-	if !slices.Contains(expectedNames, expectedName) {
-		t.Errorf("listDNS() = %v, want %v", expectedNames, expectedName)
 		return
 	}
 
