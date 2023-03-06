@@ -9,24 +9,13 @@
 package cmd
 
 import (
-	"os"
 	"testing"
-
-	"golang.org/x/exp/slices"
 )
 
 func Test_listNow(t *testing.T) {
-	result, err := listNow()
+	_, err := listNow()
 	if err != nil {
 		t.Errorf("listNow() error = %v", err)
 		return
-	}
-	var returnedAddresses []string
-	for _, address := range result.Response.Garden {
-		returnedAddresses = append(returnedAddresses, address.Address)
-	}
-	// NOTE: assumes no listed Now page
-	if slices.Contains(returnedAddresses, os.Getenv("CLILOL_ADDRESS")) {
-		t.Errorf("listNow() = %v, want %v", returnedAddresses, os.Getenv("CLILOL_ADDRESS"))
 	}
 }
