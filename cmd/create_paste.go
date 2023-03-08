@@ -41,7 +41,7 @@ paste, use the --listed flag.`,
 			title := args[0]
 			err := createPaste(title, createPasteFilename, createPasteListed)
 			handleAPIError(err)
-			fmt.Printf("Paste %s created\n", title)
+			fmt.Printf("Paste %s created.\n", title)
 		},
 	}
 )

@@ -27,9 +27,9 @@ var getAddressExpirationCmd = &cobra.Command{
 		result, err := getAddressExpiration(address)
 		handleAPIError(err)
 		if !result {
-			fmt.Printf("%s is not expired\n", address)
+			fmt.Printf("%s is not expired.\n", address)
 		} else {
-			fmt.Printf("%s is expired\n", address)
+			fmt.Printf("%s is expired.\n", address)
 		}
 	},
 }

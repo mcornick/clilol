@@ -46,9 +46,9 @@ webpage, use the --publish flag.`,
 			published, err := updateWeb(content, updateWebPublish)
 			handleAPIError(err)
 			if published {
-				fmt.Println("Web content saved and published")
+				fmt.Println("Web content saved and published.")
 			} else {
-				fmt.Println("Web content saved but not published")
+				fmt.Println("Web content saved but not published.")
 			}
 		},
 	}

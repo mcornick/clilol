@@ -29,7 +29,7 @@ Be sure you know what you're doing.`,
 		name := args[0]
 		err := deletePURL(name)
 		handleAPIError(err)
-		fmt.Printf("PURL %s deleted\n", name)
+		fmt.Printf("PURL %s deleted.\n", name)
 	},
 }
 

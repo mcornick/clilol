@@ -29,7 +29,7 @@ Be sure you know what you're doing.`,
 		id := args[0]
 		err := deleteAccountSession(id)
 		handleAPIError(err)
-		fmt.Printf("Session %s deleted\n", id)
+		fmt.Printf("Session %s deleted.\n", id)
 	},
 }
 

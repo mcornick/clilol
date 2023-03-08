@@ -31,7 +31,7 @@ Be sure you know what you're doing.`,
 		title := args[0]
 		err := deletePaste(title)
 		handleAPIError(err)
-		fmt.Printf("Paste %s deleted\n", title)
+		fmt.Printf("Paste %s deleted.\n", title)
 	},
 }
 

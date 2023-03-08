@@ -34,7 +34,7 @@ var (
 			data := args[3]
 			err = updateDNS(id, name, recordType, data, updateDNSPriority, updateDNSTTL)
 			handleAPIError(err)
-			fmt.Printf("DNS record %s updated\n", name)
+			fmt.Printf("DNS record %s updated.\n", name)
 		},
 	}
 )

@@ -31,7 +31,7 @@ var (
 			data := args[2]
 			err := createDNS(name, recordType, data, createDNSPriority, createDNSTTL)
 			handleAPIError(err)
-			fmt.Printf("DNS record %s created\n", name)
+			fmt.Printf("DNS record %s created.\n", name)
 		},
 	}
 )

@@ -33,7 +33,7 @@ PURL, use the --listed flag.
 			url := args[1]
 			err := createPURL(name, url, createPURLListed)
 			handleAPIError(err)
-			fmt.Printf("PURL %s created\n", name)
+			fmt.Printf("PURL %s created.\n", name)
 		},
 	}
 )

@@ -26,7 +26,7 @@ var getAddressAvailabilityCmd = &cobra.Command{
 		address := args[0]
 		result, err := getAddressAvailability(address)
 		handleAPIError(err)
-		fmt.Printf("%s is %s\n", address, result.Availability)
+		fmt.Printf("%s is %s.\n", address, result.Availability)
 	},
 }
 

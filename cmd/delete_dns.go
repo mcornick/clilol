@@ -31,7 +31,7 @@ Be sure you know what you're doing.`,
 		cobra.CheckErr(err)
 		err = deleteDNS(id)
 		handleAPIError(err)
-		fmt.Printf("DNS record %d deleted\n", id)
+		fmt.Printf("DNS record %d deleted.\n", id)
 	},
 }
 
