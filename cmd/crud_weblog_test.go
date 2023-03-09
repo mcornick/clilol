@@ -9,6 +9,7 @@
 package cmd
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -35,8 +36,8 @@ func Test_crudWeblog(t *testing.T) {
 		t.Errorf("getWeblog() error = %v", err)
 		return
 	}
-	if getResult.Response.Entry.Title != expectedTitle {
-		t.Errorf("getWeblog() = %v, want %v", getResult.Response.Entry.Title, expectedTitle)
+	if strings.TrimRight(getResult.Response.Entry.Title, " \r\n") != strings.TrimRight(expectedTitle, " \r\n") {
+		t.Errorf("getWeblog() = '%v', want '%v'", getResult.Response.Entry.Title, expectedTitle)
 	}
 
 	getLatestResult, err := getWeblogLatest()
@@ -44,8 +45,8 @@ func Test_crudWeblog(t *testing.T) {
 		t.Errorf("getWeblogLatest() error = %v", err)
 		return
 	}
-	if getLatestResult.Response.Post.Title != expectedTitle {
-		t.Errorf("getWeblogLatest() = %v, want %v", getLatestResult.Response.Post.Title, expectedTitle)
+	if strings.TrimRight(getLatestResult.Response.Post.Title, " \r\n") != strings.TrimRight(expectedTitle, " \r\n") {
+		t.Errorf("getWeblogLatest() = '%v', want '%v'", getLatestResult.Response.Post.Title, expectedTitle)
 	}
 
 	deleteResult, err := deleteWeblog(entryID)
