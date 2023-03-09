@@ -1,348 +1,336 @@
 const completionSpec: Fig.Spec = {
   name: "clilol",
-  description: "a cli for omg.lol",
+  description: "A cli for omg.lol",
   subcommands: [
     {
-      name: ["create"],
+      name: "create",
       description: "Create things",
       subcommands: [
         {
-          name: ["dns"],
+          name: "dns",
           description: "Create a DNS record",
           args: [
-            { name: "name", description: "name of the DNS record" },
-            { name: "type", description: "type of the DNS record" },
-            { name: "data", description: "data of the DNS record" },
+            { name: "name", description: "Name of the DNS record" },
+            { name: "type", description: "Type of the DNS record" },
+            { name: "data", description: "Data of the DNS record" },
           ],
           options: [
             {
               name: ["--priority", "-p"],
-              description: "priority of the DNS record",
-              args: [{ name: "priority", default: "0" }],
+              description: "Priority of the DNS record",
+              args: { name: "priority", default: "0" },
             },
             {
               name: ["--ttl", "-T"],
-              description: "time to live of the DNS record",
-              args: [{ name: "ttl", default: "3600" }],
+              description: "Time to live of the DNS record",
+              args: { name: "ttl", default: "3600" },
             },
           ],
         },
         {
-          name: ["paste"],
+          name: "paste",
           description: "Create or update a paste",
-          args: [{ name: "title", description: "title of the paste" }],
+          args: { name: "title", description: "Title of the paste" },
 
           options: [
             {
               name: ["--filename", "-f"],
-              description: "file to read paste from (default stdin)",
-              args: [{ name: "filename" }],
+              description: "File to read paste from (default stdin)",
+              args: { name: "filename", template: "filepaths" },
             },
             {
               name: ["--listed", "-l"],
-              description: "create paste as listed (default false)",
+              description: "Create paste as listed (default false)",
             },
           ],
         },
         {
-          name: ["purl"],
+          name: "purl",
           description: "Create a PURL",
           args: [
-            { name: "name", description: "name of the PURL" },
+            { name: "name", description: "Name of the PURL" },
             { name: "url", description: "URL that the PURL redirects to" },
           ],
 
           options: [
             {
               name: ["--listed", "-l"],
-              description: "create as listed (default false)",
+              description: "Create as listed (default false)",
             },
           ],
         },
         {
-          name: ["status"],
+          name: "status",
           description: "Create a status",
-          args: [{ name: "text", description: "text of the status" }],
+          args: { name: "text", description: "Text of the status" },
           options: [
             {
               name: ["--emoji", "-e"],
-              description: "emoji to add to status (default sparkles)",
-              args: [{ name: "emoji" }],
+              description: "Emoji to add to status (default sparkles)",
+              args: { name: "emoji" },
             },
             {
-              name: ["--skip-mastodon-post"],
-              description: "do not cross-post to Mastodon",
+              name: "--skip-mastodon-post",
+              description: "Do not cross-post to Mastodon",
             },
           ],
         },
         {
-          name: ["weblog"],
+          name: "weblog",
           description: "Create a weblog entry",
           options: [
             {
               name: ["--filename", "-f"],
-              description: "file to read entry from (default stdin)",
-              args: [{ name: "filename" }],
+              description: "File to read entry from (default stdin)",
+              args: { name: "filename", template: "filepaths" },
             },
           ],
         },
       ],
     },
     {
-      name: ["delete"],
+      name: "delete",
       description: "Delete things",
       subcommands: [
         {
-          name: ["account"],
+          name: "account",
           description: "Delete information about your account",
           subcommands: [
             {
-              name: ["session"],
+              name: "session",
               description: "Delete a session",
-              args: [
-                {
-                  name: "id",
-                  description: "ID of the session to delete",
-                  isDangerous: true,
-                },
-              ],
+              args: {
+                name: "id",
+                description: "ID of the session to delete",
+                isDangerous: true,
+              },
             },
           ],
         },
         {
-          name: ["dns"],
+          name: "dns",
           description: "Delete a DNS record",
-          args: [
-            {
-              name: "id",
-              description: "ID of the record to delete",
-              isDangerous: true,
-            },
-          ],
+          args: {
+            name: "id",
+            description: "ID of the record to delete",
+            isDangerous: true,
+          },
         },
         {
-          name: ["paste"],
+          name: "paste",
           description: "Delete a paste",
-          args: [
-            {
-              name: "id",
-              description: "ID of the paste to delete",
-              isDangerous: true,
-            },
-          ],
+          args: {
+            name: "id",
+            description: "ID of the paste to delete",
+            isDangerous: true,
+          },
         },
         {
-          name: ["purl"],
+          name: "purl",
           description: "Delete a PURL",
-          args: [
-            {
-              name: "id",
-              description: "ID of the PURL to delete",
-              isDangerous: true,
-            },
-          ],
+          args: {
+            name: "id",
+            description: "ID of the PURL to delete",
+            isDangerous: true,
+          },
         },
         {
-          name: ["status"],
+          name: "status",
           description: "Delete a status",
-          args: [
-            {
-              name: "id",
-              description: "ID of the status to delete",
-              isDangerous: true,
-            },
-          ],
+          args: {
+            name: "id",
+            description: "ID of the status to delete",
+            isDangerous: true,
+          },
         },
         {
-          name: ["weblog"],
+          name: "weblog",
           description: "Delete a weblog entry",
-          args: [
-            {
-              name: "id",
-              description: "ID of the weblog entry to delete",
-              isDangerous: true,
-            },
-          ],
+          args: {
+            name: "id",
+            description: "ID of the weblog entry to delete",
+            isDangerous: true,
+          },
         },
       ],
     },
     {
-      name: ["get"],
+      name: "get",
       description: "Get things",
       subcommands: [
         {
-          name: ["account"],
+          name: "account",
           description: "Get information about your account",
           subcommands: [
-            { name: ["info"], description: "Get info about your account" },
-            { name: ["name"], description: "Get your account name" },
-            { name: ["settings"], description: "Get your account settings" },
+            { name: "info", description: "Get info about your account" },
+            { name: "name", description: "Get your account name" },
+            { name: "settings", description: "Get your account settings" },
           ],
         },
         {
-          name: ["address"],
+          name: "address",
           description: "Get information about an address",
           subcommands: [
             {
-              name: ["availability"],
+              name: "availability",
               description: "Get address availability",
-              args: [{ name: "address", description: "address to get" }],
+              args: { name: "address", description: "Address to get" },
             },
             {
-              name: ["expiration"],
+              name: "expiration",
               description: "Get address expiration",
-              args: [{ name: "address", description: "address to get" }],
+              args: { name: "address", description: "Address to get" },
             },
             {
-              name: ["info"],
+              name: "info",
               description: "Get information about an address",
               subcommands: [
                 {
-                  name: ["private"],
+                  name: "private",
                   description: "Get private information about an address",
-                  args: [{ name: "address", description: "address to get" }],
+                  args: { name: "address", description: "Address to get" },
                 },
                 {
-                  name: ["public"],
+                  name: "public",
                   description: "Get public information about an address",
-                  args: [{ name: "address", description: "address to get" }],
+                  args: { name: "address", description: "Address to get" },
                 },
               ],
             },
           ],
         },
-        { name: ["email"], description: "Get email forwarding address(es)" },
+        { name: "email", description: "Get email forwarding address(es)" },
         {
-          name: ["now"],
+          name: "now",
           description: "Get a Now page",
           options: [
             {
               name: ["--address", "-a"],
-              description: "address whose Now page to get",
-              args: [{ name: "address" }],
+              description: "Address whose Now page to get",
+              args: { name: "address" },
             },
             {
               name: ["--filename", "-f"],
-              description: "file to write Now page to (default stdout)",
-              args: [{ name: "filename" }],
+              description: "File to write Now page to (default stdout)",
+              args: { name: "filename", template: "filepaths" },
             },
           ],
         },
         {
-          name: ["paste"],
+          name: "paste",
           description: "Get a paste",
-          args: [{ name: "title", description: "title of the paste" }],
+          args: { name: "title", description: "Title of the paste" },
 
           options: [
             {
               name: ["--address", "-a"],
-              description: "address whose paste to get",
-              args: [{ name: "address" }],
+              description: "Address whose paste to get",
+              args: { name: "address" },
             },
             {
               name: ["--filename", "-f"],
-              description: "file to write paste to (default stdout)",
-              args: [{ name: "filename" }],
+              description: "File to write paste to (default stdout)",
+              args: { name: "filename", template: "filepaths" },
             },
           ],
         },
         {
-          name: ["purl"],
+          name: "purl",
           description: "Get a PURL",
-          args: [{ name: "name", description: "name of the PURL" }],
+          args: { name: "name", description: "Name of the PURL" },
 
           options: [
             {
               name: ["--address", "-a"],
-              description: "address whose PURL to get",
-              args: [{ name: "address" }],
+              description: "Address whose PURL to get",
+              args: { name: "address" },
             },
           ],
         },
-        { name: ["service"], description: "Get service stats" },
+        { name: "service", description: "Get service stats" },
         {
-          name: ["status"],
+          name: "status",
           description: "Get status",
-          args: [{ name: "id", description: "ID of the status" }],
+          args: { name: "id", description: "ID of the status" },
 
           options: [
             {
               name: ["--address", "-a"],
-              description: "address whose status to get",
-              args: [{ name: "address" }],
+              description: "Address whose status to get",
+              args: { name: "address" },
             },
           ],
         },
         {
-          name: ["status-bio"],
+          name: "status-bio",
           description: "Get status bio",
           options: [
             {
               name: ["--address", "-a"],
-              description: "address whose status bio to get",
-              args: [{ name: "address" }],
+              description: "Address whose status bio to get",
+              args: { name: "address" },
             },
           ],
         },
         {
-          name: ["theme"],
+          name: "theme",
           description: "Get theme information",
-          args: [{ name: "name", description: "name of the theme" }],
+          args: { name: "name", description: "Name of the theme" },
 
           subcommands: [
             {
-              name: ["preview"],
+              name: "preview",
               description: "Get theme preview",
-              args: [{ name: "name", description: "name of the theme" }],
+              args: { name: "name", description: "Name of the theme" },
 
               options: [
                 {
                   name: ["--filename", "-f"],
-                  description: "file to write preview to (default stdout)",
-                  args: [{ name: "filename" }],
+                  description: "File to write preview to (default stdout)",
+                  args: { name: "filename", template: "filepaths" },
                 },
               ],
             },
           ],
         },
         {
-          name: ["web"],
+          name: "web",
           description: "Get your webpage content",
           options: [
             {
               name: ["--filename", "-f"],
-              description: "file to write webpage to (default stdout)",
-              args: [{ name: "filename" }],
+              description: "File to write webpage to (default stdout)",
+              args: { name: "filename", template: "filepaths" },
             },
           ],
         },
         {
-          name: ["weblog"],
+          name: "weblog",
           description: "Get a weblog entry",
-          args: [{ name: "id", description: "ID of the weblog entry" }],
+          args: { name: "id", description: "ID of the weblog entry" },
 
           subcommands: [
             {
-              name: ["config"],
+              name: "config",
               description: "Get your weblog config",
               options: [
                 {
                   name: ["--filename", "-f"],
                   description:
-                    "file to write configuration to (default stdout)",
-                  args: [{ name: "filename" }],
+                    "File to write configuration to (default stdout)",
+                  args: { name: "filename", template: "filepaths" },
                 },
               ],
             },
-            { name: ["latest"], description: "Get the latest weblog entry" },
+            { name: "latest", description: "Get the latest weblog entry" },
             {
-              name: ["template"],
+              name: "template",
               description: "Get your weblog template",
               options: [
                 {
                   name: ["--filename", "-f"],
-                  description: "file to write template to (default stdout)",
-                  args: [{ name: "filename" }],
+                  description: "File to write template to (default stdout)",
+                  args: { name: "filename", template: "filepaths" },
                 },
               ],
             },
@@ -351,201 +339,201 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["list"],
+      name: "list",
       description: "List things",
       subcommands: [
         {
-          name: ["account"],
+          name: "account",
           description: "List information about your account",
           subcommands: [
-            { name: ["addresses"], description: "List your addresses" },
-            { name: ["sessions"], description: "List your sessions" },
+            { name: "addresses", description: "List your addresses" },
+            { name: "sessions", description: "List your sessions" },
           ],
         },
-        { name: ["directory"], description: "List the address directory" },
-        { name: ["dns"], description: "List your dns records" },
-        { name: ["now"], description: "List Now pages" },
+        { name: "directory", description: "List the address directory" },
+        { name: "dns", description: "List your dns records" },
+        { name: "now", description: "List Now pages" },
         {
-          name: ["paste"],
+          name: "paste",
           description: "List pastes",
           options: [
             {
               name: ["--address", "-a"],
-              description: "address whose pastes to list",
-              args: [{ name: "address" }],
+              description: "Address whose pastes to list",
+              args: { name: "address" },
             },
           ],
         },
         {
-          name: ["purl"],
+          name: "purl",
           description: "List all PURLs",
           options: [
             {
               name: ["--address", "-a"],
-              description: "address whose PURLs to get",
-              args: [{ name: "address" }],
+              description: "Address whose PURLs to get",
+              args: { name: "address" },
             },
           ],
         },
         {
-          name: ["status"],
+          name: "status",
           description: "List statuses",
           options: [
             {
               name: ["--address", "-a"],
-              description: "address whose status(es) to get",
-              args: [{ name: "address" }],
+              description: "Address whose status(es) to get",
+              args: { name: "address" },
             },
             {
               name: ["--limit", "-l"],
-              description: "how many status(es) to get (default all)",
-              args: [{ name: "limit", default: "0" }],
+              description: "How many status(es) to get (default all)",
+              args: { name: "limit", default: "0" },
             },
           ],
         },
         {
-          name: ["statuslog"],
+          name: "statuslog",
           description: "List the statuslog",
           options: [
             {
               name: ["--all", "-A"],
               description:
-                "get the entire statuslog (default is latest statuses only)",
+                "Get the entire statuslog (default is latest statuses only)",
             },
           ],
         },
-        { name: ["theme"], description: "List profile themes" },
-        { name: ["weblog"], description: "List all weblog entries" },
+        { name: "theme", description: "List profile themes" },
+        { name: "weblog", description: "List all weblog entries" },
       ],
     },
     {
-      name: ["update"],
+      name: "update",
       description: "Update things",
       subcommands: [
         {
-          name: ["account"],
+          name: "account",
           description: "Update information about your account",
           subcommands: [
-            { name: ["name"], description: "set the name on your account" },
+            { name: "name", description: "Set the name on your account" },
             {
-              name: ["settings"],
-              description: "set the settings on your account",
+              name: "settings",
+              description: "Set the settings on your account",
               options: [
                 {
                   name: ["--communication", "-c"],
-                  description: "communication preference",
-                  args: [{ name: "communication" }],
+                  description: "Communication preference",
+                  args: { name: "communication" },
                 },
                 {
                   name: ["--date-format", "-d"],
-                  description: "date format preference",
-                  args: [{ name: "date-format" }],
+                  description: "Date format preference",
+                  args: { name: "date-format" },
                 },
                 {
                   name: ["--web-editor", "-w"],
-                  description: "web editor preference",
-                  args: [{ name: "web-editor" }],
+                  description: "Web editor preference",
+                  args: { name: "web-editor" },
                 },
               ],
             },
           ],
         },
         {
-          name: ["dns"],
+          name: "dns",
           description: "Update a DNS record",
           options: [
             {
               name: ["--priority", "-p"],
-              description: "updated priority",
-              args: [{ name: "priority", default: "0" }],
+              description: "Updated priority",
+              args: { name: "priority", default: "0" },
             },
             {
               name: ["--ttl", "-T"],
-              description: "updated TTL",
-              args: [{ name: "ttl", default: "3600" }],
+              description: "Updated TTL",
+              args: { name: "ttl", default: "3600" },
             },
           ],
         },
         {
-          name: ["email"],
-          description: "set email forwarding address(es)",
+          name: "email",
+          description: "Set email forwarding address(es)",
           options: [
             {
               name: ["--destination", "-d"],
-              description: "address(es) to forward to",
-              args: [{ name: "destination" }],
+              description: "Address(es) to forward to",
+              args: { name: "destination" },
             },
           ],
         },
-        { name: ["preference"], description: "set a preference" },
+        { name: "preference", description: "Set a preference" },
         {
-          name: ["set"],
-          description: "set Now page content",
+          name: "set",
+          description: "Set Now page content",
           options: [
             {
               name: ["--filename", "-f"],
-              description: "file to read Now page from (default stdin)",
-              args: [{ name: "filename" }],
+              description: "File to read Now page from (default stdin)",
+              args: { name: "filename", template: "filepaths" },
             },
             {
               name: ["--listed", "-l"],
-              description: "create Now page as listed (default false)",
+              description: "Create Now page as listed (default false)",
             },
           ],
         },
         {
-          name: ["status"],
+          name: "status",
           description: "Update a status",
           options: [
             {
               name: ["--emoji", "-e"],
-              description: "emoji to add to status (default sparkles)",
-              args: [{ name: "emoji" }],
+              description: "Emoji to add to status (default sparkles)",
+              args: { name: "emoji" },
             },
           ],
         },
-        { name: ["status-bio"], description: "Update your status bio" },
+        { name: "status-bio", description: "Update your status bio" },
         {
-          name: ["web"],
-          description: "set webpage content",
+          name: "web",
+          description: "Set webpage content",
           subcommands: [
-            { name: ["pfp"], description: "set your profile picture" },
+            { name: "pfp", description: "Set your profile picture" },
           ],
           options: [
             {
               name: ["--filename", "-f"],
-              description: "file to read webpage from (default stdin)",
-              args: [{ name: "filename" }],
+              description: "File to read webpage from (default stdin)",
+              args: { name: "filename", template: "filepaths" },
             },
             {
               name: ["--publish", "-p"],
-              description: "publish the updated page (default false)",
+              description: "Publish the updated page (default false)",
             },
           ],
         },
         {
-          name: ["weblog"],
-          description: "set your weblog config",
+          name: "weblog",
+          description: "Set your weblog config",
           subcommands: [
             {
-              name: ["config"],
-              description: "set your weblog config",
+              name: "config",
+              description: "Set your weblog config",
               options: [
                 {
                   name: ["--filename", "-f"],
-                  description: "file to read config from (default stdin)",
-                  args: [{ name: "filename" }],
+                  description: "File to read config from (default stdin)",
+                  args: { name: "filename", template: "filepaths" },
                 },
               ],
             },
             {
-              name: ["template"],
-              description: "set your weblog template",
+              name: "template",
+              description: "Set your weblog template",
               options: [
                 {
                   name: ["--filename", "-f"],
-                  description: "file to read template from (default stdin)",
-                  args: [{ name: "filename" }],
+                  description: "File to read template from (default stdin)",
+                  args: { name: "filename", template: "filepaths" },
                 },
               ],
             },
@@ -554,72 +542,72 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["help"],
+      name: "help",
       description: "Help about any command",
       subcommands: [
         {
-          name: ["create"],
+          name: "create",
           description: "Create things",
           subcommands: [
-            { name: ["dns"], description: "Create a DNS record" },
-            { name: ["paste"], description: "Create or update a paste" },
-            { name: ["purl"], description: "Create a PURL" },
-            { name: ["status"], description: "Create a status" },
-            { name: ["weblog"], description: "Create a weblog entry" },
+            { name: "dns", description: "Create a DNS record" },
+            { name: "paste", description: "Create or update a paste" },
+            { name: "purl", description: "Create a PURL" },
+            { name: "status", description: "Create a status" },
+            { name: "weblog", description: "Create a weblog entry" },
           ],
         },
         {
-          name: ["delete"],
+          name: "delete",
           description: "Delete things",
           subcommands: [
             {
-              name: ["account"],
+              name: "account",
               description: "Delete information about your account",
               subcommands: [
-                { name: ["session"], description: "Delete a session" },
+                { name: "session", description: "Delete a session" },
               ],
             },
-            { name: ["dns"], description: "Delete a DNS record" },
-            { name: ["paste"], description: "Delete a paste" },
-            { name: ["purl"], description: "Delete a PURL" },
-            { name: ["weblog"], description: "Delete a weblog entry" },
+            { name: "dns", description: "Delete a DNS record" },
+            { name: "paste", description: "Delete a paste" },
+            { name: "purl", description: "Delete a PURL" },
+            { name: "weblog", description: "Delete a weblog entry" },
           ],
         },
         {
-          name: ["get"],
+          name: "get",
           description: "Get things",
           subcommands: [
             {
-              name: ["account"],
+              name: "account",
               description: "Get information about your account",
               subcommands: [
-                { name: ["info"], description: "Get info about your account" },
-                { name: ["name"], description: "Get your account name" },
+                { name: "info", description: "Get info about your account" },
+                { name: "name", description: "Get your account name" },
                 {
-                  name: ["settings"],
+                  name: "settings",
                   description: "Get your account settings",
                 },
               ],
             },
             {
-              name: ["address"],
+              name: "address",
               description: "Get information about an address",
               subcommands: [
                 {
-                  name: ["availability"],
+                  name: "availability",
                   description: "Get address availability",
                 },
-                { name: ["expiration"], description: "Get address expiration" },
+                { name: "expiration", description: "Get address expiration" },
                 {
-                  name: ["info"],
+                  name: "info",
                   description: "Get information about an address",
                   subcommands: [
                     {
-                      name: ["private"],
+                      name: "private",
                       description: "Get private information about an address",
                     },
                     {
-                      name: ["public"],
+                      name: "public",
                       description: "Get public information about an address",
                     },
                   ],
@@ -627,142 +615,143 @@ const completionSpec: Fig.Spec = {
               ],
             },
             {
-              name: ["email"],
+              name: "email",
               description: "Get email forwarding address(es)",
             },
-            { name: ["now"], description: "Get a Now page" },
-            { name: ["paste"], description: "Get a paste" },
-            { name: ["purl"], description: "Get a PURL" },
-            { name: ["service"], description: "Get service stats" },
-            { name: ["status"], description: "Get status" },
-            { name: ["status-bio"], description: "Get status bio" },
+            { name: "now", description: "Get a Now page" },
+            { name: "paste", description: "Get a paste" },
+            { name: "purl", description: "Get a PURL" },
+            { name: "service", description: "Get service stats" },
+            { name: "status", description: "Get status" },
+            { name: "status-bio", description: "Get status bio" },
             {
-              name: ["theme"],
+              name: "theme",
               description: "Get theme information",
               subcommands: [
-                { name: ["preview"], description: "Get theme preview" },
+                { name: "preview", description: "Get theme preview" },
               ],
             },
-            { name: ["web"], description: "Get your webpage content" },
+            { name: "web", description: "Get your webpage content" },
             {
-              name: ["weblog"],
+              name: "weblog",
               description: "Get a weblog entry",
               subcommands: [
-                { name: ["config"], description: "Get your weblog config" },
+                { name: "config", description: "Get your weblog config" },
                 {
-                  name: ["latest"],
+                  name: "latest",
                   description: "Get the latest weblog entry",
                 },
-                { name: ["template"], description: "Get your weblog template" },
+                { name: "template", description: "Get your weblog template" },
               ],
             },
           ],
         },
         {
-          name: ["list"],
+          name: "list",
           description: "List things",
           subcommands: [
             {
-              name: ["account"],
+              name: "account",
               description: "List information about your account",
               subcommands: [
-                { name: ["addresses"], description: "List your addresses" },
-                { name: ["sessions"], description: "List your sessions" },
+                { name: "addresses", description: "List your addresses" },
+                { name: "sessions", description: "List your sessions" },
               ],
             },
-            { name: ["directory"], description: "List the address directory" },
-            { name: ["dns"], description: "List your dns records" },
-            { name: ["now"], description: "List Now pages" },
-            { name: ["paste"], description: "List pastes" },
-            { name: ["purl"], description: "List all PURLs" },
-            { name: ["status"], description: "List statuses" },
-            { name: ["statuslog"], description: "List the statuslog" },
-            { name: ["theme"], description: "List profile themes" },
-            { name: ["weblog"], description: "List all weblog entries" },
+            { name: "directory", description: "List the address directory" },
+            { name: "dns", description: "List your dns records" },
+            { name: "now", description: "List Now pages" },
+            { name: "paste", description: "List pastes" },
+            { name: "purl", description: "List all PURLs" },
+            { name: "status", description: "List statuses" },
+            { name: "statuslog", description: "List the statuslog" },
+            { name: "theme", description: "List profile themes" },
+            { name: "weblog", description: "List all weblog entries" },
           ],
         },
         {
-          name: ["update"],
+          name: "update",
           description: "Update things",
           subcommands: [
             {
-              name: ["account"],
+              name: "account",
               description: "Update information about your account",
               subcommands: [
                 {
-                  name: ["name"],
-                  description: "set the name on your account",
-                  args: [{ name: "name", description: "the name to set" }],
+                  name: "name",
+                  description: "Set the name on your account",
+                  args: { name: "name", description: "The name to set" },
                 },
                 {
-                  name: ["settings"],
-                  description: "set the settings on your account",
+                  name: "settings",
+                  description: "Set the settings on your account",
                 },
               ],
             },
             {
-              name: ["dns"],
+              name: "dns",
               description: "Update a DNS record",
               args: [
-                { name: "id", description: "the ID of the record to update" },
-                { name: "name", description: "updated name" },
-                { name: "type", description: "updated type" },
-                { name: "data", description: "updated data" },
+                { name: "id", description: "The ID of the record to update" },
+                { name: "name", description: "Updated name" },
+                { name: "type", description: "Updated type" },
+                { name: "data", description: "Updated data" },
               ],
             },
             {
-              name: ["email"],
-              description: "set email forwarding address(es)",
+              name: "email",
+              description: "Set email forwarding address(es)",
+              args: {
+                name: "address",
+                description: "Address(es) to forward to",
+              },
+            },
+            {
+              name: "preference",
+              description: "Set a preference",
               args: [
-                { name: "address", description: "address(es) to forward to" },
+                { name: "item", description: "Preferences item to set" },
+                { name: "value", description: "Value to set" },
               ],
             },
+            { name: "now", description: "Update Now page content" },
             {
-              name: ["preference"],
-              description: "set a preference",
-              args: [
-                { name: "item", description: "preferences item to set" },
-                { name: "value", description: "value to set" },
-              ],
-            },
-            { name: ["now"], description: "update Now page content" },
-            {
-              name: ["status"],
+              name: "status",
               description: "Update a status",
               args: [
-                { name: "id", description: "the ID of the status to update" },
-                { name: "text", description: "new text for the status" },
+                { name: "id", description: "The ID of the status to update" },
+                { name: "text", description: "New text for the status" },
               ],
             },
             {
-              name: ["status-bio"],
+              name: "status-bio",
               description: "Update your status bio",
-              args: [
-                { name: "text", description: "new text for the status bio" },
-              ],
+              args: {
+                name: "text",
+                description: "New text for the status bio",
+              },
             },
             {
-              name: ["web"],
-              description: "set webpage content",
+              name: "web",
+              description: "Set webpage content",
               subcommands: [
                 {
-                  name: ["pfp"],
-                  description: "set your profile picture",
-                  args: [
-                    {
-                      name: "filename",
-                      description: "the filename of the image to set",
-                    },
-                  ],
+                  name: "pfp",
+                  description: "Set your profile picture",
+                  args: {
+                    name: "filename",
+                    template: "filepaths",
+                    description: "The filename of the image to set",
+                  },
                 },
               ],
             },
             {
-              name: ["weblog"],
-              description: "set your weblog config",
+              name: "weblog",
+              description: "Set your weblog config",
               subcommands: [
-                { name: ["config"], description: "set your weblog config" },
-                { name: ["template"], description: "set your weblog template" },
+                { name: "config", description: "Set your weblog config" },
+                { name: "template", description: "Set your weblog template" },
               ],
             },
           ],
