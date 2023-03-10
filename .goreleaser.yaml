@@ -38,8 +38,8 @@ aurs:
 before:
   hooks:
     - go mod tidy
-    - ./scripts/completions.sh
-    - ./scripts/manpages.sh
+    - bash ./scripts/completions.sh
+    - bash ./scripts/manpages.sh
 brews:
   - description: A CLI for omg.lol
     homepage: https://mcornick.com/clilol/
