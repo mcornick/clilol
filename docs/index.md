@@ -149,7 +149,7 @@ Environment variables take precedence over any configuration file.
 
 clilol releases are announced on [my social.lol account](https://social.lol/@mcornick) which you are welcome to follow.
 
-To verify signatures on commits to clilol, you might need [my GPG public key](https://github.com/mcornick.gpg).
+To verify signatures on commits to clilol, you might need [my SSH public key](https://github.com/mcornick.keys) or, for older commits, [my GPG public key](https://github.com/mcornick.gpg).
 
 Thanks to the following people for helping to improve clilol:
 
