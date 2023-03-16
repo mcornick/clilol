@@ -86,9 +86,9 @@ func init() {
 	createCmd.AddCommand(createPictureCmd)
 }
 
-func createPicture(description string) (createPictureOutput, error) {
+func createPicture(filename string) (createPictureOutput, error) {
 	var result createPictureOutput
-	content, err := os.ReadFile(description)
+	content, err := os.ReadFile(filename)
 	cobra.CheckErr(err)
 	encoded := "data:text/plain;base64," + base64.StdEncoding.EncodeToString(content)
 	body := callAPIWithRawData(
