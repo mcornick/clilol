@@ -23,6 +23,15 @@ func Test_crudPicture(t *testing.T) {
 	}
 	pictureID := createResult.Response.ID
 
+	describeResult, err := describePicture(pictureID, "test picture from clilol")
+	if err != nil {
+		t.Errorf("describePicture() error = %v", err)
+		return
+	}
+	if describeResult.Request.StatusCode != 200 {
+		t.Errorf("describePicture() = %v, want %v", describeResult.Request.StatusCode, 200)
+	}
+
 	deleteResult, err := deletePicture(pictureID)
 	if err != nil {
 		t.Errorf("deletePicture() error = %v", err)
