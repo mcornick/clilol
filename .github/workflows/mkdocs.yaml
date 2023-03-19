@@ -25,7 +25,7 @@ jobs:
       - run: git config user.name mcornick
       - run: git config user.email mcornick@mcornick.com
       - run: bash ./scripts/jsonSchema.sh
-      - run: mike deploy --push --update-aliases 0.9 latest --config-file mkdocs.insiders.yml --force
+      - run: mike deploy --push --update-aliases 1.0 latest --config-file mkdocs.insiders.yml --force
 name: mkdocs
 "on":
   push:
