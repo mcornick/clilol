@@ -23,6 +23,7 @@ These commands list things.
 * [clilol list dns](clilol_list_dns.md)	 - List your dns records
 * [clilol list now](clilol_list_now.md)	 - List Now pages
 * [clilol list pastes](clilol_list_pastes.md)	 - List pastes
+* [clilol list pictures](clilol_list_pictures.md)	 - List pictures
 * [clilol list purls](clilol_list_purls.md)	 - List all PURLs
 * [clilol list statuses](clilol_list_statuses.md)	 - List statuses
 * [clilol list statuslog](clilol_list_statuslog.md)	 - List the statuslog

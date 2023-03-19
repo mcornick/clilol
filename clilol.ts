@@ -385,6 +385,7 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        { name: "picture", description: "List pictures" },
         {
           name: "purl",
           description: "List all PURLs",
