@@ -18,12 +18,12 @@ import (
 )
 
 type getStatusBioOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message string `json:"message"`
 		Bio     string `json:"bio"`
 		Css     string `json:"css"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var getStatusBioCmd = &cobra.Command{

@@ -23,7 +23,6 @@ type createStatusInput struct {
 	SkipMastodonPost bool   `json:"skip_mastodon_post,omitempty"`
 }
 type createStatusOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message     string `json:"message"`
 		ID          string `json:"id"`
@@ -31,6 +30,7 @@ type createStatusOutput struct {
 		URL         string `json:"url"`
 		ExternalURL string `json:"external_url"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var (

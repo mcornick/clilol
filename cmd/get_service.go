@@ -17,13 +17,13 @@ import (
 )
 
 type getServiceOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message   string `json:"message"`
 		Members   int    `json:"members"`
 		Addresses int    `json:"addresses"`
 		Profiles  int    `json:"profiles"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var getServiceCmd = &cobra.Command{

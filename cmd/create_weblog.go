@@ -20,25 +20,25 @@ import (
 )
 
 type createWeblogOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message string `json:"message"`
 		Entry   struct {
-			Location string `json:"location"`
-			Title    string `json:"title"`
-			Date     int64  `json:"date"`
-			Type     string `json:"type"`
-			Status   string `json:"status"`
-			Body     string `json:"body"`
-			Source   string `json:"source"`
 			Metadata struct {
 				Date string `json:"date"`
 				Slug string `json:"slug"`
 			} `json:"metadata"`
-			Output string `json:"createWeblogOutput"`
-			Entry  string `json:"entry"`
+			Location string `json:"location"`
+			Title    string `json:"title"`
+			Type     string `json:"type"`
+			Status   string `json:"status"`
+			Body     string `json:"body"`
+			Source   string `json:"source"`
+			Output   string `json:"createWeblogOutput"`
+			Entry    string `json:"entry"`
+			Date     int64  `json:"date"`
 		} `json:"entry"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var (

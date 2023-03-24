@@ -18,10 +18,10 @@ import (
 )
 
 type deleteStatusOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message string `json:"message"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var deleteStatusCmd = &cobra.Command{

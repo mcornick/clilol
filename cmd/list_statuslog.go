@@ -17,7 +17,6 @@ import (
 )
 
 type listStatuslogOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message  string `json:"message"`
 		Statuses []struct {
@@ -29,6 +28,7 @@ type listStatuslogOutput struct {
 			Content      string `json:"content"`
 		} `json:"statuses"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var (

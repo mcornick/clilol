@@ -17,19 +17,19 @@ import (
 )
 
 type listPictureOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message string `json:"message"`
 		Pics    []struct {
 			ID          string `json:"id"`
 			URL         string `json:"url"`
 			Address     string `json:"address"`
-			Created     int    `json:"created"`
 			Mime        string `json:"mime"`
-			Size        int    `json:"size"`
 			Description string `json:"description"`
+			Created     int    `json:"created"`
+			Size        int    `json:"size"`
 		} `json:"pics"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var (

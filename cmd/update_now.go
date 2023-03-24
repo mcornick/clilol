@@ -25,10 +25,10 @@ type updateNowInput struct {
 }
 
 type updateNowOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message string `json:"message"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var (

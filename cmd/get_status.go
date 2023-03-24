@@ -20,7 +20,6 @@ import (
 )
 
 type getStatusOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message string `json:"message"`
 		Status  struct {
@@ -31,6 +30,7 @@ type getStatusOutput struct {
 			Content string `json:"content"`
 		} `json:"status"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var getStatusCmd = &cobra.Command{

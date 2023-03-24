@@ -19,11 +19,11 @@ import (
 )
 
 type getWeblogTemplateOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message  string `json:"message"`
 		Template string `json:"template"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var (

@@ -19,7 +19,6 @@ import (
 )
 
 type getWeblogConfigOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message       string `json:"message"`
 		Configuration struct {
@@ -46,6 +45,7 @@ type getWeblogConfigOutput struct {
 			Raw  string `json:"raw"`
 		} `json:"configuration"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var (

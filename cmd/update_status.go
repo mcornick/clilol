@@ -24,12 +24,12 @@ type updateStatusInput struct {
 }
 
 type updateStatusOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message string `json:"message"`
 		ID      string `json:"id"`
 		URL     string `json:"url"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var (

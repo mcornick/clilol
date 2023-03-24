@@ -22,12 +22,12 @@ type updatePreferenceInput struct {
 	Value string `json:"value"`
 }
 type updatePreferenceOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message string `json:"message"`
 		Item    string `json:"item"`
 		Value   string `json:"value"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var updatePreferenceCmd = &cobra.Command{

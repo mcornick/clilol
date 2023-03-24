@@ -19,14 +19,12 @@ import (
 )
 
 type getWeblogLatestOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message string `json:"message"`
 		Post    struct {
 			Address  string `json:"address"`
 			Location string `json:"location"`
 			Title    string `json:"title"`
-			Date     int64  `json:"date"`
 			Type     string `json:"type"`
 			Status   string `json:"status"`
 			Source   string `json:"source"`
@@ -34,8 +32,10 @@ type getWeblogLatestOutput struct {
 			Output   string `json:"output"`
 			Metadata string `json:"metadata"`
 			Entry    string `json:"entry"`
+			Date     int64  `json:"date"`
 		} `json:"post"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var getWeblogLatestCmd = &cobra.Command{

@@ -22,11 +22,11 @@ type updateStatusBioInput struct {
 }
 
 type updateStatusBioOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message string `json:"message"`
 		URL     string `json:"url"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var updateStatusBioCmd = &cobra.Command{

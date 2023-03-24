@@ -20,14 +20,14 @@ import (
 )
 
 type createPictureOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message string `json:"message"`
 		ID      string `json:"id"`
-		Size    int64  `json:"size"`
 		MIME    string `json:"mime"`
 		URL     string `json:"url"`
+		Size    int64  `json:"size"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 type describePictureInput struct {
@@ -35,12 +35,12 @@ type describePictureInput struct {
 }
 
 type describePictureOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message string `json:"message"`
 		ID      string `json:"id"`
 		URL     string `json:"url"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var (

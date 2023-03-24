@@ -19,7 +19,6 @@ import (
 )
 
 type getNowOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message string `json:"message"`
 		Now     struct {
@@ -28,6 +27,7 @@ type getNowOutput struct {
 			Listed  int    `json:"listed"`
 		} `json:"now"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var (

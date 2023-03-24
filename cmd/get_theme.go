@@ -19,7 +19,6 @@ import (
 )
 
 type getThemeOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Theme struct {
 			ID            string `json:"id"`
@@ -36,6 +35,7 @@ type getThemeOutput struct {
 			ThemeColor    string `json:"theme-color"`
 		} `json:"theme"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var getThemeCmd = &cobra.Command{

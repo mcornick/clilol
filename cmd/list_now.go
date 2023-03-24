@@ -18,20 +18,20 @@ import (
 )
 
 type listNowOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
 		Message string `json:"message"`
 		Garden  []struct {
 			Address string `json:"address"`
 			URL     string `json:"url"`
 			Updated struct {
-				UnixEpochTime int64     `json:"unix_epoch_time"`
 				ISO8601Time   time.Time `json:"iso_8601_time"`
 				RFC2822Time   string    `json:"rfc_2822_time"`
 				RelativeTime  string    `json:"relative_time"`
+				UnixEpochTime int64     `json:"unix_epoch_time"`
 			} `json:"updated"`
 		} `json:"garden"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var listNowCmd = &cobra.Command{

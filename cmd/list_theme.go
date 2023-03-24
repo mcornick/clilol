@@ -31,11 +31,11 @@ type Theme struct {
 	ThemeColor    string `json:"theme-color"`
 }
 type listThemeOutput struct {
-	Request  resultRequest `json:"request"`
 	Response struct {
-		Message string           `json:"message"`
 		Themes  map[string]Theme `json:"themes"`
+		Message string           `json:"message"`
 	} `json:"response"`
+	Request resultRequest `json:"request"`
 }
 
 var listThemeCmd = &cobra.Command{

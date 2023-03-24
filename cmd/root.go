@@ -41,13 +41,13 @@ type resultRequest struct {
 }
 
 type apiError struct {
+	Response struct {
+		Message string `json:"message"`
+	}
 	Request struct {
 		StatusCode int  `json:"status_code"`
 		Success    bool `json:"success"`
 	} `json:"request"`
-	Response struct {
-		Message string `json:"message"`
-	}
 }
 
 func handleAPIError(err error) {
