@@ -31,7 +31,6 @@ const completionSpec: Fig.Spec = {
           name: "paste",
           description: "Create or update a paste",
           args: { name: "title", description: "Title of the paste" },
-
           options: [
             {
               name: ["--filename", "-f"],
@@ -48,7 +47,6 @@ const completionSpec: Fig.Spec = {
           name: "picture",
           description: "Upload a picture to some.pics",
           args: { name: "filename", description: "Filename of the image file" },
-
           options: [
             {
               name: ["--description", "-d"],
@@ -63,7 +61,6 @@ const completionSpec: Fig.Spec = {
             { name: "name", description: "Name of the PURL" },
             { name: "url", description: "URL that the PURL redirects to" },
           ],
-
           options: [
             {
               name: ["--listed", "-l"],
@@ -241,7 +238,6 @@ const completionSpec: Fig.Spec = {
           name: "paste",
           description: "Get a paste",
           args: { name: "title", description: "Title of the paste" },
-
           options: [
             {
               name: ["--address", "-a"],
@@ -259,7 +255,6 @@ const completionSpec: Fig.Spec = {
           name: "purl",
           description: "Get a PURL",
           args: { name: "name", description: "Name of the PURL" },
-
           options: [
             {
               name: ["--address", "-a"],
@@ -273,7 +268,6 @@ const completionSpec: Fig.Spec = {
           name: "status",
           description: "Get status",
           args: { name: "id", description: "ID of the status" },
-
           options: [
             {
               name: ["--address", "-a"],
@@ -297,13 +291,11 @@ const completionSpec: Fig.Spec = {
           name: "theme",
           description: "Get theme information",
           args: { name: "name", description: "Name of the theme" },
-
           subcommands: [
             {
               name: "preview",
               description: "Get theme preview",
               args: { name: "name", description: "Name of the theme" },
-
               options: [
                 {
                   name: ["--filename", "-f"],
@@ -329,7 +321,6 @@ const completionSpec: Fig.Spec = {
           name: "weblog",
           description: "Get a weblog entry",
           args: { name: "id", description: "ID of the weblog entry" },
-
           subcommands: [
             {
               name: "config",
