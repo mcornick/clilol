@@ -18,11 +18,11 @@ archives:
     rlcp: true
 aurs:
   - description: "A CLI for omg.lol"
-    git_url: 'ssh://git@github.com/mcornick/clilol-aur.git'
+    git_url: "ssh://git@github.com/mcornick/clilol-aur.git"
     homepage: "https://mcornick.com/clilol/"
     license: "MPL-2.0"
     maintainers:
-      - 'Mark Cornick <mcornick@mcornick.com>'
+      - "Mark Cornick <mcornick@mcornick.com>"
     name: clilol-bin
     package: |-
       install -Dm755 "./clilol" "${pkgdir}/usr/bin/clilol"
@@ -34,7 +34,7 @@ aurs:
       install -Dm644 "./completions/clilol.zsh" "${pkgdir}/usr/share/zsh/site-functions/_clilol"
       install -Dm644 "./completions/clilol.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/clilol.fish"
       install -Dm644 "./manpages/*.1" "${pkgdir}/usr/share/man/man1/*.1"
-    private_key: '{{ .Env.AUR_KEY }}'
+    private_key: "{{ .Env.AUR_KEY }}"
 before:
   hooks:
     - go mod tidy
@@ -86,6 +86,15 @@ kos:
   - bare: true
     build: clilol
     id: clilol-ghcr
+    labels:
+      io.artifacthub.package.license: MPL-2.0
+      io.artifacthub.package.maintainers: '[{"name":"Mark Cornick","email":"mcornick@mcornick.com"}]'
+      io.artifacthub.package.readme-url: https://raw.githubusercontent.com/mcornick/clilol/main/README.md
+      org.opencontainers.image.description: A CLI for omg.lol
+      org.opencontainers.image.name: "{{.ProjectName}}"
+      org.opencontainers.image.revision: "{{.FullCommit}}"
+      org.opencontainers.image.source: "{{.GitURL}}"
+      org.opencontainers.image.version: "{{.Version}}"
     platforms:
       - linux/amd64
       - linux/arm64
@@ -96,6 +105,15 @@ kos:
   - bare: true
     build: clilol
     id: clilol-docker
+    labels:
+      io.artifacthub.package.license: MPL-2.0
+      io.artifacthub.package.maintainers: '[{"name":"Mark Cornick","email":"mcornick@mcornick.com"}]'
+      io.artifacthub.package.readme-url: https://raw.githubusercontent.com/mcornick/clilol/main/README.md
+      org.opencontainers.image.description: A CLI for omg.lol
+      org.opencontainers.image.name: "{{.ProjectName}}"
+      org.opencontainers.image.revision: "{{.FullCommit}}"
+      org.opencontainers.image.source: "{{.GitURL}}"
+      org.opencontainers.image.version: "{{.Version}}"
     platforms:
       - linux/amd64
       - linux/arm64
