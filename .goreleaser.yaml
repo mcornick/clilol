@@ -17,12 +17,12 @@ archives:
         goos: windows
     rlcp: true
 aurs:
-  - description: "A CLI for omg.lol"
-    git_url: "ssh://git@github.com/mcornick/clilol-aur.git"
-    homepage: "https://mcornick.com/clilol/"
-    license: "MPL-2.0"
+  - description: A CLI for omg.lol
+    git_url: ssh://git@github.com/mcornick/clilol-aur.git
+    homepage: https://mcornick.com/clilol/
+    license: MPL-2.0
     maintainers:
-      - "Mark Cornick <mcornick@mcornick.com>"
+      - Mark Cornick <mcornick@mcornick.com>
     name: clilol-bin
     package: |-
       install -Dm755 "./clilol" "${pkgdir}/usr/bin/clilol"
