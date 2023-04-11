@@ -143,6 +143,14 @@ export CLILOL_EMAIL="tomservo@gizmonics.invalid"
 export CLILOL_APIKEY="0123456789abcdef0123456789abcdef"
 ```
 
+Environment variables are the easiest way to pass configuration when running the container images:
+
+```bash
+docker run --rm -ti --env CLILOL_ADDRESS=tomservo --env CLILOL_APIKEY=0123456789abcdef0123456789abcdef --env CLILOL_EMAIL=tomservo@gizmonics.invalid ghcr.io/mcornick/clilol ...
+# or put the configuration in a dotenv file:
+docker run --rm -ti --env-file .env ghcr.io/mcornick/clilol ...
+```
+
 Environment variables take precedence over any configuration file.
 
 ## Etcetera
