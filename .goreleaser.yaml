@@ -78,6 +78,7 @@ changelog:
   use: github
 checksum:
   name_template: checksums.txt
+# noinspection YAMLSchemaValidation
 furies:
   - account: mcornick
 gomod:
