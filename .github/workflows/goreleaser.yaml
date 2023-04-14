@@ -1,4 +1,4 @@
----
+#file: noinspection GrazieInspection
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
