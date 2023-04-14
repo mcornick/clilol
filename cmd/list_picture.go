@@ -32,34 +32,31 @@ type listPictureOutput struct {
 	Request resultRequest `json:"request"`
 }
 
-var (
-	listPictureAll bool
-	listPictureCmd = &cobra.Command{
-		Use:     "pictures",
-		Aliases: []string{"picture"},
-		Short:   "List pictures",
-		Long:    "Lists pictures shared to some.pics.",
-		Args:    cobra.NoArgs,
-		Run: func(cmd *cobra.Command, args []string) {
-			validateConfig()
-			result, err := listPicture(listPictureAll)
-			cobra.CheckErr(err)
-			if result.Request.Success {
-				for _, pic := range result.Response.Pics {
-					fmt.Printf("%s: %s (%s)\n", pic.Address, pic.Description, pic.URL)
-				}
-			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
+var listPictureCmd = &cobra.Command{
+	Use:     "pictures",
+	Aliases: []string{"picture"},
+	Short:   "List pictures",
+	Long:    "Lists pictures shared to some.pics.",
+	Args:    cobra.NoArgs,
+	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
+		result, err := listPicture()
+		cobra.CheckErr(err)
+		if result.Request.Success {
+			for _, pic := range result.Response.Pics {
+				fmt.Printf("%s: %s (%s)\n", pic.Address, pic.Description, pic.URL)
 			}
-		},
-	}
-)
+		} else {
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+		}
+	},
+}
 
 func init() {
 	listCmd.AddCommand(listPictureCmd)
 }
 
-func listPicture(all bool) (listPictureOutput, error) {
+func listPicture() (listPictureOutput, error) {
 	var result listPictureOutput
 	body := callAPIWithParams(http.MethodGet, "/pics/", nil, false)
 	err := json.Unmarshal(body, &result)

@@ -13,7 +13,7 @@ import (
 )
 
 func Test_listPicture(t *testing.T) {
-	_, err := listPicture(false)
+	_, err := listPicture()
 	if err != nil {
 		t.Errorf("listPicture() error = %v", err)
 		return
