@@ -1,7 +1,7 @@
 ---
 title: Home
 ---
-__clilol__ is a CLI for the various fun services offered by [omg.lol](https://omg.lol/). All of the services supported by the [omg.lol API](https://api.omg.lol) are supported.
+__clilol__ is a CLI for the various fun services offered by [omg.lol](https://omg.lol/). All the services supported by the [omg.lol API](https://api.omg.lol) are supported.
 
 ![Screenshot](clilol.gif "Screenshot")
 
@@ -9,7 +9,7 @@ Please see the links in the navigation menu to the left to learn about all the d
 
 ## Installation
 
-You can install clilol in any of these ways. (These are the only supported builds of omglol. I don't submit them to "official" repositories, at least not yet. If you find a problem with anyone else's build, please try my builds instead.)
+You can install clilol in any of these ways. (These are the only supported builds of clilol. I don't submit them to "official" repositories, at least not yet. If you find a problem with anyone else's build, please try my builds instead.)
 
 ### Homebrew
 
@@ -86,7 +86,7 @@ makepkg -i
 
 The usual: `go install github.com/mcornick/clilol@latest`
 
-While I do not build or test for platforms other than the ones listed under the Binaries tab, clilol _should_ still work on any platform supported by Go, and if you find that it does not, feel free to file a GitHub issue and I'll take a look.
+While I do not build or test for platforms other than the ones listed under the Binaries tab, clilol _should_ still work on any platform supported by Go, and if you find that it does not, feel free to file a GitHub issue, and I'll take a look.
 
 ## Configuration File
 
@@ -153,7 +153,7 @@ docker run --rm -ti --env-file .env ghcr.io/mcornick/clilol ...
 
 Environment variables take precedence over any configuration file.
 
-## Etcetera
+## Etc.
 
 clilol releases are announced on [my social.lol account](https://social.lol/@mcornick) which you are welcome to follow.
 
