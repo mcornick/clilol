@@ -19,8 +19,7 @@ func Test_updateWeb(t *testing.T) {
 		t.Errorf("os.ReadFile() error = %v", err)
 		return
 	}
-	publish := true
-	published, err := updateWeb(content, publish)
+	published, err := updateWeb(content, true)
 	if err != nil {
 		t.Errorf("updateWeb() error = %v", err)
 		return
