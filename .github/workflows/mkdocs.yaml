@@ -1,4 +1,3 @@
-#file: noinspection GrazieInspection
 jobs:
   deploy:
     if: github.event.repository.fork == false
