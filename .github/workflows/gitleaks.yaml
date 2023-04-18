@@ -1,3 +1,4 @@
+#file: noinspection GrazieInspection
 jobs:
   scan:
     name: gitleaks

@@ -1,3 +1,4 @@
+#file: noinspection GrazieInspection
 jobs:
   fig:
     runs-on: ubuntu-latest
