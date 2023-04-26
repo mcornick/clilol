@@ -72,7 +72,7 @@ RPM packages are also available from my Gemfury repository.
 
 ```
 # /etc/yum.repos.d/mcornick.repo
-[fury]
+[mcornick]
 name=mcornick yum repo
 baseurl=https://yum.fury.io/mcornick/
 enabled=1
