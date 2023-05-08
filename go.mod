@@ -1,4 +1,4 @@
-module github.com/mcornick/clilol
+module git.sr.ht/~mcornick/clilol
 
 go 1.19
 

@@ -2,8 +2,8 @@
 copyright: Copyright &copy; 2023 Mark Cornick
 extra:
   social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/mcornick/clilol
+    - icon: fontawesome/brands/git
+      link: https://git.sr.ht/~mcornick/clilol
     - icon: fontawesome/brands/mastodon
       link: https://social.lol/@mcornick
   version:
@@ -17,9 +17,9 @@ plugins:
   - git-revision-date-localized
   - social
 repo_name: mcornick/clilol
-repo_url: https://github.com/mcornick/clilol
+repo_url: https://git.sr.ht/~mcornick/clilol
 site_author: Mark Cornick
-site_description: a CLI for omg.lol (work in progress)
+site_description: a CLI for omg.lol
 site_name: clilol, a CLI for omg.lol
 site_url: https://mcornick.com/clilol/
 theme:

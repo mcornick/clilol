@@ -22,6 +22,7 @@ build, please try my builds instead.)
 I maintain a [Homebrew](https://brew.sh/) tap.
 
 ```bash
+brew tap mcornick/tap https://git.sr.ht/~mcornick/homebrew-tap
 brew install mcornick/tap/clilol
 ```
 
@@ -30,18 +31,16 @@ brew install mcornick/tap/clilol
 I maintain a [Scoop](https://scoop.sh/) bucket.
 
 ```powershell
-scoop bucket add mcornick https://github.com/mcornick/scoop-bucket.git
+scoop bucket add mcornick https://git.sr.ht/~mcornick/scoop-bucket
 scoop install clilol
 ```
 
 ### Container Images
 
 I maintain container images on
-[GitHub](https://github.com/mcornick/clilol/pkgs/container/clilol) and
 [Docker Hub](https://hub.docker.com/repository/docker/mcornick/clilol).
 
 ```bash
-docker run --rm ghcr.io/mcornick/clilol
 docker run --rm mcornick/clilol
 ```
 
@@ -51,8 +50,7 @@ created with Cosign's "keyless" mode, which requires Cosign version >=
 2.0.0:
 
 ```bash
-cosign verify ghcr.io/mcornick/clilol --certificate-identity-regexp "https://github.com/mcornick/clilol.*" --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
-cosign verify mcornick/clilol --certificate-identity-regexp "https://github.com/mcornick/clilol.*" --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
+cosign verify mcornick/clilol --certificate-identity-regexp "https://git.sr.ht/~mcornick/clilol.*" --certificate-oidc-issuer "https://token.actionshubusercontent.com"
 ```
 
 ### Binaries and Linux packages
@@ -64,7 +62,7 @@ for macOS (universal), Linux (i386, amd64, arm64, and armv6) and Windows
 pkg.tar.zst formats.
 
 Binary checksums included on the release pages are signed with my [GPG
-key](https://github.com/mcornick.gpg).
+key](https://meta.sr.ht/~mcornick.pgp).
 
 ### YUM Repository
 
@@ -94,19 +92,19 @@ I maintain an
 [AUR](https://wiki.archlinux.org/title/Arch_User_Repository) for clilol.
 
 ```
-git clone https://github.com/mcornick/clilol-aur.git
+git clone https://git.sr.ht/~mcornick/clilol-aur
 cd clilol-aur
 makepkg -i
 ```
 
 ### From source
 
-The usual: `go install github.com/mcornick/clilol@latest`
+The usual: `go install git.sr.ht/~mcornick/clilol@latest`
 
 While I do not build or test for platforms other than the ones listed
 under the Binaries tab, clilol _should_ still work on any platform
-supported by Go, and if you find that it does not, feel free to file a
-GitHub issue, and I'll take a look.
+supported by Go, and if you find that it does not, feel free to file an
+issue, and I'll take a look.
 
 ## Configuration File
 
@@ -174,9 +172,9 @@ Environment variables are the easiest way to pass configuration when
 running the container images:
 
 ```bash
-docker run --rm -ti --env CLILOL_ADDRESS=tomservo --env CLILOL_APIKEY=0123456789abcdef0123456789abcdef --env CLILOL_EMAIL=tomservo@gizmonics.invalid ghcr.io/mcornick/clilol ...
+docker run --rm -ti --env CLILOL_ADDRESS=tomservo --env CLILOL_APIKEY=0123456789abcdef0123456789abcdef --env CLILOL_EMAIL=tomservo@gizmonics.invalid mcornick/clilol ...
 # or put the configuration in a dotenv file:
-docker run --rm -ti --env-file .env ghcr.io/mcornick/clilol ...
+docker run --rm -ti --env-file .env mcornick/clilol ...
 ```
 
 Environment variables take precedence over any configuration file.
@@ -187,8 +185,8 @@ clilol releases are announced on [my social.lol
 account](https://social.lol/@mcornick) which you are welcome to follow.
 
 To verify signatures on commits to clilol, you might need [my SSH public
-key](https://github.com/mcornick.keys) or, for older commits, [my GPG
-public key](https://github.com/mcornick.gpg).
+key](https://meta.sr.ht/~mcornick.keys) or, for older commits, [my GPG
+public key](https://meta.sr.ht/~mcornick.pgp).
 
 Thanks to the following people for helping to improve clilol:
 

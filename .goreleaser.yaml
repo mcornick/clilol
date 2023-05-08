@@ -18,7 +18,7 @@ archives:
     rlcp: true
 aurs:
   - description: A CLI for omg.lol
-    git_url: ssh://git@github.com/mcornick/clilol-aur.git
+    git_url: git@git.sr.ht:~mcornick/clilol-aur.git
     homepage: https://mcornick.com/clilol/
     license: MPL-2.0
     maintainers:
@@ -59,7 +59,7 @@ builds:
     flags:
       - -trimpath
     ldflags:
-      - -s -w -X github.com/mcornick/clilol/cmd.version={{.Version}}
+      - -s -w -X git.sr.ht/~mcornick/clilol/cmd.version={{.Version}}
     mod_timestamp: "{{ .CommitTimestamp }}"
     targets:
       - go_first_class
