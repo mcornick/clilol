@@ -28,7 +28,6 @@ theme:
     - content.code.copy
   icon:
     logo: fontawesome/solid/heart
-    repo: fontawesome/brands/github
   name: material
   palette:
     - media: "(prefers-color-scheme: light)"
