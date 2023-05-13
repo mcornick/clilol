@@ -2,12 +2,10 @@
 copyright: Copyright &copy; 2023 Mark Cornick
 extra:
   social:
-    - icon: fontawesome/brands/git
+    - icon: fontawesome/brands/git-alt
       link: https://git.sr.ht/~mcornick/clilol
     - icon: fontawesome/brands/mastodon
       link: https://social.lol/@mcornick
-  version:
-    provider: mike
 markdown_extensions:
   - admonition
   - pymdownx.superfences
