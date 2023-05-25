@@ -22,7 +22,7 @@ build, please try my builds instead.)
 I maintain a [Homebrew](https://brew.sh/) tap.
 
 ```bash
-brew tap mcornick/tap https://git.sr.ht/~mcornick/homebrew-tap
+brew tap mcornick/tap https://git.mcornick.dev/mcornick/homebrew-tap
 brew install mcornick/tap/clilol
 ```
 
@@ -31,7 +31,7 @@ brew install mcornick/tap/clilol
 I maintain a [Scoop](https://scoop.sh/) bucket.
 
 ```powershell
-scoop bucket add mcornick https://git.sr.ht/~mcornick/scoop-bucket
+scoop bucket add mcornick https://git.mcornick.dev/mcornick/scoop-bucket
 scoop install clilol
 ```
 
@@ -50,7 +50,7 @@ created with Cosign's "keyless" mode, which requires Cosign version >=
 2.0.0:
 
 ```bash
-cosign verify mcornick/clilol --certificate-identity-regexp "https://git.sr.ht/~mcornick/clilol.*" --certificate-oidc-issuer "https://token.actionshubusercontent.com"
+cosign verify mcornick/clilol --certificate-identity-regexp "https://git.mcornick.dev/mcornick/clilol.*" --certificate-oidc-issuer "https://token.actionshubusercontent.com"
 ```
 
 ### Binaries and Linux packages
@@ -92,14 +92,14 @@ I maintain an
 [AUR](https://wiki.archlinux.org/title/Arch_User_Repository) for clilol.
 
 ```
-git clone https://git.sr.ht/~mcornick/clilol-aur
+git clone https://git.mcornick.dev/mcornick/clilol-aur
 cd clilol-aur
 makepkg -i
 ```
 
 ### From source
 
-The usual: `go install git.sr.ht/~mcornick/clilol@latest`
+The usual: `go install git.mcornick.dev/mcornick/clilol@latest`
 
 While I do not build or test for platforms other than the ones listed
 under the Binaries tab, clilol _should_ still work on any platform
