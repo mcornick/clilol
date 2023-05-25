@@ -164,13 +164,13 @@ nfpms:
     vendor: Mark Cornick
 sboms:
   - artifacts: archive
-scoop:
-  bucket:
-    name: scoop-bucket
-    owner: mcornick
-  description: A CLI for omg.lol
-  homepage: https://mcornick.com/clilol/
-  license: MPL-2.0
+scoops:
+  - bucket:
+      name: scoop-bucket
+      owner: mcornick
+    description: A CLI for omg.lol
+    homepage: https://mcornick.com/clilol/
+    license: MPL-2.0
 signs:
   - artifacts: checksum
 snapshot:
