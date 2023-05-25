@@ -62,7 +62,7 @@ for macOS (universal), Linux (i386, amd64, arm64, and armv6) and Windows
 pkg.tar.zst formats.
 
 Binary checksums included on the release pages are signed with my [GPG
-key](https://meta.sr.ht/~mcornick.pgp).
+key](https://git.mcornick.dev/mcornick.gpg).
 
 ### YUM Repository
 
@@ -185,8 +185,8 @@ clilol releases are announced on [my social.lol
 account](https://social.lol/@mcornick) which you are welcome to follow.
 
 To verify signatures on commits to clilol, you might need [my SSH public
-key](https://meta.sr.ht/~mcornick.keys) or, for older commits, [my GPG
-public key](https://meta.sr.ht/~mcornick.pgp).
+key](https://git.mcornick.dev/mcornick.keys) or, for older commits, [my GPG
+public key](https://git.mcornick.dev/mcornick.gpg).
 
 Thanks to the following people for helping to improve clilol:
 
