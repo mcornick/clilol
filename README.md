@@ -1,6 +1,6 @@
 # This Repository Has Moved
 
-Development continues at https://git.sr.ht/~mcornick/clilol! This
+Development continues at https://git.mcornick.dev/mcornick/clilol! This
 repository is being left here for reference, but may go away
 eventually.
 
