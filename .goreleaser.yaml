@@ -51,7 +51,8 @@ brews:
       man1.install Dir["manpages/*.1"]
     license: MPL-2.0
     tap:
-      git: gitea@git.mcornick.dev:mcornick/homebrew-tap.git
+      git: 
+        url: "gitea@git.mcornick.dev:mcornick/homebrew-tap.git"
 builds:
   - env:
       - CGO_ENABLED=0
@@ -168,7 +169,8 @@ sboms:
   - artifacts: archive
 scoops:
   - bucket:
-      git: gitea@git.mcornick.dev:mcornick/scoop-bucket.git
+      git: 
+        url: "gitea@git.mcornick.dev:mcornick/scoop-bucket.git"
     description: A CLI for omg.lol
     homepage: https://mcornick.com/clilol/
     license: MPL-2.0
