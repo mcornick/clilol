@@ -51,6 +51,7 @@ brews:
       man1.install Dir["manpages/*.1"]
     license: MPL-2.0
     tap:
+      name: homebrew-tap
       git: 
         url: "gitea@git.mcornick.dev:mcornick/homebrew-tap.git"
 builds:
