@@ -37,19 +37,19 @@ scoop install clilol
 
 ### Container Images
 
-I maintain container images on
-[Docker Hub](https://hub.docker.com/repository/docker/mcornick/clilol).
+I maintain container images on my Git server
+[here](https://git.mcornick.dev/mcornick/clilol/packages).
 
 ```bash
-docker run --rm mcornick/clilol
+docker run --rm git.mcornick.dev/mcornick/clilol
 ```
 
 Container manifests are signed with
 [Cosign](https://docs.sigstore.dev/cosign/overview/). The signatures are
-created with my [Cosign key](https://home.omg.lol/keychain/mcornick/cosign):
+created with my [Cosign key](https://mcornick.dev/mcornick.cosign):
 
 ```bash
-cosign verify --key https://home.omg.lol/keychain/mcornick/cosign mcornick/clilol
+cosign verify --key https://mcornick.dev/mcornick.cosign git.mcornick.dev/mcornick/clilol
 ```
 
 ### Binaries and Linux packages
