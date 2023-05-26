@@ -54,7 +54,7 @@ cosign verify --key https://home.omg.lol/keychain/mcornick/cosign mcornick/clilo
 
 ### Binaries and Linux packages
 
-I maintain binary releases on GitHub
+I maintain binary releases on my Git server
 [here](https://git.mcornick.dev/mcornick/clilol/releases). Releases are built
 for macOS (universal), Linux (i386, amd64, arm64, and armv6) and Windows
 (i386, amd64). Linux packages are built in RPM, DEB, APK, and Arch Linux
