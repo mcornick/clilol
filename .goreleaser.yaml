@@ -18,7 +18,7 @@ archives:
     rlcp: true
 aurs:
   - description: A CLI for omg.lol
-    git_url: git@git.sr.ht:~mcornick/clilol-aur.git
+    git_url: gitea@git.mcornick.dev:mcornick/clilol-aur.git
     homepage: https://mcornick.com/clilol/
     license: MPL-2.0
     maintainers:
@@ -51,8 +51,7 @@ brews:
       man1.install Dir["manpages/*.1"]
     license: MPL-2.0
     tap:
-      name: homebrew-tap
-      owner: mcornick
+      git: gitea@git.mcornick.dev:mcornick/homebrew-tap.git
 builds:
   - env:
       - CGO_ENABLED=0
@@ -166,8 +165,7 @@ sboms:
   - artifacts: archive
 scoops:
   - bucket:
-      name: scoop-bucket
-      owner: mcornick
+      git: gitea@git.mcornick.dev:mcornick/scoop-bucket.git
     description: A CLI for omg.lol
     homepage: https://mcornick.com/clilol/
     license: MPL-2.0
