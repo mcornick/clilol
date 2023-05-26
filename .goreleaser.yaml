@@ -160,6 +160,10 @@ nfpms:
     license: MPL-2.0
     maintainer: Mark Cornick <mcornick@mcornick.com>
     vendor: Mark Cornick
+release:
+  gitea:
+    owner: mcornick
+    name: clilol
 sboms:
   - artifacts: archive
 scoops:
