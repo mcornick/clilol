@@ -56,7 +56,7 @@ cosign verify mcornick/clilol --certificate-identity-regexp "https://git.mcornic
 ### Binaries and Linux packages
 
 I maintain binary releases on GitHub
-[here](https://github.com/mcornick/clilol/releases). Releases are built
+[here](https://git.mcornick.dev/mcornick/clilol/releases). Releases are built
 for macOS (universal), Linux (i386, amd64, arm64, and armv6) and Windows
 (i386, amd64). Linux packages are built in RPM, DEB, APK, and Arch Linux
 pkg.tar.zst formats.

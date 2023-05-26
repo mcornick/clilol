@@ -74,7 +74,6 @@ changelog:
       - Merge branch
       - go mod tidy
   sort: asc
-  use: github
 checksum:
   name_template: checksums.txt
 # noinspection YAMLSchemaValidation
@@ -91,7 +90,7 @@ kos:
     labels:
       io.artifacthub.package.license: MPL-2.0
       io.artifacthub.package.maintainers: '[{"name":"Mark Cornick","email":"mcornick@mcornick.com"}]'
-      io.artifacthub.package.readme-url: https://raw.githubusercontent.com/mcornick/clilol/main/README.md
+      io.artifacthub.package.readme-url: https://git.mcornick.dev/mcornick/clilol/raw/branch/main/README.md
       org.opencontainers.image.description: A CLI for omg.lol
       org.opencontainers.image.name: "{{.ProjectName}}"
       org.opencontainers.image.revision: "{{.FullCommit}}"
@@ -112,7 +111,7 @@ kos:
     labels:
       io.artifacthub.package.license: MPL-2.0
       io.artifacthub.package.maintainers: '[{"name":"Mark Cornick","email":"mcornick@mcornick.com"}]'
-      io.artifacthub.package.readme-url: https://raw.githubusercontent.com/mcornick/clilol/main/README.md
+      io.artifacthub.package.readme-url: https://git.mcornick.dev/mcornick/clilol/raw/branch/main/README.md
       org.opencontainers.image.description: A CLI for omg.lol
       org.opencontainers.image.name: "{{.ProjectName}}"
       org.opencontainers.image.revision: "{{.FullCommit}}"
