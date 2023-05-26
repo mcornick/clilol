@@ -77,9 +77,12 @@ changelog:
   sort: asc
 checksum:
   name_template: checksums.txt
-# noinspection YAMLSchemaValidation
 furies:
   - account: mcornick
+gitea_urls:
+  api: https://git.mcornick.dev/api/v1
+  download: https://git.mcornick.dev
+  skip_tls_verify: false
 gomod:
   proxy: true
 kos:
