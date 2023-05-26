@@ -46,11 +46,10 @@ docker run --rm mcornick/clilol
 
 Container manifests are signed with
 [Cosign](https://docs.sigstore.dev/cosign/overview/). The signatures are
-created with Cosign's "keyless" mode, which requires Cosign version >=
-2.0.0:
+created with my [Cosign key](https://home.omg.lol/keychain/mcornick/cosign):
 
 ```bash
-cosign verify mcornick/clilol --certificate-identity-regexp "https://git.mcornick.dev/mcornick/clilol.*" --certificate-oidc-issuer "https://token.actionshubusercontent.com"
+cosign verify --key https://home.omg.lol/keychain/mcornick/cosign mcornick/clilol
 ```
 
 ### Binaries and Linux packages
