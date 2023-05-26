@@ -34,7 +34,7 @@ aurs:
       install -Dm644 "./completions/clilol.zsh" "${pkgdir}/usr/share/zsh/site-functions/_clilol"
       install -Dm644 "./completions/clilol.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/clilol.fish"
       install -Dm644 "./manpages/*.1" "${pkgdir}/usr/share/man/man1/*.1"
-    private_key: "{{ .Env.AUR_KEY }}"
+    private_key: "{{ .Env.SSH_KEY }}"
 before:
   hooks:
     - go mod tidy
@@ -54,6 +54,7 @@ brews:
       name: homebrew-tap
       git: 
         url: "gitea@git.mcornick.dev:mcornick/homebrew-tap.git"
+        private_key: "{{ .Env.SSH_KEY }}"
 builds:
   - env:
       - CGO_ENABLED=0
@@ -175,6 +176,7 @@ scoops:
   - bucket:
       git: 
         url: "gitea@git.mcornick.dev:mcornick/scoop-bucket.git"
+        private_key: "{{ .Env.SSH_KEY }}"
     description: A CLI for omg.lol
     homepage: https://mcornick.com/clilol/
     license: MPL-2.0
