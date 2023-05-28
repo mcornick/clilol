@@ -25,17 +25,9 @@ because omg.lol is on the same internet as jerks running botnets.)
 
 ## Contributing to clilol
 
-If you think you have a problem, improvement, or other contribution
-towards the betterment of clilol, please file an issue or, where
-appropriate, a pull request.
-
-Keep in mind that I'm not paid to write Go code, so I'm doing this in my
-spare time, which means it might take me a while to respond.
-
-When filing a pull request, please explain what you're changing and why.
-Please use gofmt to format your Go code. Please limit your changes to
-the specific thing you're fixing and isolate your changes in a topic
-branch that I can merge without pulling in other stuff.
+Patches are accepted via email at <mcornick@mcornick.com>. I am
+self-hosting clilol's Git repository and not creating accounts for
+others at this time.
 
 Please make sure the tests continue to pass. If you're adding new code,
 please add new passing tests, too.
