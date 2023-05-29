@@ -25,9 +25,22 @@ because omg.lol is on the same internet as jerks running botnets.)
 
 ## Contributing to clilol
 
-Patches are accepted via email at <mcornick@mcornick.com>. I am
-self-hosting clilol's Git repository and not creating accounts for
-others at this time.
+If you think you have a problem, improvement, or other contribution
+towards the betterment of clilol, please file a ticket or, where
+appropriate, send a patch.
+
+Tickets can be filed at https://todo.sr.ht/~mcornick/clilol, and patches
+can be sent to ~mcornick/clilol@lists.sr.ht. If you need help with the
+email-based Git workflow, check out https://git-send-email.io/ for a
+tutorial.
+
+Keep in mind that I'm not paid to write Go code, so I'm doing this in my
+spare time, which means it might take me a while to respond.
+
+When sending a patch, please explain what you're changing and why.
+Please use gofmt to format your Go code. Please limit your changes to
+the specific thing you're fixing and isolate your changes in a topic
+branch that I can merge without pulling in other stuff.
 
 Please make sure the tests continue to pass. If you're adding new code,
 please add new passing tests, too.
