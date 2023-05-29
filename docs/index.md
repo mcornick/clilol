@@ -171,9 +171,9 @@ Environment variables are the easiest way to pass configuration when
 running the container images:
 
 ```bash
-docker run --rm -ti --env CLILOL_ADDRESS=tomservo --env CLILOL_APIKEY=0123456789abcdef0123456789abcdef --env CLILOL_EMAIL=tomservo@gizmonics.invalid mcornick/clilol ...
+docker run --rm -ti --env CLILOL_ADDRESS=tomservo --env CLILOL_APIKEY=0123456789abcdef0123456789abcdef --env CLILOL_EMAIL=tomservo@gizmonics.invalid git.mcornick.dev/mcornick/clilol ...
 # or put the configuration in a dotenv file:
-docker run --rm -ti --env-file .env mcornick/clilol ...
+docker run --rm -ti --env-file .env git.mcornick.dev/mcornick/clilol ...
 ```
 
 Environment variables take precedence over any configuration file.
@@ -184,8 +184,8 @@ clilol releases are announced on [my social.lol
 account](https://social.lol/@mcornick) which you are welcome to follow.
 
 To verify signatures on commits to clilol, you might need [my SSH public
-key](https://git.mcornick.dev/mcornick.keys) or, for older commits, [my GPG
-public key](https://git.mcornick.dev/mcornick.gpg).
+key](https://git.mcornick.dev/mcornick.keys) or [my GPG public
+key](https://git.mcornick.dev/mcornick.gpg).
 
 Thanks to the following people for helping to improve clilol:
 
