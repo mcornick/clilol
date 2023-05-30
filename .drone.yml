@@ -1,11 +1,10 @@
 ---
 kind: pipeline
-type: exec
 name: default
 
 steps:
 - name: test
   image: golang
   commands:
-  - go build
   - go test
+  - go build
