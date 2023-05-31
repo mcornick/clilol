@@ -18,7 +18,7 @@ archives:
     rlcp: true
 aurs:
   - description: A CLI for omg.lol
-    git_url: gitea@git.mcornick.dev:mcornick/clilol-aur.git
+    git_url: git@git.mcornick.dev:mcornick/clilol-aur.git
     homepage: https://mcornick.com/clilol/
     license: MPL-2.0
     maintainers:
@@ -53,7 +53,7 @@ brews:
     tap:
       name: homebrew-tap
       git: 
-        url: "gitea@git.mcornick.dev:mcornick/homebrew-tap.git"
+        url: "git@git.mcornick.dev:mcornick/homebrew-tap.git"
         private_key: "{{ .Env.SSH_KEY }}"
 builds:
   - env:
@@ -153,7 +153,7 @@ sboms:
 scoops:
   - bucket:
       git: 
-        url: "gitea@git.mcornick.dev:mcornick/scoop-bucket.git"
+        url: "git@git.mcornick.dev:mcornick/scoop-bucket.git"
         private_key: "{{ .Env.SSH_KEY }}"
     description: A CLI for omg.lol
     homepage: https://mcornick.com/clilol/
