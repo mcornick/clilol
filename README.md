@@ -1,5 +1,9 @@
 # clilol
 
+![CI
+status](https://woodpecker.mcornick.dev/api/badges/mcornick/clilol/status.svg
+"CI status")
+
 clilol is a CLI for the various fun services offered by
 [omg.lol](https://omg.lol/). All the services supported by the [omg.lol
 API](https://api.omg.lol) are supported.
