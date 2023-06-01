@@ -1,3 +1,4 @@
+---
 pipeline:
   build:
     image: golang
@@ -5,3 +6,8 @@ pipeline:
       - go get
       - go build
       - go test ./...
+    secrets:
+      - CLILOL_ADDRESS
+      - CLILOL_APIKEY
+      - CLILOL_EMAIL
+      - CLILOL_NAME
