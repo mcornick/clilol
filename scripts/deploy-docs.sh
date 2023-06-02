@@ -9,7 +9,7 @@ mkdocs build
 # replace google fonts CDN with bunny CDN
 # (attempting to not violate GDPR, and also to hell with Google)
 for x in $(find site -type f | xargs grep fonts.googleapis.com | cut -d: -f1); do
-  sed 's/fonts.googleapis.com/fonts.bunny.net/' $x > $x.tmp
+  sed -E 's/fonts.(googleapis|gstatic).com/fonts.bunny.net/' $x > $x.tmp
   mv $x.tmp $x
   chmod 644 $x
 done
