@@ -18,7 +18,7 @@ repo_url: https://git.mcornick.dev/mcornick/clilol
 site_author: Mark Cornick
 site_description: a CLI for omg.lol
 site_name: clilol, a CLI for omg.lol
-site_url: https://mcornick.com/clilol/
+site_url: https://mcornick.dev/clilol/
 theme:
   features:
     - content.action.edit

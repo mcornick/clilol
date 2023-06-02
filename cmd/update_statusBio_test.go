@@ -14,7 +14,7 @@ import (
 )
 
 func Test_updateStatusBio(t *testing.T) {
-	updateResult, err := updateStatusBio("This is a testing account for [clilol](https://mcornick.com/clilol/)")
+	updateResult, err := updateStatusBio("This is a testing account for [clilol](https://mcornick.dev/clilol/)")
 	if err != nil {
 		t.Errorf("updateStatusBio() error = %v", err)
 		return
