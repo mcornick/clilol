@@ -14,6 +14,8 @@ markdown_extensions:
 plugins:
   - search
   - social
+  - minify:
+      minify_html: true
 repo_name: mcornick/clilol
 repo_url: https://git.mcornick.dev/mcornick/clilol
 site_author: Mark Cornick
