@@ -15,7 +15,6 @@ archives:
     format_overrides:
       - format: zip
         goos: windows
-    rlcp: true
 aurs:
   - description: A CLI for omg.lol
     git_url: ssh://git@git.mcornick.dev:222/mcornick/clilol-aur.git
@@ -50,7 +49,7 @@ brews:
       fish_completion.install "completions/clilol.fish"
       man1.install Dir["manpages/*.1"]
     license: MPL-2.0
-    tap:
+    repository:
       name: homebrew-tap
       git: 
         url: "ssh://git@git.mcornick.dev:222/mcornick/homebrew-tap.git"
@@ -151,7 +150,7 @@ release:
 sboms:
   - artifacts: archive
 scoops:
-  - bucket:
+  - repository:
       git: 
         url: "ssh://git@git.mcornick.dev:222/mcornick/scoop-bucket.git"
         private_key: "{{ .Env.SSH_KEY }}"
