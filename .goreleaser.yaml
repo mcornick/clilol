@@ -78,6 +78,13 @@ changelog:
   sort: asc
 checksum:
   name_template: checksums.txt
+docker_signs:
+  - args:
+      - sign
+      - --key=/home/mcornick/Documents/cosign.key
+      - ${artifact}@${digest}
+      - --yes
+    artifacts: manifests
 furies:
   - account: mcornick
 gitea_urls:
