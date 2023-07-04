@@ -81,9 +81,9 @@ checksum:
 docker_signs:
   - args:
       - sign
+      - --yes
       - --key=/home/mcornick/Documents/cosign.key
       - ${artifact}@${digest}
-      - --yes
     artifacts: manifests
 furies:
   - account: mcornick
