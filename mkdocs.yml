@@ -6,6 +6,8 @@ extra:
       link: https://git.mcornick.dev/mcornick/clilol
     - icon: fontawesome/brands/mastodon
       link: https://social.lol/@mcornick
+  version:
+    provider: mike
 markdown_extensions:
   - admonition
   - pymdownx.superfences
