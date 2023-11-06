@@ -178,6 +178,53 @@ docker run --rm -ti --env-file .env git.mcornick.dev/mcornick/clilol ...
 
 Environment variables take precedence over any configuration file.
 
+## Reading apikey from a command
+
+!!! Note
+
+    This has not been tested on Windows (yet.)
+
+Rather than hardcoding your API key in the configuration file or environment, you can specify a command which, when run, will return the API key on standard output, such as:
+
+=== "config.yaml"
+
+    ```yaml
+    ---
+    address: tomservo
+    email: tomservo@gizmonics.invalid
+    apikeycmd: gopass -o omg.lol/tomservo
+    ```
+
+=== "config.toml"
+
+    ```toml
+    address = "tomservo"
+    email = "tomservo@gizmonics.invalid"
+    apikeycmd = "gopass -o omg.lol/tomservo"
+    ```
+
+=== "config.json"
+
+    ```json
+    {
+      "address": "tomservo",
+      "email": "tomservo@gizmonics.invalid",
+      "apikeycmd": "gopass -o omg.lol/tomservo"
+    }
+    ```
+
+=== "environment"
+
+    ```sh
+    export CLILOL_ADDRESS="tomservo"
+    export CLILOL_EMAIL="tomservo@gizmonics.invalid"
+    export CLILOL_APIKEYCMD="gopass -o omg.lol/tomservo"
+    ```
+
+In this example, clilol would use the output of `gopass -o omg.lol/tomservo` as the API key. If the command fails, clilol will print an error stating that the API key is missing.
+
+If apikeycmd is specified, it takes precedence over apikey if that is also specified..
+
 ## Etc.
 
 clilol releases are announced on [my social.lol

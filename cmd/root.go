@@ -15,6 +15,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"os/exec"
 	"strings"
 
 	"github.com/charmbracelet/bubbles/list"
@@ -143,6 +144,7 @@ func init() {
 	viper.SetDefault("address", "")
 	viper.SetDefault("apikey", "")
 	viper.SetDefault("email", "")
+	viper.SetDefault("apikeycmd", "")
 	viper.AutomaticEnv()
 	err = viper.ReadInConfig()
 	if err != nil {
@@ -150,6 +152,17 @@ func init() {
 		if !ok {
 			cobra.CheckErr(err)
 		}
+	}
+	if viper.GetString("apikeycmd") != "" {
+		args := strings.Fields(viper.GetString("apikeycmd"))
+		cmd := exec.Command(args[0], args[1:]...)
+		stdout, err := cmd.StdoutPipe()
+		cobra.CheckErr(err)
+		err = cmd.Start()
+		cobra.CheckErr(err)
+		apikey, err := io.ReadAll(stdout)
+		cobra.CheckErr(err)
+		viper.Set("apikey", string(apikey))
 	}
 	rootCmd.DisableAutoGenTag = true
 }
