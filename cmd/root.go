@@ -18,52 +18,11 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/charmbracelet/bubbles/list"
-	tea "github.com/charmbracelet/bubbletea"
-	"github.com/charmbracelet/lipgloss"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 const endpoint = "https://api.omg.lol"
-
-var docStyle = lipgloss.NewStyle().Margin(1, 2)
-
-type item struct {
-	title, desc string
-}
-
-func (i item) Title() string       { return i.title }
-func (i item) Description() string { return i.desc }
-func (i item) FilterValue() string { return i.title }
-
-type model struct {
-	list list.Model
-}
-
-func (m model) Init() tea.Cmd {
-	return nil
-}
-
-func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	switch msg := msg.(type) {
-	case tea.KeyMsg:
-		if msg.String() == "ctrl+c" {
-			return m, tea.Quit
-		}
-	case tea.WindowSizeMsg:
-		h, v := docStyle.GetFrameSize()
-		m.list.SetSize(msg.Width-h, msg.Height-v)
-	}
-
-	var cmd tea.Cmd
-	m.list, cmd = m.list.Update(msg)
-	return m, cmd
-}
-
-func (m model) View() string {
-	return docStyle.Render(m.list.View())
-}
 
 var (
 	addressFlag string
@@ -71,35 +30,9 @@ var (
 	rootCmd     = &cobra.Command{
 		Version: version,
 		Use:     "clilol",
-		Short:   "a CLI and TUI for omg.lol",
-		Long:    "When no command is specified, clilol enters TUI mode.",
-		Args:    cobra.NoArgs,
-		Run: func(cmd *cobra.Command, args []string) {
-			validateConfig()
-			result, err := listStatuslog(true)
-			cobra.CheckErr(err)
-			if result.Request.Success {
-				items := []list.Item{}
-				for _, status := range result.Response.Statuses {
-					items = append(items, item{
-						title: status.Address + " " + status.RelativeTime,
-						desc:  status.Content,
-					})
-				}
-
-				m := model{list: list.New(items, list.NewDefaultDelegate(), 0, 0)}
-				m.list.Title = "status.lol"
-
-				p := tea.NewProgram(m, tea.WithAltScreen())
-
-				if _, err := p.Run(); err != nil {
-					fmt.Println("Error running program:", err)
-					os.Exit(1)
-				}
-			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
-			}
-		},
+		Short:   "a cli for omg.lol",
+		Long: `This is the root command. It does nothing on its own.
+See the subcommands for more information.`,
 	}
 )
 
