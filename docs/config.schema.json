@@ -19,6 +19,13 @@
             "0123456789abcdef0123456789abcdef"
           ]
         },
+        "apikeycmd": {
+          "type": "string",
+          "description": "A command that will output your omg.lol API key",
+          "examples": [
+            "gopass -o api.omg.lol/tomservo"
+          ]
+        },
         "email": {
           "type": "string",
           "description": "The email address you use to log in to omg.lol",
@@ -31,8 +38,19 @@
       "type": "object",
       "required": [
         "address",
-        "apikey",
         "email"
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "apikey"
+          ]
+        },
+        {
+          "required": [
+            "apikeycmd"
+          ]
+        }
       ]
     }
   }
