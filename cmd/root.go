@@ -95,7 +95,7 @@ func init() {
 		cobra.CheckErr(err)
 		apikey, err := io.ReadAll(stdout)
 		cobra.CheckErr(err)
-		viper.Set("apikey", string(apikey))
+		viper.Set("apikey", strings.TrimSpace(string(apikey)))
 	}
 	rootCmd.DisableAutoGenTag = true
 }
