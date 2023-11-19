@@ -82,7 +82,7 @@ docker_signs:
   - args:
       - sign
       - --yes
-      - --key=/home/mcornick/Documents/cosign.key
+      - --key=/Users/mcornick/Documents/cosign.key
       - ${artifact}@${digest}
     artifacts: manifests
 furies:
