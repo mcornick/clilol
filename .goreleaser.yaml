@@ -2,7 +2,7 @@
 announce:
   mastodon:
     enabled: true
-    server: https://social.lol
+    server: https://social.sdf.org
 archives:
   - builds_info:
       group: root

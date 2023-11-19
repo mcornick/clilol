@@ -227,8 +227,8 @@ If apikeycmd is specified, it takes precedence over apikey if that is also speci
 
 ## Etc.
 
-clilol releases are announced on [my social.lol
-account](https://social.lol/@mcornick) which you are welcome to follow.
+clilol releases are announced on [my Mastodon
+account](https://social.sdf.org/@mcornick) which you are welcome to follow.
 
 To verify signatures on commits to clilol, you might need [my SSH public
 key](https://git.mcornick.dev/mcornick.keys) or [my GPG public
