@@ -46,10 +46,10 @@ docker run --rm git.mcornick.dev/mcornick/clilol
 
 Container manifests are signed with
 [Cosign](https://docs.sigstore.dev/cosign/overview/). The signatures are
-created with my [Cosign key](https://mcornick.dev/mcornick.cosign):
+created with my [Cosign key](https://mcornick.com/mcornick.cosign):
 
 ```bash
-cosign verify --key https://mcornick.dev/mcornick.cosign git.mcornick.dev/mcornick/clilol
+cosign verify --key https://mcornick.com/mcornick.cosign git.mcornick.dev/mcornick/clilol
 ```
 
 ### Binaries and Linux packages
