@@ -85,8 +85,6 @@ docker_signs:
       - --key=/Users/mcornick/Documents/cosign.key
       - ${artifact}@${digest}
     artifacts: manifests
-furies:
-  - account: mcornick
 gitea_urls:
   api: https://git.mcornick.dev/api/v1
   download: https://git.mcornick.dev

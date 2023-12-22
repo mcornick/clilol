@@ -63,28 +63,6 @@ pkg.tar.zst formats.
 Binary checksums included on the release pages are signed with my [GPG
 key](https://git.mcornick.dev/mcornick.gpg).
 
-### YUM Repository
-
-RPM packages are also available from my Gemfury repository.
-
-```
-# /etc/yum.repos.d/mcornick.repo
-[mcornick]
-name=mcornick yum repo
-baseurl=https://yum.fury.io/mcornick/
-enabled=1
-gpgcheck=0
-```
-
-### APT Repository
-
-DEB packages are also available from my Gemfury repository.
-
-```
-# /etc/apt/sources.list.d/mcornick.list
-deb [trusted=yes] https://apt.fury.io/mcornick/ /
-```
-
 ### Arch User Repository
 
 I maintain an
