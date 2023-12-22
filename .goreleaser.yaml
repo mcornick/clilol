@@ -78,40 +78,12 @@ changelog:
   sort: asc
 checksum:
   name_template: checksums.txt
-docker_signs:
-  - args:
-      - sign
-      - --yes
-      - --key=/Users/mcornick/Documents/cosign.key
-      - ${artifact}@${digest}
-    artifacts: manifests
 gitea_urls:
   api: https://git.mcornick.dev/api/v1
   download: https://git.mcornick.dev
   skip_tls_verify: false
 gomod:
   proxy: true
-kos:
-  - bare: true
-    build: clilol
-    creation_time: "{{.CommitTimestamp}}"
-    ko_data_creation_time: "{{.CommitTimestamp}}"
-    labels:
-      io.artifacthub.package.license: MPL-2.0
-      io.artifacthub.package.maintainers: '[{"name":"Mark Cornick","email":"mcornick@mcornick.com"}]'
-      io.artifacthub.package.readme-url: https://git.mcornick.dev/mcornick/clilol/raw/branch/main/README.md
-      org.opencontainers.image.description: A CLI for omg.lol
-      org.opencontainers.image.name: "{{.ProjectName}}"
-      org.opencontainers.image.revision: "{{.FullCommit}}"
-      org.opencontainers.image.source: "{{.GitURL}}"
-      org.opencontainers.image.version: "{{.Version}}"
-    platforms:
-      - linux/amd64
-      - linux/arm64
-    repository: git.mcornick.dev/mcornick/clilol
-    tags:
-      - latest
-      - "{{.Tag}}"
 milestones:
   - close: true
 nfpms:
@@ -152,8 +124,6 @@ release:
   gitea:
     owner: mcornick
     name: clilol
-sboms:
-  - artifacts: archive
 scoops:
   - repository:
       git: 
