@@ -27,6 +27,8 @@ const endpoint = "https://api.omg.lol"
 var (
 	addressFlag string
 	version     = "dev"
+	commit      = "none"
+	date        = "unknown"
 	rootCmd     = &cobra.Command{
 		Version: version,
 		Use:     "clilol",
@@ -98,6 +100,8 @@ func init() {
 		viper.Set("apikey", strings.TrimSpace(string(apikey)))
 	}
 	rootCmd.DisableAutoGenTag = true
+        rootCmd.PersistentFlags().BoolP("version", "v", false, "hide auto generated cobra -v flag")
+        rootCmd.PersistentFlags().Lookup("version").Hidden = true
 }
 
 func validateConfig() {

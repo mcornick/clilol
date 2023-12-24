@@ -60,7 +60,7 @@ builds:
     flags:
       - -trimpath
     ldflags:
-      - -s -w -X git.mcornick.dev/mcornick/clilol/cmd.version={{.Version}}
+      - -s -w -X git.mcornick.dev/mcornick/clilol/cmd.version={{.Version}} -X git.mcornick.dev/mcornick/clilol/cmd.commit={{.ShortCommit}} -X git.mcornick.dev/mcornick/clilol/cmd.date={{.CommitDate}}
     mod_timestamp: "{{ .CommitTimestamp }}"
     targets:
       - go_first_class
