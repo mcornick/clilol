@@ -35,6 +35,23 @@ scoop bucket add mcornick https://git.mcornick.dev/mcornick/scoop-bucket
 scoop install clilol
 ```
 
+### Container Images
+
+I maintain container images on my Git server
+[here](https://git.mcornick.dev/mcornick/clilol/packages).
+
+```bash
+docker run --rm git.mcornick.dev/mcornick/clilol
+```
+
+Container manifests are signed with
+[Cosign](https://docs.sigstore.dev/cosign/overview/). The signatures are
+created with my [Cosign key](https://mcornick.com/mcornick.cosign):
+
+```bash
+cosign verify --key https://mcornick.com/mcornick.cosign git.mcornick.dev/mcornick/clilol
+```
+
 ### Binaries and Linux packages
 
 I maintain binary releases on my Git server
@@ -126,6 +143,15 @@ Configuration is also possible using environment variables:
 export CLILOL_ADDRESS="tomservo"
 export CLILOL_EMAIL="tomservo@gizmonics.invalid"
 export CLILOL_APIKEY="0123456789abcdef0123456789abcdef"
+```
+
+Environment variables are the easiest way to pass configuration when
+running the container images:
+
+```bash
+docker run --rm -ti --env CLILOL_ADDRESS=tomservo --env CLILOL_APIKEY=0123456789abcdef0123456789abcdef --env CLILOL_EMAIL=tomservo@gizmonics.invalid git.mcornick.dev/mcornick/clilol ...
+# or put the configuration in a dotenv file:
+docker run --rm -ti --env-file .env git.mcornick.dev/mcornick/clilol ...
 ```
 
 Environment variables take precedence over any configuration file.
