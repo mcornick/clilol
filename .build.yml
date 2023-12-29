@@ -1,0 +1,24 @@
+---
+image: alpine/latest
+packages:
+  - cosign
+  - curl
+  - git
+  - go
+  - gnupg
+  - syft
+secrets:
+  - 0a0692e0-075e-4616-9aeb-6d51472edd94
+  - 76d9985f-f5da-4a19-816d-19ad1afa7f5d
+tasks:
+  - detect: |
+      cd clilol
+      rhs="${GIT_REF#*/}"
+      reftype="${rhs%/*}"
+      refval="${rhs#*/}"
+      if [[ $reftype == "tags" ]]; then
+        echo "would release tag: ${refval}"
+        echo "curl -sfL https://goreleaser.com/static/run | bash"
+      else
+        echo "not a tag, would not release"
+      fi
