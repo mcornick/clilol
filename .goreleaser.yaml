@@ -3,6 +3,7 @@ announce:
   mastodon:
     enabled: true
     server: https://social.sdf.org
+  skip: '{{ne .Prerelease ""}}'
   smtp:
     enabled: true
     host: smtp.fastmail.com
