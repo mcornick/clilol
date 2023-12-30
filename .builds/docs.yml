@@ -7,9 +7,14 @@ secrets:
   - 7e064e16-8d36-4db0-ab30-e98b3fe88436
 tasks:
   - release: |
-      python3 -m venv /home/build/venv
-      . /home/build/venv/bin/activate
-      pip3 install mkdocs-material
-      cd clilol
-      mkdocs build
-      rclone copy site/ fastmail:clilol
+      rhs="${GIT_REF#*/}"
+      reftype="${rhs%/*}"
+      refval="${rhs#*/}"
+      if [[ $reftype == "tags" ]]; then
+        python3 -m venv /home/build/venv
+        . /home/build/venv/bin/activate
+        pip3 install mkdocs-material
+        cd clilol
+        mkdocs build
+        rclone copy site/ fastmail:clilol
+      fi
