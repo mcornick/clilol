@@ -14,8 +14,8 @@ secrets:
   - 4dcaff42-1274-4f62-8f06-c8012f6ba70c
   - 53890b2b-3281-4eaa-a466-9eda188b07bf
   - 76d9985f-f5da-4a19-816d-19ad1afa7f5d
+  - 7bd2561a-a997-47f4-a013-95fc39ab223c
   - 7e064e16-8d36-4db0-ab30-e98b3fe88436
-  - c62dc5b4-3b39-48be-84cc-8283c38f1933
 tasks:
   - test: |
       set +x
@@ -36,4 +36,11 @@ tasks:
         curl -sfL https://goreleaser.com/static/run | bash
       fi
   - docs: |
-      /home/build/clilol-rtd.sh
+      rhs="${GIT_REF#*/}"
+      reftype="${rhs%/*}"
+      refval="${rhs#*/}"
+      if [[ $reftype == "tags" ]]; then
+        /home/build/clilol-rtd.sh stable
+      else
+        /home/build/clilol-rtd.sh latest
+      fi
