@@ -3,8 +3,6 @@ title: Home
 ---
 __clilol__ is a CLI for the various fun services offered by [omg.lol](https://omg.lol/). All the services supported by the [omg.lol API](https://api.omg.lol) are supported.
 
-![Screenshot](clilol.gif "Screenshot")
-
 Please see the links in the navigation menu to the left to learn about all the different commands provided by clilol.
 
 ## Installation
