@@ -12,7 +12,7 @@ secrets:
   - 3d3adb74-13f4-4a90-b6d0-a555c02c5181
   - 76d9985f-f5da-4a19-816d-19ad1afa7f5d
 tasks:
-  - detect: |
+  - release: |
       set +x
       . "$HOME/secrets.sh"
       set -x
@@ -21,6 +21,5 @@ tasks:
       reftype="${rhs%/*}"
       refval="${rhs#*/}"
       if [[ $reftype == "tags" ]]; then
-        echo "would release tag: ${refval}"
-        echo "curl -sfL https://goreleaser.com/static/run | bash"
+        curl -sfL https://goreleaser.com/static/run | bash
       fi
