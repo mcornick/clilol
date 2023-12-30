@@ -42,7 +42,7 @@ aurs:
       install -Dm644 "./completions/clilol.zsh" "${pkgdir}/usr/share/zsh/site-functions/_clilol"
       install -Dm644 "./completions/clilol.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/clilol.fish"
       install -Dm644 "./manpages/*.1" "${pkgdir}/usr/share/man/man1/*.1"
-    private_key: "$HOME/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94"
+    private_key: "/home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94"
 before:
   hooks:
     - go mod tidy
@@ -62,7 +62,7 @@ brews:
       name: homebrew-tap
       git: 
         url: "ssh://git@git.mcornick.dev:222/mcornick/homebrew-tap.git"
-        private_key: "$HOME/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94"
+        private_key: "/home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94"
 builds:
   - env:
       - CGO_ENABLED=0
@@ -91,7 +91,7 @@ docker_signs:
   - args:
       - sign
       - --yes
-      - --key=$HOME/cosign.key
+      - --key=/home/build/cosign.key
       - ${artifact}
     artifacts: all
     stdin: "{{ .Env.COSIGN_PWD }}"
@@ -166,7 +166,7 @@ scoops:
   - repository:
       git: 
         url: "ssh://git@git.mcornick.dev:222/mcornick/scoop-bucket.git"
-        private_key: "$HOME/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94"
+        private_key: "/home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94"
     description: A CLI for omg.lol
     homepage: https://clilol.mcornick.dev/
     license: MPL-2.0
