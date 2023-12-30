@@ -18,17 +18,22 @@ secrets:
   - 76d9985f-f5da-4a19-816d-19ad1afa7f5d
   - 7e064e16-8d36-4db0-ab30-e98b3fe88436
 tasks:
-  - release: |
+  - test: |
       set +x
       . "$HOME/clilol-secrets.sh"
-      echo "$GITEA_TOKEN" | docker login -u mcornick --password-stdin git.mcornick.dev
       set -x
       cd clilol
       go test ./...
+  - release: |
       rhs="${GIT_REF#*/}"
       reftype="${rhs%/*}"
       refval="${rhs#*/}"
       if [[ $reftype == "tags" ]]; then
+        set +x
+        . "$HOME/clilol-secrets.sh"
+        echo "$GITEA_TOKEN" | docker login -u mcornick --password-stdin git.mcornick.dev
+        set -x
+        cd clilol
         curl -sfL https://goreleaser.com/static/run | bash
         python3 -m venv /home/build/venv
         . /home/build/venv/bin/activate
