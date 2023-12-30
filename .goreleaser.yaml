@@ -18,7 +18,7 @@ archives:
 aurs:
   - description: A CLI for omg.lol
     git_url: ssh://git@git.mcornick.dev:222/mcornick/clilol-aur.git
-    homepage: https://clilol.mcornick.dev/
+    homepage: https://clilol.readthedocs.io/
     license: MPL-2.0
     maintainers:
       - Mark Cornick <mark@markcornick.com>
@@ -41,7 +41,7 @@ before:
     - bash ./scripts/manpages.sh
 brews:
   - description: A CLI for omg.lol
-    homepage: https://clilol.mcornick.dev/
+    homepage: https://clilol.readthedocs.io/
     install: |-
       bin.install "clilol"
       bash_completion.install "completions/clilol.bash" => "clilol"
@@ -143,7 +143,7 @@ nfpms:
       - archlinux
       - deb
       - rpm
-    homepage: https://clilol.mcornick.dev/
+    homepage: https://clilol.readthedocs.io/
     license: MPL-2.0
     maintainer: Mark Cornick <mark@markcornick.com>
     vendor: Mark Cornick
@@ -159,7 +159,7 @@ scoops:
         url: "ssh://git@git.mcornick.dev:222/mcornick/scoop-bucket.git"
         private_key: /home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94
     description: A CLI for omg.lol
-    homepage: https://clilol.mcornick.dev/
+    homepage: https://clilol.readthedocs.io/
     license: MPL-2.0
 signs:
   - artifacts: checksum
