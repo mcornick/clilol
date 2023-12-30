@@ -1,5 +1,4 @@
 ---
-shell: true
 image: alpine/latest
 packages:
   - cosign
@@ -24,4 +23,6 @@ tasks:
       if [[ $reftype == "tags" ]]; then
         echo "would release tag: ${refval}"
         echo "curl -sfL https://goreleaser.com/static/run | bash"
+      else
+        exit 1
       fi
