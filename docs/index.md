@@ -63,6 +63,12 @@ pkg.tar.zst formats.
 Binary checksums included on the release pages are signed with my [GPG
 key](https://git.mcornick.dev/mcornick.gpg).
 
+!!! Note
+
+    macOS will likely complain that the `clilol` binary is from an
+    unidentified developer. To avoid this, install clilol with
+    Homebrew.
+
 ### Arch User Repository
 
 I maintain an
