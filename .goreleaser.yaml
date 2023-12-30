@@ -93,7 +93,7 @@ docker_signs:
       - --yes
       - --key=$HOME/cosign.key
       - ${artifact}@${digest}
-    artifacts: manifests
+    artifacts: all
     stdin: "{{ .Env.COSIGN_PWD }}"
 gitea_urls:
   api: https://git.mcornick.dev/api/v1
