@@ -29,6 +29,13 @@ If you think you have a problem, improvement, or other contribution
 towards the betterment of clilol, please file a ticket or, where
 appropriate, send a patch.
 
+I use both [Sourcehut](https://sourcehut.org) and [my own Forgejo
+instance](https://git.mcornick.dev) for clilol development.
+Sourcehut is (as of 2024) the canonical repository, and my
+Forgejo instance hosts releases, container images, and other things
+not supported by Sourcehut. If you're contributing to clilol, you
+only need a Sourcehut account.
+
 Tickets can be filed at https://todo.sr.ht/~mcornick/clilol, and patches
 can be sent to ~mcornick/clilol@lists.sr.ht. If you need help with the
 email-based Git workflow, check out https://git-send-email.io/ for a
