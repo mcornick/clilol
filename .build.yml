@@ -32,7 +32,7 @@ tasks:
         curl -sfL https://goreleaser.com/static/run | bash
         python3 -m venv /home/build/venv
         . /home/build/venv/bin/activate
-        pip3 install mkdocs-material
+        pip3 install mkdocs
         cd clilol
         mkdocs build
         rclone copy site/ fastmail:clilol
