@@ -9,9 +9,13 @@ packages:
   - syft
 secrets:
   - 0a0692e0-075e-4616-9aeb-6d51472edd94
+  - 3d3adb74-13f4-4a90-b6d0-a555c02c5181
   - 76d9985f-f5da-4a19-816d-19ad1afa7f5d
 tasks:
   - detect: |
+      set +x
+      . "$HOME/secrets.sh"
+      set -x
       cd clilol
       rhs="${GIT_REF#*/}"
       reftype="${rhs%/*}"
@@ -19,6 +23,4 @@ tasks:
       if [[ $reftype == "tags" ]]; then
         echo "would release tag: ${refval}"
         echo "curl -sfL https://goreleaser.com/static/run | bash"
-      else
-        echo "not a tag, would not release"
       fi
