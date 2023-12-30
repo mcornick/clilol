@@ -1,0 +1,12 @@
+---
+image: alpine/latest
+packages:
+  - mkdocs-material
+  - rclone
+secrets:
+  - 7e064e16-8d36-4db0-ab30-e98b3fe88436
+tasks:
+  - release: |
+      cd clilol
+      mkdocs build
+      rclone copy site/ fastmail:clilol
