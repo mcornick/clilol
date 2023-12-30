@@ -1,0 +1,13 @@
+---
+image: alpine/latest
+packages:
+  - go
+secrets:
+  - e51e5472-c720-4547-a507-bf04fc7241c3
+tasks:
+  - test: |
+      set +x
+      . "$HOME/secrets.sh"
+      set -x
+      cd clilol
+      go test ./...
