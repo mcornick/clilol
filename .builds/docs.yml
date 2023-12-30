@@ -6,7 +6,7 @@ packages:
 secrets:
   - 7e064e16-8d36-4db0-ab30-e98b3fe88436
 tasks:
-  - release: |
+  - docs: |
       rhs="${GIT_REF#*/}"
       reftype="${rhs%/*}"
       refval="${rhs#*/}"
