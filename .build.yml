@@ -1,6 +1,7 @@
 ---
 image: alpine/latest
 packages:
+  - coreutils
   - cosign
   - curl
   - git
