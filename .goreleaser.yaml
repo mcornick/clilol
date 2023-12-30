@@ -92,7 +92,7 @@ docker_signs:
       - sign
       - --yes
       - --key=$HOME/cosign.key
-      - ${artifact}@${digest}
+      - ${artifact}
     artifacts: all
     stdin: "{{ .Env.COSIGN_PWD }}"
 gitea_urls:
