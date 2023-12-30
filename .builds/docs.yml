@@ -1,13 +1,13 @@
 ---
 image: alpine/latest
 packages:
-  - mkdocs-material
-  - py3-pathspec
+  - py3-pip
   - rclone
 secrets:
   - 7e064e16-8d36-4db0-ab30-e98b3fe88436
 tasks:
   - release: |
+      pip3 install --user mkdocs-material
       cd clilol
-      mkdocs build
+      /home/build/.local/bin/mkdocs build
       rclone copy site/ fastmail:clilol
