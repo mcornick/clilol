@@ -98,8 +98,6 @@ gitea_urls:
   api: https://git.mcornick.dev/api/v1
   download: https://git.mcornick.dev
   skip_tls_verify: false
-gomod:
-  proxy: true
 kos:
   - bare: true
     build: clilol
