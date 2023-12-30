@@ -189,7 +189,7 @@ If apikeycmd is specified, it takes precedence over apikey if that is also speci
 
 clilol releases are announced on [my Mastodon account](https://social.sdf.org/@mcornick) which you are welcome to follow.
 
-To verify signatures on commits to clilol, you might need [my SSH public key](https://meta.sr.ht/~/mcornick.keys) or [my PGP public key](https://meta.sr.ht/~/mcornick.pgp).
+To verify signatures on commits to clilol, you might need [my SSH public key](https://meta.sr.ht/~mcornick.keys) or [my PGP public key](https://meta.sr.ht/~mcornick.pgp).
 
 Thanks to the following people for helping to improve clilol:
 
