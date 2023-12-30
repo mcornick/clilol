@@ -4,7 +4,7 @@ packages:
   - coreutils
   - cosign
   - curl
-  - docker
+  - docker-cli
   - git
   - go
   - gnupg
