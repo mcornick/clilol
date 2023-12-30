@@ -4,6 +4,7 @@ packages:
   - coreutils
   - cosign
   - curl
+  - docker
   - git
   - go
   - gnupg
@@ -16,6 +17,7 @@ tasks:
   - release: |
       set +x
       . "$HOME/secrets.sh"
+      echo "$GITEA_TOKEN" | docker login -u mcornick --password-stdin git.mcornick.dev
       set -x
       cd clilol
       rhs="${GIT_REF#*/}"
