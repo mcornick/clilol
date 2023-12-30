@@ -91,7 +91,7 @@ docker_signs:
   - args:
       - sign
       - --yes
-      - --key=/Users/mcornick/Documents/cosign.key
+      - --key=$HOME/cosign.key
       - ${artifact}@${digest}
     artifacts: manifests
 gitea_urls:
