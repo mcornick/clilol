@@ -7,7 +7,7 @@ secrets:
 tasks:
   - test: |
       set +x
-      . "$HOME/secrets.sh"
+      . "$HOME/clilol-secrets.sh"
       set -x
       cd clilol
       go test ./...
