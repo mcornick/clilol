@@ -1,4 +1,5 @@
 ---
+shell: true
 image: alpine/latest
 packages:
   - cosign
