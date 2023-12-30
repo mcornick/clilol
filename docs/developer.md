@@ -38,7 +38,7 @@ not supported by Sourcehut.
 Tickets can be filed at
 [https://todo.sr.ht/~mcornick/clilol](https://todo.sr.ht/~mcornick/clilol),
 and patches can be sent to
-[~mcornick/clilol@lists.sr.ht] (mailto:~mcornick/clilol@lists.sr.ht).
+[~mcornick/clilol@lists.sr.ht](mailto:~mcornick/clilol@lists.sr.ht).
 If you need help with the email-based Git workflow, check out
 [https://git-send-email.io/](https://git-send-email.io/)
 for a tutorial.
