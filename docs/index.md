@@ -84,32 +84,33 @@ The configuration file should be named either `config.yaml`, `config.toml` or `c
 
 The file should look like one of these, substituting your own details:
 
-=== "config.yaml"
+config.yaml:
 
-    ```yaml
-    ---
-    address: tomservo
-    email: tomservo@gizmonics.invalid
-    apikey: 0123456789abcdef0123456789abcdef
-    ```
+```yaml
+---
+address: tomservo
+email: tomservo@gizmonics.invalid
+apikey: 0123456789abcdef0123456789abcdef
+```
 
-=== "config.toml"
+config.toml:
 
-    ```toml
-    address = "tomservo"
-    email = "tomservo@gizmonics.invalid"
-    apikey = "0123456789abcdef0123456789abcdef"
-    ```
+```toml
+address = "tomservo"
+email = "tomservo@gizmonics.invalid"
+apikey = "0123456789abcdef0123456789abcdef"
+```
 
-=== "config.json"
+config.json:
 
-    ```json
-    {
-      "address": "tomservo",
-      "email": "tomservo@gizmonics.invalid",
-      "apikey": "0123456789abcdef0123456789abcdef"
-    }
-    ```
+```json
+{
+  "address": "tomservo",
+  "email": "tomservo@gizmonics.invalid",
+  "apikey": "0123456789abcdef0123456789abcdef"
+}
+```
+
 A [JSON Schema](config.schema.json) for the configuration file is available, for editors that support it.
 
 !!! Note
@@ -146,40 +147,40 @@ Environment variables take precedence over any configuration file.
 
 Rather than hardcoding your API key in the configuration file or environment, you can specify a command which, when run, will return the API key on standard output, such as:
 
-=== "config.yaml"
+config.yaml:
 
-    ```yaml
-    ---
-    address: tomservo
-    email: tomservo@gizmonics.invalid
-    apikeycmd: gopass -o omg.lol/tomservo
-    ```
+```yaml
+---
+address: tomservo
+email: tomservo@gizmonics.invalid
+apikeycmd: gopass -o omg.lol/tomservo
+```
 
-=== "config.toml"
+config.toml:
 
-    ```toml
-    address = "tomservo"
-    email = "tomservo@gizmonics.invalid"
-    apikeycmd = "gopass -o omg.lol/tomservo"
-    ```
+```toml
+address = "tomservo"
+email = "tomservo@gizmonics.invalid"
+apikeycmd = "gopass -o omg.lol/tomservo"
+```
 
-=== "config.json"
+config.json:
 
-    ```json
-    {
-      "address": "tomservo",
-      "email": "tomservo@gizmonics.invalid",
-      "apikeycmd": "gopass -o omg.lol/tomservo"
-    }
-    ```
+```json
+{
+  "address": "tomservo",
+  "email": "tomservo@gizmonics.invalid",
+  "apikeycmd": "gopass -o omg.lol/tomservo"
+}
+```
 
-=== "environment"
+environment:
 
-    ```sh
-    export CLILOL_ADDRESS="tomservo"
-    export CLILOL_EMAIL="tomservo@gizmonics.invalid"
-    export CLILOL_APIKEYCMD="gopass -o omg.lol/tomservo"
-    ```
+```sh
+export CLILOL_ADDRESS="tomservo"
+export CLILOL_EMAIL="tomservo@gizmonics.invalid"
+export CLILOL_APIKEYCMD="gopass -o omg.lol/tomservo"
+```
 
 In this example, clilol would use the output of `gopass -o omg.lol/tomservo` as the API key. If the command fails, clilol will print an error stating that the API key is missing.
 

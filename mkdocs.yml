@@ -8,9 +8,6 @@ extra:
       link: https://social.sdf.org/@mcornick
 markdown_extensions:
   - admonition
-  - pymdownx.superfences
-  - pymdownx.tabbed:
-      alternate_style: true
 plugins:
   - search
 repo_name: mcornick/clilol
