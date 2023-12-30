@@ -33,13 +33,15 @@ I use both [Sourcehut](https://sourcehut.org) and [my own Forgejo
 instance](https://git.mcornick.dev) for clilol development.
 Sourcehut is (as of 2024) the canonical repository, and my
 Forgejo instance hosts releases, container images, and other things
-not supported by Sourcehut. If you're contributing to clilol, you
-only need a Sourcehut account.
+not supported by Sourcehut.
 
-Tickets can be filed at https://todo.sr.ht/~mcornick/clilol, and patches
-can be sent to ~mcornick/clilol@lists.sr.ht. If you need help with the
-email-based Git workflow, check out https://git-send-email.io/ for a
-tutorial.
+Tickets can be filed at
+[https://todo.sr.ht/~mcornick/clilol](https://todo.sr.ht/~mcornick/clilol),
+and patches can be sent to
+[~mcornick/clilol@lists.sr.ht] (mailto:~mcornick/clilol@lists.sr.ht).
+If you need help with the email-based Git workflow, check out
+[https://git-send-email.io/](https://git-send-email.io/)
+for a tutorial.
 
 Keep in mind that I'm not paid to write Go code, so I'm doing this in my
 spare time, which means it might take me a while to respond.
