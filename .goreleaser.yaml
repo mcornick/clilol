@@ -3,14 +3,6 @@ announce:
   mastodon:
     enabled: true
     server: https://social.sdf.org
-  smtp:
-    enabled: true
-    host: smtp.fastmail.com
-    port: 587
-    from: mark@markcornick.com
-    to:
-      - ~mcornick/clilol@lists.sr.ht
-    username: mcornick@mcornick.com
 archives:
   - builds_info:
       group: root
