@@ -15,7 +15,6 @@ secrets:
   - 53890b2b-3281-4eaa-a466-9eda188b07bf
   - 76d9985f-f5da-4a19-816d-19ad1afa7f5d
   - 7bd2561a-a997-47f4-a013-95fc39ab223c
-  - 7e064e16-8d36-4db0-ab30-e98b3fe88436
 tasks:
   - test: |
       set +x
