@@ -3,7 +3,7 @@ image: alpine/latest
 packages:
   - go
 secrets:
-  - e51e5472-c720-4547-a507-bf04fc7241c3
+  - 53890b2b-3281-4eaa-a466-9eda188b07bf
 tasks:
   - test: |
       set +x
