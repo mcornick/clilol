@@ -8,8 +8,6 @@ packages:
   - git
   - gnupg
   - go
-  - py3-pip
-  - rclone
   - syft
 secrets:
   - 0a0692e0-075e-4616-9aeb-6d51472edd94
@@ -17,6 +15,7 @@ secrets:
   - 53890b2b-3281-4eaa-a466-9eda188b07bf
   - 76d9985f-f5da-4a19-816d-19ad1afa7f5d
   - 7e064e16-8d36-4db0-ab30-e98b3fe88436
+  - c62dc5b4-3b39-48be-84cc-8283c38f1933
 tasks:
   - test: |
       set +x
@@ -35,10 +34,6 @@ tasks:
         set -x
         cd clilol
         curl -sfL https://goreleaser.com/static/run | bash
-        python3 -m venv /home/build/venv
-        . /home/build/venv/bin/activate
-        pip3 install mkdocs
-        cd clilol
-        mkdocs build
-        rclone copy site/ fastmail:clilol
       fi
+  - docs: |
+      /home/build/clilol-rtd.sh
