@@ -35,4 +35,4 @@ tasks:
         curl -sfL https://goreleaser.com/static/run | bash
       fi
   - docs: |
-      /home/build/clilol-rtd.sh stable
+      /home/build/clilol-rtd.sh
