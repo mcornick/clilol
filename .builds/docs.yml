@@ -7,7 +7,9 @@ secrets:
   - 7e064e16-8d36-4db0-ab30-e98b3fe88436
 tasks:
   - release: |
-      pip3 install --user mkdocs-material
+      python3 -m venv /home/build/venv
+      . /home/build/venv/bin/activate
+      pip3 install mkdocs-material
       cd clilol
-      /home/build/.local/bin/mkdocs build
+      mkdocs build
       rclone copy site/ fastmail:clilol
