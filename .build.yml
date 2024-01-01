@@ -33,3 +33,7 @@ tasks:
         cd clilol
         curl -sfL https://goreleaser.com/static/run | bash
       fi
+triggers:
+  - action: email
+    condition: failure
+    to: mcornick@mcornick.com
