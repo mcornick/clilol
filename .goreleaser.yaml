@@ -1,7 +1,7 @@
 ---
 announce:
   mastodon:
-    enabled: false
+    enabled: true
     server: https://social.sdf.org
 archives:
   - builds_info:
