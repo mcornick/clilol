@@ -35,6 +35,7 @@ aurs:
       install -Dm644 "./manpages/*.1" "${pkgdir}/usr/share/man/man1/*.1"
     private_key: /home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94
     skip_upload: auto
+    git_ssh_command: "/home/build/.nix-profile/bin/ssh -i {{ .KeyPath }} -o StrictHostKeyChecking=accept-new -F /dev/null"
 before:
   hooks:
     - go mod tidy
@@ -55,6 +56,7 @@ brews:
       git: 
         url: "ssh://git@git.mcornick.dev:222/mcornick/homebrew-tap.git"
         private_key: /home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94
+        ssh_command: "/home/build/.nix-profile/bin/ssh -i {{ .KeyPath }} -o StrictHostKeyChecking=accept-new -F /dev/null"
     skip_upload: auto
 builds:
   - env:
@@ -174,6 +176,7 @@ scoops:
       git: 
         url: "ssh://git@git.mcornick.dev:222/mcornick/scoop-bucket.git"
         private_key: /home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94
+        ssh_command: "/home/build/.nix-profile/bin/ssh -i {{ .KeyPath }} -o StrictHostKeyChecking=accept-new -F /dev/null"
     description: A CLI for omg.lol
     homepage: https://clilol.readthedocs.io/
     license: MPL-2.0
