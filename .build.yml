@@ -31,7 +31,7 @@ tasks:
         . "$HOME/clilol-secrets.sh"
         echo "$GITEA_TOKEN" | docker login -u mcornick --password-stdin git.mcornick.dev
         set -x
-        printf "build-users-group = nixbld\nmax-jobs = 4\ntrusted-users = build\n" | tee /etc/nix/nix.conf
+        printf "build-users-group = nixbld\nmax-jobs = 4\ntrusted-users = build\n" | sudo tee /etc/nix/nix.conf
         sudo /etc/init.d/nix-daemon start
         cd clilol
         curl -sfL https://goreleaser.com/static/run | bash
