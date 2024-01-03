@@ -12,6 +12,7 @@ packages:
 secrets:
   - 0a0692e0-075e-4616-9aeb-6d51472edd94
   - 4dcaff42-1274-4f62-8f06-c8012f6ba70c
+  - 508c692a-58a7-49c1-8c07-0e936ecce651
   - 53890b2b-3281-4eaa-a466-9eda188b07bf
   - 76d9985f-f5da-4a19-816d-19ad1afa7f5d
 tasks:
@@ -33,6 +34,8 @@ tasks:
         cd clilol
         goreleaser
       fi
+  - docs: |
+      $HOME/clilol-rtd.sh
 triggers:
   - action: email
     condition: failure
