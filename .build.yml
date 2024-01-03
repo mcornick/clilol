@@ -7,6 +7,7 @@ packages:
   - nixos.gnupg
   - nixos.go
   - nixos.goreleaser
+  - nixos.openssh
   - nixos.syft
 secrets:
   - 0a0692e0-075e-4616-9aeb-6d51472edd94
