@@ -16,7 +16,7 @@ You can install clilol in any of these ways. (These are the only supported build
 I maintain a [Homebrew](https://brew.sh/) tap.
 
 ```bash
-brew tap mcornick/tap git@git.sr.ht:~mcornick/homebrew-tap
+brew tap mcornick/tap https://git.sr.ht/~mcornick/homebrew-tap
 brew install mcornick/tap/clilol
 ```
 
@@ -25,7 +25,7 @@ brew install mcornick/tap/clilol
 I maintain a [Scoop](https://scoop.sh/) bucket.
 
 ```powershell
-scoop bucket add mcornick git@git.sr.ht:~mcornick/scoop-bucket
+scoop bucket add mcornick https://git.sr.ht/~mcornick/scoop-bucket
 scoop install clilol
 ```
 
@@ -60,7 +60,7 @@ Binary checksums included on the release pages are signed with my [PGP key](http
 I maintain an [AUR](https://wiki.archlinux.org/title/Arch_User_Repository) for clilol.
 
 ```
-git clone git@git.sr.ht:~mcornick/clilol-aur
+git clone https://git.sr.ht/~mcornick/clilol-aur
 cd clilol-aur
 makepkg -i
 ```
