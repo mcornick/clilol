@@ -1,13 +1,15 @@
 ---
-image: nixos/unstable
+image: alpine/edge
 packages:
-  - nixos.cosign
-  - nixos.docker-client
-  - nixos.git
-  - nixos.gnupg
-  - nixos.go
-  - nixos.goreleaser
-  - nixos.syft
+  - coreutils
+  - cosign
+  - curl
+  - docker-cli
+  - git
+  - gnupg
+  - go
+  - nix
+  - syft
 secrets:
   - 0a0692e0-075e-4616-9aeb-6d51472edd94
   - 4dcaff42-1274-4f62-8f06-c8012f6ba70c
@@ -30,7 +32,7 @@ tasks:
         echo "$GITEA_TOKEN" | docker login -u mcornick --password-stdin git.mcornick.dev
         set -x
         cd clilol
-        goreleaser
+        curl -sfL https://goreleaser.com/static/run | bash
       fi
 triggers:
   - action: email
