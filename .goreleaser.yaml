@@ -158,7 +158,6 @@ nix:
       git: 
         url: "git@git.sr.ht:~mcornick/nur"
         private_key: /home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94
-    skip_upload: auto
     extra_install: |-
       installManPage ./manpages/*.1
     post_install: |-
