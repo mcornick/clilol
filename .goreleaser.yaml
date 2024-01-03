@@ -34,6 +34,7 @@ aurs:
       install -Dm644 "./completions/clilol.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/clilol.fish"
       install -Dm644 "./manpages/*.1" "${pkgdir}/usr/share/man/man1/*.1"
     private_key: /home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94
+    skip_upload: auto
 before:
   hooks:
     - go mod tidy
@@ -54,6 +55,7 @@ brews:
       git: 
         url: "ssh://git@git.mcornick.dev:222/mcornick/homebrew-tap.git"
         private_key: /home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94
+    skip_upload: auto
 builds:
   - env:
       - CGO_ENABLED=0
@@ -147,6 +149,20 @@ nfpms:
     license: MPL-2.0
     maintainer: Mark Cornick <mark@markcornick.com>
     vendor: Mark Cornick
+nix:
+  - description: A CLI for omg.lol
+    homepage: https://clilol.readthedocs.io/
+    license: MPL-2.0
+    repository:
+      name: nur
+      git: 
+        url: "git@git.sr.ht:~mcornick/nur"
+        private_key: /home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94
+    skip_upload: auto
+    extra_install: |-
+      installManPage ./manpages/*.1
+    post_install: |-
+      installShellCompletion ./completions/*.1
 release:
   gitea:
     owner: mcornick
@@ -161,6 +177,7 @@ scoops:
     description: A CLI for omg.lol
     homepage: https://clilol.readthedocs.io/
     license: MPL-2.0
+    skip_upload: auto
 signs:
   - artifacts: checksum
 snapshot:
