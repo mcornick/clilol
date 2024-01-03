@@ -16,7 +16,7 @@ You can install clilol in any of these ways. (These are the only supported build
 I maintain a [Homebrew](https://brew.sh/) tap.
 
 ```bash
-brew tap mcornick/tap https://git.mcornick.dev/mcornick/homebrew-tap
+brew tap mcornick/tap git@git.sr.ht:~mcornick/homebrew-tap
 brew install mcornick/tap/clilol
 ```
 
@@ -25,7 +25,7 @@ brew install mcornick/tap/clilol
 I maintain a [Scoop](https://scoop.sh/) bucket.
 
 ```powershell
-scoop bucket add mcornick https://git.mcornick.dev/mcornick/scoop-bucket
+scoop bucket add mcornick git@git.sr.ht:~mcornick/scoop-bucket
 scoop install clilol
 ```
 
@@ -47,7 +47,7 @@ cosign verify --key https://mcornick.com/mcornick.cosign git.mcornick.dev/mcorni
 
 I maintain binary releases on my Forgejo server [here](https://git.mcornick.dev/mcornick/clilol/releases). Releases are built for macOS (universal), Linux (i386, amd64, arm64, and armv6) and Windows (i386, amd64). Linux packages are built in RPM, DEB, APK, and Arch Linux pkg.tar.zst formats.
 
-Binary checksums included on the release pages are signed with my [GPG key](https://git.mcornick.dev/mcornick.gpg).
+Binary checksums included on the release pages are signed with my [PGP key](https://meta.sr.ht/~mcornick.pgp).
 
 !!! Note
 
@@ -60,7 +60,7 @@ Binary checksums included on the release pages are signed with my [GPG key](http
 I maintain an [AUR](https://wiki.archlinux.org/title/Arch_User_Repository) for clilol.
 
 ```
-git clone https://git.mcornick.dev/mcornick/clilol-aur
+git clone git@git.sr.ht:~mcornick/clilol-aur
 cd clilol-aur
 makepkg -i
 ```
