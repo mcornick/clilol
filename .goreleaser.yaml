@@ -3,6 +3,7 @@ announce:
   mastodon:
     enabled: true
     server: https://social.sdf.org
+  skip: '{{ne .Prerelease ""}}'
 archives:
   - builds_info:
       group: root
