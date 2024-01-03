@@ -152,7 +152,7 @@ nfpms:
 nix:
   - description: A CLI for omg.lol
     homepage: https://clilol.readthedocs.io/
-    license: mpl-2.0
+    license: mpl-20
     repository:
       name: nur
       git: 
