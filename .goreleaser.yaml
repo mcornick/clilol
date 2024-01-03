@@ -103,7 +103,7 @@ kos:
     labels:
       io.artifacthub.package.license: MPL-2.0
       io.artifacthub.package.maintainers: '[{"name":"Mark Cornick","email":"mark@markcornick.com"}]'
-      io.artifacthub.package.readme-url: https://git.mcornick.dev/mcornick/clilol/raw/branch/main/README.md
+      io.artifacthub.package.readme-url: https://git.sr.ht/~mcornick/clilol/tree/main/item/README.md
       org.opencontainers.image.description: A CLI for omg.lol
       org.opencontainers.image.name: "{{.ProjectName}}"
       org.opencontainers.image.revision: "{{.FullCommit}}"
