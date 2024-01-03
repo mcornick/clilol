@@ -165,7 +165,6 @@ nix:
     skip_upload: auto
     extra_install: |-
       installManPage ./manpages/*.1
-    post_install: |-
       installShellCompletion ./completions/*.1
 release:
   gitea:
