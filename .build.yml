@@ -1,15 +1,13 @@
 ---
-image: alpine/edge
+image: nixos/unstable
 packages:
-  - coreutils
-  - cosign
-  - curl
-  - docker-cli
-  - git
-  - gnupg
-  - go
-  - nix
-  - syft
+  - nixos.cosign
+  - nixos.docker-client
+  - nixos.git
+  - nixos.gnupg
+  - nixos.go
+  - nixos.goreleaser
+  - nixos.syft
 secrets:
   - 0a0692e0-075e-4616-9aeb-6d51472edd94
   - 4dcaff42-1274-4f62-8f06-c8012f6ba70c
@@ -31,11 +29,8 @@ tasks:
         . "$HOME/clilol-secrets.sh"
         echo "$GITEA_TOKEN" | docker login -u mcornick --password-stdin git.mcornick.dev
         set -x
-        printf "build-users-group = nixbld\nmax-jobs = 4\ntrusted-users = build\n" | sudo tee /etc/nix/nix.conf
-        sudo /etc/init.d/nix-daemon start
-        sudo adduser build nix
         cd clilol
-        curl -sfL https://goreleaser.com/static/run | bash -l
+        goreleaser
       fi
 triggers:
   - action: email
