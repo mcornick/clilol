@@ -35,7 +35,7 @@ tasks:
         sudo /etc/init.d/nix-daemon start
         sudo adduser build nix
         cd clilol
-        curl -sfL https://goreleaser.com/static/run | bash
+        curl -sfL https://goreleaser.com/static/run | bash -l
       fi
 triggers:
   - action: email
