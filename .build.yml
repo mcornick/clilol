@@ -16,6 +16,10 @@ secrets:
   - 53890b2b-3281-4eaa-a466-9eda188b07bf
   - 76d9985f-f5da-4a19-816d-19ad1afa7f5d
 tasks:
+  - prep:
+      sudo adduser build nix
+      printf "build-users-group = nixbld\nmax-jobs = 4\ntrusted-users = build\n" | sudo tee /etc/nix/nix.conf
+      sudo /etc/init.d/nix-daemon start
   - test: |
       set +x
       . "$HOME/clilol-secrets.sh"
@@ -31,8 +35,6 @@ tasks:
         . "$HOME/clilol-secrets.sh"
         echo "$GITEA_TOKEN" | docker login -u mcornick --password-stdin git.mcornick.dev
         set -x
-        printf "build-users-group = nixbld\nmax-jobs = 4\ntrusted-users = build\n" | sudo tee /etc/nix/nix.conf
-        sudo /etc/init.d/nix-daemon start
         cd clilol
         curl -sfL https://goreleaser.com/static/run | bash
       fi
