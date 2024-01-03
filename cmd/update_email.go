@@ -22,7 +22,7 @@ var updateEmailCmd = &cobra.Command{
 	Aliases: []string{"emails"},
 	Short:   "set email forwarding address(es)",
 	Long: `Sets your email forwarding address(es).
-	
+
 To specify multiple addresses, separate them with commas.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

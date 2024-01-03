@@ -27,4 +27,3 @@ clilol create purl [name] [url] [flags]
 ### SEE ALSO
 
 * [clilol create](clilol_create.md)	 - Create things
-

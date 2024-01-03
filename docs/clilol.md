@@ -24,4 +24,3 @@ See the subcommands for more information.
 * [clilol list](clilol_list.md)	 - List things
 * [clilol update](clilol_update.md)	 - Update things
 * [clilol version](clilol_version.md)	 - Show clilol's version
-

@@ -27,4 +27,3 @@ clilol create weblog [flags]
 ### SEE ALSO
 
 * [clilol create](clilol_create.md)	 - Create things
-

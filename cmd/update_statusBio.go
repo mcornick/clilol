@@ -33,7 +33,7 @@ var updateStatusBioCmd = &cobra.Command{
 	Use:   "status-bio [text]",
 	Short: "Update your status bio",
 	Long: `Updates your status bio on status.lol.
-		
+
 Quote the text if it contains spaces.
 
 Note that the omg.lol API does not permit you to change any custom

@@ -22,4 +22,3 @@ clilol get account info [flags]
 ### SEE ALSO
 
 * [clilol get account](clilol_get_account.md)	 - Get information about your account
-

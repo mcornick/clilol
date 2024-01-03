@@ -34,4 +34,3 @@ clilol update status [id] [text] [flags]
 ### SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things
-

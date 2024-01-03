@@ -27,4 +27,3 @@ clilol get paste [title] [flags]
 ### SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things
-

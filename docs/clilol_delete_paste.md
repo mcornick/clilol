@@ -27,4 +27,3 @@ clilol delete paste [title] [flags]
 ### SEE ALSO
 
 * [clilol delete](clilol_delete.md)	 - Delete things
-

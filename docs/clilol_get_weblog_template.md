@@ -27,4 +27,3 @@ clilol get weblog template [flags]
 ### SEE ALSO
 
 * [clilol get weblog](clilol_get_weblog.md)	 - Get a weblog entry
-

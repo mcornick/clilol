@@ -22,4 +22,3 @@ clilol get address expiration [address] [flags]
 ### SEE ALSO
 
 * [clilol get address](clilol_get_address.md)	 - Get information about an address
-

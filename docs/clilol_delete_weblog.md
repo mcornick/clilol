@@ -25,4 +25,3 @@ clilol delete weblog [id] [flags]
 ### SEE ALSO
 
 * [clilol delete](clilol_delete.md)	 - Delete things
-

@@ -8,7 +8,7 @@ set email forwarding address(es)
 ### Synopsis
 
 Sets your email forwarding address(es).
-	
+
 To specify multiple addresses, separate them with commas.
 
 ```
@@ -24,4 +24,3 @@ clilol update email [address] [flags]
 ### SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things
-

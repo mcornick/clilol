@@ -24,4 +24,3 @@ clilol version [flags]
 ### SEE ALSO
 
 * [clilol](clilol.md)	 - a cli for omg.lol
-

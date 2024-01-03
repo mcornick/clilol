@@ -12,14 +12,14 @@ Author: clilol-testing
 ;; General config stuff
 ;; --------------------
 
-Separator:  · 
+Separator:  ·
 // Navigation: about, another-page, <a href="https://example.com">Example</a>, [Example](https://example.com)
 
 
 ;; Time stuff
 ;; ----------
 
-; You can use a timezone value from the "TZ database name" column on this 
+; You can use a timezone value from the "TZ database name" column on this
 ; web page: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 Timezone: UTC

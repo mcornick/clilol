@@ -19,4 +19,3 @@ The account delete group of commands allows you to delete information about your
 
 * [clilol delete](clilol_delete.md)	 - Delete things
 * [clilol delete account session](clilol_delete_account_session.md)	 - Delete a session
-

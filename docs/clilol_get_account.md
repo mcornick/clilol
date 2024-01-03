@@ -21,4 +21,3 @@ The account get group of commands allows you to get information about your omg.l
 * [clilol get account info](clilol_get_account_info.md)	 - Get info about your account
 * [clilol get account name](clilol_get_account_name.md)	 - Get your account name
 * [clilol get account settings](clilol_get_account_settings.md)	 - Get your account settings
-
