@@ -33,6 +33,7 @@ tasks:
         set -x
         printf "build-users-group = nixbld\nmax-jobs = 4\ntrusted-users = build\n" | sudo tee /etc/nix/nix.conf
         sudo /etc/init.d/nix-daemon start
+	sudo adduser build nix
         cd clilol
         curl -sfL https://goreleaser.com/static/run | bash
       fi
