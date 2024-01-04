@@ -67,7 +67,7 @@ makepkg -i
 
 ### Nix
 
-I maintain a [Nix] repository. Add to `~/.config/nixpkgs/config.nix`:
+I maintain a [Nix](https://nixos.org/) repository. Add to `~/.config/nixpkgs/config.nix`:
 
 ```
 {
