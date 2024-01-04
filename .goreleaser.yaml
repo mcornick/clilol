@@ -161,7 +161,6 @@ nix:
         url: ssh://git@git.sr.ht/~mcornick/nixpkgs
         private_key: /home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94
         ssh_command: "/home/build/.nix-profile/bin/ssh -i {{ .KeyPath }} -o StrictHostKeyChecking=accept-new -F /dev/null"
-    skip_upload: auto
     extra_install: |-
       installManPage ./manpages/*.1
       installShellCompletion ./completions/*
