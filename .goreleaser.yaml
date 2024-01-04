@@ -164,7 +164,7 @@ nix:
     skip_upload: auto
     extra_install: |-
       installManPage ./manpages/*.1
-      installShellCompletion ./completions/*.1
+      installShellCompletion ./completions/*
 release:
   gitea:
     owner: mcornick
