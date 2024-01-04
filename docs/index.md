@@ -65,6 +65,34 @@ cd clilol-aur
 makepkg -i
 ```
 
+### Nix
+
+I maintain a [Nix] repository. Add to `~/.config/nixpkgs/config.nix`:
+
+```
+{
+  packageOverrides = pkgs: {
+    mcornick = import (builtins.fetchGit { url = "https://git.sr.ht/~mcornick/nixpkgs"; }) {
+      inherit pkgs;
+    };
+  };
+}
+```
+
+and/or add to `/etc/nixos/configuration.nix`:
+
+```
+{
+  nixpkgs.config.packageOverrides = pkgs: {
+    mcornick = import (builtins.fetchGit { url = "https://git.sr.ht/~mcornick/nixpkgs"; }) {
+      inherit pkgs;
+    };
+  };
+}
+```
+
+and then do something like `nix-env -iA nixos.mcornick.clilol`.
+
 ### From source
 
 The usual: `go install git.sr.ht/~mcornick/clilol@latest`
