@@ -47,6 +47,8 @@ cosign verify --key https://mcornick.com/mcornick.cosign git.mcornick.dev/mcorni
 
 I maintain binary releases on my Forgejo server [here](https://git.mcornick.dev/mcornick/clilol/releases). Releases are built for macOS (universal), Linux (i386, amd64, arm64, and armv6) and Windows (i386, amd64). Linux packages are built in RPM, DEB, APK, and Arch Linux pkg.tar.zst formats.
 
+While I do not build or test for platforms other than these, clilol _should_ still work on any platform supported by Go, and if you find that it does not, feel free to file a [ticket](https://todo.sr.ht/~mcornick/clilol), and I'll take a look.
+
 Binary checksums included on the release pages are signed with my [PGP key](https://meta.sr.ht/~mcornick.pgp).
 
 !!! Note
@@ -96,8 +98,6 @@ and then do something like `nix-env -iA nixos.mcornick.clilol`.
 ### From source
 
 The usual: `go install git.sr.ht/~mcornick/clilol@latest`
-
-While I do not build or test for platforms other than the ones listed under the Binaries tab, clilol _should_ still work on any platform supported by Go, and if you find that it does not, feel free to file a [ticket](https://todo.sr.ht/~mcornick/clilol), and I'll take a look.
 
 ## Configuration File
 
