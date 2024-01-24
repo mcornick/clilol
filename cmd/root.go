@@ -18,6 +18,7 @@ import (
 	"os/exec"
 	"strings"
 
+	"github.com/kballard/go-shellquote"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -89,7 +90,8 @@ func init() {
 		}
 	}
 	if viper.GetString("apikeycmd") != "" {
-		args := strings.Fields(viper.GetString("apikeycmd"))
+		args, err := shellquote.Split(viper.GetString("apikeycmd"))
+		cobra.CheckErr(err)
 		cmd := exec.Command(args[0], args[1:]...)
 		stdout, err := cmd.StdoutPipe()
 		cobra.CheckErr(err)
@@ -100,8 +102,8 @@ func init() {
 		viper.Set("apikey", strings.TrimSpace(string(apikey)))
 	}
 	rootCmd.DisableAutoGenTag = true
-        rootCmd.PersistentFlags().BoolP("version", "v", false, "hide auto generated cobra -v flag")
-        rootCmd.PersistentFlags().Lookup("version").Hidden = true
+	rootCmd.PersistentFlags().BoolP("version", "v", false, "hide auto generated cobra -v flag")
+	rootCmd.PersistentFlags().Lookup("version").Hidden = true
 }
 
 func validateConfig() {
