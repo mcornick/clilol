@@ -1,9 +1,20 @@
 ---
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
-    hooks:
+  - hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-added-large-files
       - id: check-yaml
+    repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+  - hooks:
+      - id: go-build-mod
+      - id: go-mod-tidy-repo
+      - id: go-test-mod
+      - id: go-vet
+      - id: go-vet-mod
+      - id: go-staticcheck-mod
+      - id: go-fumpt-repo
+      - id: golangci-lint-mod
+    repo: https://github.com/tekwizely/pre-commit-golang
+    rev: v1.0.0-rc.1
