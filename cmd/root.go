@@ -21,6 +21,7 @@ import (
 	"github.com/kballard/go-shellquote"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	goVersion "go.hein.dev/go-version"
 )
 
 const endpoint = "https://api.omg.lol"
@@ -36,6 +37,18 @@ var (
 		Short:   "a cli for omg.lol",
 		Long: `This is the root command. It does nothing on its own.
 See the subcommands for more information.`,
+	}
+
+	versionShortened = false
+	versionOutput    = "json"
+	versionCmd       = &cobra.Command{
+		Use:   "version",
+		Short: "Show clilol's version",
+		Long:  "Prints the version and build information for clilol.",
+		Run: func(_ *cobra.Command, _ []string) {
+			resp := goVersion.FuncWithOutput(versionShortened, version, commit, date, versionOutput)
+			fmt.Print(resp)
+		},
 	}
 )
 
@@ -104,6 +117,9 @@ func init() {
 	rootCmd.DisableAutoGenTag = true
 	rootCmd.PersistentFlags().BoolP("version", "v", false, "hide auto generated cobra -v flag")
 	rootCmd.PersistentFlags().Lookup("version").Hidden = true
+	versionCmd.Flags().BoolVarP(&versionShortened, "short", "s", false, "Print just the version number.")
+	versionCmd.Flags().StringVarP(&versionOutput, "output", "o", "json", "Output format. One of 'yaml' or 'json'.")
+	rootCmd.AddCommand(versionCmd)
 }
 
 func validateConfig() {
