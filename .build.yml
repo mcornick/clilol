@@ -1,4 +1,5 @@
 ---
+shell: true
 image: nixos/unstable
 packages:
   - nixos.cosign
