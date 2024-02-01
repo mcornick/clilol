@@ -1,5 +1,4 @@
 ---
-shell: true
 image: nixos/unstable
 packages:
   - nixos.cosign
@@ -18,6 +17,7 @@ secrets:
   - 76d9985f-f5da-4a19-816d-19ad1afa7f5d
 tasks:
   - test: |
+      false
       set +x
       . "$HOME/clilol-secrets.sh"
       set -x
