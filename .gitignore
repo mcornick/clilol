@@ -1,8 +1,9 @@
 *.1
 .cache
+.envrc
 clilol
 completions
 dist
 manpages
-site
 oryxBuildBinary
+site
