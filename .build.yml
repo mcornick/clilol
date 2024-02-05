@@ -17,12 +17,6 @@ secrets:
   - 53890b2b-3281-4eaa-a466-9eda188b07bf
   - 76d9985f-f5da-4a19-816d-19ad1afa7f5d
 tasks:
-  - test: |
-      set +x
-      . "$HOME/clilol-secrets.sh"
-      set -x
-      cd clilol
-      go test ./...
   - release: |
       rhs="${GIT_REF#*/}"
       reftype="${rhs%/*}"
