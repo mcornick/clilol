@@ -95,9 +95,9 @@ and then do something like `nix-env -iA nixos.mcornick.clilol`.
 
 ### From source
 
-The usual: `go install git.sr.ht/~mcornick/clilol@latest`
+The usual: `go install github.com/mcornick/clilol@latest`
 
-While I do not build or test for platforms other than the ones listed above, clilol _should_ still build and run on any platform supported by Go, and if you find that it does not, feel free to file a [ticket](https://todo.sr.ht/~mcornick/clilol), and I'll take a look.
+While I do not build or test for platforms other than the ones listed above, clilol _should_ still build and run on any platform supported by Go, and if you find that it does not, feel free to file an issue, and I'll take a look.
 
 ### SBOM and SLSA
 
