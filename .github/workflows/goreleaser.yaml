@@ -44,7 +44,7 @@ jobs:
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
           MASTODON_CLIENT_ID: ${{ secrets.MASTODON_CLIENT_ID }}
           MASTODON_CLIENT_SECRET: ${{ secrets.MASTODON_CLIENT_SECRET }}
-        id: run-goreleaser
+        id: goreleaser
         uses: goreleaser/goreleaser-action@v5.0.0
         with:
           args: release --clean
@@ -52,7 +52,7 @@ jobs:
       - run: rm /home/runner/gpgkey.asc
         shell: bash
       - env:
-          ARTIFACTS: "${{ steps.run-goreleaser.outputs.artifacts }}"
+          ARTIFACTS: "${{ steps.goreleaser.outputs.artifacts }}"
         id: hash
         run: |
           set -euo pipefail
