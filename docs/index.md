@@ -16,7 +16,7 @@ You can install clilol in any of these ways. (These are the only supported build
 I maintain a [Homebrew](https://brew.sh/) tap.
 
 ```bash
-brew tap mcornick/tap https://git.sr.ht/~mcornick/homebrew-tap
+brew tap mcornick/tap https://github.com/mcornick/homebrew-tap.git
 brew install mcornick/tap/clilol
 ```
 
@@ -25,7 +25,7 @@ brew install mcornick/tap/clilol
 I maintain a [Scoop](https://scoop.sh/) bucket.
 
 ```powershell
-scoop bucket add mcornick https://git.sr.ht/~mcornick/scoop-bucket
+scoop bucket add mcornick https://github.com/mcornick/scoop-bucket.git
 scoop install clilol
 ```
 
@@ -60,7 +60,7 @@ Binary checksums included on the release pages are signed with my [PGP key](http
 I maintain an [AUR](https://wiki.archlinux.org/title/Arch_User_Repository) for clilol.
 
 ```
-git clone https://git.sr.ht/~mcornick/clilol-aur
+git clone https://github.com/mcornick/clilol-aur.git
 cd clilol-aur
 makepkg -i
 ```
@@ -72,7 +72,7 @@ I maintain a [Nix](https://nixos.org/) repository. Add to `~/.config/nixpkgs/con
 ```
 {
   packageOverrides = pkgs: {
-    mcornick = import (builtins.fetchGit { url = "https://git.sr.ht/~mcornick/nixpkgs"; }) {
+    mcornick = import (builtins.fetchGit { url = "https://github.com/mcornick/nixpkgs.git"; }) {
       inherit pkgs;
     };
   };
@@ -84,7 +84,7 @@ and/or add to `/etc/nixos/configuration.nix`:
 ```
 {
   nixpkgs.config.packageOverrides = pkgs: {
-    mcornick = import (builtins.fetchGit { url = "https://git.sr.ht/~mcornick/nixpkgs"; }) {
+    mcornick = import (builtins.fetchGit { url = "https://github.com/mcornick/nixpkgs.git"; }) {
       inherit pkgs;
     };
   };

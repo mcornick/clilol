@@ -8,7 +8,7 @@
 
 package main
 
-import "git.sr.ht/~mcornick/clilol/cmd"
+import "github.com/mcornick/clilol/cmd"
 
 func main() {
 	cmd.Execute()
