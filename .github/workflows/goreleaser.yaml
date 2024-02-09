@@ -94,7 +94,7 @@ jobs:
       digest: ${{ needs.goreleaser.outputs.digest }}
       registry-username: ${{ github.actor }}
     secrets:
-      registry-password: ${{ secrets.GITHUB_TOKEN }}
+      registry-password: ${{ secrets.GH_PAT }}
 name: goreleaser
 "on":
   push:
