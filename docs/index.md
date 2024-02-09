@@ -31,23 +31,23 @@ scoop install clilol
 
 ### Container Images
 
-I maintain container images on my Forgejo server [here](https://git.mcornick.dev/mcornick/clilol/packages).
+I maintain container images on GitHub.
 
 ```bash
-docker run --rm git.mcornick.dev/mcornick/clilol
+docker run --rm ghcr.io/mcornick/clilol
 ```
 
-Container manifests are signed with [Cosign](https://docs.sigstore.dev/cosign/overview/). The signatures are created with my [Cosign key](https://mcornick.com/mcornick.cosign):
+Container manifests are signed with [Cosign](https://docs.sigstore.dev/cosign/overview/). Ephemeral keys from GitHub are used, so you'll need to specify a certificate identity that matches the tag you're trying to verify.
 
 ```bash
-cosign verify --key https://mcornick.com/mcornick.cosign git.mcornick.dev/mcornick/clilol
+cosign verify --certificate-identity=https://github.com/mcornick/clilol/.github/workflows/goreleaser.yaml@refs/tags/vX.Y.Z --certificate-oidc-issuer=https://token.actions.githubusercontent.com ghcr.io/mcornick/clilol:vX.Y.Z
 ```
 
 ### Binaries and Linux packages
 
-I maintain binary releases on my Forgejo server [here](https://git.mcornick.dev/mcornick/clilol/releases). Releases are built for macOS (universal), Linux (i386, amd64, arm64, and armv6) and Windows (i386, amd64). Linux packages are built in RPM, DEB, APK, and Arch Linux pkg.tar.zst formats.
+I maintain binary releases on my Forgejo server [here](https://github.com/mcornick/clilol/releases). Releases are built for macOS (universal), Linux (i386, amd64, arm64, and armv6) and Windows (i386, amd64). Linux packages are built in RPM, DEB, APK, and Arch Linux pkg.tar.zst formats.
 
-Binary checksums included on the release pages are signed with my [PGP key](https://meta.sr.ht/~mcornick.pgp).
+Binary checksums included on the release pages are signed with my [PGP key](https://github.com/mcornick.gpg).
 
 !!! Note
 
@@ -98,6 +98,16 @@ and then do something like `nix-env -iA nixos.mcornick.clilol`.
 The usual: `go install git.sr.ht/~mcornick/clilol@latest`
 
 While I do not build or test for platforms other than the ones listed above, clilol _should_ still build and run on any platform supported by Go, and if you find that it does not, feel free to file a [ticket](https://todo.sr.ht/~mcornick/clilol), and I'll take a look.
+
+### SBOM and SLSA
+
+!!! Note
+
+    This needs a better explanation.
+
+SBOMs and SLSA provenance are generated for each release. If you know
+what these are and know that you need them, I assume you also know what
+to do with them.
 
 ## Configuration File
 
@@ -160,9 +170,9 @@ export CLILOL_APIKEY="0123456789abcdef0123456789abcdef"
 Environment variables are the easiest way to pass configuration when running the container images:
 
 ```bash
-docker run --rm -ti --env CLILOL_ADDRESS=tomservo --env CLILOL_APIKEY=0123456789abcdef0123456789abcdef --env CLILOL_EMAIL=tomservo@gizmonics.invalid git.mcornick.dev/mcornick/clilol ...
+docker run --rm -ti --env CLILOL_ADDRESS=tomservo --env CLILOL_APIKEY=0123456789abcdef0123456789abcdef --env CLILOL_EMAIL=tomservo@gizmonics.invalid github.com/mcornick/clilol ...
 # or put the configuration in a dotenv file:
-docker run --rm -ti --env-file .env git.mcornick.dev/mcornick/clilol ...
+docker run --rm -ti --env-file .env github.com/mcornick/clilol ...
 ```
 
 Environment variables take precedence over any configuration file.
@@ -218,7 +228,7 @@ If apikeycmd is specified, it takes precedence over apikey if that is also speci
 
 clilol releases are announced on [my Mastodon account](https://social.sdf.org/@mcornick) which you are welcome to follow.
 
-To verify signatures on commits to clilol, you might need [my SSH public key](https://meta.sr.ht/~mcornick.keys) or [my PGP public key](https://meta.sr.ht/~mcornick.pgp).
+To verify signatures on commits to clilol, you might need [my SSH public key](https://github.com/mcornick.keys) or [my PGP public key](https://github.com/mcornick.gpg).
 
 Thanks to the following people for helping to improve clilol:
 
