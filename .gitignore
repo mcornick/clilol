@@ -1,5 +1,6 @@
 *.1
 .cache
+.env
 .envrc
 clilol
 completions
