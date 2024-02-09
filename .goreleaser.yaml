@@ -18,7 +18,7 @@ archives:
         goos: windows
 aurs:
   - description: A CLI for omg.lol
-    git_url: ssh://git@git.sr.ht/~mcornick/clilol-aur
+    git_url: ssh://git@github.com/mcornick/clilol-aur.git
     homepage: https://clilol.readthedocs.io/
     license: MPL-2.0
     maintainers:
@@ -34,9 +34,7 @@ aurs:
       install -Dm644 "./completions/clilol.zsh" "${pkgdir}/usr/share/zsh/site-functions/_clilol"
       install -Dm644 "./completions/clilol.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/clilol.fish"
       install -Dm644 "./manpages/*.1" "${pkgdir}/usr/share/man/man1/*.1"
-    private_key: /home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94
     skip_upload: auto
-    git_ssh_command: "/home/build/.nix-profile/bin/ssh -i {{ .KeyPath }} -o StrictHostKeyChecking=accept-new -F /dev/null"
 before:
   hooks:
     - go mod tidy
@@ -54,10 +52,7 @@ brews:
     license: MPL-2.0
     repository:
       name: homebrew-tap
-      git:
-        url: ssh://git@git.sr.ht/~mcornick/homebrew-tap
-        private_key: /home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94
-        ssh_command: "/home/build/.nix-profile/bin/ssh -i {{ .KeyPath }} -o StrictHostKeyChecking=accept-new -F /dev/null"
+      owner: mcornick
     skip_upload: auto
 builds:
   - env:
@@ -65,7 +60,7 @@ builds:
     flags:
       - -trimpath
     ldflags:
-      - -s -w -X git.sr.ht/~mcornick/clilol/cmd.version={{.Version}} -X git.sr.ht/~mcornick/clilol/cmd.commit={{.ShortCommit}} -X git.sr.ht/~mcornick/clilol/cmd.date={{.CommitDate}}
+      - -s -w -X github.com/mcornick/clilol/cmd.version={{.Version}} -X github.com/mcornick/clilol/cmd.commit={{.ShortCommit}} -X github.com/mcornick/clilol/cmd.date={{.CommitDate}}
     mod_timestamp: "{{ .CommitTimestamp }}"
     targets:
       - go_first_class
@@ -91,10 +86,6 @@ docker_signs:
       - ${artifact}
     artifacts: all
     stdin: "{{ .Env.COSIGN_PWD }}"
-gitea_urls:
-  api: https://git.mcornick.dev/api/v1
-  download: https://git.mcornick.dev
-  skip_tls_verify: false
 kos:
   - bare: true
     build: clilol
@@ -103,7 +94,7 @@ kos:
     labels:
       io.artifacthub.package.license: MPL-2.0
       io.artifacthub.package.maintainers: '[{"name":"Mark Cornick","email":"mark@markcornick.com"}]'
-      io.artifacthub.package.readme-url: https://git.sr.ht/~mcornick/clilol/tree/main/item/README.md
+      io.artifacthub.package.readme-url: https://github.com/mcornick/clilol/tree/main/item/README.md
       org.opencontainers.image.description: A CLI for omg.lol
       org.opencontainers.image.name: "{{.ProjectName}}"
       org.opencontainers.image.revision: "{{.FullCommit}}"
@@ -112,7 +103,7 @@ kos:
     platforms:
       - linux/amd64
       - linux/arm64
-    repository: git.mcornick.dev/mcornick/clilol
+    repository: ghcr.io/mcornick/clilol
     tags:
       - latest
       - "{{.Tag}}"
@@ -154,33 +145,28 @@ nfpms:
     vendor: Mark Cornick
 nix:
   - description: A CLI for omg.lol
+    extra_install: |-
+      installManPage ./manpages/*.1
+      installShellCompletion ./completions/*
     homepage: https://clilol.readthedocs.io/
     license: mpl20
     repository:
       name: nixpkgs
-      git:
-        url: ssh://git@git.sr.ht/~mcornick/nixpkgs
-        private_key: /home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94
-        ssh_command: "/home/build/.nix-profile/bin/ssh -i {{ .KeyPath }} -o StrictHostKeyChecking=accept-new -F /dev/null"
+      owner: mcornick
     skip_upload: auto
-    extra_install: |-
-      installManPage ./manpages/*.1
-      installShellCompletion ./completions/*
 release:
-  gitea:
-    owner: mcornick
+  github:
     name: clilol
+    owner: mcornick
 sboms:
   - artifacts: archive
 scoops:
-  - repository:
-      git:
-        url: ssh://git@git.sr.ht/~mcornick/scoop-bucket
-        private_key: /home/build/.ssh/0a0692e0-075e-4616-9aeb-6d51472edd94
-        ssh_command: "/home/build/.nix-profile/bin/ssh -i {{ .KeyPath }} -o StrictHostKeyChecking=accept-new -F /dev/null"
-    description: A CLI for omg.lol
+  - description: A CLI for omg.lol
     homepage: https://clilol.readthedocs.io/
     license: MPL-2.0
+    repository:
+      name: scoop-bucket
+      owner: mcornick
     skip_upload: auto
 signs:
   - artifacts: checksum
