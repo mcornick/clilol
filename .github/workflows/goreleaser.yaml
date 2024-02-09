@@ -1,0 +1,56 @@
+---
+jobs:
+  goreleaser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde6 # v4.1.1
+        with:
+          fetch-depth: 0
+      - run: git fetch --force --tags
+      - uses: actions/setup-go@0c52d54 # v5.0.0
+        with:
+          cache: true
+          go-version: ">=1.20.2"
+      - uses: sigstore/cosign-installer@e1523de # v3.4.0
+        with:
+          cosign-release: v2.0.0
+      - uses: anchore/sbom-action/download-syft@b6a39da # v0.15.18
+        with:
+          syft-version: v0.69.0
+      - id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@01dd5d3 # v6.1.0
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+      - env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        run: echo "$GPG_PRIVATE_KEY" > /home/runner/gpgkey.asc && chmod 600 /home/runner/gpgkey.asc
+        shell: bash
+      - uses: docker/login-action@343f7c4 # v3.0.0
+        with:
+          password: ${{ secrets.GH_PAT }}
+          registry: ghcr.io
+          username: mcornick
+      - env:
+          AUR_KEY: ${{ secrets.AUR_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          MASTODON_CLIENT_ID: ${{ secrets.MASTODON_CLIENT_ID }}
+          MASTODON_CLIENT_SECRET: ${{ secrets.MASTODON_CLIENT_SECRET }}
+        uses: goreleaser/goreleaser-action@3fa32b8bb5620a2c1afe798654bbad59f9da4906 # v5.0.0
+        with:
+          args: release --clean
+          version: latest
+      - run: rm /home/runner/gpgkey.asc
+        shell: bash
+name: goreleaser
+"on":
+  push:
+    tags:
+      - "*"
+permissions:
+  contents: write
+  id-token: write
+  issues: write
+  packages: write
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
