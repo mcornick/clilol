@@ -18,4 +18,3 @@ site_name: clilol, a CLI for omg.lol
 site_url: https://clilol.readthedocs.io/
 theme:
   name: readthedocs
-# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
