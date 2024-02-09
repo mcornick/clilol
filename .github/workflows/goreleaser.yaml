@@ -39,32 +39,24 @@ jobs:
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
           MASTODON_CLIENT_ID: ${{ secrets.MASTODON_CLIENT_ID }}
           MASTODON_CLIENT_SECRET: ${{ secrets.MASTODON_CLIENT_SECRET }}
-        id: goreleaser
+        id: run-goreleaser
         uses: goreleaser/goreleaser-action@v5.0.0
         with:
           args: release --clean
           version: latest
       - run: rm /home/runner/gpgkey.asc
         shell: bash
-      - name: Generate binary hashes
-        id: binary
-        env:
-          ARTIFACTS: "${{ steps.goreleaser.outputs.artifacts }}"
-        run: |-
+      - env:
+          ARTIFACTS: "${{ steps.run-goreleaser.outputs.artifacts }}"
+        id: hash
+        run: |
           set -euo pipefail
-          checksum_file=$(echo "$ARTIFACTS" | jq -r '.[] | select (.type=="Checksum") | .path')
-          echo "hashes=$(cat $checksum_file | base64 -w0)" >> "$GITHUB_OUTPUT"
-      - name: Image digest
-        id: image
-        env:
-          ARTIFACTS: "${{ steps.goreleaser.outputs.artifacts }}"
-        run: |-
-          set -euo pipefail
-          image_and_digest=$(echo "$ARTIFACTS" | jq -r '.[] | select (.type=="Docker Manifest") | .path')
-          image=$(echo "${image_and_digest}" | cut -d'@' -f1 | cut -d':' -f1)
-          digest=$(echo "${image_and_digest}" | cut -d'@' -f2)
-          echo "name=$image" >> "$GITHUB_OUTPUT"
-          echo "digest=$digest" >> "$GITHUB_OUTPUT"
+          hashes=$(echo $ARTIFACTS | jq --raw-output '.[] | {name, "digest": (.extra.Digest // .extra.Checksum)} | select(.digest) | {digest} + {name} | join("  ") | sub("^sha256:";"")' | base64 -w0)
+          if test "$hashes" = ""; then # goreleaser < v1.13.0
+            checksum_file=$(echo "$ARTIFACTS" | jq -r '.[] | select (.type=="Checksum") | .path')
+            hashes=$(cat $checksum_file | base64 -w0)
+          fi
+          echo "hashes=$hashes" >> $GITHUB_OUTPUT
   binary-provenance:
     needs: [goreleaser]
     permissions:
@@ -75,19 +67,6 @@ jobs:
     with:
       base64-subjects: "${{ needs.goreleaser.outputs.hashes }}"
       upload-assets: true
-  image-provenance:
-    needs: [goreleaser]
-    permissions:
-      actions: read
-      id-token: write
-      packages: write
-    secrets:
-      registry-password: ${{ secrets.GITHUB_TOKEN }}
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
-    with:
-      image: ${{ needs.goreleaser.outputs.image }}
-      digest: ${{ needs.goreleaser.outputs.digest }}
-      registry-username: ${{ github.actor }}
 name: goreleaser
 "on":
   push:
