@@ -83,10 +83,8 @@ docker_signs:
   - args:
       - sign
       - --yes
-      - --key=/home/build/cosign.key
       - ${artifact}
     artifacts: all
-    stdin: "{{ .Env.COSIGN_PWD }}"
 kos:
   - bare: true
     build: clilol
