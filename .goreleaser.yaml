@@ -157,6 +157,7 @@ release:
   github:
     name: clilol
     owner: mcornick
+  prerelease: auto
 sboms:
   - artifacts: archive
 scoops:
