@@ -182,8 +182,7 @@ winget:
     license: MPL-2.0
     license_url: https://github.com/mcornick/clilol/blob/main/LICENSE
     name: clilol
-    package_identifier: mcornick.clilol
-    publisher: Mark Cornick
+    publisher: mcornick
     publisher_support_url: https://github.com/mcornick/clilol/issues/new
     publisher_url: https://github.com/mcornick
     release_notes: "{{.Changelog}}"
