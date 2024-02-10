@@ -101,13 +101,18 @@ While I do not build or test for platforms other than the ones listed above, cli
 
 ### SBOM and SLSA
 
-!!! Note
+SBOMs and SLSA provenance are generated for each release. You can use these with tools like [grype](https://github.com/anchore/grype) and [slsa-verifier](https://github.com/slsa-framework/slsa-verifier).
 
-    This needs a better explanation.
 
-SBOMs and SLSA provenance are generated for each release. If you know
-what these are and know that you need them, I assume you also know what
-to do with them.
+```bash
+grype clilol_X.Y.Z_darwin_all.tar.gz.sbom
+grype ghcr.io/mcornick/clilol
+```
+
+```bash
+slsa-verifier verify-artifact clilol_X.Y.Z_darwin_all.tar.gz --provenance-path multiple.intoto.jsonl --source-uri github.com/mcornick/clilol --source-tag vX.Y.Z
+slsa-verifier verify-image ghcr.io/mcornick/clilol:vX.Y.Z@sha256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --source-uri github.com/mcornick/clilol --source-tag vX.Y.Z
+```
 
 ## Configuration File
 
