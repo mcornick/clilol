@@ -190,6 +190,6 @@ winget:
       name: winget
       owner: mcornick
     short_description: A CLI for omg.lol
-    skip_upload: false
+    skip_upload: auto
     tags:
       - omglol
