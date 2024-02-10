@@ -3,7 +3,7 @@ announce:
   mastodon:
     enabled: true
     server: https://social.sdf.org
-  skip: '{{ne .Prerelease ""}}'
+  skip: '{{ ne .Prerelease "" }}'
 archives:
   - builds_info:
       group: root
@@ -61,7 +61,7 @@ builds:
     flags:
       - -trimpath
     ldflags:
-      - -s -w -X github.com/mcornick/clilol/cmd.version={{.Version}} -X github.com/mcornick/clilol/cmd.commit={{.ShortCommit}} -X github.com/mcornick/clilol/cmd.date={{.CommitDate}}
+      - -s -w -X github.com/mcornick/clilol/cmd.version={{ .Version }} -X github.com/mcornick/clilol/cmd.commit={{ .ShortCommit }} -X github.com/mcornick/clilol/cmd.date={{ .CommitDate }}
     mod_timestamp: "{{ .CommitTimestamp }}"
     targets:
       - go_first_class
@@ -88,24 +88,24 @@ docker_signs:
 kos:
   - bare: true
     build: clilol
-    creation_time: "{{.CommitTimestamp}}"
-    ko_data_creation_time: "{{.CommitTimestamp}}"
+    creation_time: "{{ .CommitTimestamp }}"
+    ko_data_creation_time: "{{ .CommitTimestamp }}"
     labels:
       io.artifacthub.package.license: MPL-2.0
       io.artifacthub.package.maintainers: '[{"name":"Mark Cornick","email":"mark@markcornick.com"}]'
       io.artifacthub.package.readme-url: https://github.com/mcornick/clilol/tree/main/item/README.md
       org.opencontainers.image.description: A CLI for omg.lol
-      org.opencontainers.image.name: "{{.ProjectName}}"
-      org.opencontainers.image.revision: "{{.FullCommit}}"
-      org.opencontainers.image.source: "{{.GitURL}}"
-      org.opencontainers.image.version: "{{.Version}}"
+      org.opencontainers.image.name: "{{ .ProjectName }}"
+      org.opencontainers.image.revision: "{{ .FullCommit }}"
+      org.opencontainers.image.source: "{{ .GitURL }}"
+      org.opencontainers.image.version: "{{ .Version }}"
     platforms:
       - linux/amd64
       - linux/arm64
     repository: ghcr.io/mcornick/clilol
     tags:
       - latest
-      - "{{.Tag}}"
+      - "{{ .Tag }}"
 milestones:
   - close: true
 nfpms:
@@ -185,7 +185,7 @@ winget:
     publisher: mcornick
     publisher_support_url: https://github.com/mcornick/clilol/issues/new
     publisher_url: https://github.com/mcornick
-    release_notes: "{{.Changelog}}"
+    release_notes: "{{ .Changelog }}"
     repository:
       name: winget
       owner: mcornick
