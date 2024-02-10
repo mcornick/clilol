@@ -22,10 +22,6 @@ jobs:
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-      - env:
-          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-        run: echo "$GPG_PRIVATE_KEY" > /home/runner/gpgkey.asc && chmod 600 /home/runner/gpgkey.asc
-        shell: bash
       - uses: docker/login-action@v3.0.0
         with:
           password: ${{ secrets.GH_PAT }}
@@ -46,8 +42,6 @@ jobs:
         with:
           args: release --clean
           version: latest
-      - run: rm /home/runner/gpgkey.asc
-        shell: bash
       - env:
           ARTIFACTS: ${{ steps.goreleaser.outputs.artifacts }}
         id: hash
