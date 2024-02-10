@@ -41,6 +41,7 @@ jobs:
       - env:
           AUR_KEY: ${{ secrets.AUR_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
           MASTODON_CLIENT_ID: ${{ secrets.MASTODON_CLIENT_ID }}
           MASTODON_CLIENT_SECRET: ${{ secrets.MASTODON_CLIENT_SECRET }}
@@ -52,15 +53,14 @@ jobs:
       - run: rm /home/runner/gpgkey.asc
         shell: bash
       - env:
-          ARTIFACTS: "${{ steps.goreleaser.outputs.artifacts }}"
+          ARTIFACTS: ${{ steps.goreleaser.outputs.artifacts }}
         id: hash
         run: |
           set -euo pipefail
-
           checksum_file=$(echo "$ARTIFACTS" | jq -r '.[] | select (.type=="Checksum") | .path')
           echo "hashes=$(cat $checksum_file | base64 -w0)" >> "$GITHUB_OUTPUT"
       - env:
-          ARTIFACTS: "${{ steps.goreleaser.outputs.artifacts }}"
+          ARTIFACTS: ${{ steps.goreleaser.outputs.artifacts }}
         id: digest
         run: |
           set -euo pipefail
@@ -70,7 +70,8 @@ jobs:
           echo "name=$image" >> "$GITHUB_OUTPUT"
           echo "digest=$digest" >> "$GITHUB_OUTPUT"
   binary-provenance:
-    needs: [goreleaser]
+    needs:
+      - goreleaser
     permissions:
       actions: read
       id-token: write
@@ -80,7 +81,8 @@ jobs:
       base64-subjects: "${{ needs.goreleaser.outputs.hashes }}"
       upload-assets: true
   image-provenance:
-    needs: [goreleaser]
+    needs:
+      - goreleaser
     permissions:
       actions: read
       id-token: write
