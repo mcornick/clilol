@@ -30,8 +30,7 @@ jobs:
       - run: |
           sudo apt-get update
           sudo apt-get install -y nix-bin
-          sudo usermod -aG runner nix-users
-          printf "sandbox = false\nallowed-users = ['runner']\n" | sudo tee /etc/nix/nix.conf
+          sudo usermod -aG nix-users runner
           sudo systemctl enable --now nix-daemon
       - env:
           AUR_KEY: ${{ secrets.AUR_KEY }}
