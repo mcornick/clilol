@@ -167,7 +167,7 @@ scoops:
     repository:
       name: scoop-bucket
       owner: mcornick
-    skip_upload: auto
+    skip_upload: false
 signs:
   - artifacts: checksum
     args: ["--batch", "-u", "{{ .Env.GPG_FINGERPRINT }}", "--output", "${signature}", "--detach-sign", "${artifact}"]
