@@ -30,9 +30,8 @@ jobs:
       - run: |
           sudo apt-get update
           sudo apt-get install -y nix-bin
-          sudo usermod -aG nix-users runner
           sudo systemctl enable --now nix-daemon
-          newgrp nix-users
+          sudo chmod -R 777 /nix/var/nix/daemon-socket
       - env:
           AUR_KEY: ${{ secrets.AUR_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
