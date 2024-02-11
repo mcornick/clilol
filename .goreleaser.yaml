@@ -175,21 +175,3 @@ snapshot:
   name_template: "{{ incpatch .Version }}-next"
 universal_binaries:
   - replace: true
-winget:
-  - copyright: Mark Cornick
-    description: A CLI for omg.lol
-    homepage: https://clilol.readthedocs.io
-    license: MPL-2.0
-    license_url: https://github.com/mcornick/clilol/blob/main/LICENSE
-    name: clilol
-    publisher: mcornick
-    publisher_support_url: https://github.com/mcornick/clilol/issues/new
-    publisher_url: https://github.com/mcornick
-    release_notes: "{{ .Changelog }}"
-    repository:
-      name: winget
-      owner: mcornick
-    short_description: A CLI for omg.lol
-    skip_upload: auto
-    tags:
-      - omglol
