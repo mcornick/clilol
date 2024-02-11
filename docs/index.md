@@ -184,10 +184,6 @@ Environment variables take precedence over any configuration file.
 
 ## Reading apikey from a command
 
-!!! Note
-
-    This has not been tested on Windows (yet.)
-
 Rather than hardcoding your API key in the configuration file or environment, you can specify a command which, when run, will return the API key on standard output, such as:
 
 config.yaml:
