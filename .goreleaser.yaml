@@ -152,7 +152,7 @@ nix:
     repository:
       name: nixpkgs
       owner: mcornick
-    skip_upload: false
+    skip_upload: auto
 release:
   github:
     name: clilol
