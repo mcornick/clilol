@@ -26,7 +26,7 @@ I maintain a [Scoop](https://scoop.sh/) bucket.
 
 ```powershell
 scoop bucket add mcornick https://github.com/mcornick/scoop-bucket.git
-scoop install clilol
+scoop install mcornick/clilol
 ```
 
 ### Container Images
@@ -154,7 +154,7 @@ config.json:
 }
 ```
 
-A [JSON Schema](config.schema.json) for the configuration file is available, for editors that support it.
+A [JSON Schema](https://raw.githubusercontent.com/mcornick/clilol/main/docs/config.schema.json) for the configuration file is available, for editors that support it.
 
 !!! Note
 
