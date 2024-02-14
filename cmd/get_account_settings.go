@@ -27,9 +27,15 @@ var getAccountSettingsCmd = &cobra.Command{
 		result, err := getAccountSettings()
 		handleAPIError(err)
 		fmt.Printf("Owner: %s\n", result.Owner)
-		fmt.Printf("Communication: %s\n", *result.Communication)
-		fmt.Printf("Date Format: %s\n", *result.DateFormat)
-		fmt.Printf("Web Editor: %s\n", *result.WebEditor)
+		if result.Communication != nil {
+			fmt.Printf("Communication: %s\n", *result.Communication)
+		}
+		if result.DateFormat != nil {
+			fmt.Printf("Date Format: %s\n", *result.DateFormat)
+		}
+		if result.WebEditor != nil {
+			fmt.Printf("Web Editor: %s\n", *result.WebEditor)
+		}
 	},
 }
 

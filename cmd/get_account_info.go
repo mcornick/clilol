@@ -27,7 +27,9 @@ var getAccountInfoCmd = &cobra.Command{
 		handleAPIError(err)
 		fmt.Printf("%s (%s)\n", result.Name, result.Email)
 		fmt.Printf("Created %s\n", result.Created.RelativeTime)
-		fmt.Printf("Communication: %s\n", *result.Settings.Communication)
+		if result.Settings.Communication != nil {
+			fmt.Printf("Communication: %s\n", *result.Settings.Communication)
+		}
 	},
 }
 

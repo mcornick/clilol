@@ -34,11 +34,13 @@ your own address.`,
 		result, err := listPaste(addressFlag)
 		handleAPIError(err)
 		for _, paste := range result {
-			fmt.Printf(
-				"%s modified on %s\n",
-				paste.Title,
-				time.Unix(*paste.ModifiedOn, 0),
-			)
+			if paste.ModifiedOn != nil {
+				fmt.Printf(
+					"%s modified on %s\n",
+					paste.Title,
+					time.Unix(*paste.ModifiedOn, 0),
+				)
+			}
 		}
 	},
 }
