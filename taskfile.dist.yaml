@@ -4,7 +4,7 @@ tasks:
     cmds:
       - "go test ./..."
     env:
-      CLILOL_ADDRESS: "mcornick"
+      CLILOL_ADDRESS: "clilol-testing"
       CLILOL_APIKEYCMD: "gopass -o api.omg.lol"
       CLILOL_EMAIL: "mark@markcornick.com"
       CLILOL_NAME: "Mark Cornick"
