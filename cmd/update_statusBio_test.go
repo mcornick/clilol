@@ -9,6 +9,7 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
 	"testing"
 )
@@ -19,7 +20,11 @@ func Test_updateStatusBio(t *testing.T) {
 		t.Errorf("updateStatusBio() error = %v", err)
 		return
 	}
-	expected := "OK, the bio on " + os.Getenv("CLILOL_ADDRESS") + ".status.lol has been saved. [View it live.](https://status.lol/" + os.Getenv("CLILOL_ADDRESS") + ")"
+	expected := fmt.Sprintf(
+		"OK, the bio on %s.status.lol has been saved. [View it live.](https://status.lol/%s)",
+		os.Getenv("CLILOL_ADDRESS"),
+		os.Getenv("CLILOL_ADDRESS"),
+	)
 	if updateResult.Response.Message != expected {
 		t.Errorf("updateStatusBio() = %v, want %v", updateResult.Response.Message, expected)
 	}
