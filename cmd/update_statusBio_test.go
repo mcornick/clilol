@@ -19,7 +19,7 @@ func Test_updateStatusBio(t *testing.T) {
 		t.Errorf("updateStatusBio() error = %v", err)
 		return
 	}
-	expected := "OK, the bio on clilol-testing.status.lol has been saved. [View it live.](https://status.lol/" + os.Getenv("CLILOL_ADDRESS") + ")"
+	expected := "OK, the bio on " + os.Getenv("CLILOL_ADDRESS") + ".status.lol has been saved. [View it live.](https://status.lol/" + os.Getenv("CLILOL_ADDRESS") + ")"
 	if updateResult.Response.Message != expected {
 		t.Errorf("updateStatusBio() = %v, want %v", updateResult.Response.Message, expected)
 	}
