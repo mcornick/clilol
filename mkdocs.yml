@@ -2,7 +2,7 @@
 copyright: Copyright &copy; 2023 Mark Cornick
 extra:
   social:
-    - icon: fontawesome/brands/git-alt
+    - icon: fontawesome/brands/github
       link: https://github.com/mcornick/clilol
     - icon: fontawesome/brands/mastodon
       link: https://social.sdf.org/@mcornick
