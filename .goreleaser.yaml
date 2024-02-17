@@ -146,7 +146,7 @@ nix:
   - description: A CLI for omg.lol
     extra_install: |-
       installManPage ./manpages/*.1
-      installShellCompletion ./completions/*
+      installShellCompletion ./completions/clilol.{bash,fish,zsh}
     homepage: https://clilol.readthedocs.io/
     license: mpl20
     repository:
