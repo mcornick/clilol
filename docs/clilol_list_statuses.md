@@ -13,7 +13,8 @@ The address can be specified with the --address flag. If not set,
 it defaults to your own address.
 
 The number of statuses returned can be specified with the --limit
-flag. If not set, it will return all statuses for the user.
+flag. If not set, it will return all statuses for the user. If
+set to more statuses than exist, it will return all statuses.
 
 See the statuslog commands to get statuses for all users.
 

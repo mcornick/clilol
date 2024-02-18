@@ -25,10 +25,18 @@ func Test_crudStatus(t *testing.T) {
 	}
 	statusID := createResult.Response.ID
 
-	_, err = listStatus(os.Getenv("CLILOL_ADDRESS"), 1)
+	listResult, err := listStatus(os.Getenv("CLILOL_ADDRESS"), 0)
 	if err != nil {
 		t.Errorf("listStatus() error = %v", err)
 		return
+	}
+	listResult2, err := listStatus(os.Getenv("CLILOL_ADDRESS"), len(listResult.Response.Statuses)+1)
+	if err != nil {
+		t.Errorf("listStatus() error = %v", err)
+		return
+	}
+	if len(listResult2.Response.Statuses) != len(listResult.Response.Statuses) {
+		t.Errorf("listStatus() = %v, wanted %v", len(listResult2.Response.Statuses), len(listResult.Response.Statuses))
 	}
 
 	getResult, err := getStatus(os.Getenv("CLILOL_ADDRESS"), statusID)

@@ -45,7 +45,8 @@ The address can be specified with the --address flag. If not set,
 it defaults to your own address.
 
 The number of statuses returned can be specified with the --limit
-flag. If not set, it will return all statuses for the user.
+flag. If not set, it will return all statuses for the user. If
+set to more statuses than exist, it will return all statuses.
 
 See the statuslog commands to get statuses for all users.`,
 		Args: cobra.NoArgs,
@@ -98,6 +99,9 @@ func listStatus(address string, limit int) (listStatusOutput, error) {
 		false,
 	)
 	err := json.Unmarshal(body, &result)
+	if limit > len(result.Response.Statuses) {
+		limit = len(result.Response.Statuses)
+	}
 	if limit > 0 && err == nil {
 		result.Response.Statuses = result.Response.Statuses[:limit]
 	}
