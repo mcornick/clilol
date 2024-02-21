@@ -8,6 +8,9 @@ extra:
       link: https://social.sdf.org/@mcornick
 markdown_extensions:
   - admonition
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
 plugins:
   - search
 repo_name: mcornick/clilol
@@ -17,4 +20,27 @@ site_description: a CLI for omg.lol
 site_name: clilol, a CLI for omg.lol
 site_url: https://clilol.readthedocs.io/
 theme:
-  name: readthedocs
+  features:
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+  icon:
+    logo: fontawesome/solid/heart
+    repo: fontawesome/brands/github
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: pink
+      accent: pink
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: pink
+      accent: pink
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
