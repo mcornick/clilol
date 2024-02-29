@@ -11,98 +11,89 @@ Please see the links in the navigation menu to the left to learn about all the d
 
 You can install clilol in any of these ways. (These are the only supported builds of clilol. I don't submit them to "official" repositories, at least not yet. If you find a problem with anyone else's build, please try my builds instead.)
 
-### Homebrew
+=== "Homebrew"
 
-I maintain a [Homebrew](https://brew.sh/) tap.
+    ```bash
+    brew tap mcornick/tap https://github.com/mcornick/homebrew-tap.git
+    brew install mcornick/tap/clilol
+    ```
 
-```bash
-brew tap mcornick/tap https://github.com/mcornick/homebrew-tap.git
-brew install mcornick/tap/clilol
-```
+=== "Scoop"
 
-### Scoop
+    ```powershell
+    scoop bucket add mcornick https://github.com/mcornick/scoop-bucket.git
+    scoop install mcornick/clilol
+    ```
 
-I maintain a [Scoop](https://scoop.sh/) bucket.
+=== "Arch User Repository"
 
-```powershell
-scoop bucket add mcornick https://github.com/mcornick/scoop-bucket.git
-scoop install mcornick/clilol
-```
+    ```
+    git clone https://github.com/mcornick/clilol-aur.git
+    cd clilol-aur
+    makepkg -i
+    ```
 
-### Container Images
+=== "Nix"
 
-I maintain container images on GitHub.
+    Add to `~/.config/nixpkgs/config.nix`:
 
-```bash
-docker run --rm ghcr.io/mcornick/clilol
-```
+    ```
+    {
+      packageOverrides = pkgs: {
+        mcornick = import (builtins.fetchGit { url = "https://github.com/mcornick/nixpkgs.git"; }) {
+          inherit pkgs;
+        };
+      };
+    }
+    ```
 
-Container manifests are signed with [Cosign](https://docs.sigstore.dev/cosign/overview/). Ephemeral keys from GitHub are used, so you'll need to specify a certificate identity that matches the tag you're trying to verify.
+    and/or add to `/etc/nixos/configuration.nix`:
 
-```bash
-cosign verify --certificate-identity=https://github.com/mcornick/clilol/.github/workflows/goreleaser.yaml@refs/tags/vX.Y.Z --certificate-oidc-issuer=https://token.actions.githubusercontent.com ghcr.io/mcornick/clilol:vX.Y.Z
-```
+    ```
+    {
+      nixpkgs.config.packageOverrides = pkgs: {
+        mcornick = import (builtins.fetchGit { url = "https://github.com/mcornick/nixpkgs.git"; }) {
+          inherit pkgs;
+        };
+      };
+    }
+    ```
 
-### Binaries and Linux packages
+    and then do something like `nix-env -iA nixos.mcornick.clilol`.
 
-I maintain binary releases on GitHub [here](https://github.com/mcornick/clilol/releases). Releases are built for macOS (universal), Linux (i386, amd64, arm64, and armv6) and Windows (i386, amd64). Linux packages are built in RPM, DEB, APK, and Arch Linux pkg.tar.zst formats.
+=== "Container Images"
 
-Binary checksums included on the release pages are signed with my [PGP key](https://github.com/mcornick.gpg).
+    ```bash
+    docker run --rm ghcr.io/mcornick/clilol
+    ```
 
-!!! Note
+    Container manifests are signed with [Cosign](https://docs.sigstore.dev/cosign/overview/). Ephemeral keys from GitHub are used, so you'll need to specify a certificate identity that matches the tag you're trying to verify.
 
-    macOS will likely complain that the `clilol` binary is from an
-    unidentified developer. To avoid this, install clilol with
-    Homebrew.
+    ```bash
+    cosign verify --certificate-identity=https://github.com/mcornick/clilol/.github/workflows/goreleaser.yaml@refs/tags/vX.Y.Z --certificate-oidc-issuer=https://token.actions.githubusercontent.com ghcr.io/mcornick/clilol:vX.Y.Z
+    ```
 
-### Arch User Repository
+=== "Binaries and Linux packages"
 
-I maintain an [AUR](https://wiki.archlinux.org/title/Arch_User_Repository) for clilol.
+    I maintain binary releases on GitHub [here](https://github.com/mcornick/clilol/releases). Releases are built for macOS (universal), Linux (i386, amd64, arm64, and armv6) and Windows (i386, amd64). Linux packages are built in RPM, DEB, APK, and Arch Linux pkg.tar.zst formats.
 
-```
-git clone https://github.com/mcornick/clilol-aur.git
-cd clilol-aur
-makepkg -i
-```
+    Binary checksums included on the release pages are signed with my [PGP key](https://github.com/mcornick.gpg).
 
-### Nix
+    !!! Note
 
-I maintain a [Nix](https://nixos.org/) repository. Add to `~/.config/nixpkgs/config.nix`:
+        macOS will likely complain that the `clilol` binary is from an
+        unidentified developer. To avoid this, install clilol with
+        Homebrew.
 
-```
-{
-  packageOverrides = pkgs: {
-    mcornick = import (builtins.fetchGit { url = "https://github.com/mcornick/nixpkgs.git"; }) {
-      inherit pkgs;
-    };
-  };
-}
-```
+=== "From source"
 
-and/or add to `/etc/nixos/configuration.nix`:
+    The usual: `go install github.com/mcornick/clilol@latest`
 
-```
-{
-  nixpkgs.config.packageOverrides = pkgs: {
-    mcornick = import (builtins.fetchGit { url = "https://github.com/mcornick/nixpkgs.git"; }) {
-      inherit pkgs;
-    };
-  };
-}
-```
-
-and then do something like `nix-env -iA nixos.mcornick.clilol`.
-
-### From source
-
-The usual: `go install github.com/mcornick/clilol@latest`
-
-While I do not build or test for platforms other than the ones listed above, clilol _should_ still build and run on any platform supported by Go, and if you find that it does not, feel free to file an issue, and I'll take a look.
+    While I do not build or test for platforms other than the ones listed above, clilol _should_ still build and run on any platform supported by Go, and if you find that it does not, feel free to file an issue, and I'll take a look.
 
 ### SBOM and SLSA
 
 SBOMs and SLSA provenance are generated for each release. You can use these with tools like [grype](https://github.com/anchore/grype) and [slsa-verifier](https://github.com/slsa-framework/slsa-verifier).
-
 
 ```bash
 grype clilol_X.Y.Z_darwin_all.tar.gz.sbom
