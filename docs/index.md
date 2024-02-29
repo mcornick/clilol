@@ -91,20 +91,6 @@ You can install clilol in any of these ways. (These are the only supported build
 
     While I do not build or test for platforms other than the ones listed above, clilol _should_ still build and run on any platform supported by Go, and if you find that it does not, feel free to file an issue, and I'll take a look.
 
-### SBOM and SLSA
-
-SBOMs and SLSA provenance are generated for each release. You can use these with tools like [grype](https://github.com/anchore/grype) and [slsa-verifier](https://github.com/slsa-framework/slsa-verifier).
-
-```bash
-grype clilol_X.Y.Z_darwin_all.tar.gz.sbom
-grype ghcr.io/mcornick/clilol
-```
-
-```bash
-slsa-verifier verify-artifact clilol_X.Y.Z_darwin_all.tar.gz --provenance-path multiple.intoto.jsonl --source-uri github.com/mcornick/clilol --source-tag vX.Y.Z
-slsa-verifier verify-image ghcr.io/mcornick/clilol:vX.Y.Z@sha256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --source-uri github.com/mcornick/clilol --source-tag vX.Y.Z
-```
-
 ## Configuration File
 
 clilol expects a configuration file to specify your address, login email, and API key. You can find your API key on [your omg.lol account page](https://home.omg.lol/account).
@@ -217,9 +203,21 @@ If apikeycmd is specified, it takes precedence over apikey if that is also speci
 
 ## Etc.
 
+SBOMs and SLSA provenance are generated for each release. You can use these with tools like [grype](https://github.com/anchore/grype) and [slsa-verifier](https://github.com/slsa-framework/slsa-verifier).
+
+```bash
+grype clilol_X.Y.Z_darwin_all.tar.gz.sbom
+grype ghcr.io/mcornick/clilol
+```
+
+```bash
+slsa-verifier verify-artifact clilol_X.Y.Z_darwin_all.tar.gz --provenance-path multiple.intoto.jsonl --source-uri github.com/mcornick/clilol --source-tag vX.Y.Z
+slsa-verifier verify-image ghcr.io/mcornick/clilol:vX.Y.Z@sha256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --source-uri github.com/mcornick/clilol --source-tag vX.Y.Z
+```
+
 clilol releases are announced on [my Mastodon account](https://social.sdf.org/@mcornick) which you are welcome to follow.
 
-To verify signatures on commits to clilol, you might need [my SSH public key](https://github.com/mcornick.keys) or [my PGP public key](https://github.com/mcornick.gpg).
+To verify signatures on git commits to clilol, you might need [my SSH public key](https://github.com/mcornick.keys) or [my PGP public key](https://github.com/mcornick.gpg).
 
 Thanks to the following people for helping to improve clilol:
 
