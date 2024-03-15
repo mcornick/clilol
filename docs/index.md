@@ -25,6 +25,24 @@ You can install clilol in any of these ways. (These are the only supported build
     scoop install mcornick/clilol
     ```
 
+=== "YUM Repository"
+
+    ```
+    # /etc/yum.repos.d/mcornick.repo
+    [mcornick]
+    name=mcornick yum repo
+    baseurl=https://yum.fury.io/mcornick/
+    enabled=1
+    gpgcheck=0
+    ```
+
+=== "APT Repository"
+
+    ```
+    # /etc/apt/sources.list.d/mcornick.list
+    deb [trusted=yes] https://apt.fury.io/mcornick/ /
+    ```
+
 === "Arch User Repository"
 
     ```

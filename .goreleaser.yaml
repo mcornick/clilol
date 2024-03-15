@@ -153,6 +153,11 @@ nix:
       name: nixpkgs
       owner: mcornick
     skip_upload: auto
+publishers:
+  - name: fury.io
+    env:
+      - "FURY_TOKEN={{ .Env.FURY_TOKEN }}"
+    cmd: bash ./scripts/fury-upload.sh {{ .ArtifactName }}
 release:
   github:
     name: clilol
