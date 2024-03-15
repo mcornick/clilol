@@ -1,4 +1,4 @@
-#!/bin/sh -e
+set -e
 rm -rf manpages
 mkdir manpages
 cd manpages
