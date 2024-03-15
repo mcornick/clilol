@@ -158,6 +158,7 @@ publishers:
     env:
       - "FURY_TOKEN={{ .Env.FURY_TOKEN }}"
     cmd: bash ./scripts/fury-upload.sh {{ .ArtifactName }}
+    disable: '{{ if ne .Prerelease "" }}true{{ end }}'
 release:
   github:
     name: clilol
