@@ -152,7 +152,6 @@ nix:
     repository:
       name: nixpkgs
       owner: mcornick
-    skip_upload: auto
 publishers:
   - name: fury.io
     env:
