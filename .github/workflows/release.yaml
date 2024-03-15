@@ -34,6 +34,7 @@ jobs:
           sudo chmod -R 777 /nix/var/nix/daemon-socket
       - env:
           AUR_KEY: ${{ secrets.AUR_KEY }}
+          FURY_TOKEN: ${{ secrets.FURY_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
