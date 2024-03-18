@@ -21,3 +21,4 @@ tasks:
     cmds:
       - go vet ./...
 version: 3
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
