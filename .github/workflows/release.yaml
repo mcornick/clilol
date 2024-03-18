@@ -22,7 +22,7 @@ jobs:
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-      - uses: docker/login-action@v3.0.0
+      - uses: docker/login-action@v3.1.0
         with:
           password: ${{ secrets.GH_PAT }}
           registry: ghcr.io
