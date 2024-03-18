@@ -1,11 +1,17 @@
 ---
 tasks:
+  build:
+    cmds:
+      - go build
+  clean:
+    cmds:
+      - go clean
   test:
     cmds:
-      - "go test ./..."
+      - go test ./...
     env:
-      CLILOL_ADDRESS: "clilol-testing"
-      CLILOL_APIKEYCMD: "gopass -o api.omg.lol"
-      CLILOL_EMAIL: "mark@markcornick.com"
-      CLILOL_NAME: "Mark Cornick"
-version: "3"
+      CLILOL_ADDRESS: clilol-testing
+      CLILOL_APIKEYCMD: gopass -o api.omg.lol
+      CLILOL_EMAIL: mark@markcornick.com
+      CLILOL_NAME: Mark Cornick
+version: 3
