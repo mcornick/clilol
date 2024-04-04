@@ -12,7 +12,10 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
 plugins:
+  - minify:
+      minify_html: true
   - search
+  - social
 repo_name: mcornick/clilol
 repo_url: https://github.com/mcornick/clilol
 site_author: Mark Cornick
