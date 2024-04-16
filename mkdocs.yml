@@ -5,7 +5,7 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/mcornick/clilol
     - icon: fontawesome/brands/mastodon
-      link: https://social.sdf.org/@mcornick
+      link: https://mastodon.sdf.org/@mcornick
 markdown_extensions:
   - admonition
   - pymdownx.superfences
