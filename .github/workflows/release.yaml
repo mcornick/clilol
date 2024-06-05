@@ -22,7 +22,7 @@ jobs:
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-      - uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # ratchet:docker/login-action@v3.1.0
+      - uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # ratchet:docker/login-action@v3.2.0
         with:
           password: ${{ secrets.GH_PAT }}
           registry: ghcr.io
