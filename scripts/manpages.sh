@@ -1,3 +1,4 @@
+#!/bin/bash
 set -e
 rm -rf manpages
 mkdir manpages
