@@ -7,22 +7,22 @@ jobs:
       digest: ${{ steps.digest.outputs.digest }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # ratchet:actions/checkout@v4.1.6
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # ratchet:actions/checkout@v4.1.7
         with:
           fetch-depth: 0
       - run: git fetch --force --tags
-      - uses: actions/setup-go@cdcb36043654635271a94b9a6d1392de5bb323a7 # ratchet:actions/setup-go@v5.0.1
+      - uses: actions/setup-go@0a12ed9d6a96ab950c8f026ed9f722fe0da7ef32 # ratchet:actions/setup-go@v5.0.2
         with:
           cache: true
           go-version: ">=1.20.2"
       - uses: sigstore/cosign-installer@59acb6260d9c0ba8f4a2f9d9b48431a222b68e20 # ratchet:sigstore/cosign-installer@v3.5.0
-      - uses: anchore/sbom-action/download-syft@e8d2a6937ecead383dfe75190d104edd1f9c5751 # ratchet:anchore/sbom-action/download-syft@v0.16.0
+      - uses: anchore/sbom-action/download-syft@d94f46e13c6c62f59525ac9a1e147a99dc0b9bf5 # ratchet:anchore/sbom-action/download-syft@v0.17.0
       - id: import_gpg
         uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4 # ratchet:crazy-max/ghaction-import-gpg@v6.1.0
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-      - uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # ratchet:docker/login-action@v3.2.0
+      - uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # ratchet:docker/login-action@v3.3.0
         with:
           password: ${{ secrets.GH_PAT }}
           registry: ghcr.io
