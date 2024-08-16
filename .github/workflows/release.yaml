@@ -7,31 +7,31 @@ jobs:
       digest: ${{ steps.digest.outputs.digest }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # ratchet:actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.1.7
         with:
           fetch-depth: 0
       - run: git fetch --force --tags
-      - uses: actions/setup-go@0a12ed9d6a96ab950c8f026ed9f722fe0da7ef32 # ratchet:actions/setup-go@v5.0.2
+      - uses: actions/setup-go@v5.0.2
         with:
           cache: true
           go-version: ">=1.20.2"
-      - uses: sigstore/cosign-installer@4959ce089c160fddf62f7b42464195ba1a56d382 # ratchet:sigstore/cosign-installer@v3.6.0
-      - uses: anchore/sbom-action/download-syft@ab9d16d4b419c9d1a02df5213fa0ebe965ca5a57 # ratchet:anchore/sbom-action/download-syft@v0.17.1
+      - uses: sigstore/cosign-installer@v3.6.0
+      - uses: anchore/sbom-action/download-syft@v0.17.1
       - id: import_gpg
-        uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4 # ratchet:crazy-max/ghaction-import-gpg@v6.1.0
+        uses: crazy-max/ghaction-import-gpg@v6.1.0
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-      - uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # ratchet:docker/login-action@v3.3.0
+      - uses: docker/login-action@v3.3.0
         with:
           password: ${{ secrets.GH_PAT }}
           registry: ghcr.io
           username: mcornick
-      - uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # ratchet:docker/login-action@v3.3.0
+      - uses: docker/login-action@v3.3.0
         with:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           username: mcornick
-      - uses: cachix/install-nix-action@ba0dd844c9180cbf77aa72a116d6fbc515d0e87b # ratchet:cachix/install-nix-action@v27
+      - uses: cachix/install-nix-action@v27
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - env:
@@ -43,7 +43,7 @@ jobs:
           MASTODON_CLIENT_ID: ${{ secrets.MASTODON_CLIENT_ID }}
           MASTODON_CLIENT_SECRET: ${{ secrets.MASTODON_CLIENT_SECRET }}
         id: goreleaser
-        uses: goreleaser/goreleaser-action@286f3b13b1b49da4ac219696163fb8c1c93e1200 # ratchet:goreleaser/goreleaser-action@v6.0.0
+        uses: goreleaser/goreleaser-action@v6.0.0
         with:
           args: release --clean
           version: latest
@@ -71,7 +71,7 @@ jobs:
       actions: read
       id-token: write
       contents: write
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563 # ratchet:slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.0.0
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.0.0
     with:
       base64-subjects: "${{ needs.goreleaser.outputs.hashes }}"
       upload-assets: true
@@ -82,7 +82,7 @@ jobs:
       actions: read
       id-token: write
       packages: write
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563 # ratchet:slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v2.0.0
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v2.0.0
     with:
       image: ${{ needs.goreleaser.outputs.image }}
       digest: ${{ needs.goreleaser.outputs.digest }}
