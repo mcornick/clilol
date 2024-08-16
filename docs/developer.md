@@ -2,20 +2,6 @@
 title: Developer Notes
 ---
 
-## Return To GitHub
-
-clilol development started on GitHub in early 2023. In mid-2023, following the 1.0 release, I moved off GitHub, motivated by a desire to distance clilol from some of GitHub's changes in organizational direction, such as scraping public code for Copilot.
-
-After several months away, I moved clilol back to GitHub in February 2024. This was motivated by a few things:
-
-- I want to minimize barriers to collaboration. Hosting on my private Git server, where I do not allow outside registrations, cut collaboration off almost entirely. Mirroring on Sourcehut allowed people to participate if they were willing to learn Sourcehut's contribution flow. For better or worse, lots of people are comfortable working through GitHub, and I don't want to exclude them.
-
-- I am a professional UNIX administrator. Running a server on my personal time to host Git is simple for me to do, but is a (admittedly light) burden and a finger on the scale of work-life balance. I'd like to be out of that business eventually.
-
-- Sourcehut still has my (paid) support, but their January 2024 outage left me scrambling to recover a lot of repositories that I didn't have elsewhere. For whatever flaws GitHub has, I don't see them being down for over a week at a time. Additionally, as mentioned, the email-based workflow that Sourcehut uses for contributions is probably to blame for me having received none.
-
-I hope this clarifies why I've made this decision. I'm keeping the other repositories online because they contain some history that is missing from GitHub, but going forward, GitHub will once again be the canonical source.
-
 ## Running tests
 
 Until such time as there's a non-production instance to connect to, or there are mock services available for testing, you'll need an address on the production omg.lol server to run the tests. I use a separate address for this, and recommend you do the same.
@@ -34,8 +20,6 @@ With those set, the tests should run successfully, unless there is some issue co
 ## Contributing to clilol
 
 If you think you have a problem, improvement, or other contribution towards the betterment of clilol, please file an issue or, where appropriate, open a pull request.
-
-As of February 2024, I have moved clilol back to GitHub, to reduce barriers to collaboration. Prior versions can be found at [Sourcehut](https://git.sr.ht/~mcornick/clilol).
 
 Keep in mind that I'm not paid to write Go code, so I'm doing this in my spare time, which means it might take me a while to respond.
 
