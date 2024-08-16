@@ -85,8 +85,6 @@ You can install clilol in any of these ways. (These are the only supported build
 
     ```bash
     docker run --rm ghcr.io/mcornick/clilol
-    # or
-    docker run --rm mcornick/clilol
     ```
 
     Container manifests are signed with [Cosign](https://docs.sigstore.dev/cosign/overview/). Ephemeral keys from GitHub are used, so you'll need to specify a certificate identity that matches the tag you're trying to verify.

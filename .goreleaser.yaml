@@ -89,7 +89,6 @@ kos:
   - bare: true
     build: clilol
     creation_time: "{{ .CommitTimestamp }}"
-    id: clilol-ghcr
     ko_data_creation_time: "{{ .CommitTimestamp }}"
     labels:
       io.artifacthub.package.license: MPL-2.0
@@ -104,27 +103,6 @@ kos:
       - linux/amd64
       - linux/arm64
     repository: ghcr.io/mcornick/clilol
-    tags:
-      - latest
-      - "{{ .Tag }}"
-  - bare: true
-    build: clilol
-    creation_time: "{{ .CommitTimestamp }}"
-    id: clilol-docker
-    ko_data_creation_time: "{{ .CommitTimestamp }}"
-    labels:
-      io.artifacthub.package.license: MPL-2.0
-      io.artifacthub.package.maintainers: '[{"name":"Mark Cornick","email":"mark@markcornick.com"}]'
-      io.artifacthub.package.readme-url: https://github.com/mcornick/clilol/tree/main/item/README.md
-      org.opencontainers.image.description: A CLI for omg.lol
-      org.opencontainers.image.name: "{{ .ProjectName }}"
-      org.opencontainers.image.revision: "{{ .FullCommit }}"
-      org.opencontainers.image.source: "{{ .GitURL }}"
-      org.opencontainers.image.version: "{{ .Version }}"
-    platforms:
-      - linux/amd64
-      - linux/arm64
-    repository: mcornick/clilol
     tags:
       - latest
       - "{{ .Tag }}"
