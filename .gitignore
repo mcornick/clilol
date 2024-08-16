@@ -10,5 +10,3 @@ manpages
 oryxBuildBinary
 site
 taskfile.yaml
-
-dist/
