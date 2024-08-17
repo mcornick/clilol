@@ -1,11 +1,10 @@
 ---
 title: "clilol create weblog"
 ---
-## clilol create weblog
 
 Create a weblog entry
 
-### Synopsis
+## Synopsis
 
 Creates an entry in your weblog.
 
@@ -17,13 +16,13 @@ from stdin.
 clilol create weblog [flags]
 ```
 
-### Options
+## Options
 
 ```
   -f, --filename string   file to read entry from (default stdin)
   -h, --help              help for weblog
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol create](clilol_create.md)	 - Create things

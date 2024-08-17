@@ -1,11 +1,10 @@
 ---
 title: "clilol list account addresses"
 ---
-## clilol list account addresses
 
 List addresses on your account
 
-### Synopsis
+## Synopsis
 
 Lists addresses on your account.
 
@@ -13,12 +12,12 @@ Lists addresses on your account.
 clilol list account addresses [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help   help for addresses
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol list account](clilol_list_account.md)	 - List information about your account

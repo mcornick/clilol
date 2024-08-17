@@ -1,11 +1,10 @@
 ---
 title: "clilol list pictures"
 ---
-## clilol list pictures
 
 List pictures
 
-### Synopsis
+## Synopsis
 
 Lists pictures shared to some.pics.
 
@@ -13,12 +12,12 @@ Lists pictures shared to some.pics.
 clilol list pictures [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help   help for pictures
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol list](clilol_list.md)	 - List things

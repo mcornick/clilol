@@ -1,11 +1,10 @@
 ---
 title: "clilol update preference"
 ---
-## clilol update preference
 
 set a preference
 
-### Synopsis
+## Synopsis
 
 Sets omg.lol preferences.
 
@@ -13,12 +12,12 @@ Sets omg.lol preferences.
 clilol update preference [item] [value] [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help   help for preference
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things

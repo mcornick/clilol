@@ -1,11 +1,10 @@
 ---
 title: "clilol update web"
 ---
-## clilol update web
 
 set webpage content
 
-### Synopsis
+## Synopsis
 
 Sets your webpage content.
 
@@ -20,7 +19,7 @@ webpage, use the --publish flag.
 clilol update web [flags]
 ```
 
-### Options
+## Options
 
 ```
   -f, --filename string   file to read webpage from (default stdin)
@@ -28,7 +27,7 @@ clilol update web [flags]
   -p, --publish           publish the updated page (default false)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things
 * [clilol update web pfp](clilol_update_web_pfp.md)	 - set your profile picture

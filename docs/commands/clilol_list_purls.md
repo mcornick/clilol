@@ -1,11 +1,10 @@
 ---
 title: "clilol list purls"
 ---
-## clilol list purls
 
 List all PURLs
 
-### Synopsis
+## Synopsis
 
 Lists all PURLs for a user.
 
@@ -16,13 +15,13 @@ it defaults to your own address.
 clilol list purls [flags]
 ```
 
-### Options
+## Options
 
 ```
   -a, --address string   address whose PURLs to get
   -h, --help             help for purls
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol list](clilol_list.md)	 - List things

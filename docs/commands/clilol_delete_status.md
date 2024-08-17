@@ -1,11 +1,10 @@
 ---
 title: "clilol delete status"
 ---
-## clilol delete status
 
 Delete a status
 
-### Synopsis
+## Synopsis
 
 Deletes a status.
 
@@ -16,12 +15,12 @@ Be sure you know what you're doing.
 clilol delete status [id] [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help   help for status
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol delete](clilol_delete.md)	 - Delete things

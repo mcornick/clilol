@@ -1,11 +1,10 @@
 ---
 title: "clilol list pastes"
 ---
-## clilol list pastes
 
 List pastes
 
-### Synopsis
+## Synopsis
 
 Lists pastes for a user.
 
@@ -19,13 +18,13 @@ your own address.
 clilol list pastes [flags]
 ```
 
-### Options
+## Options
 
 ```
   -a, --address string   address whose pastes to list
   -h, --help             help for pastes
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol list](clilol_list.md)	 - List things

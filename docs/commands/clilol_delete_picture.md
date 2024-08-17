@@ -1,11 +1,10 @@
 ---
 title: "clilol delete picture"
 ---
-## clilol delete picture
 
 Delete a picture
 
-### Synopsis
+## Synopsis
 
 Deletes a picture from some.pics.
 
@@ -16,12 +15,12 @@ Be sure you know what you're doing.
 clilol delete picture [id] [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help   help for picture
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol delete](clilol_delete.md)	 - Delete things

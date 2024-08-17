@@ -1,11 +1,10 @@
 ---
 title: "clilol get status-bio"
 ---
-## clilol get status-bio
 
 Get status bio
 
-### Synopsis
+## Synopsis
 
 Gets status bio for a user from status.lol.
 
@@ -19,13 +18,13 @@ Note that any custom CSS set on the bio is ignored.
 clilol get status-bio [flags]
 ```
 
-### Options
+## Options
 
 ```
   -a, --address string   address whose status bio to get
   -h, --help             help for status-bio
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things

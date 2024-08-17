@@ -1,22 +1,21 @@
 ---
 title: "clilol"
 ---
-## clilol
 
 a cli for omg.lol
 
-### Synopsis
+## Synopsis
 
 This is the root command. It does nothing on its own.
 See the subcommands for more information.
 
-### Options
+## Options
 
 ```
   -h, --help   help for clilol
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol create](clilol_create.md)	 - Create things
 * [clilol delete](clilol_delete.md)	 - Delete things

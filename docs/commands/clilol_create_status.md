@@ -1,11 +1,10 @@
 ---
 title: "clilol create status"
 ---
-## clilol create status
 
 Create a status
 
-### Synopsis
+## Synopsis
 
 Posts a status to status.lol.
 
@@ -23,7 +22,7 @@ settings, you can skip cross-posting to Mastodon by setting the
 clilol create status [text] [flags]
 ```
 
-### Options
+## Options
 
 ```
   -e, --emoji string         emoji to add to status (default sparkles)
@@ -31,6 +30,6 @@ clilol create status [text] [flags]
       --skip-mastodon-post   do not cross-post to Mastodon
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol create](clilol_create.md)	 - Create things

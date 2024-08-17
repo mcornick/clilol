@@ -1,11 +1,10 @@
 ---
 title: "clilol update status"
 ---
-## clilol update status
 
 Update a status
 
-### Synopsis
+## Synopsis
 
 Updates a status on status.lol.
 Specify the ID of the status to update with the --id flag. The
@@ -24,13 +23,13 @@ to change it, you'll still need to specify it again.
 clilol update status [id] [text] [flags]
 ```
 
-### Options
+## Options
 
 ```
   -e, --emoji string   emoji to add to status (default sparkles)
   -h, --help           help for status
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things

@@ -1,11 +1,10 @@
 ---
 title: "clilol create paste"
 ---
-## clilol create paste
 
 Create or update a paste
 
-### Synopsis
+## Synopsis
 
 Create or update a paste in your pastebin.
 
@@ -23,7 +22,7 @@ paste, use the --listed flag.
 clilol create paste [title] [flags]
 ```
 
-### Options
+## Options
 
 ```
   -f, --filename string   file to read paste from (default stdin)
@@ -31,6 +30,6 @@ clilol create paste [title] [flags]
   -l, --listed            create paste as listed (default false)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol create](clilol_create.md)	 - Create things

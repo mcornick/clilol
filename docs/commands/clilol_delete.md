@@ -1,21 +1,20 @@
 ---
 title: "clilol delete"
 ---
-## clilol delete
 
 Delete things
 
-### Synopsis
+## Synopsis
 
 These commands delete things.
 
-### Options
+## Options
 
 ```
   -h, --help   help for delete
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol](clilol.md)	 - a cli for omg.lol
 * [clilol delete account](clilol_delete_account.md)	 - Delete information about your account

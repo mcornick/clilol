@@ -1,11 +1,10 @@
 ---
 title: "clilol get address info"
 ---
-## clilol get address info
 
 Get information about an address
 
-### Synopsis
+## Synopsis
 
 Gets information about an address.
 
@@ -13,12 +12,12 @@ Gets information about an address.
 clilol get address info [address] [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help   help for info
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol get address](clilol_get_address.md)	 - Get information about an address

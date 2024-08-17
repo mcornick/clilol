@@ -1,11 +1,10 @@
 ---
 title: "clilol delete paste"
 ---
-## clilol delete paste
 
 Delete a paste
 
-### Synopsis
+## Synopsis
 
 Deletes a paste.
 
@@ -18,12 +17,12 @@ Be sure you know what you're doing.
 clilol delete paste [title] [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help   help for paste
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol delete](clilol_delete.md)	 - Delete things

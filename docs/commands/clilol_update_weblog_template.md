@@ -1,11 +1,10 @@
 ---
 title: "clilol update weblog template"
 ---
-## clilol update weblog template
 
 set your weblog template
 
-### Synopsis
+## Synopsis
 
 Sets template of your weblog.lol weblog.
 
@@ -19,13 +18,13 @@ from stdin.
 clilol update weblog template [flags]
 ```
 
-### Options
+## Options
 
 ```
   -f, --filename string   file to read template from (default stdin)
   -h, --help              help for template
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol update weblog](clilol_update_weblog.md)	 - set your weblog config

@@ -1,21 +1,20 @@
 ---
 title: "clilol list"
 ---
-## clilol list
 
 List things
 
-### Synopsis
+## Synopsis
 
 These commands list things.
 
-### Options
+## Options
 
 ```
   -h, --help   help for list
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol](clilol.md)	 - a cli for omg.lol
 * [clilol list account](clilol_list_account.md)	 - List information about your account

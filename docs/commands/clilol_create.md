@@ -1,21 +1,20 @@
 ---
 title: "clilol create"
 ---
-## clilol create
 
 Create things
 
-### Synopsis
+## Synopsis
 
 These commands create things.
 
-### Options
+## Options
 
 ```
   -h, --help   help for create
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol](clilol.md)	 - a cli for omg.lol
 * [clilol create dns](clilol_create_dns.md)	 - Create a DNS record

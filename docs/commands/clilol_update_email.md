@@ -1,11 +1,10 @@
 ---
 title: "clilol update email"
 ---
-## clilol update email
 
 set email forwarding address(es)
 
-### Synopsis
+## Synopsis
 
 Sets your email forwarding address(es).
 
@@ -15,12 +14,12 @@ To specify multiple addresses, separate them with commas.
 clilol update email [address] [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help   help for email
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things

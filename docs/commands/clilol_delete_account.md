@@ -1,21 +1,20 @@
 ---
 title: "clilol delete account"
 ---
-## clilol delete account
 
 Delete information about your account
 
-### Synopsis
+## Synopsis
 
 The account delete group of commands allows you to delete information about your omg.lol account.
 
-### Options
+## Options
 
 ```
   -h, --help   help for account
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol delete](clilol_delete.md)	 - Delete things
 * [clilol delete account session](clilol_delete_account_session.md)	 - Delete a session

@@ -1,11 +1,10 @@
 ---
 title: "clilol get service"
 ---
-## clilol get service
 
 Get service stats
 
-### Synopsis
+## Synopsis
 
 Gets statistics for omg.lol services.
 
@@ -13,12 +12,12 @@ Gets statistics for omg.lol services.
 clilol get service [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help   help for service
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things

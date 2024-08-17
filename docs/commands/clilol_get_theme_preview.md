@@ -1,11 +1,10 @@
 ---
 title: "clilol get theme preview"
 ---
-## clilol get theme preview
 
 Get theme preview
 
-### Synopsis
+## Synopsis
 
 Gets an HTML preview of a theme.
 
@@ -17,13 +16,13 @@ to stdout.
 clilol get theme preview [theme-name] [flags]
 ```
 
-### Options
+## Options
 
 ```
   -f, --filename string   file to write preview to (default stdout)
   -h, --help              help for preview
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol get theme](clilol_get_theme.md)	 - Get theme information

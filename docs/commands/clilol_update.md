@@ -1,21 +1,20 @@
 ---
 title: "clilol update"
 ---
-## clilol update
 
 Update things
 
-### Synopsis
+## Synopsis
 
 These commands update things.
 
-### Options
+## Options
 
 ```
   -h, --help   help for update
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol](clilol.md)	 - a cli for omg.lol
 * [clilol update account](clilol_update_account.md)	 - Update information about your account

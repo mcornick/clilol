@@ -1,11 +1,10 @@
 ---
 title: "clilol get now"
 ---
-## clilol get now
 
 Get a Now page
 
-### Synopsis
+## Synopsis
 
 Gets a Now page by address.
 
@@ -20,7 +19,7 @@ to stdout.
 clilol get now [flags]
 ```
 
-### Options
+## Options
 
 ```
   -a, --address string    address whose Now page to get
@@ -28,6 +27,6 @@ clilol get now [flags]
   -h, --help              help for now
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things

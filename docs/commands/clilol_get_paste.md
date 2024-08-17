@@ -1,11 +1,10 @@
 ---
 title: "clilol get paste"
 ---
-## clilol get paste
 
 Get a paste
 
-### Synopsis
+## Synopsis
 
 Gets a paste by title.
 
@@ -16,7 +15,7 @@ it defaults to your own address.
 clilol get paste [title] [flags]
 ```
 
-### Options
+## Options
 
 ```
   -a, --address string    address whose paste to get
@@ -24,6 +23,6 @@ clilol get paste [title] [flags]
   -h, --help              help for paste
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things

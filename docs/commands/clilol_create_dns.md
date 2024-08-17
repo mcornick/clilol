@@ -1,11 +1,10 @@
 ---
 title: "clilol create dns"
 ---
-## clilol create dns
 
 Create a DNS record
 
-### Synopsis
+## Synopsis
 
 Creates a DNS record.
 
@@ -13,7 +12,7 @@ Creates a DNS record.
 clilol create dns [name] [type] [data] [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help           help for dns
@@ -21,6 +20,6 @@ clilol create dns [name] [type] [data] [flags]
   -T, --ttl int        time to live of the DNS record (default 3600)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol create](clilol_create.md)	 - Create things

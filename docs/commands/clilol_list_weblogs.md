@@ -1,11 +1,10 @@
 ---
 title: "clilol list weblogs"
 ---
-## clilol list weblogs
 
 List all weblog entries
 
-### Synopsis
+## Synopsis
 
 Lists all of your weblog entries.
 
@@ -13,12 +12,12 @@ Lists all of your weblog entries.
 clilol list weblogs [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help   help for weblogs
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol list](clilol_list.md)	 - List things

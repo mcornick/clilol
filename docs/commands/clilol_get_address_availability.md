@@ -1,11 +1,10 @@
 ---
 title: "clilol get address availability"
 ---
-## clilol get address availability
 
 Get address availability
 
-### Synopsis
+## Synopsis
 
 Gets the availability of an address.
 
@@ -13,12 +12,12 @@ Gets the availability of an address.
 clilol get address availability [address] [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help   help for availability
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol get address](clilol_get_address.md)	 - Get information about an address

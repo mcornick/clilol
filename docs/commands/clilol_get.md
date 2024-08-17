@@ -1,21 +1,20 @@
 ---
 title: "clilol get"
 ---
-## clilol get
 
 Get things
 
-### Synopsis
+## Synopsis
 
 These commands get things.
 
-### Options
+## Options
 
 ```
   -h, --help   help for get
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol](clilol.md)	 - a cli for omg.lol
 * [clilol get account](clilol_get_account.md)	 - Get information about your account

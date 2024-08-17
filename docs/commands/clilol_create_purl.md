@@ -1,11 +1,10 @@
 ---
 title: "clilol create purl"
 ---
-## clilol create purl
 
 Create a PURL
 
-### Synopsis
+## Synopsis
 
 Creates a PURL.
 
@@ -17,13 +16,13 @@ PURL, use the --listed flag.
 clilol create purl [name] [url] [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help     help for purl
   -l, --listed   create as listed (default false)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol create](clilol_create.md)	 - Create things

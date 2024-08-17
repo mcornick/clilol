@@ -1,11 +1,10 @@
 ---
 title: "clilol list directory"
 ---
-## clilol list directory
 
 List the address directory
 
-### Synopsis
+## Synopsis
 
 Lists the omg.lol address directory.
 
@@ -13,12 +12,12 @@ Lists the omg.lol address directory.
 clilol list directory [flags]
 ```
 
-### Options
+## Options
 
 ```
   -h, --help   help for directory
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [clilol list](clilol_list.md)	 - List things
