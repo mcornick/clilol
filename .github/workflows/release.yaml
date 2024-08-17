@@ -42,7 +42,7 @@ jobs:
         uses: goreleaser/goreleaser-action@v6.0.0
         with:
           args: release --clean
-          version: latest
+          version: "~> 2.2"
       - env:
           ARTIFACTS: ${{ steps.goreleaser.outputs.artifacts }}
         id: hash
