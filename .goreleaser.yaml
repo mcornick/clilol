@@ -2,7 +2,7 @@
 announce:
   mastodon:
     enabled: true
-    server: https://social.sdf.org
+    server: https://social.lol
   skip: '{{ ne .Prerelease "" }}'
 archives:
   - builds_info:
