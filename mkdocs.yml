@@ -13,9 +13,79 @@ markdown_extensions:
       alternate_style: true
 nav:
   - Home: index.md
-  - Commands: commands/clilol.md
-  - Developer Notes: developer.md
   - Blog: blog/index.md
+  - Commands:
+    - commands/clilol.md
+    - commands/clilol_create.md
+    - commands/clilol_create_dns.md
+    - commands/clilol_create_paste.md
+    - commands/clilol_create_picture.md
+    - commands/clilol_create_purl.md
+    - commands/clilol_create_status.md
+    - commands/clilol_create_weblog.md
+    - commands/clilol_delete.md
+    - commands/clilol_delete_account.md
+    - commands/clilol_delete_account_session.md
+    - commands/clilol_delete_dns.md
+    - commands/clilol_delete_paste.md
+    - commands/clilol_delete_picture.md
+    - commands/clilol_delete_purl.md
+    - commands/clilol_delete_status.md
+    - commands/clilol_delete_weblog.md
+    - commands/clilol_get.md
+    - commands/clilol_get_account.md
+    - commands/clilol_get_account_info.md
+    - commands/clilol_get_account_name.md
+    - commands/clilol_get_account_settings.md
+    - commands/clilol_get_address.md
+    - commands/clilol_get_address_availability.md
+    - commands/clilol_get_address_expiration.md
+    - commands/clilol_get_address_info.md
+    - commands/clilol_get_dns.md
+    - commands/clilol_get_email.md
+    - commands/clilol_get_now.md
+    - commands/clilol_get_paste.md
+    - commands/clilol_get_purl.md
+    - commands/clilol_get_service.md
+    - commands/clilol_get_status-bio.md
+    - commands/clilol_get_status.md
+    - commands/clilol_get_theme.md
+    - commands/clilol_get_theme_preview.md
+    - commands/clilol_get_web.md
+    - commands/clilol_get_weblog.md
+    - commands/clilol_get_weblog_config.md
+    - commands/clilol_get_weblog_latest.md
+    - commands/clilol_get_weblog_template.md
+    - commands/clilol_list.md
+    - commands/clilol_list_account.md
+    - commands/clilol_list_account_addresses.md
+    - commands/clilol_list_account_sessions.md
+    - commands/clilol_list_directory.md
+    - commands/clilol_list_dns.md
+    - commands/clilol_list_now.md
+    - commands/clilol_list_pastes.md
+    - commands/clilol_list_pictures.md
+    - commands/clilol_list_purls.md
+    - commands/clilol_list_statuses.md
+    - commands/clilol_list_statuslog.md
+    - commands/clilol_list_themes.md
+    - commands/clilol_list_weblogs.md
+    - commands/clilol_update.md
+    - commands/clilol_update_account.md
+    - commands/clilol_update_account_name.md
+    - commands/clilol_update_account_settings.md
+    - commands/clilol_update_dns.md
+    - commands/clilol_update_email.md
+    - commands/clilol_update_now.md
+    - commands/clilol_update_preference.md
+    - commands/clilol_update_status-bio.md
+    - commands/clilol_update_status.md
+    - commands/clilol_update_web.md
+    - commands/clilol_update_web_pfp.md
+    - commands/clilol_update_weblog.md
+    - commands/clilol_update_weblog_config.md
+    - commands/clilol_update_weblog_template.md
+  - Developer Notes: developer.md
 plugins:
   - blog
   - minify:
