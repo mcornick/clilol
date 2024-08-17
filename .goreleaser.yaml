@@ -1,5 +1,8 @@
 ---
 announce:
+  bluesky:
+    enabled: true
+    username: "mcornick.lol"
   mastodon:
     enabled: true
     server: https://social.lol
