@@ -1,5 +1,8 @@
 ---
 announce:
+  bluesky:
+    enabled: true
+    username: "mcornick.bsky.social"
   mastodon:
     enabled: true
     server: https://social.sdf.org
