@@ -235,7 +235,7 @@ slsa-verifier verify-artifact clilol_X.Y.Z_darwin_all.tar.gz --provenance-path m
 slsa-verifier verify-image ghcr.io/mcornick/clilol:vX.Y.Z@sha256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --source-uri github.com/mcornick/clilol --source-tag vX.Y.Z
 ```
 
-clilol releases are announced on [my Mastodon account](https://social.lol/@mcornick) and [my Bluesky account](https://bsky.app/profile/mcornick.lol), both of which you are welcome to follow.
+clilol releases are announced on [my Mastodon account](https://social.lol/@mcornick), which you are welcome to follow.
 
 To verify signatures on git commits to clilol, you might need [my SSH public key](https://github.com/mcornick.keys) or [my PGP public key](https://github.com/mcornick.gpg).
 
