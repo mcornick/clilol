@@ -11,7 +11,13 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+nav:
+  - Home: index.md
+  - Commands: commands/clilol.md
+  - Developer Notes: developer.md
+  - Blog: blog/index.md
 plugins:
+  - blog
   - minify:
       minify_html: true
   - search
@@ -27,6 +33,8 @@ theme:
     - content.action.edit
     - content.action.view
     - content.code.copy
+    - navigation.tabs
+    - navigation.tabs.sticky
   icon:
     logo: fontawesome/solid/heart
     repo: fontawesome/brands/github

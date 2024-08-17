@@ -7,7 +7,7 @@ __clilol__ is a CLI for the various fun services offered by [omg.lol](https://om
 
 ![Screenshot](clilol.gif "Screenshot")
 
-Please see the links in the navigation menu to the left to learn about all the different commands provided by clilol.
+Please see the Commands tab in the navigation menu to learn about all the different commands provided by clilol.
 
 ## Installation
 
