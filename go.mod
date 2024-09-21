@@ -1,6 +1,6 @@
 module github.com/mcornick/clilol
 
-go 1.19
+go 1.23
 
 require (
 	github.com/ejstreet/omglol-client-go v0.8.0
