@@ -90,10 +90,7 @@ nav:
   - Developer Notes: developer.md
 plugins:
   - blog
-  - minify:
-      minify_html: true
   - search
-  - social
 repo_name: mcornick/clilol
 repo_url: https://github.com/mcornick/clilol
 site_author: Mark Cornick
