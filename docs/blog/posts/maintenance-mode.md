@@ -1,3 +1,7 @@
+---
+date:
+  created: 2024-11-17
+---
 # Maintenance Mode
 
 clilol hasn't changed much in a long time, mostly because the omg.lol
@@ -13,17 +17,3 @@ want to hear about it and fix it, so please open Github issues if that
 happens.
 
 Thanks!
-
-# clilol
-
-clilol is a CLI for the various fun services offered by
-[omg.lol](https://omg.lol/). All the services supported by the [omg.lol
-API](https://api.omg.lol) are supported.
-
-![Screenshot](docs/clilol.gif "Screenshot")
-
-Please see the full documentation in the `docs` directory, also
-available at https://clilol.readthedocs.io/.
-
-clilol is available as open source under the terms of the MPL-2.0
-License.
