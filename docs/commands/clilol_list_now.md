@@ -1,10 +1,11 @@
 ---
 title: "clilol list now"
 ---
+## clilol list now
 
 List Now pages
 
-## Synopsis
+### Synopsis
 
 Lists pages in the Now garden.
 
@@ -12,12 +13,13 @@ Lists pages in the Now garden.
 clilol list now [flags]
 ```
 
-## Options
+### Options
 
 ```
   -h, --help   help for now
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol list](clilol_list.md)	 - List things
+

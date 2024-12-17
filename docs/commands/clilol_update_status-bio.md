@@ -1,10 +1,11 @@
 ---
 title: "clilol update status-bio"
 ---
+## clilol update status-bio
 
 Update your status bio
 
-## Synopsis
+### Synopsis
 
 Updates your status bio on status.lol.
 
@@ -17,12 +18,13 @@ CSS. You'll need to do that on the website.
 clilol update status-bio [text] [flags]
 ```
 
-## Options
+### Options
 
 ```
   -h, --help   help for status-bio
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things
+

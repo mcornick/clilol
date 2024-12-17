@@ -1,10 +1,11 @@
 ---
 title: "clilol update account settings"
 ---
+## clilol update account settings
 
 set the settings on your account
 
-## Synopsis
+### Synopsis
 
 Sets the settings on your account.
 
@@ -14,7 +15,7 @@ Specify the new settings with the flags listed below.
 clilol update account settings [flags]
 ```
 
-## Options
+### Options
 
 ```
   -c, --communication string   communication preference
@@ -23,6 +24,7 @@ clilol update account settings [flags]
   -w, --web-editor string      web editor preference
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol update account](clilol_update_account.md)	 - Update information about your account
+

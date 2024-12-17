@@ -1,10 +1,11 @@
 ---
 title: "clilol list themes"
 ---
+## clilol list themes
 
 List profile themes
 
-## Synopsis
+### Synopsis
 
 Lists the available profile themes.
 
@@ -12,12 +13,13 @@ Lists the available profile themes.
 clilol list themes [flags]
 ```
 
-## Options
+### Options
 
 ```
   -h, --help   help for themes
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol list](clilol_list.md)	 - List things
+

@@ -1,10 +1,11 @@
 ---
 title: "clilol get weblog config"
 ---
+## clilol get weblog config
 
 Get your weblog config
 
-## Synopsis
+### Synopsis
 
 Gets your weblog configuration in editable form.
 
@@ -16,13 +17,14 @@ to stdout.
 clilol get weblog config [flags]
 ```
 
-## Options
+### Options
 
 ```
   -f, --filename string   file to write configuration to (default stdout)
   -h, --help              help for config
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol get weblog](clilol_get_weblog.md)	 - Get a weblog entry
+

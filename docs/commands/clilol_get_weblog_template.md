@@ -1,10 +1,11 @@
 ---
 title: "clilol get weblog template"
 ---
+## clilol get weblog template
 
 Get your weblog template
 
-## Synopsis
+### Synopsis
 
 Gets your weblog template in rendered form.
 
@@ -16,13 +17,14 @@ to stdout.
 clilol get weblog template [flags]
 ```
 
-## Options
+### Options
 
 ```
   -f, --filename string   file to write template to (default stdout)
   -h, --help              help for template
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol get weblog](clilol_get_weblog.md)	 - Get a weblog entry
+

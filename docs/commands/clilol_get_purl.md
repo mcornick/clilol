@@ -1,10 +1,11 @@
 ---
 title: "clilol get purl"
 ---
+## clilol get purl
 
 Get a PURL
 
-## Synopsis
+### Synopsis
 
 Gets a PURL by name.
 
@@ -15,13 +16,14 @@ it defaults to your own address.
 clilol get purl [name] [flags]
 ```
 
-## Options
+### Options
 
 ```
   -a, --address string   address whose PURL to get
   -h, --help             help for purl
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things
+

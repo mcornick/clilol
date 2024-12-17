@@ -1,10 +1,11 @@
 ---
 title: "clilol get status"
 ---
+## clilol get status
 
 Get status
 
-## Synopsis
+### Synopsis
 
 Gets a single status for a single user from status.lol.
 
@@ -15,13 +16,14 @@ it defaults to your own address.
 clilol get status [id] [flags]
 ```
 
-## Options
+### Options
 
 ```
   -a, --address string   address whose status to get
   -h, --help             help for status
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things
+

@@ -1,10 +1,11 @@
 ---
 title: "clilol create picture"
 ---
+## clilol create picture
 
 upload a picture
 
-## Synopsis
+### Synopsis
 
 Uploads a picture to some.pics.
 
@@ -15,13 +16,14 @@ specified, the picture will not be publicly visible.
 clilol create picture [filename] [flags]
 ```
 
-## Options
+### Options
 
 ```
   -d, --description string   description of the picture
   -h, --help                 help for picture
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol create](clilol_create.md)	 - Create things
+

@@ -1,22 +1,23 @@
 ---
 title: "clilol update"
 ---
+## clilol update
 
 Update things
 
-## Synopsis
+### Synopsis
 
 These commands update things.
 
-## Options
+### Options
 
 ```
   -h, --help   help for update
 ```
 
-## SEE ALSO
+### SEE ALSO
 
-* [clilol](clilol.md)	 - a cli for omg.lol
+* [clilol](clilol.md)	 - a CLI for omg.lol
 * [clilol update account](clilol_update_account.md)	 - Update information about your account
 * [clilol update dns](clilol_update_dns.md)	 - Update a DNS record
 * [clilol update email](clilol_update_email.md)	 - set email forwarding address(es)
@@ -26,3 +27,4 @@ These commands update things.
 * [clilol update status-bio](clilol_update_status-bio.md)	 - Update your status bio
 * [clilol update web](clilol_update_web.md)	 - set webpage content
 * [clilol update weblog](clilol_update_weblog.md)	 - set your weblog config
+

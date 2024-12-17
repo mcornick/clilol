@@ -1,10 +1,11 @@
 ---
 title: "clilol update dns"
 ---
+## clilol update dns
 
 Update a DNS record
 
-## Synopsis
+### Synopsis
 
 Updates a DNS record.
 
@@ -12,7 +13,7 @@ Updates a DNS record.
 clilol update dns [id] [name] [type] [data] [flags]
 ```
 
-## Options
+### Options
 
 ```
   -h, --help           help for dns
@@ -20,6 +21,7 @@ clilol update dns [id] [name] [type] [data] [flags]
   -T, --ttl int        updated TTL (default 3600)
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things
+

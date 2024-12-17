@@ -1,10 +1,11 @@
 ---
 title: "clilol get dns"
 ---
+## clilol get dns
 
 Get a DNS record
 
-## Synopsis
+### Synopsis
 
 Gets a DNS record by attributes.
 
@@ -12,7 +13,7 @@ Gets a DNS record by attributes.
 clilol get dns [name] [type] [data] [flags]
 ```
 
-## Options
+### Options
 
 ```
   -h, --help           help for dns
@@ -20,6 +21,7 @@ clilol get dns [name] [type] [data] [flags]
   -T, --ttl int        time to live of the DNS record (default 3600)
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things
+

@@ -1,10 +1,11 @@
 ---
 title: "clilol delete account session"
 ---
+## clilol delete account session
 
 Delete a session
 
-## Synopsis
+### Synopsis
 
 Deletes an active session, logging it out.
 
@@ -15,12 +16,13 @@ Be sure you know what you're doing.
 clilol delete account session [id] [flags]
 ```
 
-## Options
+### Options
 
 ```
   -h, --help   help for session
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol delete account](clilol_delete_account.md)	 - Delete information about your account
+

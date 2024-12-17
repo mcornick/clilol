@@ -1,22 +1,23 @@
 ---
 title: "clilol get"
 ---
+## clilol get
 
 Get things
 
-## Synopsis
+### Synopsis
 
 These commands get things.
 
-## Options
+### Options
 
 ```
   -h, --help   help for get
 ```
 
-## SEE ALSO
+### SEE ALSO
 
-* [clilol](clilol.md)	 - a cli for omg.lol
+* [clilol](clilol.md)	 - a CLI for omg.lol
 * [clilol get account](clilol_get_account.md)	 - Get information about your account
 * [clilol get address](clilol_get_address.md)	 - Get information about an address
 * [clilol get dns](clilol_get_dns.md)	 - Get a DNS record
@@ -30,3 +31,4 @@ These commands get things.
 * [clilol get theme](clilol_get_theme.md)	 - Get theme information
 * [clilol get web](clilol_get_web.md)	 - Get your webpage content
 * [clilol get weblog](clilol_get_weblog.md)	 - Get a weblog entry
+

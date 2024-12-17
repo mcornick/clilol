@@ -1,10 +1,11 @@
 ---
 title: "clilol delete purl"
 ---
+## clilol delete purl
 
 Delete a PURL
 
-## Synopsis
+### Synopsis
 
 Deletes a PURL.
 
@@ -15,12 +16,13 @@ Be sure you know what you're doing.
 clilol delete purl [name] [flags]
 ```
 
-## Options
+### Options
 
 ```
   -h, --help   help for purl
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol delete](clilol_delete.md)	 - Delete things
+

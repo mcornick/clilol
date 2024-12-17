@@ -1,10 +1,11 @@
 ---
 title: "clilol get web"
 ---
+## clilol get web
 
 Get your webpage content
 
-## Synopsis
+### Synopsis
 
 Gets the Markdown content for your webpage.
 
@@ -16,13 +17,14 @@ to stdout.
 clilol get web [flags]
 ```
 
-## Options
+### Options
 
 ```
   -f, --filename string   file to write webpage to (default stdout)
   -h, --help              help for web
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things
+

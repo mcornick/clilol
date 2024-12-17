@@ -1,10 +1,11 @@
 ---
 title: "clilol list statuses"
 ---
+## clilol list statuses
 
 List statuses
 
-## Synopsis
+### Synopsis
 
 Lists statuses for a single user from status.lol.
 
@@ -21,7 +22,7 @@ See the statuslog commands to get statuses for all users.
 clilol list statuses [flags]
 ```
 
-## Options
+### Options
 
 ```
   -a, --address string   address whose status(es) to get
@@ -29,6 +30,7 @@ clilol list statuses [flags]
   -l, --limit int        how many status(es) to get (default all)
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol list](clilol_list.md)	 - List things
+

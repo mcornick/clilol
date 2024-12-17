@@ -1,10 +1,11 @@
 ---
 title: "clilol update now"
 ---
+## clilol update now
 
 update Now page content
 
-## Synopsis
+### Synopsis
 
 Sets your Now page content.
 
@@ -19,7 +20,7 @@ Now page, use the --listed flag.
 clilol update now [flags]
 ```
 
-## Options
+### Options
 
 ```
   -f, --filename string   file to read Now page from (default stdin)
@@ -27,6 +28,7 @@ clilol update now [flags]
   -l, --listed            create Now page as listed (default false)
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things
+

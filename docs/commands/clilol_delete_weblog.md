@@ -1,10 +1,11 @@
 ---
 title: "clilol delete weblog"
 ---
+## clilol delete weblog
 
 Delete a weblog entry
 
-## Synopsis
+### Synopsis
 
 Deletes a weblog entry.
 
@@ -15,12 +16,13 @@ Be sure you know what you're doing.
 clilol delete weblog [id] [flags]
 ```
 
-## Options
+### Options
 
 ```
   -h, --help   help for weblog
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol delete](clilol_delete.md)	 - Delete things
+

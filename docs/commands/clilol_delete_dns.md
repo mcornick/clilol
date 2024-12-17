@@ -1,10 +1,11 @@
 ---
 title: "clilol delete dns"
 ---
+## clilol delete dns
 
 Delete a DNS record
 
-## Synopsis
+### Synopsis
 
 Deletes a DNS record.
 
@@ -15,12 +16,13 @@ Be sure you know what you're doing.
 clilol delete dns [id] [flags]
 ```
 
-## Options
+### Options
 
 ```
   -h, --help   help for dns
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol delete](clilol_delete.md)	 - Delete things
+

@@ -1,10 +1,11 @@
 ---
 title: "clilol list dns"
 ---
+## clilol list dns
 
 List your dns records
 
-## Synopsis
+### Synopsis
 
 Lists all of your DNS records.
 
@@ -12,12 +13,13 @@ Lists all of your DNS records.
 clilol list dns [flags]
 ```
 
-## Options
+### Options
 
 ```
   -h, --help   help for dns
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol list](clilol_list.md)	 - List things
+

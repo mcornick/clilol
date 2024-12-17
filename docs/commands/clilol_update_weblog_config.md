@@ -1,10 +1,11 @@
 ---
 title: "clilol update weblog config"
 ---
+## clilol update weblog config
 
 set your weblog config
 
-## Synopsis
+### Synopsis
 
 Sets configuration of your weblog.lol weblog.
 
@@ -18,13 +19,14 @@ from stdin.
 clilol update weblog config [flags]
 ```
 
-## Options
+### Options
 
 ```
   -f, --filename string   file to read config from (default stdin)
   -h, --help              help for config
 ```
 
-## SEE ALSO
+### SEE ALSO
 
 * [clilol update weblog](clilol_update_weblog.md)	 - set your weblog config
+
