@@ -105,7 +105,7 @@ func init() {
 func validateConfig() {
 	for _, key := range []string{"address", "apikey", "email"} {
 		if viper.GetString(key) == "" {
-			cobra.CheckErr(fmt.Errorf("no " + key + " set"))
+			cobra.CheckErr(fmt.Errorf("no %s set", key))
 		}
 	}
 }

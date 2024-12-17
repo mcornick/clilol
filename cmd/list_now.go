@@ -50,7 +50,7 @@ var listNowCmd = &cobra.Command{
 				fmt.Printf("last updated %s\n", page.Updated.RelativeTime)
 			}
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
 		}
 	},
 }

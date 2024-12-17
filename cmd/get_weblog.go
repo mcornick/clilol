@@ -61,7 +61,7 @@ var getWeblogCmd = &cobra.Command{
 				result.Response.Entry.Body,
 			)
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
 		}
 	},
 }

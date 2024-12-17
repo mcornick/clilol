@@ -63,7 +63,7 @@ See the statuslog commands to get statuses for all users.`,
 					fmt.Printf("  %s %s\n", status.Emoji, status.Content)
 				}
 			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
+				cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
 			}
 		},
 	}

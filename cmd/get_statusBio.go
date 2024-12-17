@@ -45,7 +45,7 @@ Note that any custom CSS set on the bio is ignored.
 			fmt.Println(result.Response.Message)
 			fmt.Printf("\n%s\n", result.Response.Bio)
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
 		}
 	},
 }

@@ -53,7 +53,7 @@ See the status commands to get statuses for a single user.`,
 					fmt.Printf("  %s %s\n", status.Emoji, status.Content)
 				}
 			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
+				cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
 			}
 		},
 	}

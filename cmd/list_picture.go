@@ -47,7 +47,7 @@ var listPictureCmd = &cobra.Command{
 				fmt.Printf("%s: %s (%s)\n", pic.Address, pic.Description, pic.URL)
 			}
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
 		}
 	},
 }

@@ -54,7 +54,7 @@ var listThemeCmd = &cobra.Command{
 				fmt.Printf("- %s\n", theme.ID)
 			}
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
 		}
 	},
 }
