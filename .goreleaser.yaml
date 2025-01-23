@@ -17,7 +17,7 @@ archives:
       - completions/*
       - manpages/*.1
     format_overrides:
-      - format: zip
+      - formats: ["zip"]
         goos: windows
 aurs:
   - description: A CLI for omg.lol
