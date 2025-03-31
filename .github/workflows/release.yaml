@@ -40,7 +40,7 @@ jobs:
           MASTODON_CLIENT_ID: ${{ secrets.MASTODON_CLIENT_ID }}
           MASTODON_CLIENT_SECRET: ${{ secrets.MASTODON_CLIENT_SECRET }}
         id: goreleaser
-        uses: goreleaser/goreleaser-action@v6.2.1
+        uses: goreleaser/goreleaser-action@v6.3.0
         with:
           args: release --clean
           version: "~> 2.2"
