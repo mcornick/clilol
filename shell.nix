@@ -7,5 +7,6 @@ pkgs.mkShell {
     pkgs.go-task
     pkgs.go-tools
     pkgs.gopls
+    pkgs.python312
   ];
 }
