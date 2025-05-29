@@ -1,6 +1,4 @@
-{
-  pkgs ? import <nixpkgs> { },
-}:
+{pkgs ? import <nixpkgs> {}}:
 pkgs.mkShell {
   buildInputs = [
     pkgs.cosign
@@ -8,6 +6,7 @@ pkgs.mkShell {
     pkgs.go-task
     pkgs.go-tools
     pkgs.gopls
+    pkgs.goreleaser
     pkgs.pre-commit
     pkgs.python312
     pkgs.syft
