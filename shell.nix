@@ -3,11 +3,13 @@
 }:
 pkgs.mkShell {
   buildInputs = [
+    pkgs.cosign
     pkgs.go
     pkgs.go-task
     pkgs.go-tools
     pkgs.gopls
     pkgs.pre-commit
     pkgs.python312
+    pkgs.syft
   ];
 }
