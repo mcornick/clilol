@@ -55,31 +55,19 @@ You can install clilol in any of these ways. (These are the only supported build
 
 === "Nix"
 
-    Add to `~/.config/nixpkgs/config.nix`:
-
     ```
-    {
-      packageOverrides = pkgs: {
-        mcornick = import (builtins.fetchGit { url = "https://github.com/mcornick/nixpkgs.git"; }) {
-          inherit pkgs;
-        };
-      };
-    }
+    # flake.nix
+    inputs.mcornick = {
+      url = "github:mcornick/nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     ```
 
-    and/or add to `/etc/nixos/configuration.nix`:
+    Then add  `mcornick.packages.x86_64-linux.clilol` to `environment.systemPackages` in your NixOS configuration, or to `home.packages` in your Home Manager configuration. If you're not on a `x86_64-linux` system, use your platform type instead.
 
-    ```
-    {
-      nixpkgs.config.packageOverrides = pkgs: {
-        mcornick = import (builtins.fetchGit { url = "https://github.com/mcornick/nixpkgs.git"; }) {
-          inherit pkgs;
-        };
-      };
-    }
-    ```
+    !!! Note
 
-    and then do something like `nix-env -iA nixos.mcornick.clilol`.
+    The flake _theoretically_ supports nix-darwin, but this is untested. If you try it and it works, let me know!
 
 === "Container Images"
 
