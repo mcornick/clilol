@@ -7,8 +7,8 @@ pkgs.mkShell {
     pkgs.go-tools
     pkgs.gopls
     pkgs.goreleaser
+    pkgs.python312Packages.mkdocs-material
     pkgs.pre-commit
-    pkgs.python312
     pkgs.syft
   ];
 }
