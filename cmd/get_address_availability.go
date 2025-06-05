@@ -22,7 +22,6 @@ var getAddressAvailabilityCmd = &cobra.Command{
 	Long:  "Gets the availability of an address.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		address := args[0]
 		result, err := getAddressAvailability(address)
 		handleAPIError(err)

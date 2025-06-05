@@ -60,7 +60,6 @@ to that file. If you do not specify a filename, the content will be written
 to stdout.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			validateConfig()
 			result, err := getWeblogConfig()
 			cobra.CheckErr(err)
 			if result.Request.Success {

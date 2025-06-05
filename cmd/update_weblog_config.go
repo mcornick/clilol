@@ -40,7 +40,6 @@ will be used. If you do not specify a filename, the content will be read
 from stdin.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			validateConfig()
 			result, err := updateWeblogConfig(updateWeblogConfigFilename)
 			cobra.CheckErr(err)
 			if result.Request.Success {

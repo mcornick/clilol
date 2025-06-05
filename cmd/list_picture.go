@@ -39,7 +39,6 @@ var listPictureCmd = &cobra.Command{
 	Long:    "Lists pictures shared to some.pics.",
 	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := listPicture()
 		cobra.CheckErr(err)
 		if result.Request.Success {

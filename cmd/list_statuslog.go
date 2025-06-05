@@ -44,7 +44,6 @@ To see all statuses ever posted, use the --all flag.
 See the status commands to get statuses for a single user.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			validateConfig()
 			result, err := listStatuslog(listStatuslogAll)
 			cobra.CheckErr(err)
 			if result.Request.Success {

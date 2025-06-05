@@ -26,7 +26,6 @@ var (
 		Long:  "Updates a DNS record.",
 		Args:  cobra.ExactArgs(4),
 		Run: func(cmd *cobra.Command, args []string) {
-			validateConfig()
 			id, err := strconv.ParseInt(args[0], 10, 64)
 			cobra.CheckErr(err)
 			name := args[1]

@@ -44,7 +44,6 @@ var getThemeCmd = &cobra.Command{
 	Long:  "Gets information about a theme.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := getTheme(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {

@@ -22,7 +22,6 @@ var getAddressInfoCmd = &cobra.Command{
 	Long:  "Gets information about an address.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := getAddressInfo(args[0])
 		handleAPIError(err)
 		fmt.Println(result.Registration.Message)

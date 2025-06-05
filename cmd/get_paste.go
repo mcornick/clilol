@@ -28,7 +28,6 @@ The address can be specified with the --address flag. If not set,
 it defaults to your own address.`,
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			validateConfig()
 			result, err := getPaste(addressFlag, args[0])
 			handleAPIError(err)
 			if getPasteFilename != "" {

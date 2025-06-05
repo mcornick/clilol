@@ -22,7 +22,6 @@ var getAccountNameCmd = &cobra.Command{
 	Long:  "Gets the name on your account.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		name, err := getAccountName()
 		handleAPIError(err)
 		fmt.Println(name)

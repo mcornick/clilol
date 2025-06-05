@@ -47,7 +47,6 @@ The Now page will be created as unlisted by default. To create a listed
 Now page, use the --listed flag.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			validateConfig()
 			result, err := updateNow(updateNowFilename, updateNowListed)
 			cobra.CheckErr(err)
 			if result.Request.Success {

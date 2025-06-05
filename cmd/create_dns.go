@@ -25,7 +25,6 @@ var (
 		Long:  "Creates a DNS record.",
 		Args:  cobra.ExactArgs(3),
 		Run: func(cmd *cobra.Command, args []string) {
-			validateConfig()
 			name := args[0]
 			recordType := args[1]
 			data := args[2]
