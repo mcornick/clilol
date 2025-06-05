@@ -22,9 +22,14 @@
         pkgs.devshell.mkShell (
           { extraModulesPath, ... }:
           {
+            commands = [
+              {
+                name = "task";
+                package = "go-task";
+              }
+            ];
             imports = [ "${extraModulesPath}/language/go.nix" ];
             packages = [
-              "go-task"
               "go-tools"
               "gofumpt"
               "golangci-lint"
