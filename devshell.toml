@@ -1,0 +1,13 @@
+imports = [ "language/go" ]
+
+[[commands]]
+name = "task"
+package = "go-task"
+
+[devshell]
+packages = [
+  "go-tools",
+  "gofumpt",
+  "golangci-lint",
+  "gopls",
+]

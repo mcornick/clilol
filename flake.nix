@@ -19,23 +19,6 @@
             overlays = [ devshell.overlays.default ];
           };
         in
-        pkgs.devshell.mkShell (
-          { extraModulesPath, ... }:
-          {
-            commands = [
-              {
-                name = "task";
-                package = "go-task";
-              }
-            ];
-            imports = [ "${extraModulesPath}/language/go.nix" ];
-            packages = [
-              "go-tools"
-              "gofumpt"
-              "golangci-lint"
-              "gopls"
-            ];
-          }
-        );
+        pkgs.devshell.mkShell { imports = [ (pkgs.devshell.importTOML ./devshell.toml) ]; };
     });
 }
