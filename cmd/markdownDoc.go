@@ -25,7 +25,7 @@ var markdownDocCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		filePrepender := func(filename string) string {
 			slug := strings.Replace(filepath.Base(filename), ".md", "", 1)
-			title := strings.Replace(slug, "_", " ", -1)
+			title := strings.ReplaceAll(slug, "_", " ")
 			return fmt.Sprintf("---\ntitle: \"%s\"\n---\n", title)
 		}
 		linkHandler := func(name string) string {
