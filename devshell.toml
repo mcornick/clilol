@@ -5,6 +5,7 @@ name = "task"
 package = "go-task"
 
 [devshell]
+motd = ""
 packages = [
   "go-tools",
   "gofumpt",
