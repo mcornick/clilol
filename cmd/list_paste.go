@@ -30,6 +30,7 @@ Unlisted pastes are only included when the --address flag is set to
 your own address.`,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		result, err := listPaste(addressFlag)
 		handleAPIError(err)
 		for _, paste := range result {

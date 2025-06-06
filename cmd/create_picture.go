@@ -54,6 +54,7 @@ Specify a description with the --description flag. If not
 specified, the picture will not be publicly visible.`,
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
+			validateConfig()
 			result, err := createPicture(args[0])
 			cobra.CheckErr(err)
 			if result.Request.Success {

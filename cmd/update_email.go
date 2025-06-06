@@ -26,6 +26,7 @@ var updateEmailCmd = &cobra.Command{
 To specify multiple addresses, separate them with commas.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		destination := strings.Split(args[0], ",")
 		err := updateEmail(destination)
 		handleAPIError(err)

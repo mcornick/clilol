@@ -26,6 +26,7 @@ Note that you won't be asked to confirm deletion.
 Be sure you know what you're doing.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		id, err := strconv.ParseInt(args[0], 10, 64)
 		cobra.CheckErr(err)
 		err = deleteDNS(id)

@@ -32,6 +32,7 @@ var getServiceCmd = &cobra.Command{
 	Long:  "Gets statistics for omg.lol services.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		result, err := getService()
 		cobra.CheckErr(err)
 		if result.Request.Success {

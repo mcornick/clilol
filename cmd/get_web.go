@@ -28,6 +28,7 @@ to that file. If you do not specify a filename, the content will be written
 to stdout.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
+			validateConfig()
 			content, err := getWeb()
 			handleAPIError(err)
 			var writeErr error

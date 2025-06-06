@@ -40,6 +40,7 @@ Note that the omg.lol API does not permit you to change any custom
 CSS. You'll need to do that on the website.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		result, err := updateStatusBio(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {

@@ -24,6 +24,7 @@ var listAccountSessionsCmd = &cobra.Command{
 	Long:    "Lists active sessions on your account.",
 	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		sessions, err := listAccountSessions()
 		handleAPIError(err)
 		for _, session := range sessions {

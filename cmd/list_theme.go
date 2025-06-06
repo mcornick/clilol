@@ -45,6 +45,7 @@ var listThemeCmd = &cobra.Command{
 	Long:    "Lists the available profile themes.",
 	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		result, err := listTheme()
 		cobra.CheckErr(err)
 		if result.Request.Success {

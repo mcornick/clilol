@@ -45,6 +45,7 @@ var getWeblogCmd = &cobra.Command{
 	Long:  "Gets one of your weblog entries by ID.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		result, err := getWeblog(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {

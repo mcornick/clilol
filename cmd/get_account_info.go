@@ -22,6 +22,7 @@ var getAccountInfoCmd = &cobra.Command{
 	Long:  "Gets information about your account",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		result, err := getAccountInfo()
 		handleAPIError(err)
 		fmt.Printf("%s (%s)\n", result.Name, result.Email)

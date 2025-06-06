@@ -22,6 +22,7 @@ var getAccountSettingsCmd = &cobra.Command{
 	Long:  "Gets the settings on your account.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
+		validateConfig()
 		// var result getAccountSettingsOutput
 		result, err := getAccountSettings()
 		handleAPIError(err)
