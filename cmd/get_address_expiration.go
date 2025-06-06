@@ -9,12 +9,20 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
+	"net/http"
 
-	"github.com/mcornick/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
+
+type getAddressExpirationOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		Expired bool   `json:"expired"`
+	} `json:"response"`
+}
 
 var getAddressExpirationCmd = &cobra.Command{
 	Use:   "expiration [address]",
@@ -23,13 +31,12 @@ var getAddressExpirationCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		validateConfig()
-		address := args[0]
-		result, err := getAddressExpiration(address)
-		handleAPIError(err)
-		if !result {
-			fmt.Printf("%s is not expired.\n", address)
+		result, err := getAddressExpiration(args[0])
+		cobra.CheckErr(err)
+		if result.Request.Success {
+			fmt.Println(result.Response.Message)
 		} else {
-			fmt.Printf("%s is expired.\n", address)
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
 		}
 	},
 }
@@ -38,12 +45,14 @@ func init() {
 	getAddressCmd.AddCommand(getAddressExpirationCmd)
 }
 
-func getAddressExpiration(address string) (bool, error) {
-	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
-	cobra.CheckErr(err)
-	expiration, err := client.GetAddressExpiration(address)
-	if expiration == nil {
-		return false, err
-	}
-	return *expiration, err
+func getAddressExpiration(address string) (getAddressExpirationOutput, error) {
+	var result getAddressExpirationOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+address+"/expiration",
+		nil,
+		false,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

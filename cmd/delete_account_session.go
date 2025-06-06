@@ -9,12 +9,20 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
+	"net/http"
 
-	"github.com/mcornick/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
+
+type deleteAccountSessionOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+	} `json:"response"`
+}
 
 var deleteAccountSessionCmd = &cobra.Command{
 	Use:   "session [id]",
@@ -26,10 +34,13 @@ Be sure you know what you're doing.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		validateConfig()
-		id := args[0]
-		err := deleteAccountSession(id)
-		handleAPIError(err)
-		fmt.Printf("Session %s deleted.\n", id)
+		result, err := deleteAccountSession(args[0])
+		cobra.CheckErr(err)
+		if result.Request.Success {
+			fmt.Println(result.Response.Message)
+		} else {
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+		}
 	},
 }
 
@@ -37,9 +48,14 @@ func init() {
 	deleteAccountCmd.AddCommand(deleteAccountSessionCmd)
 }
 
-func deleteAccountSession(id string) error {
-	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
-	cobra.CheckErr(err)
-	err = client.DeleteActiveSession(id)
-	return err
+func deleteAccountSession(id string) (deleteAccountSessionOutput, error) {
+	var result deleteAccountSessionOutput
+	body := callAPIWithParams(
+		http.MethodDelete,
+		"/account/"+viper.GetString("email")+"/sessions/"+id,
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

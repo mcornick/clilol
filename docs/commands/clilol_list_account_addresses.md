@@ -3,11 +3,11 @@ title: "clilol list account addresses"
 ---
 ## clilol list account addresses
 
-List addresses on your account
+List your addresses
 
 ### Synopsis
 
-Lists addresses on your account.
+Lists the addresses on your account.
 
 ```
 clilol list account addresses [flags]

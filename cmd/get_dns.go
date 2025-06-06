@@ -9,17 +9,34 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"strings"
+	"time"
 
-	"github.com/mcornick/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
+type getDNSOutput struct {
+	Response struct {
+		Message string `json:"message"`
+		DNS     struct {
+			ID        int       `json:"id"`
+			Type      string    `json:"type"`
+			Name      string    `json:"name"`
+			Data      string    `json:"data"`
+			Priority  int       `json:"priority"`
+			TTL       int       `json:"ttl"`
+			CreatedAt time.Time `json:"created_at"`
+			UpdatedAt time.Time `json:"updated_at"`
+		} `json:"dns"`
+	} `json:"response"`
+}
+
 var (
-	getDNSPriority int64
-	getDNSTTL      int64
+	getDNSPriority int
+	getDNSTTL      int
 	getDNSCmd      = &cobra.Command{
 		Use:   "dns [name] [type] [data]",
 		Short: "Get a DNS record",
@@ -37,24 +54,24 @@ var (
 			cobra.CheckErr(err)
 			fmt.Printf(
 				"%s %s %s ; ID: %d\n",
-				record.Name,
-				record.Type,
-				record.Data,
-				record.ID,
+				record.Response.DNS.Name,
+				record.Response.DNS.Type,
+				record.Response.DNS.Data,
+				record.Response.DNS.ID,
 			)
 		},
 	}
 )
 
 func init() {
-	getDNSCmd.Flags().Int64VarP(
+	getDNSCmd.Flags().IntVarP(
 		&getDNSPriority,
 		"priority",
 		"p",
 		0,
 		"priority of the DNS record",
 	)
-	getDNSCmd.Flags().Int64VarP(
+	getDNSCmd.Flags().IntVarP(
 		&getDNSTTL,
 		"ttl",
 		"T",
@@ -64,19 +81,18 @@ func init() {
 	getCmd.AddCommand(getDNSCmd)
 }
 
-func getDNS(name string, recordType string, data string, priority int64, ttl int64) (omglol.DNSRecord, error) {
-	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
-	cobra.CheckErr(err)
-	criteria := map[string]any{
-		"Name":     name,
-		"Type":     strings.ToUpper(recordType),
-		"Data":     data,
-		"Priority": priority,
-		"TTL":      ttl,
+func getDNS(name string, recordType string, data string, priority int, ttl int) (getDNSOutput, error) {
+	allDNS, _ := listDNS()
+	var foundDNS getDNSOutput
+	for _, record := range allDNS.Response.DNS {
+		if record.Type == recordType && record.Name == name && record.Data == data && record.Priority == priority && record.TTL == ttl {
+			foundDNS.Response.Message = allDNS.Response.Message
+			foundDNS.Response.DNS = record
+		}
 	}
-	record, err := client.FilterDNSRecord(viper.GetString("address"), criteria)
-	if err != nil {
-		return omglol.DNSRecord{}, err
+	if foundDNS.Response.DNS.ID != 0 {
+		return foundDNS, nil
+	} else {
+		return foundDNS, errors.New("couldn't find a matching record")
 	}
-	return *record, err
 }

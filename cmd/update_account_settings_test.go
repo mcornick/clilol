@@ -13,9 +13,13 @@ import (
 )
 
 func Test_updateAccountSettings(t *testing.T) {
-	err := updateAccountSettings("email_ok", "iso_8601", "advanced")
+	updateResult, err := updateAccountSettings("email_ok", "iso_8601", "advanced")
 	if err != nil {
 		t.Errorf("updateAccountSettings() error = %v", err)
 		return
+	}
+	expected := "OK, your settings have been updated."
+	if updateResult.Response.Message != expected {
+		t.Errorf("updateAccountSettings() = %v, want %v", updateResult.Response.Message, expected)
 	}
 }

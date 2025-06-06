@@ -14,9 +14,12 @@ import (
 )
 
 func Test_updateAccountName(t *testing.T) {
-	err := updateAccountName(os.Getenv("CLILOL_NAME"))
+	updateResult, err := updateAccountName(os.Getenv("CLILOL_NAME"))
 	if err != nil {
 		t.Errorf("updateAccountName() error = %v", err)
 		return
+	}
+	if updateResult.Response.Name != os.Getenv("CLILOL_NAME") {
+		t.Errorf("updateAccountName() = %v, want %v", updateResult.Response.Name, os.Getenv("CLILOL_NAME"))
 	}
 }

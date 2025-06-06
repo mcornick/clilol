@@ -14,10 +14,13 @@ import (
 )
 
 func Test_updateEmail(t *testing.T) {
-	input := []string{os.Getenv("CLILOL_EMAIL")}
-	err := updateEmail(input)
+	input := updateEmailInput{os.Getenv("CLILOL_EMAIL")}
+	updateResult, err := updateEmail(input)
 	if err != nil {
 		t.Errorf("updateEmail() error = %v", err)
 		return
+	}
+	if updateResult.Response.DestinationString != os.Getenv("CLILOL_EMAIL") {
+		t.Errorf("updateEmail() = %v, want %v", updateResult.Response.DestinationString, os.Getenv("CLILOL_EMAIL"))
 	}
 }

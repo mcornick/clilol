@@ -11,11 +11,12 @@ package cmd
 import (
 	"strings"
 	"testing"
+
+	"golang.org/x/exp/slices"
 )
 
 func Test_crudWeblog(t *testing.T) {
 	createResult, err := createWeblog("testdata/create_weblog.txt")
-	expectedTitle := "this is a created weblog\n"
 	if err != nil {
 		t.Errorf("createWeblog() error = %v", err)
 		return
@@ -25,10 +26,18 @@ func Test_crudWeblog(t *testing.T) {
 	}
 	entryID := createResult.Response.Entry.Entry
 
-	_, err = listWeblog()
+	listResult, err := listWeblog()
 	if err != nil {
 		t.Errorf("listWeblog() error = %v", err)
 		return
+	}
+	var returnedTitles []string
+	for _, entry := range listResult.Response.Entries {
+		returnedTitles = append(returnedTitles, entry.Title)
+	}
+	expectedTitle := "this is a created weblog"
+	if !slices.Contains(returnedTitles, expectedTitle) {
+		t.Errorf("listWeblog() = %v, want %v", returnedTitles, expectedTitle)
 	}
 
 	getResult, err := getWeblog(entryID)

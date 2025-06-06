@@ -10,7 +10,7 @@ Get information about an address
 Gets information about an address.
 
 ```
-clilol get address info [address] [flags]
+clilol get address info [name] [flags]
 ```
 
 ### Options

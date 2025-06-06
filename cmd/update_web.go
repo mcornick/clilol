@@ -9,14 +9,27 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
+	"net/http"
 	"os"
 
-	"github.com/mcornick/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
+
+type updateWebInput struct {
+	Publish bool   `json:"publish,omitempty"`
+	Content string `json:"content"`
+}
+
+type updateWebOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+	} `json:"response"`
+}
 
 var (
 	updateWebFilename string
@@ -35,20 +48,12 @@ webpage, use the --publish flag.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
 			validateConfig()
-			var content []byte
-			var err error
-			if updateWebFilename == "" {
-				content, err = io.ReadAll(os.Stdin)
-			} else {
-				content, err = os.ReadFile(updateWebFilename)
-			}
+			result, err := updateWeb(updateWebFilename)
 			cobra.CheckErr(err)
-			published, err := updateWeb(content, updateWebPublish)
-			handleAPIError(err)
-			if published {
-				fmt.Println("Web content saved and published.")
+			if result.Request.Success {
+				fmt.Println(result.Response.Message)
 			} else {
-				fmt.Println("Web content saved but not published.")
+				cobra.CheckErr(fmt.Errorf(result.Response.Message))
 			}
 		},
 	}
@@ -73,9 +78,25 @@ func init() {
 	updateCmd.AddCommand(updateWebCmd)
 }
 
-func updateWeb(content []byte, publish bool) (bool, error) {
-	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
-	cobra.CheckErr(err)
-	published, err := client.SetWeb(viper.GetString("address"), content, publish)
-	return published, err
+func updateWeb(filename string) (updateWebOutput, error) {
+	var result updateWebOutput
+	var content string
+	if filename != "" {
+		updateWebInput, err := os.ReadFile(filename)
+		cobra.CheckErr(err)
+		content = string(updateWebInput)
+	} else {
+		stdin, err := io.ReadAll(os.Stdin)
+		cobra.CheckErr(err)
+		content = string(stdin)
+	}
+	webPage := updateWebInput{updateWebPublish, content}
+	body := callAPIWithParams(
+		http.MethodPost,
+		"/address/"+viper.GetString("address")+"/web",
+		webPage,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

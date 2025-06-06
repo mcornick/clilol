@@ -19,7 +19,7 @@ func Test_getAccountSettings(t *testing.T) {
 		t.Errorf("getAccountSettings() error = %v", err)
 		return
 	}
-	if result.Owner != os.Getenv("CLILOL_EMAIL") {
-		t.Errorf("getAccountSettings() = %v, want %v", result.Owner, os.Getenv("CLILOL_EMAIL"))
+	if result.Response.Settings.Owner != os.Getenv("CLILOL_EMAIL") {
+		t.Errorf("getAccountSettings() = %v, want %v", result.Response.Settings.Owner, os.Getenv("CLILOL_EMAIL"))
 	}
 }

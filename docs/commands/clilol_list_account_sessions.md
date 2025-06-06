@@ -3,11 +3,11 @@ title: "clilol list account sessions"
 ---
 ## clilol list account sessions
 
-List sessions on your account
+List your sessions
 
 ### Synopsis
 
-Lists active sessions on your account.
+Lists the active sessions on your account.
 
 ```
 clilol list account sessions [flags]

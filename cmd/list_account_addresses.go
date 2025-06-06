@@ -9,25 +9,63 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
+	"net/http"
+	"time"
 
-	"github.com/mcornick/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
+type listAccountAddressesOutput struct {
+	Request  resultRequest `json:"request"`
+	Response []struct {
+		Address      string `json:"address"`
+		Message      string `json:"message"`
+		Registration struct {
+			Message       string    `json:"message"`
+			UnixEpochTime int64     `json:"unix_epoch_time"`
+			ISO8601Time   time.Time `json:"iso_8601_time"`
+			RFC2822Time   string    `json:"rfc_2822_time"`
+			RelativeTime  string    `json:"relative_time"`
+		} `json:"registration"`
+		Expiration struct {
+			Expired       bool      `json:"expired"`
+			WillExpire    bool      `json:"will_expire"`
+			UnixEpochTime int64     `json:"unix_epoch_time"`
+			ISO8601Time   time.Time `json:"iso_8601_time"`
+			RFC2822Time   string    `json:"rfc_2822_time"`
+			RelativeTime  string    `json:"relative_time"`
+		} `json:"expiration"`
+		Preferences struct {
+			IncludeInDirectory string `json:"include_in_directory"`
+			ShowOnDashboard    string `json:"show_on_dashboard"`
+			Statuslog          struct {
+				MastodonPosting bool `json:"mastodon_posting"`
+			} `json:"statuslog"`
+		} `json:"preferences"`
+	} `json:"response"`
+}
+
 var listAccountAddressesCmd = &cobra.Command{
 	Use:     "addresses",
 	Aliases: []string{"address"},
-	Short:   "List addresses on your account",
-	Long:    "Lists addresses on your account.",
+	Short:   "List your addresses",
+	Long:    "Lists the addresses on your account.",
 	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		validateConfig()
-		addresses, err := listAccountAddresses()
-		handleAPIError(err)
-		for _, address := range addresses {
-			fmt.Println(address.Address)
+		result, err := listAccountAddresses()
+		cobra.CheckErr(err)
+		if result.Request.Success {
+			for _, address := range result.Response {
+				fmt.Println(address.Address)
+				fmt.Println(address.Message)
+				fmt.Printf("Registered %s\n", address.Registration.RelativeTime)
+			}
+		} else {
+			cobra.CheckErr(fmt.Errorf("%d", result.Request.StatusCode))
 		}
 	},
 }
@@ -36,9 +74,15 @@ func init() {
 	listAccountCmd.AddCommand(listAccountAddressesCmd)
 }
 
-func listAccountAddresses() ([]omglol.Address, error) {
-	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
+func listAccountAddresses() (listAccountAddressesOutput, error) {
+	var result listAccountAddressesOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/account/"+viper.GetString("email")+"/addresses",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
 	cobra.CheckErr(err)
-	addresses, err := client.GetAccountAddresses()
-	return *addresses, err
+	return result, err
 }

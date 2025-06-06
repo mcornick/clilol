@@ -9,12 +9,25 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
+	"net/http"
 
-	"github.com/mcornick/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
+
+type listPURLOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		PURLs   []struct {
+			Name    string `json:"name"`
+			URL     string `json:"url"`
+			Counter int    `json:"counter"`
+		} `json:"purls"`
+	} `json:"response"`
+}
 
 var listPURLCmd = &cobra.Command{
 	Use:     "purls",
@@ -28,18 +41,18 @@ it defaults to your own address.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		validateConfig()
 		result, err := listPURL(addressFlag)
-		handleAPIError(err)
-		for _, purl := range result {
-			listed := "listed"
-			if !purl.Listed {
-				listed = "unlisted"
+		cobra.CheckErr(err)
+		if result.Request.Success {
+			for _, purl := range result.Response.PURLs {
+				fmt.Printf(
+					"%s: %s (%d hits)\n",
+					purl.Name,
+					purl.URL,
+					purl.Counter,
+				)
 			}
-			fmt.Printf(
-				"%s: %s (%s)\n",
-				purl.Name,
-				purl.URL,
-				listed,
-			)
+		} else {
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
 		}
 	},
 }
@@ -55,12 +68,17 @@ func init() {
 	listCmd.AddCommand(listPURLCmd)
 }
 
-func listPURL(address string) ([]omglol.PersistentURL, error) {
+func listPURL(address string) (listPURLOutput, error) {
+	var result listPURLOutput
 	if address == "" {
 		address = viper.GetString("address")
 	}
-	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
-	cobra.CheckErr(err)
-	purls, err := client.ListPersistentURLs(address)
-	return *purls, err
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+address+"/purls",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

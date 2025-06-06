@@ -13,9 +13,12 @@ import (
 )
 
 func Test_listAccountSessions(t *testing.T) {
-	_, err := listAccountSessions()
+	result, err := listAccountSessions()
 	if err != nil {
 		t.Errorf("listAccountSessions() error = %v", err)
 		return
+	}
+	if !result.Request.Success {
+		t.Errorf("listAccountSessions() result.Request.Success = %v, want %v", result.Request.Success, true)
 	}
 }
