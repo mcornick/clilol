@@ -9,28 +9,38 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
-	"strings"
+	"net/http"
 
-	"github.com/mcornick/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
+type getEmailOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message           string   `json:"message"`
+		DestinationString string   `json:"destination_string"`
+		DestinationArray  []string `json:"destination_array"`
+		Address           string   `json:"address"`
+		EmailAddress      string   `json:"email_address"`
+	} `json:"response"`
+}
+
 var getEmailCmd = &cobra.Command{
-	Use:     "email",
-	Aliases: []string{"emails"},
-	Short:   "Get email forwarding address(es)",
-	Long:    "Gets your email forwarding address(es).",
-	Args:    cobra.NoArgs,
+	Use:   "email",
+	Short: "Get email forwarding address(es)",
+	Long:  "Gets your email forwarding address(es).",
+	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		validateConfig()
 		result, err := getEmail()
-		handleAPIError(err)
-		if len(result) > 1 {
-			fmt.Println(strings.Join(result, ","))
+		cobra.CheckErr(err)
+		if result.Request.Success {
+			fmt.Println(result.Response.Message)
 		} else {
-			fmt.Println(result[0])
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
 		}
 	},
 }
@@ -39,9 +49,14 @@ func init() {
 	getCmd.AddCommand(getEmailCmd)
 }
 
-func getEmail() ([]string, error) {
-	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
-	cobra.CheckErr(err)
-	account, err := client.GetEmails(viper.GetString("address"))
-	return account, err
+func getEmail() (getEmailOutput, error) {
+	var result getEmailOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+viper.GetString("address")+"/email",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

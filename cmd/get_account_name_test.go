@@ -19,7 +19,7 @@ func Test_getAccountName(t *testing.T) {
 		t.Errorf("getAccountName() error = %v", err)
 		return
 	}
-	if result != os.Getenv("CLILOL_NAME") {
-		t.Errorf("getAccountName() = %v, want %v", result, os.Getenv("CLILOL_NAME"))
+	if result.Response.Name != os.Getenv("CLILOL_NAME") {
+		t.Errorf("getAccountName() = %v, want %v", result.Response.Name, os.Getenv("CLILOL_NAME"))
 	}
 }

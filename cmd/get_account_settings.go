@@ -9,12 +9,26 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
+	"net/http"
 
-	"github.com/mcornick/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
+
+type getAccountSettingsOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message  string `json:"message"`
+		Settings struct {
+			Owner         string `json:"owner"`
+			Communication string `json:"communication"`
+			DateFormat    string `json:"date_format"`
+			WebEditor     string `json:"web_editor"`
+		} `json:"settings"`
+	} `json:"response"`
+}
 
 var getAccountSettingsCmd = &cobra.Command{
 	Use:   "settings",
@@ -23,18 +37,17 @@ var getAccountSettingsCmd = &cobra.Command{
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		validateConfig()
-		// var result getAccountSettingsOutput
+		var result getAccountSettingsOutput
 		result, err := getAccountSettings()
-		handleAPIError(err)
-		fmt.Printf("Owner: %s\n", result.Owner)
-		if result.Communication != nil {
-			fmt.Printf("Communication: %s\n", *result.Communication)
-		}
-		if result.DateFormat != nil {
-			fmt.Printf("Date Format: %s\n", *result.DateFormat)
-		}
-		if result.WebEditor != nil {
-			fmt.Printf("Web Editor: %s\n", *result.WebEditor)
+		cobra.CheckErr(err)
+		if result.Request.Success {
+			fmt.Println(result.Response.Message)
+			fmt.Printf("Owner: %s\n", result.Response.Settings.Owner)
+			fmt.Printf("Communication: %s\n", result.Response.Settings.Communication)
+			fmt.Printf("Date Format: %s\n", result.Response.Settings.DateFormat)
+			fmt.Printf("Web Editor: %s\n", result.Response.Settings.WebEditor)
+		} else {
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
 		}
 	},
 }
@@ -43,9 +56,14 @@ func init() {
 	getAccountCmd.AddCommand(getAccountSettingsCmd)
 }
 
-func getAccountSettings() (omglol.AccountSettings, error) {
-	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
-	cobra.CheckErr(err)
-	settings, err := client.GetAccountSettings()
-	return *settings, err
+func getAccountSettings() (getAccountSettingsOutput, error) {
+	var result getAccountSettingsOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/account/"+viper.GetString("email")+"/settings",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

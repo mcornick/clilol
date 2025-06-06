@@ -1,1 +1,7 @@
-this is a created weblog
+---
+Date: 2025-06-06
+---
+
+# this is a created weblog
+
+It is.

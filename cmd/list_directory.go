@@ -9,13 +9,22 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
+	"net/http"
 
-	"github.com/mcornick/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 	"golang.org/x/net/idna"
 )
+
+type listDirectoryOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message   string   `json:"message"`
+		URL       string   `json:"url"`
+		Directory []string `json:"directory"`
+	} `json:"response"`
+}
 
 var listDirectoryCmd = &cobra.Command{
 	Use:   "directory",
@@ -25,12 +34,17 @@ var listDirectoryCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		validateConfig()
 		result, err := listDirectory()
-		handleAPIError(err)
-		for _, address := range result.Directory {
-			idnaProfile := idna.New()
-			decoded, err := idnaProfile.ToUnicode(address)
-			cobra.CheckErr(err)
-			fmt.Println(decoded)
+		cobra.CheckErr(err)
+		if result.Request.Success {
+			fmt.Printf("%s\n\n", result.Response.Message)
+			for _, address := range result.Response.Directory {
+				idnaProfile := idna.New()
+				decoded, err := idnaProfile.ToUnicode(address)
+				cobra.CheckErr(err)
+				fmt.Println(decoded)
+			}
+		} else {
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
 		}
 	},
 }
@@ -39,9 +53,9 @@ func init() {
 	listCmd.AddCommand(listDirectoryCmd)
 }
 
-func listDirectory() (*omglol.AddressDirectory, error) {
-	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
-	cobra.CheckErr(err)
-	directory, err := client.GetAddressDirectory()
-	return directory, err
+func listDirectory() (listDirectoryOutput, error) {
+	var result listDirectoryOutput
+	body := callAPIWithParams(http.MethodGet, "/directory", nil, false)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

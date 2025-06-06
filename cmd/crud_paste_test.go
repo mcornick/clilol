@@ -11,20 +11,32 @@ package cmd
 import (
 	"os"
 	"testing"
+
+	"golang.org/x/exp/slices"
 )
 
 func Test_crudPaste(t *testing.T) {
 	expectedTitle := "createdpaste"
-	err := createPaste(expectedTitle, "testdata/create_paste.txt", false)
+	createResult, err := createPaste(expectedTitle, "testdata/create_paste.txt", false)
 	if err != nil {
 		t.Errorf("createPaste() error = %v", err)
 		return
 	}
+	if createResult.Response.Title != expectedTitle {
+		t.Errorf("createPaste() = %v, want %v", createResult.Response.Title, expectedTitle)
+	}
 
-	_, err = listPaste(os.Getenv("CLILOL_ADDRESS"))
+	listResult, err := listPaste(os.Getenv("CLILOL_ADDRESS"))
 	if err != nil {
 		t.Errorf("listPaste() error = %v", err)
 		return
+	}
+	var expectedTitles []string
+	for _, status := range listResult.Response.Pastebin {
+		expectedTitles = append(expectedTitles, status.Title)
+	}
+	if !slices.Contains(expectedTitles, expectedTitle) {
+		t.Errorf("listPaste() = %v, want %v", expectedTitles, expectedTitle)
 	}
 
 	getResult, err := getPaste(os.Getenv("CLILOL_ADDRESS"), expectedTitle)
@@ -32,13 +44,17 @@ func Test_crudPaste(t *testing.T) {
 		t.Errorf("getPaste() error = %v", err)
 		return
 	}
-	if getResult.Title != expectedTitle {
-		t.Errorf("getPaste() = %v, want %v", getResult.Title, expectedTitle)
+	if getResult.Response.Paste.Title != expectedTitle {
+		t.Errorf("getPaste() = %v, want %v", getResult.Response.Paste.Title, expectedTitle)
 	}
 
-	err = deletePaste(expectedTitle)
+	deleteResult, err := deletePaste(expectedTitle)
 	if err != nil {
 		t.Errorf("deletePaste() error = %v", err)
 		return
+	}
+	expectedMessage := "OK, that paste has been deleted."
+	if deleteResult.Response.Message != expectedMessage {
+		t.Errorf("deletePaste() = %v , want %v", deleteResult.Response.Message, expectedMessage)
 	}
 }

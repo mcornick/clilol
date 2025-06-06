@@ -9,12 +9,21 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
+	"net/http"
 
-	"github.com/mcornick/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
+
+type getAccountNameOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		Name    string `json:"name"`
+	} `json:"response"`
+}
 
 var getAccountNameCmd = &cobra.Command{
 	Use:   "name",
@@ -23,9 +32,13 @@ var getAccountNameCmd = &cobra.Command{
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		validateConfig()
-		name, err := getAccountName()
-		handleAPIError(err)
-		fmt.Println(name)
+		result, err := getAccountName()
+		cobra.CheckErr(err)
+		if result.Request.Success {
+			fmt.Println(result.Response.Message)
+		} else {
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+		}
 	},
 }
 
@@ -33,9 +46,14 @@ func init() {
 	getAccountCmd.AddCommand(getAccountNameCmd)
 }
 
-func getAccountName() (string, error) {
-	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
-	cobra.CheckErr(err)
-	account, err := client.GetAccountName()
-	return *account, err
+func getAccountName() (getAccountNameOutput, error) {
+	var result getAccountNameOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/account/"+viper.GetString("email")+"/name",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

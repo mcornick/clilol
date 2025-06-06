@@ -9,12 +9,31 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
+	"net/http"
+	"time"
 
-	"github.com/mcornick/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
+
+type listDNSOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		DNS     []struct {
+			ID        int       `json:"id"`
+			Type      string    `json:"type"`
+			Name      string    `json:"name"`
+			Data      string    `json:"data"`
+			Priority  int       `json:"priority"`
+			TTL       int       `json:"ttl"`
+			CreatedAt time.Time `json:"created_at"`
+			UpdatedAt time.Time `json:"updated_at"`
+		} `json:"dns"`
+	} `json:"response"`
+}
 
 var listDNSCmd = &cobra.Command{
 	Use:   "dns",
@@ -24,15 +43,19 @@ var listDNSCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		validateConfig()
 		result, err := listDNS()
-		handleAPIError(err)
-		for _, record := range result {
-			fmt.Printf(
-				"%s %s %s ; ID: %d\n",
-				record.Name,
-				record.Type,
-				record.Data,
-				record.ID,
-			)
+		cobra.CheckErr(err)
+		if result.Request.Success {
+			for _, record := range result.Response.DNS {
+				fmt.Printf(
+					"%s %s %s ; ID: %d\n",
+					record.Name,
+					record.Type,
+					record.Data,
+					record.ID,
+				)
+			}
+		} else {
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
 		}
 	},
 }
@@ -41,9 +64,14 @@ func init() {
 	listCmd.AddCommand(listDNSCmd)
 }
 
-func listDNS() ([]omglol.DNSRecord, error) {
-	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
-	cobra.CheckErr(err)
-	records, err := client.ListDNSRecords(viper.GetString("address"))
-	return *records, err
+func listDNS() (listDNSOutput, error) {
+	var result listDNSOutput
+	body := callAPIWithParams(
+		http.MethodGet,
+		"/address/"+viper.GetString("address")+"/dns",
+		nil,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

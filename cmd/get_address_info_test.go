@@ -2,7 +2,7 @@
 //
 // Copyright (c) 2023 Mark Cornick
 //
-// This Source Code Form is subject to the terms of the Mozilla
+// This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
@@ -19,7 +19,7 @@ func Test_getAddressInfo(t *testing.T) {
 		t.Errorf("getAddressInfo() error = %v", err)
 		return
 	}
-	if result.Expiration.Expired {
-		t.Errorf("getAddressInfo() = %v, want %v", result.Expiration.Expired, false)
+	if result.Response.Address != os.Getenv("CLILOL_ADDRESS") {
+		t.Errorf("getAddressInfo() = %v, want %v", result.Response.Address, os.Getenv("CLILOL_ADDRESS"))
 	}
 }

@@ -9,12 +9,27 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
+	"net/http"
 
-	"github.com/mcornick/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
+
+type createPURLInput struct {
+	Name   string `json:"name"`
+	URL    string `json:"url"`
+	Listed bool   `json:"listed,omitempty"`
+}
+type createPURLOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message string `json:"message"`
+		Name    string `json:"name"`
+		URL     string `json:"url"`
+	} `json:"response"`
+}
 
 var (
 	createPURLListed bool
@@ -29,11 +44,13 @@ PURL, use the --listed flag.
 		Args: cobra.ExactArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
 			validateConfig()
-			name := args[0]
-			url := args[1]
-			err := createPURL(name, url, createPURLListed)
-			handleAPIError(err)
-			fmt.Printf("PURL %s created.\n", name)
+			result, err := createPURL(args[0], args[1], createPURLListed)
+			cobra.CheckErr(err)
+			if result.Request.Success {
+				fmt.Println(result.Response.Message)
+			} else {
+				cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			}
 		},
 	}
 )
@@ -49,10 +66,15 @@ func init() {
 	createCmd.AddCommand(createPURLCmd)
 }
 
-func createPURL(name string, url string, listed bool) error {
-	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
-	cobra.CheckErr(err)
-	purl := omglol.NewPersistentURL(name, url, listed)
-	err = client.CreatePersistentURL(viper.GetString("address"), *purl)
-	return err
+func createPURL(name string, url string, listed bool) (createPURLOutput, error) {
+	var result createPURLOutput
+	purl := createPURLInput{name, url, listed}
+	body := callAPIWithParams(
+		http.MethodPost,
+		"/address/"+viper.GetString("address")+"/purl",
+		purl,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }

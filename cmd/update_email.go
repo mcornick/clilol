@@ -9,13 +9,27 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
-	"strings"
+	"net/http"
 
-	"github.com/mcornick/omglol-client-go/omglol"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
+
+type updateEmailInput struct {
+	Destination string `json:"destination"`
+}
+type updateEmailOutput struct {
+	Request  resultRequest `json:"request"`
+	Response struct {
+		Message           string   `json:"message"`
+		DestinationString string   `json:"destination_string"`
+		DestinationArray  []string `json:"destination_array"`
+		Address           string   `json:"address"`
+		EmailAddress      string   `json:"email_address"`
+	} `json:"response"`
+}
 
 var updateEmailCmd = &cobra.Command{
 	Use:     "email [address]",
@@ -27,10 +41,15 @@ To specify multiple addresses, separate them with commas.`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		validateConfig()
-		destination := strings.Split(args[0], ",")
-		err := updateEmail(destination)
-		handleAPIError(err)
-		fmt.Println("Email forwarding updated.")
+		var result updateEmailOutput
+		email := updateEmailInput{args[0]}
+		result, err := updateEmail(email)
+		cobra.CheckErr(err)
+		if result.Request.Success {
+			fmt.Println(result.Response.Message)
+		} else {
+			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+		}
 	},
 }
 
@@ -38,9 +57,14 @@ func init() {
 	updateCmd.AddCommand(updateEmailCmd)
 }
 
-func updateEmail(destination []string) error {
-	client, err := omglol.NewClient(viper.GetString("email"), viper.GetString("apikey"), endpoint)
-	cobra.CheckErr(err)
-	err = client.SetEmails(viper.GetString("address"), destination)
-	return err
+func updateEmail(params updateEmailInput) (updateEmailOutput, error) {
+	var result updateEmailOutput
+	body := callAPIWithParams(
+		http.MethodPost,
+		"/address/"+viper.GetString("address")+"/email",
+		params,
+		true,
+	)
+	err := json.Unmarshal(body, &result)
+	return result, err
 }
