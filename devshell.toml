@@ -12,4 +12,5 @@ packages = [
   "gofumpt",
   "golangci-lint",
   "gopls",
+  "universal-ctags",
 ]
