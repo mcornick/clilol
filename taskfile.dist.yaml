@@ -9,6 +9,9 @@ tasks:
   fmt:
     cmds:
       - go fmt ./...
+  tags:
+    cmds:
+      - ctags *.go cmd/*.go
   test:
     cmds:
       - go test ./...
