@@ -135,7 +135,7 @@ func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byt
 	return body, nil
 }
 
-func callAPIWithParams(method string, path string, params interface{}, auth bool) []byte {
+func callAPIWithParams(method string, path string, params any, auth bool) []byte {
 	jsonBody, err := json.Marshal(params)
 	cobra.CheckErr(err)
 	bodyReader := bytes.NewReader(jsonBody)
