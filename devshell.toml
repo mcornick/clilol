@@ -7,7 +7,6 @@ package = "go-task"
 [devshell]
 motd = ""
 packages = [
-  "delve",
   "go-tools",
   "gofumpt",
   "golangci-lint",
