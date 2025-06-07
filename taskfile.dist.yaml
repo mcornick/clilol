@@ -8,7 +8,7 @@ tasks:
       - go clean
   fmt:
     cmds:
-      - go fmt ./...
+      - gofumpt -w .
   tags:
     cmds:
       - ctags *.go cmd/*.go
