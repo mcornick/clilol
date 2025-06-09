@@ -161,8 +161,7 @@ nix:
     skip_upload: auto
 notarize:
   macos:
-    - enabled: false
-      sign:
+    - sign:
         certificate: "{{ .Env.MACOS_SIGN_P12 }}"
         password: "{{ .Env.MACOS_SIGN_PASSWORD }}"
       notarize:
