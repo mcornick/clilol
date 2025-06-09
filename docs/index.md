@@ -17,8 +17,12 @@ You can install clilol in any of these ways. (These are the only supported build
 
     ```bash
     brew tap mcornick/tap https://github.com/mcornick/homebrew-tap.git
-    brew install mcornick/tap/clilol
+    brew install --cask mcornick/tap/clilol
     ```
+
+    !!! Note
+
+    clilol was previously distributed as a Homebrew _brew_, but is now distributed as a _cask_. If you previously installed the brew, remove it before installing the cask.
 
 === "Scoop"
 
@@ -87,11 +91,7 @@ You can install clilol in any of these ways. (These are the only supported build
 
     Binary checksums included on the release pages are signed with my [PGP key](https://github.com/mcornick.gpg).
 
-    !!! Note
-
-        macOS will likely complain that the `clilol` binary is from an
-        unidentified developer. To avoid this, install clilol with
-        Homebrew.
+    macOS binaries are notarized by Apple, and you should not see any warnings about "unidentified developers." If you do, something is wrong, and I'd appreciate hearing about it, thanks!
 
 === "From source"
 
