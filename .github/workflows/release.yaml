@@ -36,6 +36,11 @@ jobs:
           FURY_TOKEN: ${{ secrets.FURY_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
+          MACOS_NOTARY_ISSUER_ID: ${{ secrets.MACOS_NOTARY_ISSUER_ID }}
+          MACOS_NOTARY_KEY: ${{ secrets.MACOS_NOTARY_KEY }}
+          MACOS_NOTARY_KEY_ID: ${{ secrets.MACOS_NOTARY_KEY_ID }}
+          MACOS_SIGN_P12: ${{ secrets.MACOS_SIGN_P12 }}
+          MACOS_SIGN_PASSWORD: ${{ secrets.MACOS_SIGN_PASSWORD }}
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
           MASTODON_CLIENT_ID: ${{ secrets.MASTODON_CLIENT_ID }}
           MASTODON_CLIENT_SECRET: ${{ secrets.MASTODON_CLIENT_SECRET }}
