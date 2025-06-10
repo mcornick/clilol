@@ -6,7 +6,7 @@ repos:
       - id: check-added-large-files
       - id: check-yaml
     repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v5.0.0
   - hooks:
       - id: go-build-mod
       - id: go-mod-tidy-repo
