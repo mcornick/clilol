@@ -24,6 +24,7 @@
               gofumpt
               golangci-lint
               gopls
+              pre-commit
               universal-ctags
             ];
           };
