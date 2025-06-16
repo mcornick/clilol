@@ -75,17 +75,16 @@ docker_signs:
       - ${artifact}
     artifacts: all
 homebrew_casks:
-  - conflicts:
-      formula: clilol
+  - completions:
+      bash: completions/clilol.bash
+      zsh: completions/clilol.zsh
+      fish: completions/clilol.fish
+    conflicts:
+      - formula: clilol
     description: A CLI for omg.lol
     homepage: https://clilol.readthedocs.io/
-    install: |
-      bin.install "clilol"
-      bash_completion.install "completions/clilol.bash" => "clilol"
-      zsh_completion.install "completions/clilol.zsh" => "_clilol"
-      fish_completion.install "completions/clilol.fish"
-      man1.install Dir["manpages/*.1"]
     license: MPL-2.0
+    manpage: manpages/*.1
     repository:
       name: homebrew-tap
       owner: mcornick
