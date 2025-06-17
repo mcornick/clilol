@@ -6,7 +6,7 @@ title: Developer Notes
 
 Until such time as there's a non-production instance to connect to, or there are mock services available for testing, you'll need an address on the production omg.lol server to run the tests. I use a separate address for this, and recommend you do the same.
 
-You'll need to set some environment variables to reflect your testing address:
+You'll need to set some environment variables to reflect your testing address. A [Taskfile](https://taskfile.dev) is provided that can take care of this for you (copy `taskfile.dist.yaml` to `taskfile.yaml` and fill in your details), or you can do it yourself:
 
 ```
 export CLILOL_ADDRESS="tomservo-testing"
