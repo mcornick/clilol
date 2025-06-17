@@ -84,8 +84,77 @@ homebrew_casks:
     description: A CLI for omg.lol
     homepage: https://clilol.readthedocs.io/
     license: MPL-2.0
-    # FIXME: include all the other manpages
-    manpage: manpages/clilol.1
+    manpages:
+      - manpages/clilol.1
+      - manpages/clilol-create.1
+      - manpages/clilol-create-dns.1
+      - manpages/clilol-create-paste.1
+      - manpages/clilol-create-picture.1
+      - manpages/clilol-create-purl.1
+      - manpages/clilol-create-status.1
+      - manpages/clilol-create-weblog.1
+      - manpages/clilol-delete.1
+      - manpages/clilol-delete-account.1
+      - manpages/clilol-delete-account-session.1
+      - manpages/clilol-delete-dns.1
+      - manpages/clilol-delete-paste.1
+      - manpages/clilol-delete-picture.1
+      - manpages/clilol-delete-purl.1
+      - manpages/clilol-delete-status.1
+      - manpages/clilol-delete-weblog.1
+      - manpages/clilol-get.1
+      - manpages/clilol-get-account.1
+      - manpages/clilol-get-account-info.1
+      - manpages/clilol-get-account-name.1
+      - manpages/clilol-get-account-settings.1
+      - manpages/clilol-get-address.1
+      - manpages/clilol-get-address-availability.1
+      - manpages/clilol-get-address-expiration.1
+      - manpages/clilol-get-address-info.1
+      - manpages/clilol-get-dns.1
+      - manpages/clilol-get-email.1
+      - manpages/clilol-get-now.1
+      - manpages/clilol-get-paste.1
+      - manpages/clilol-get-purl.1
+      - manpages/clilol-get-service.1
+      - manpages/clilol-get-status.1
+      - manpages/clilol-get-status-bio.1
+      - manpages/clilol-get-theme.1
+      - manpages/clilol-get-theme-preview.1
+      - manpages/clilol-get-web.1
+      - manpages/clilol-get-weblog.1
+      - manpages/clilol-get-weblog-config.1
+      - manpages/clilol-get-weblog-latest.1
+      - manpages/clilol-get-weblog-template.1
+      - manpages/clilol-list.1
+      - manpages/clilol-list-account.1
+      - manpages/clilol-list-account-addresses.1
+      - manpages/clilol-list-account-sessions.1
+      - manpages/clilol-list-directory.1
+      - manpages/clilol-list-dns.1
+      - manpages/clilol-list-now.1
+      - manpages/clilol-list-pastes.1
+      - manpages/clilol-list-pictures.1
+      - manpages/clilol-list-purls.1
+      - manpages/clilol-list-statuses.1
+      - manpages/clilol-list-statuslog.1
+      - manpages/clilol-list-themes.1
+      - manpages/clilol-list-weblogs.1
+      - manpages/clilol-update.1
+      - manpages/clilol-update-account.1
+      - manpages/clilol-update-account-name.1
+      - manpages/clilol-update-account-settings.1
+      - manpages/clilol-update-dns.1
+      - manpages/clilol-update-email.1
+      - manpages/clilol-update-now.1
+      - manpages/clilol-update-preference.1
+      - manpages/clilol-update-status.1
+      - manpages/clilol-update-status-bio.1
+      - manpages/clilol-update-web.1
+      - manpages/clilol-update-weblog.1
+      - manpages/clilol-update-weblog-config.1
+      - manpages/clilol-update-weblog-template.1
+      - manpages/clilol-update-web-pfp.1
     repository:
       name: homebrew-tap
       owner: mcornick
