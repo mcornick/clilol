@@ -1,10 +1,10 @@
 ---
 announce:
   bluesky:
-    enabled: false
+    enabled: true
     username: "mcornick.lol"
   mastodon:
-    enabled: false
+    enabled: true
     server: https://social.lol
   skip: '{{ ne .Prerelease "" }}'
 archives:
