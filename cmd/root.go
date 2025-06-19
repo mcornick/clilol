@@ -80,16 +80,12 @@ func init() {
 		cobra.CheckErr(err)
 		viper.Set("apikey", strings.TrimSpace(string(apikey)))
 	}
-	validateConfig()
-	rootCmd.DisableAutoGenTag = true
-}
-
-func validateConfig() {
 	for _, key := range []string{"address", "apikey", "email"} {
 		if viper.GetString(key) == "" {
 			cobra.CheckErr(fmt.Errorf("no %s set", key))
 		}
 	}
+	rootCmd.DisableAutoGenTag = true
 }
 
 func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byte, error) {
