@@ -158,7 +158,7 @@ homebrew_casks:
     repository:
       name: homebrew-tap
       owner: mcornick
-    skip_upload: auto
+    skip_upload: false
 kos:
   - bare: true
     build: clilol
