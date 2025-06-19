@@ -39,14 +39,17 @@ If you specify a filename with the --filename flag, the content of the file
 will be used. If you do not specify a filename, the content will be read
 from stdin.`,
 		Args: cobra.NoArgs,
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := updateWeblogTemplate(updateWeblogTemplateFilename)
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
 			} else {
-				cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+				return fmt.Errorf("%s", result.Response.Message)
 			}
+			return nil
 		},
 	}
 )
@@ -67,11 +70,15 @@ func updateWeblogTemplate(filename string) (updateWeblogTemplateOutput, error) {
 	var content string
 	if filename != "" {
 		input, err := os.ReadFile(filename)
-		cobra.CheckErr(err)
+		if err != nil {
+			return result, err
+		}
 		content = string(input)
 	} else {
 		stdin, err := io.ReadAll(os.Stdin)
-		cobra.CheckErr(err)
+		if err != nil {
+			return result, err
+		}
 		content = string(stdin)
 	}
 	body := callAPIWithRawData(

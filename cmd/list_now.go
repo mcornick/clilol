@@ -39,9 +39,11 @@ var listNowCmd = &cobra.Command{
 	Short: "List Now pages",
 	Long:  "Lists pages in the Now garden.",
 	Args:  cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := listNow()
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
 			for _, page := range result.Response.Garden {
@@ -49,8 +51,9 @@ var listNowCmd = &cobra.Command{
 				fmt.Printf("last updated %s\n", page.Updated.RelativeTime)
 			}
 		} else {
-			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+			return fmt.Errorf("%s", result.Response.Message)
 		}
+		return nil
 	},
 }
 

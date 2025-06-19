@@ -31,14 +31,17 @@ var updateWebPFPCmd = &cobra.Command{
 	Short: "set your profile picture",
 	Long:  "Sets your profile picture.",
 	Args:  cobra.ExactArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := updateWebPFP(args[0])
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
 		} else {
-			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+			return fmt.Errorf("%s", result.Response.Message)
 		}
+		return nil
 	},
 }
 
@@ -49,7 +52,9 @@ func init() {
 func updateWebPFP(filename string) (updateWebPFPOutput, error) {
 	var result updateWebPFPOutput
 	content, err := os.ReadFile(filename)
-	cobra.CheckErr(err)
+	if err != nil {
+		return result, err
+	}
 	encoded := "data:text/plain;base64," + base64.StdEncoding.EncodeToString(content)
 	body := callAPIWithRawData(
 		http.MethodPost,

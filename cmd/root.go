@@ -42,16 +42,20 @@ type resultRequest struct {
 	Success    bool `json:"success"`
 }
 
-func Execute() {
-	err := rootCmd.Execute()
-	if err != nil {
-		os.Exit(1)
-	}
+func Execute() error {
+	return rootCmd.Execute()
 }
 
 func init() {
+	_ = loadConfig()
+	rootCmd.DisableAutoGenTag = true
+}
+
+func loadConfig() error {
 	configDir, err := os.UserConfigDir()
-	cobra.CheckErr(err)
+	if err != nil {
+		return err
+	}
 	viper.SetConfigName("config")
 	viper.AddConfigPath("/etc/clilol/")
 	viper.AddConfigPath(configDir + "/clilol")
@@ -65,27 +69,35 @@ func init() {
 	if err != nil {
 		_, ok := err.(viper.ConfigFileNotFoundError)
 		if !ok {
-			cobra.CheckErr(err)
+			return err
 		}
 	}
 	if viper.GetString("apikeycmd") != "" {
 		args, err := shellquote.Split(viper.GetString("apikeycmd"))
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		cmd := exec.Command(args[0], args[1:]...)
 		stdout, err := cmd.StdoutPipe()
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		err = cmd.Start()
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		apikey, err := io.ReadAll(stdout)
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		viper.Set("apikey", strings.TrimSpace(string(apikey)))
 	}
 	for _, key := range []string{"address", "apikey", "email"} {
 		if viper.GetString(key) == "" {
-			cobra.CheckErr(fmt.Errorf("no %s set", key))
+			return fmt.Errorf("no %s set", key)
 		}
 	}
-	rootCmd.DisableAutoGenTag = true
+	return nil
 }
 
 func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byte, error) {

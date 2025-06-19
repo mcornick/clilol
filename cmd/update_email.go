@@ -39,16 +39,19 @@ var updateEmailCmd = &cobra.Command{
 
 To specify multiple addresses, separate them with commas.`,
 	Args: cobra.ExactArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		var result updateEmailOutput
 		email := updateEmailInput{args[0]}
 		result, err := updateEmail(email)
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			return fmt.Errorf(result.Response.Message)
 		}
+		return nil
 	},
 }
 

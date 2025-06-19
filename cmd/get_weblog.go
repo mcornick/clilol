@@ -44,9 +44,11 @@ var getWeblogCmd = &cobra.Command{
 	Short: "Get a weblog entry",
 	Long:  "Gets one of your weblog entries by ID.",
 	Args:  cobra.ExactArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := getWeblog(args[0])
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			fmt.Printf(
 				"%s (%s) modified on %s\n\n%s\n",
@@ -60,8 +62,9 @@ var getWeblogCmd = &cobra.Command{
 				result.Response.Entry.Body,
 			)
 		} else {
-			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+			return fmt.Errorf("%s", result.Response.Message)
 		}
+		return nil
 	},
 }
 

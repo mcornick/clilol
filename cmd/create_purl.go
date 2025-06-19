@@ -42,14 +42,17 @@ The PURL will be created as unlisted by default. To create a listed
 PURL, use the --listed flag.
 `,
 		Args: cobra.ExactArgs(2),
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := createPURL(args[0], args[1], createPURLListed)
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
 			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
+				return fmt.Errorf(result.Response.Message)
 			}
+			return nil
 		},
 	}
 )

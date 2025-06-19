@@ -36,9 +36,11 @@ var listAccountSessionsCmd = &cobra.Command{
 	Short:   "List your sessions",
 	Long:    "Lists the active sessions on your account.",
 	Args:    cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := listAccountSessions()
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			for _, session := range result.Response {
 				fmt.Printf("\n%s\n", session.SessionID)
@@ -47,8 +49,9 @@ var listAccountSessionsCmd = &cobra.Command{
 				fmt.Println(time.Unix(session.CreatedOn, 0))
 			}
 		} else {
-			cobra.CheckErr(fmt.Errorf("%d", result.Request.StatusCode))
+			return fmt.Errorf("%d", result.Request.StatusCode)
 		}
+		return nil
 	},
 }
 

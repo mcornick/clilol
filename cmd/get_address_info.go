@@ -51,16 +51,19 @@ var getAddressInfoCmd = &cobra.Command{
 	Short: "Get information about an address",
 	Long:  "Gets information about an address.",
 	Args:  cobra.ExactArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := getAddressInfo(args[0])
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			fmt.Println(result.Response.Registration.Message)
 			fmt.Println(result.Response.Expiration.Message)
 			fmt.Println(result.Response.Verification.Message)
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			return fmt.Errorf(result.Response.Message)
 		}
+		return nil
 	},
 }
 

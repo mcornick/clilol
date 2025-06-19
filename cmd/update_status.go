@@ -50,14 +50,17 @@ emoji will be used. Note that the omg.lol API does not preserve
 the existing emoji if you don't specify one, so if you don't want
 to change it, you'll still need to specify it again.`,
 		Args: cobra.ExactArgs(2),
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := updateStatus(args[0], args[1], updateStatusEmoji)
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
 			} else {
-				cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+				return fmt.Errorf("%s", result.Response.Message)
 			}
+			return nil
 		},
 	}
 )

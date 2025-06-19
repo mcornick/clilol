@@ -33,14 +33,17 @@ var getEmailCmd = &cobra.Command{
 	Short: "Get email forwarding address(es)",
 	Long:  "Gets your email forwarding address(es).",
 	Args:  cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := getEmail()
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			return fmt.Errorf(result.Response.Message)
 		}
+		return nil
 	},
 }
 

@@ -37,15 +37,18 @@ it defaults to your own address.
 Note that any custom CSS set on the bio is ignored.
 `,
 	Args: cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := getStatusBio(addressFlag)
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
 			fmt.Printf("\n%s\n", result.Response.Bio)
 		} else {
-			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+			return fmt.Errorf("%s", result.Response.Message)
 		}
+		return nil
 	},
 }
 

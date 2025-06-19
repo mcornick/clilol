@@ -54,9 +54,11 @@ var listAccountAddressesCmd = &cobra.Command{
 	Short:   "List your addresses",
 	Long:    "Lists the addresses on your account.",
 	Args:    cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := listAccountAddresses()
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			for _, address := range result.Response {
 				fmt.Println(address.Address)
@@ -64,8 +66,9 @@ var listAccountAddressesCmd = &cobra.Command{
 				fmt.Printf("Registered %s\n", address.Registration.RelativeTime)
 			}
 		} else {
-			cobra.CheckErr(fmt.Errorf("%d", result.Request.StatusCode))
+			return fmt.Errorf("%d", result.Request.StatusCode)
 		}
+		return nil
 	},
 }
 
@@ -82,6 +85,8 @@ func listAccountAddresses() (listAccountAddressesOutput, error) {
 		true,
 	)
 	err := json.Unmarshal(body, &result)
-	cobra.CheckErr(err)
+	if err != nil {
+		return result, err
+	}
 	return result, err
 }

@@ -39,19 +39,24 @@ var (
 The address can be specified with the --address flag. If not set,
 it defaults to your own address.`,
 		Args: cobra.ExactArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := getPaste(addressFlag, args[0])
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if result.Request.Success {
 				if getPasteFilename != "" {
 					err = os.WriteFile(getPasteFilename, []byte(result.Response.Paste.Content), 0o644)
-					cobra.CheckErr(err)
+					if err != nil {
+						return err
+					}
 				} else {
 					fmt.Println(result.Response.Paste.Content)
 				}
 			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
+				return fmt.Errorf(result.Response.Message)
 			}
+			return nil
 		},
 	}
 )

@@ -37,9 +37,11 @@ var getPURLCmd = &cobra.Command{
 The address can be specified with the --address flag. If not set,
 it defaults to your own address.`,
 	Args: cobra.ExactArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := getPURL(addressFlag, args[0])
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			fmt.Printf(
 				"%s: %s (%d hits)\n",
@@ -48,8 +50,9 @@ it defaults to your own address.`,
 				result.Response.PURL.Counter,
 			)
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			return fmt.Errorf(result.Response.Message)
 		}
+		return nil
 	},
 }
 

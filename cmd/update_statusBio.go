@@ -39,14 +39,17 @@ Quote the text if it contains spaces.
 Note that the omg.lol API does not permit you to change any custom
 CSS. You'll need to do that on the website.`,
 	Args: cobra.ExactArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := updateStatusBio(args[0])
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
 		} else {
-			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+			return fmt.Errorf("%s", result.Response.Message)
 		}
+		return nil
 	},
 }
 

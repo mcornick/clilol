@@ -43,17 +43,20 @@ To see all statuses ever posted, use the --all flag.
 
 See the status commands to get statuses for a single user.`,
 		Args: cobra.NoArgs,
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := listStatuslog(listStatuslogAll)
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if result.Request.Success {
 				for _, status := range result.Response.Statuses {
 					fmt.Printf("@%s, %s\n", status.Address, status.RelativeTime)
 					fmt.Printf("  %s %s\n", status.Emoji, status.Content)
 				}
 			} else {
-				cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+				return fmt.Errorf("%s", result.Response.Message)
 			}
+			return nil
 		},
 	}
 )

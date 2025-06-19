@@ -40,9 +40,11 @@ var listDNSCmd = &cobra.Command{
 	Short: "List your dns records",
 	Long:  "Lists all of your DNS records.",
 	Args:  cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := listDNS()
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			for _, record := range result.Response.DNS {
 				fmt.Printf(
@@ -54,8 +56,9 @@ var listDNSCmd = &cobra.Command{
 				)
 			}
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			return fmt.Errorf(result.Response.Message)
 		}
+		return nil
 	},
 }
 

@@ -43,12 +43,16 @@ var getThemeCmd = &cobra.Command{
 	Short: "Get theme information",
 	Long:  "Gets information about a theme.",
 	Args:  cobra.ExactArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := getTheme(args[0])
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			updatedAt, err := strconv.ParseInt(result.Response.Theme.Updated, 10, 64)
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			fmt.Printf(
 				"%s: %s by %s (%s) updated %s\n",
 				result.Response.Theme.ID,
@@ -58,8 +62,9 @@ var getThemeCmd = &cobra.Command{
 				time.Unix(updatedAt, 0),
 			)
 		} else {
-			cobra.CheckErr(fmt.Errorf("%d", result.Request.StatusCode))
+			return fmt.Errorf("%d", result.Request.StatusCode)
 		}
+		return nil
 	},
 }
 

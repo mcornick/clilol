@@ -35,15 +35,20 @@ If you specify a filename with the --filename flag, the content will be written
 to that file. If you do not specify a filename, the content will be written
 to stdout.`,
 		Args: cobra.ExactArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := getThemePreview(args[0])
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if getThemePreviewFilename != "" {
 				err = os.WriteFile(getThemePreviewFilename, []byte(result.Response.HTML), 0o644)
-				cobra.CheckErr(err)
+				if err != nil {
+					return err
+				}
 			} else {
 				fmt.Println(result.Response.HTML)
 			}
+			return nil
 		},
 	}
 )

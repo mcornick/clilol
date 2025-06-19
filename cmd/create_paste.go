@@ -50,14 +50,17 @@ from stdin.
 The paste will be created as unlisted by default. To create a listed
 paste, use the --listed flag.`,
 		Args: cobra.ExactArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := createPaste(args[0], createPasteFilename, createPasteListed)
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
 			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
+				return fmt.Errorf(result.Response.Message)
 			}
+			return nil
 		},
 	}
 )
@@ -86,11 +89,15 @@ func createPaste(title, filename string, listed bool) (createPasteOutput, error)
 	var listedInt int
 	if filename != "" {
 		input, err := os.ReadFile(filename)
-		cobra.CheckErr(err)
+		if err != nil {
+			return result, err
+		}
 		content = string(input)
 	} else {
 		stdin, err := io.ReadAll(os.Stdin)
-		cobra.CheckErr(err)
+		if err != nil {
+			return result, err
+		}
 		content = string(stdin)
 	}
 	if listed {

@@ -38,16 +38,19 @@ var listPictureCmd = &cobra.Command{
 	Short:   "List pictures",
 	Long:    "Lists pictures shared to some.pics.",
 	Args:    cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := listPicture()
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			for _, pic := range result.Response.Pics {
 				fmt.Printf("%s: %s (%s)\n", pic.Address, pic.Description, pic.URL)
 			}
 		} else {
-			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+			return fmt.Errorf("%s", result.Response.Message)
 		}
+		return nil
 	},
 }
 

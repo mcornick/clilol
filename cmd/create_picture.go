@@ -53,23 +53,28 @@ var (
 Specify a description with the --description flag. If not
 specified, the picture will not be publicly visible.`,
 		Args: cobra.ExactArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := createPicture(args[0])
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
 			} else {
-				cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+				return fmt.Errorf("%s", result.Response.Message)
 			}
 			if createPictureDescription != "" {
 				result, err := describePicture(result.Response.ID, createPictureDescription)
-				cobra.CheckErr(err)
+				if err != nil {
+					return err
+				}
 				if result.Request.Success {
 					fmt.Println(result.Response.Message)
 				} else {
-					cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+					return fmt.Errorf("%s", result.Response.Message)
 				}
 			}
+			return nil
 		},
 	}
 )
@@ -88,7 +93,9 @@ func init() {
 func createPicture(filename string) (createPictureOutput, error) {
 	var result createPictureOutput
 	content, err := os.ReadFile(filename)
-	cobra.CheckErr(err)
+	if err != nil {
+		return result, err
+	}
 	encoded := "data:text/plain;base64," + base64.StdEncoding.EncodeToString(content)
 	body := callAPIWithRawData(
 		http.MethodPost,

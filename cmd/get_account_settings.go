@@ -35,10 +35,12 @@ var getAccountSettingsCmd = &cobra.Command{
 	Short: "Get your account settings",
 	Long:  "Gets the settings on your account.",
 	Args:  cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		var result getAccountSettingsOutput
 		result, err := getAccountSettings()
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
 			fmt.Printf("Owner: %s\n", result.Response.Settings.Owner)
@@ -46,8 +48,9 @@ var getAccountSettingsCmd = &cobra.Command{
 			fmt.Printf("Date Format: %s\n", result.Response.Settings.DateFormat)
 			fmt.Printf("Web Editor: %s\n", result.Response.Settings.WebEditor)
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			return fmt.Errorf(result.Response.Message)
 		}
+		return nil
 	},
 }
 

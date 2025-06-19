@@ -31,20 +31,25 @@ var listDirectoryCmd = &cobra.Command{
 	Short: "List the address directory",
 	Long:  "Lists the omg.lol address directory.",
 	Args:  cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := listDirectory()
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			fmt.Printf("%s\n\n", result.Response.Message)
 			for _, address := range result.Response.Directory {
 				idnaProfile := idna.New()
 				decoded, err := idnaProfile.ToUnicode(address)
-				cobra.CheckErr(err)
+				if err != nil {
+					return err
+				}
 				fmt.Println(decoded)
 			}
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			return fmt.Errorf(result.Response.Message)
 		}
+		return nil
 	},
 }
 

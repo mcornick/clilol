@@ -60,14 +60,17 @@ var (
 		Short: "Update a DNS record",
 		Long:  "Updates a DNS record.",
 		Args:  cobra.ExactArgs(4),
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := updateDNS(args[0], args[1], args[2], args[3], updateDNSPriority, updateDNSTTL)
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
 			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
+				return fmt.Errorf(result.Response.Message)
 			}
+			return nil
 		},
 	}
 )

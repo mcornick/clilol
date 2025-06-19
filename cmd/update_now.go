@@ -46,14 +46,17 @@ from stdin.
 The Now page will be created as unlisted by default. To create a listed
 Now page, use the --listed flag.`,
 		Args: cobra.NoArgs,
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := updateNow(updateNowFilename, updateNowListed)
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
 			} else {
-				cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+				return fmt.Errorf("%s", result.Response.Message)
 			}
+			return nil
 		},
 	}
 )
@@ -82,11 +85,15 @@ func updateNow(filename string, listed bool) (updateNowOutput, error) {
 	var content string
 	if filename != "" {
 		updateNowInput, err := os.ReadFile(filename)
-		cobra.CheckErr(err)
+		if err != nil {
+			return result, err
+		}
 		content = string(updateNowInput)
 	} else {
 		stdin, err := io.ReadAll(os.Stdin)
-		cobra.CheckErr(err)
+		if err != nil {
+			return result, err
+		}
 		content = string(stdin)
 	}
 	if listed {

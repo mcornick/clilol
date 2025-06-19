@@ -38,9 +38,11 @@ var listPURLCmd = &cobra.Command{
 The address can be specified with the --address flag. If not set,
 it defaults to your own address.`,
 	Args: cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := listPURL(addressFlag)
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			for _, purl := range result.Response.PURLs {
 				fmt.Printf(
@@ -51,8 +53,9 @@ it defaults to your own address.`,
 				)
 			}
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			return fmt.Errorf(result.Response.Message)
 		}
+		return nil
 	},
 }
 

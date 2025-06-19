@@ -45,9 +45,11 @@ var listWeblogCmd = &cobra.Command{
 	Short:   "List all weblog entries",
 	Long:    "Lists all of your weblog entries.",
 	Args:    cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := listWeblog()
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			for _, entry := range result.Response.Entries {
 				fmt.Printf(
@@ -59,8 +61,9 @@ var listWeblogCmd = &cobra.Command{
 				)
 			}
 		} else {
-			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+			return fmt.Errorf("%s", result.Response.Message)
 		}
+		return nil
 	},
 }
 

@@ -59,9 +59,11 @@ If you specify a filename with the --filename flag, the content will be written
 to that file. If you do not specify a filename, the content will be written
 to stdout.`,
 		Args: cobra.NoArgs,
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := getWeblogConfig()
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if result.Request.Success {
 				if getWeblogConfigFilename != "" {
 					err = os.WriteFile(
@@ -69,13 +71,16 @@ to stdout.`,
 						[]byte(result.Response.Configuration.Raw),
 						0o644,
 					)
-					cobra.CheckErr(err)
+					if err != nil {
+						return err
+					}
 				} else {
 					fmt.Println(result.Response.Configuration.Raw)
 				}
 			} else {
-				cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+				return fmt.Errorf("%s", result.Response.Message)
 			}
+			return nil
 		},
 	}
 )

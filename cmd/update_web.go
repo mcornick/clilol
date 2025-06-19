@@ -46,14 +46,17 @@ from stdin.
 The webpage will be created as unpublished by default. To create a published
 webpage, use the --publish flag.`,
 		Args: cobra.NoArgs,
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := updateWeb(updateWebFilename)
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
 			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
+				return fmt.Errorf(result.Response.Message)
 			}
+			return nil
 		},
 	}
 )
@@ -82,11 +85,15 @@ func updateWeb(filename string) (updateWebOutput, error) {
 	var content string
 	if filename != "" {
 		updateWebInput, err := os.ReadFile(filename)
-		cobra.CheckErr(err)
+		if err != nil {
+			return result, err
+		}
 		content = string(updateWebInput)
 	} else {
 		stdin, err := io.ReadAll(os.Stdin)
-		cobra.CheckErr(err)
+		if err != nil {
+			return result, err
+		}
 		content = string(stdin)
 	}
 	webPage := updateWebInput{updateWebPublish, content}

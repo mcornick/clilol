@@ -8,8 +8,13 @@
 
 package main
 
+import "os"
+
 import "github.com/mcornick/clilol/cmd"
 
 func main() {
-	cmd.Execute()
+	err := cmd.Execute()
+	if err != nil {
+		os.Exit(1)
+	}
 }

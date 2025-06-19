@@ -60,14 +60,17 @@ var (
 		Short: "Create a DNS record",
 		Long:  "Creates a DNS record.",
 		Args:  cobra.ExactArgs(3),
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := createDNS(args[0], args[1], args[2], createDNSPriority, createDNSTTL)
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
 			} else {
-				cobra.CheckErr(fmt.Errorf(result.Response.Message))
+				return fmt.Errorf(result.Response.Message)
 			}
+			return nil
 		},
 	}
 )

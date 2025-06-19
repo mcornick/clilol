@@ -51,14 +51,17 @@ If you have enabled cross-posting to Mastodon in your statuslog
 settings, you can skip cross-posting to Mastodon by setting the
 --skip-mastodon-post flag.`,
 		Args: cobra.ExactArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := createStatus(args[0], createStatusEmoji, createStatusSkipMastodonPost)
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if result.Request.Success {
 				fmt.Println(result.Response.Message)
 			} else {
-				cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+				return fmt.Errorf("%s", result.Response.Message)
 			}
+			return nil
 		},
 	}
 )

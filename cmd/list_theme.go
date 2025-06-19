@@ -44,17 +44,20 @@ var listThemeCmd = &cobra.Command{
 	Short:   "List profile themes",
 	Long:    "Lists the available profile themes.",
 	Args:    cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := listTheme()
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
 			for _, theme := range result.Response.Themes {
 				fmt.Printf("- %s\n", theme.ID)
 			}
 		} else {
-			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+			return fmt.Errorf("%s", result.Response.Message)
 		}
+		return nil
 	},
 }
 

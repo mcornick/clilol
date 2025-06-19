@@ -42,18 +42,21 @@ var getAccountInfoCmd = &cobra.Command{
 	Short: "Get info about your account",
 	Long:  "Gets information about your account",
 	Args:  cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		var result getAccountInfoOutput
 		result, err := getAccountInfo()
-		cobra.CheckErr(err)
+		if err != nil {
+			return nil
+		}
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
 			fmt.Printf("%s (%s)\n", result.Response.Name, result.Response.Email)
 			fmt.Printf("Created %s\n", result.Response.Created.RelativeTime)
 			fmt.Printf("Communication: %s\n", result.Response.Settings.Communication)
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			return fmt.Errorf(result.Response.Message)
 		}
+		return nil
 	},
 }
 

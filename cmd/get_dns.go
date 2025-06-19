@@ -42,7 +42,7 @@ var (
 		Short: "Get a DNS record",
 		Long:  "Gets a DNS record by attributes.",
 		Args:  cobra.ExactArgs(3),
-		Run: func(cmd *cobra.Command, args []string) { // result, err := getDNS(args[0], args[1], args[2], getDNSPriority, getDNSTTL)
+		RunE: func(cmd *cobra.Command, args []string) error { // result, err := getDNS(args[0], args[1], args[2], getDNSPriority, getDNSTTL)
 			name := args[0]
 			recordType := args[1]
 			data := args[2]
@@ -50,7 +50,9 @@ var (
 				name = name + "." + viper.GetString("address")
 			}
 			record, err := getDNS(name, recordType, data, getDNSPriority, getDNSTTL)
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			fmt.Printf(
 				"%s %s %s ; ID: %d\n",
 				record.Response.DNS.Name,
@@ -58,6 +60,7 @@ var (
 				record.Response.DNS.Data,
 				record.Response.DNS.ID,
 			)
+			return nil
 		},
 	}
 )

@@ -43,9 +43,11 @@ it defaults to your own address.
 Unlisted pastes are only included when the --address flag is set to
 your own address.`,
 	Args: cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := listPaste(addressFlag)
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			for _, paste := range result.Response.Pastebin {
 				fmt.Printf(
@@ -55,8 +57,9 @@ your own address.`,
 				)
 			}
 		} else {
-			cobra.CheckErr(fmt.Errorf(result.Response.Message))
+			return fmt.Errorf(result.Response.Message)
 		}
+		return nil
 	},
 }
 

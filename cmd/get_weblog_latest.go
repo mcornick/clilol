@@ -43,9 +43,11 @@ var getWeblogLatestCmd = &cobra.Command{
 	Short: "Get the latest weblog entry",
 	Long:  "Gets your weblog's latest entry",
 	Args:  cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := getWeblogLatest()
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			fmt.Printf(
 				"%s (%s) modified on %s\n\n%s\n",
@@ -59,8 +61,9 @@ var getWeblogLatestCmd = &cobra.Command{
 				result.Response.Post.Body,
 			)
 		} else {
-			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+			return fmt.Errorf("%s", result.Response.Message)
 		}
+		return nil
 	},
 }
 

@@ -50,20 +50,25 @@ set to more statuses than exist, it will return all statuses.
 
 See the statuslog commands to get statuses for all users.`,
 		Args: cobra.NoArgs,
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			result, err := listStatus(addressFlag, listStatusLimit)
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			if result.Request.Success {
 				for _, status := range result.Response.Statuses {
 					fmt.Printf("\nhttps://status.lol/%s/%s\n", status.Address, status.Id)
 					timestamp, err := strconv.Atoi(status.Created)
-					cobra.CheckErr(err)
+					if err != nil {
+						return err
+					}
 					fmt.Printf("  %s\n", time.Unix(int64(timestamp), 0))
 					fmt.Printf("  %s %s\n", status.Emoji, status.Content)
 				}
 			} else {
-				cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+				return fmt.Errorf("%s", result.Response.Message)
 			}
+			return nil
 		},
 	}
 )

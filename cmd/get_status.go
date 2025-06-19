@@ -41,9 +41,11 @@ var getStatusCmd = &cobra.Command{
 The address can be specified with the --address flag. If not set,
 it defaults to your own address.`,
 	Args: cobra.ExactArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		result, err := getStatus(addressFlag, args[0])
-		cobra.CheckErr(err)
+		if err != nil {
+			return err
+		}
 		if result.Request.Success {
 			fmt.Printf(
 				"\nhttps://status.lol/%s/%s\n",
@@ -51,7 +53,9 @@ it defaults to your own address.`,
 				result.Response.Status.Id,
 			)
 			timestamp, err := strconv.Atoi(result.Response.Status.Created)
-			cobra.CheckErr(err)
+			if err != nil {
+				return err
+			}
 			fmt.Printf("  %s\n", time.Unix(int64(timestamp), 0))
 			fmt.Printf(
 				"  %s %s\n",
@@ -59,8 +63,9 @@ it defaults to your own address.`,
 				result.Response.Status.Content,
 			)
 		} else {
-			cobra.CheckErr(fmt.Errorf("%s", result.Response.Message))
+			return fmt.Errorf("%s", result.Response.Message)
 		}
+		return nil
 	},
 }
 
