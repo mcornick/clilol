@@ -28,7 +28,7 @@ const endpoint = "https://api.omg.lol"
 var (
 	addressFlag string
 	version     = "dev"
-	rootCmd     = &cobra.Command{
+	RootCmd     = &cobra.Command{
 		Version: version,
 		Use:     "clilol",
 		Short:   "a CLI for omg.lol",
@@ -43,12 +43,12 @@ type resultRequest struct {
 }
 
 func Execute() error {
-	return rootCmd.Execute()
+	return RootCmd.Execute()
 }
 
 func init() {
 	_ = loadConfig()
-	rootCmd.DisableAutoGenTag = true
+	RootCmd.DisableAutoGenTag = true
 }
 
 func loadConfig() error {

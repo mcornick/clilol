@@ -25,10 +25,10 @@ var manCmd = &cobra.Command{
 			Title:   "Mark Cornick",
 			Section: "1",
 		}
-		cobra.CheckErr(doc.GenManTree(rootCmd, header, "."))
+		cobra.CheckErr(doc.GenManTree(RootCmd, header, "."))
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(manCmd)
+	RootCmd.AddCommand(manCmd)
 }
