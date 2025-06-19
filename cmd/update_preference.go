@@ -36,7 +36,6 @@ var updatePreferenceCmd = &cobra.Command{
 	Long:  "Sets omg.lol preferences.",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := updatePreference(args[0], args[1])
 		cobra.CheckErr(err)
 		if result.Request.Success {

@@ -35,7 +35,6 @@ var updateAccountNameCmd = &cobra.Command{
 	Long:  "Sets the name on your account.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := updateAccountName(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {

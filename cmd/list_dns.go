@@ -41,7 +41,6 @@ var listDNSCmd = &cobra.Command{
 	Long:  "Lists all of your DNS records.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := listDNS()
 		cobra.CheckErr(err)
 		if result.Request.Success {

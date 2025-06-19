@@ -40,7 +40,6 @@ var listNowCmd = &cobra.Command{
 	Long:  "Lists pages in the Now garden.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := listNow()
 		cobra.CheckErr(err)
 		if result.Request.Success {

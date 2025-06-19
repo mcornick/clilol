@@ -34,7 +34,6 @@ var getEmailCmd = &cobra.Command{
 	Long:  "Gets your email forwarding address(es).",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := getEmail()
 		cobra.CheckErr(err)
 		if result.Request.Success {

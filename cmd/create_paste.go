@@ -51,7 +51,6 @@ The paste will be created as unlisted by default. To create a listed
 paste, use the --listed flag.`,
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			validateConfig()
 			result, err := createPaste(args[0], createPasteFilename, createPasteListed)
 			cobra.CheckErr(err)
 			if result.Request.Success {

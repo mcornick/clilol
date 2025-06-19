@@ -55,7 +55,6 @@ var listAccountAddressesCmd = &cobra.Command{
 	Long:    "Lists the addresses on your account.",
 	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := listAccountAddresses()
 		cobra.CheckErr(err)
 		if result.Request.Success {

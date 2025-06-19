@@ -37,7 +37,6 @@ var listAccountSessionsCmd = &cobra.Command{
 	Long:    "Lists the active sessions on your account.",
 	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := listAccountSessions()
 		cobra.CheckErr(err)
 		if result.Request.Success {

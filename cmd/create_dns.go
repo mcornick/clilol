@@ -61,7 +61,6 @@ var (
 		Long:  "Creates a DNS record.",
 		Args:  cobra.ExactArgs(3),
 		Run: func(cmd *cobra.Command, args []string) {
-			validateConfig()
 			result, err := createDNS(args[0], args[1], args[2], createDNSPriority, createDNSTTL)
 			cobra.CheckErr(err)
 			if result.Request.Success {

@@ -43,7 +43,6 @@ var (
 		Long:  "Gets a DNS record by attributes.",
 		Args:  cobra.ExactArgs(3),
 		Run: func(cmd *cobra.Command, args []string) { // result, err := getDNS(args[0], args[1], args[2], getDNSPriority, getDNSTTL)
-			validateConfig()
 			name := args[0]
 			recordType := args[1]
 			data := args[2]

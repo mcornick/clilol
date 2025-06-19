@@ -32,7 +32,6 @@ var listDirectoryCmd = &cobra.Command{
 	Long:  "Lists the omg.lol address directory.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := listDirectory()
 		cobra.CheckErr(err)
 		if result.Request.Success {

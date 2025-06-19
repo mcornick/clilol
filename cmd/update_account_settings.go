@@ -42,7 +42,6 @@ var (
 Specify the new settings with the flags listed below.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			validateConfig()
 			result, err := updateAccountSettings(accountUpdateSettingsCommunication, accountUpdateSettingsDateFormat, accountUpdateSettingsWebEditor)
 			cobra.CheckErr(err)
 			if result.Request.Success {

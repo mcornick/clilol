@@ -30,7 +30,6 @@ var getAddressExpirationCmd = &cobra.Command{
 	Long:  "Gets the expiration of an address.",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := getAddressExpiration(args[0])
 		cobra.CheckErr(err)
 		if result.Request.Success {

@@ -39,7 +39,6 @@ The address can be specified with the --address flag. If not set,
 it defaults to your own address.`,
 	Args: cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := listPURL(addressFlag)
 		cobra.CheckErr(err)
 		if result.Request.Success {

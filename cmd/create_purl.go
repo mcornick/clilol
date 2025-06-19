@@ -43,7 +43,6 @@ PURL, use the --listed flag.
 `,
 		Args: cobra.ExactArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
-			validateConfig()
 			result, err := createPURL(args[0], args[1], createPURLListed)
 			cobra.CheckErr(err)
 			if result.Request.Success {

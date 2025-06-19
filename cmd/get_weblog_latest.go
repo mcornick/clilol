@@ -44,7 +44,6 @@ var getWeblogLatestCmd = &cobra.Command{
 	Long:  "Gets your weblog's latest entry",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := getWeblogLatest()
 		cobra.CheckErr(err)
 		if result.Request.Success {

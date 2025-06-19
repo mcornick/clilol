@@ -31,7 +31,6 @@ var getAccountNameCmd = &cobra.Command{
 	Long:  "Gets the name on your account.",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		validateConfig()
 		result, err := getAccountName()
 		cobra.CheckErr(err)
 		if result.Request.Success {

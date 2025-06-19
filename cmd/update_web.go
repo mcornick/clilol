@@ -47,7 +47,6 @@ The webpage will be created as unpublished by default. To create a published
 webpage, use the --publish flag.`,
 		Args: cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			validateConfig()
 			result, err := updateWeb(updateWebFilename)
 			cobra.CheckErr(err)
 			if result.Request.Success {

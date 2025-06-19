@@ -80,6 +80,7 @@ func init() {
 		cobra.CheckErr(err)
 		viper.Set("apikey", strings.TrimSpace(string(apikey)))
 	}
+	validateConfig()
 	rootCmd.DisableAutoGenTag = true
 }
 
