@@ -34,7 +34,7 @@ jobs:
           AUR_KEY: ${{ secrets.AUR_KEY }}
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
           CLILOL_ADDRESS: ${{ secrets.CLILOL_ADDRESS }}
-          CLILOL_APIKEYCMD: ${{ secrets.CLILOL_APIKEYCMD }}
+          CLILOL_APIKEY: ${{ secrets.CLILOL_APIKEY }}
           CLILOL_EMAIL: ${{ secrets.CLILOL_EMAIL }}
           CLILOL_NAME: ${{ secrets.CLILOL_NAME }}
           FURY_TOKEN: ${{ secrets.FURY_TOKEN }}
