@@ -27,9 +27,9 @@ const endpoint = "https://api.omg.lol"
 
 var (
 	addressFlag string
-	version     = "dev"
+	Version     = "dev"
 	RootCmd     = &cobra.Command{
-		Version: version,
+		Version: Version,
 		Use:     "clilol",
 		Short:   "a CLI for omg.lol",
 		Long: `This is clilol, a CLI for omg.lol.
@@ -105,7 +105,7 @@ func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byt
 	if err != nil {
 		return nil, err
 	}
-	request.Header.Set("User-Agent", "clilol/"+version+" (https://clilol.readthedocs.io)")
+	request.Header.Set("User-Agent", "clilol/"+Version+" (https://clilol.readthedocs.io)")
 	request.Header.Set("Content-Type", "application/json")
 	if auth {
 		request.Header.Set("Authorization", "Bearer "+viper.GetString("apikey"))
