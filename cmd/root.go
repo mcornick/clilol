@@ -33,7 +33,7 @@ var (
 		Use:     "clilol",
 		Short:   "a CLI for omg.lol",
 		Long: `This is clilol, a CLI for omg.lol.
-See the subcommands for more information.`,
+Full documentation is available at https://clilol.readthedocs.io`,
 	}
 )
 
