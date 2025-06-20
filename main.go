@@ -8,16 +8,12 @@
 
 package main
 
-import (
-	"context"
-	"os"
+import "os"
 
-	"github.com/charmbracelet/fang"
-	"github.com/mcornick/clilol/cmd"
-)
+import "github.com/mcornick/clilol/cmd"
 
 func main() {
-	err := fang.Execute(context.TODO(), cmd.RootCmd)
+	err := cmd.Execute()
 	if err != nil {
 		os.Exit(1)
 	}
