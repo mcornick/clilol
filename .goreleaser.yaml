@@ -66,6 +66,8 @@ docker_signs:
       - --yes
       - ${artifact}
     artifacts: all
+gomod:
+  proxy: true
 homebrew_casks:
   - completions:
       bash: completions/clilol.bash
