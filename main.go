@@ -17,7 +17,7 @@ import (
 )
 
 func main() {
-	err := fang.Execute(context.TODO(), cmd.RootCmd)
+	err := fang.Execute(context.TODO(), cmd.RootCmd, fang.WithVersion(cmd.Version))
 	if err != nil {
 		os.Exit(1)
 	}
