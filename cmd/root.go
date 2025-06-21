@@ -59,6 +59,10 @@ func loadConfig() error {
 	viper.SetConfigName("config")
 	viper.AddConfigPath("/etc/clilol/")
 	viper.AddConfigPath(configDir + "/clilol")
+	xdgConfigHome := os.Getenv("XDG_CONFIG_HOME")
+	if xdgConfigHome != "" {
+		viper.AddConfigPath(xdgConfigHome + "/clilol")
+	}
 	viper.SetEnvPrefix("clilol")
 	viper.SetDefault("address", "")
 	viper.SetDefault("apikey", "")

@@ -105,8 +105,8 @@ clilol expects a configuration file to specify your address, login email, and AP
 
 The configuration file should be named either `config.yaml`, `config.toml` or `config.json` depending on which format you prefer, and should be located in one of these directories:
 
-- `$HOME/Library/Application Support/clilol` (macOS)
-- `$XDG_CONFIG_HOME/clilol` (Unix)
+- `$HOME/Library/Application Support/clilol` (macOS default)
+- `$XDG_CONFIG_HOME/clilol` (Unix; also checked on macOS if `$XDG_CONFIG_HOME` is set)
 - `/etc/clilol` (macOS or Unix)
 - `%AppData%\clilol` (Windows)
 
