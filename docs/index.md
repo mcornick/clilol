@@ -230,6 +230,7 @@ Thanks to the following people for helping to improve clilol:
 - [Andy Piper](https://github.com/andypiper)
 - [Elliott Street](https://github.com/ejstreet)
 - [John Lynch](https://github.com/jtlynchjr)
+- [prosumer](https://prosumer.omg.lol)
 
 clilol is a labor of love. I do not expect, do not request, and will not accept any payment for it. If you like clilol, please show your support by subscribing (or continuing to subscribe) to omg.lol, a service that does not sell you or your data as a product, and thus relies on paid subscribers to keep the lights on.
 
