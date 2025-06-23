@@ -52,12 +52,15 @@ func init() {
 
 func deleteWeblog(id string) (deleteWeblogOutput, error) {
 	var result deleteWeblogOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodDelete,
 		"/address/"+viper.GetString("address")+"/weblog/delete/"+id,
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

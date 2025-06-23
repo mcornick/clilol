@@ -96,12 +96,15 @@ func init() {
 func updateDNS(id string, name string, recordType string, data string, priority int, ttl int) (updateDNSOutput, error) {
 	var result updateDNSOutput
 	dns := updateDNSInput{recordType, name, data, priority, ttl}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodPatch,
 		"/address/"+viper.GetString("address")+"/dns/"+id,
 		dns,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

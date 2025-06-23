@@ -89,12 +89,15 @@ func getNow(address string) (getNowOutput, error) {
 	if address == "" {
 		address = viper.GetString("address")
 	}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/address/"+address+"/now",
 		nil,
 		false,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

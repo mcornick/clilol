@@ -59,12 +59,15 @@ func init() {
 
 func getAddressAvailability(address string) (getAddressAvailabilityOutput, error) {
 	var result getAddressAvailabilityOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/address/"+address+"/availability",
 		nil,
 		false,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

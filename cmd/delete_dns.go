@@ -52,12 +52,15 @@ func init() {
 
 func deleteDNS(id string) (deleteDNSOutput, error) {
 	var result deleteDNSOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodDelete,
 		"/address/"+viper.GetString("address")+"/dns/"+id,
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

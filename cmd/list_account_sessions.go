@@ -61,12 +61,15 @@ func init() {
 
 func listAccountSessions() (listAccountSessionsOutput, error) {
 	var result listAccountSessionsOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/account/"+viper.GetString("email")+"/sessions",
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

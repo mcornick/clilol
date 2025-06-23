@@ -86,12 +86,15 @@ func init() {
 func createStatus(text string, emoji string, skipMastodonPost bool) (createStatusOutput, error) {
 	var result createStatusOutput
 	status := createStatusInput{emoji, text, skipMastodonPost}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodPost,
 		"/address/"+viper.GetString("address")+"/statuses/",
 		status,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

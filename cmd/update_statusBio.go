@@ -60,12 +60,15 @@ func init() {
 func updateStatusBio(text string) (updateStatusBioOutput, error) {
 	var result updateStatusBioOutput
 	bio := updateStatusBioInput{text}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodPost,
 		"/address/"+viper.GetString("address")+"/statuses/bio/",
 		bio,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

@@ -49,12 +49,15 @@ func init() {
 
 func getAddressExpiration(address string) (getAddressExpirationOutput, error) {
 	var result getAddressExpirationOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/address/"+address+"/expiration",
 		nil,
 		false,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

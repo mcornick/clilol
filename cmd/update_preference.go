@@ -56,12 +56,15 @@ func init() {
 func updatePreference(item string, value string) (updatePreferenceOutput, error) {
 	var result updatePreferenceOutput
 	pref := updatePreferenceInput{item, value}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodPost,
 		"/preferences/"+viper.GetString("address"),
 		pref,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

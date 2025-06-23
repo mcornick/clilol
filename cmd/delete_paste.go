@@ -54,12 +54,15 @@ func init() {
 
 func deletePaste(title string) (deletePasteOutput, error) {
 	var result deletePasteOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodDelete,
 		"/address/"+viper.GetString("address")+"/pastebin/"+title,
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

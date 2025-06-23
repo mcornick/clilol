@@ -73,12 +73,15 @@ func init() {
 
 func getWeblogLatest() (getWeblogLatestOutput, error) {
 	var result getWeblogLatestOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/address/"+viper.GetString("address")+"/weblog/post/latest",
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

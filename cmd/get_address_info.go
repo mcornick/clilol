@@ -73,12 +73,15 @@ func init() {
 
 func getAddressInfo(name string) (getAddressInfoOutput, error) {
 	var result getAddressInfoOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/address/"+name+"/info",
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

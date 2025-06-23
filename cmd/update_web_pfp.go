@@ -56,12 +56,15 @@ func updateWebPFP(filename string) (updateWebPFPOutput, error) {
 		return result, err
 	}
 	encoded := "data:text/plain;base64," + base64.StdEncoding.EncodeToString(content)
-	body := callAPIWithRawData(
+	body, err := callAPIWithRawData(
 		http.MethodPost,
 		"/address/"+viper.GetString("address")+"/pfp",
 		encoded,
 		true,
 	)
+	if err != nil {
+		return result, err
+	}
 	err = json.Unmarshal(body, &result)
 	return result, err
 }

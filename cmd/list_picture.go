@@ -60,7 +60,10 @@ func init() {
 
 func listPicture() (listPictureOutput, error) {
 	var result listPictureOutput
-	body := callAPIWithParams(http.MethodGet, "/pics/", nil, false)
-	err := json.Unmarshal(body, &result)
+	body, err := callAPIWithParams(http.MethodGet, "/pics/", nil, false)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

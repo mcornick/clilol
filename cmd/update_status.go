@@ -79,12 +79,15 @@ func init() {
 func updateStatus(id string, text string, emoji string) (updateStatusOutput, error) {
 	var result updateStatusOutput
 	status := updateStatusInput{id, emoji, text}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodPatch,
 		"/address/"+viper.GetString("address")+"/statuses/",
 		status,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

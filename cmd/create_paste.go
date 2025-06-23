@@ -106,12 +106,15 @@ func createPaste(title, filename string, listed bool) (createPasteOutput, error)
 		listedInt = 0
 	}
 	params := createPasteInput{title, content, listedInt}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodPost,
 		"/address/"+viper.GetString("address")+"/pastebin",
 		params,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

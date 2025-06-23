@@ -80,7 +80,10 @@ func listStatuslog(all bool) (listStatuslogOutput, error) {
 	} else {
 		url = "/statuslog/latest/"
 	}
-	body := callAPIWithParams(http.MethodGet, url, nil, false)
-	err := json.Unmarshal(body, &result)
+	body, err := callAPIWithParams(http.MethodGet, url, nil, false)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

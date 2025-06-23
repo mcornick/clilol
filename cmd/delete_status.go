@@ -52,12 +52,15 @@ func init() {
 
 func deleteStatus(id string) (deleteStatusOutput, error) {
 	var result deleteStatusOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodDelete,
 		"/address/"+viper.GetString("address")+"/statuses/"+id,
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

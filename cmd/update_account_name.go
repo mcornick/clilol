@@ -55,12 +55,15 @@ func init() {
 func updateAccountName(name string) (updateAccountNameOutput, error) {
 	var result updateAccountNameOutput
 	account := updateAccountNameInput{name}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodPost,
 		"/account/"+viper.GetString("email")+"/name",
 		account,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

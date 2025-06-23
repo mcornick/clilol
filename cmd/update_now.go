@@ -102,12 +102,15 @@ func updateNow(filename string, listed bool) (updateNowOutput, error) {
 		listedB = 0
 	}
 	nowPage := updateNowInput{content, listedB}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodPost,
 		"/address/"+viper.GetString("address")+"/now",
 		nowPage,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

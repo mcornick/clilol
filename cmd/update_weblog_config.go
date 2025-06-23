@@ -81,12 +81,15 @@ func updateWeblogConfig(filename string) (updateWeblogConfigOutput, error) {
 		}
 		content = string(stdin)
 	}
-	body := callAPIWithRawData(
+	body, err := callAPIWithRawData(
 		http.MethodPost,
 		"/address/"+viper.GetString("address")+"/weblog/configuration",
 		content,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

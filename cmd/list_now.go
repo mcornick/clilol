@@ -63,7 +63,10 @@ func init() {
 
 func listNow() (listNowOutput, error) {
 	var result listNowOutput
-	body := callAPIWithParams(http.MethodGet, "/now/garden", nil, false)
-	err := json.Unmarshal(body, &result)
+	body, err := callAPIWithParams(http.MethodGet, "/now/garden", nil, false)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

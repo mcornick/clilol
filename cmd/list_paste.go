@@ -79,12 +79,15 @@ func listPaste(address string) (listPasteOutput, error) {
 	if address == "" {
 		address = viper.GetString("address")
 	}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/address/"+address+"/pastebin",
 		nil,
 		address == viper.GetString("address"),
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

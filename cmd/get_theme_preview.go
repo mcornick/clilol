@@ -66,12 +66,15 @@ func init() {
 
 func getThemePreview(name string) (getThemePreviewOutput, error) {
 	var result getThemePreviewOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/theme/"+name+"/preview",
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

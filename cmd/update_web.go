@@ -97,12 +97,15 @@ func updateWeb(filename string) (updateWebOutput, error) {
 		content = string(stdin)
 	}
 	webPage := updateWebInput{updateWebPublish, content}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodPost,
 		"/address/"+viper.GetString("address")+"/web",
 		webPage,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

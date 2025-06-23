@@ -53,12 +53,15 @@ func init() {
 
 func getEmail() (getEmailOutput, error) {
 	var result getEmailOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/address/"+viper.GetString("address")+"/email",
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

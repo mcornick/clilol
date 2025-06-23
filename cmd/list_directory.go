@@ -59,7 +59,10 @@ func init() {
 
 func listDirectory() (listDirectoryOutput, error) {
 	var result listDirectoryOutput
-	body := callAPIWithParams(http.MethodGet, "/directory", nil, false)
-	err := json.Unmarshal(body, &result)
+	body, err := callAPIWithParams(http.MethodGet, "/directory", nil, false)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

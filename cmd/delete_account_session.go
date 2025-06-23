@@ -52,12 +52,15 @@ func init() {
 
 func deleteAccountSession(id string) (deleteAccountSessionOutput, error) {
 	var result deleteAccountSessionOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodDelete,
 		"/account/"+viper.GetString("email")+"/sessions/"+id,
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

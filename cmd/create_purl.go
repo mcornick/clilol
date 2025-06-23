@@ -71,12 +71,15 @@ func init() {
 func createPURL(name string, url string, listed bool) (createPURLOutput, error) {
 	var result createPURLOutput
 	purl := createPURLInput{name, url, listed}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodPost,
 		"/address/"+viper.GetString("address")+"/purl",
 		purl,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

@@ -47,8 +47,11 @@ var getServiceCmd = &cobra.Command{
 
 func getService() (getServiceOutput, error) {
 	var result getServiceOutput
-	body := callAPIWithParams(http.MethodGet, "/service/info", nil, false)
-	err := json.Unmarshal(body, &result)
+	body, err := callAPIWithParams(http.MethodGet, "/service/info", nil, false)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }
 

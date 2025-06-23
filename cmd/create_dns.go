@@ -96,12 +96,15 @@ func init() {
 func createDNS(name string, recordType string, data string, priority int, ttl int) (createDNSOutput, error) {
 	var result createDNSOutput
 	dns := createDNSInput{recordType, name, data, priority, ttl}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodPost,
 		"/address/"+viper.GetString("address")+"/dns",
 		dns,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

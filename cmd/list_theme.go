@@ -67,7 +67,10 @@ func init() {
 
 func listTheme() (listThemeOutput, error) {
 	var result listThemeOutput
-	body := callAPIWithParams(http.MethodGet, "/theme/list", nil, false)
-	err := json.Unmarshal(body, &result)
+	body, err := callAPIWithParams(http.MethodGet, "/theme/list", nil, false)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

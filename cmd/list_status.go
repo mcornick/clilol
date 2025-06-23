@@ -96,13 +96,16 @@ func listStatus(address string, limit int) (listStatusOutput, error) {
 	if address == "" {
 		address = viper.GetString("address")
 	}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/address/"+address+"/statuses/",
 		nil,
 		false,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	if limit > len(result.Response.Statuses) {
 		limit = len(result.Response.Statuses)
 	}

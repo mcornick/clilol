@@ -72,12 +72,15 @@ func getPURL(address string, name string) (getPURLOutput, error) {
 	if address == "" {
 		address = viper.GetString("address")
 	}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/address/"+address+"/purl/"+name,
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

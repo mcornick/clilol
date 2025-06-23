@@ -52,12 +52,15 @@ func init() {
 
 func deletePURL(name string) (deletePURLOutput, error) {
 	var result deletePURLOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodDelete,
 		"/address/"+viper.GetString("address")+"/purl/"+name,
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

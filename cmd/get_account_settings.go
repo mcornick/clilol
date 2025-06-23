@@ -60,12 +60,15 @@ func init() {
 
 func getAccountSettings() (getAccountSettingsOutput, error) {
 	var result getAccountSettingsOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/account/"+viper.GetString("email")+"/settings",
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

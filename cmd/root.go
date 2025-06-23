@@ -128,18 +128,24 @@ func callAPI(method string, path string, bodyReader io.Reader, auth bool) ([]byt
 	return body, nil
 }
 
-func callAPIWithParams(method string, path string, params any, auth bool) []byte {
+func callAPIWithParams(method string, path string, params any, auth bool) ([]byte, error) {
 	jsonBody, err := json.Marshal(params)
-	cobra.CheckErr(err)
+	if err != nil {
+		return nil, err
+	}
 	bodyReader := bytes.NewReader(jsonBody)
 	body, err := callAPI(method, path, bodyReader, auth)
-	cobra.CheckErr(err)
-	return body
+	if err != nil {
+		return nil, err
+	}
+	return body, nil
 }
 
-func callAPIWithRawData(method string, path string, data string, auth bool) []byte {
+func callAPIWithRawData(method string, path string, data string, auth bool) ([]byte, error) {
 	bodyReader := strings.NewReader(data)
 	body, err := callAPI(method, path, bodyReader, auth)
-	cobra.CheckErr(err)
-	return body
+	if err != nil {
+		return nil, err
+	}
+	return body, nil
 }

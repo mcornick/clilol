@@ -68,12 +68,15 @@ func init() {
 
 func listDNS() (listDNSOutput, error) {
 	var result listDNSOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/address/"+viper.GetString("address")+"/dns",
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

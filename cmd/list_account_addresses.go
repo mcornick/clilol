@@ -78,15 +78,15 @@ func init() {
 
 func listAccountAddresses() (listAccountAddressesOutput, error) {
 	var result listAccountAddressesOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/account/"+viper.GetString("email")+"/addresses",
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
 	if err != nil {
 		return result, err
 	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

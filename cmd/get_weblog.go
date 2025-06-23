@@ -74,12 +74,15 @@ func init() {
 
 func getWeblog(id string) (getWeblogOutput, error) {
 	var result getWeblogOutput
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodGet,
 		"/address/"+viper.GetString("address")+"/weblog/entry/"+id,
 		nil,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }

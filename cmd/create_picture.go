@@ -97,12 +97,15 @@ func createPicture(filename string) (createPictureOutput, error) {
 		return result, err
 	}
 	encoded := "data:text/plain;base64," + base64.StdEncoding.EncodeToString(content)
-	body := callAPIWithRawData(
+	body, err := callAPIWithRawData(
 		http.MethodPost,
 		"/address/"+viper.GetString("address")+"/pics/upload",
 		encoded,
 		true,
 	)
+	if err != nil {
+		return result, err
+	}
 	err = json.Unmarshal(body, &result)
 	return result, err
 }
@@ -110,12 +113,15 @@ func createPicture(filename string) (createPictureOutput, error) {
 func describePicture(id string, text string) (describePictureOutput, error) {
 	var result describePictureOutput
 	picture := describePictureInput{text}
-	body := callAPIWithParams(
+	body, err := callAPIWithParams(
 		http.MethodPatch,
 		"/address/"+viper.GetString("address")+"/pics/"+id,
 		picture,
 		true,
 	)
-	err := json.Unmarshal(body, &result)
+	if err != nil {
+		return result, err
+	}
+	err = json.Unmarshal(body, &result)
 	return result, err
 }
