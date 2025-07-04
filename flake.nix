@@ -5,9 +5,9 @@
   };
   outputs =
     {
-      self,
       nixpkgs,
       utils,
+      ...
     }:
     utils.lib.eachDefaultSystem (
       system:
