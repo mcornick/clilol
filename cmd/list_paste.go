@@ -57,7 +57,7 @@ your own address.`,
 				)
 			}
 		} else {
-			return fmt.Errorf(result.Response.Message)
+			return fmt.Errorf("%s", result.Response.Message)
 		}
 		return nil
 	},

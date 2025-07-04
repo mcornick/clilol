@@ -48,7 +48,7 @@ var getAccountSettingsCmd = &cobra.Command{
 			fmt.Printf("Date Format: %s\n", result.Response.Settings.DateFormat)
 			fmt.Printf("Web Editor: %s\n", result.Response.Settings.WebEditor)
 		} else {
-			return fmt.Errorf(result.Response.Message)
+			return fmt.Errorf("%s", result.Response.Message)
 		}
 		return nil
 	},

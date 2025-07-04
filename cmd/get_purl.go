@@ -50,7 +50,7 @@ it defaults to your own address.`,
 				result.Response.PURL.Counter,
 			)
 		} else {
-			return fmt.Errorf(result.Response.Message)
+			return fmt.Errorf("%s", result.Response.Message)
 		}
 		return nil
 	},

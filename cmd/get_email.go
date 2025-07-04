@@ -41,7 +41,7 @@ var getEmailCmd = &cobra.Command{
 		if result.Request.Success {
 			fmt.Println(result.Response.Message)
 		} else {
-			return fmt.Errorf(result.Response.Message)
+			return fmt.Errorf("%s", result.Response.Message)
 		}
 		return nil
 	},
