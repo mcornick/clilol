@@ -34,4 +34,3 @@ clilol create status [text] [flags]
 ### SEE ALSO
 
 * [clilol create](clilol_create.md)	 - Create things
-

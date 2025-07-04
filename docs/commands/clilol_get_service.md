@@ -22,4 +22,3 @@ clilol get service [flags]
 ### SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things
-

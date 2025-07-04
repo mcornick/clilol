@@ -22,4 +22,3 @@ clilol get address info [name] [flags]
 ### SEE ALSO
 
 * [clilol get address](clilol_get_address.md)	 - Get information about an address
-

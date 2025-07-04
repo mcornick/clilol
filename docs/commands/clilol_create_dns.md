@@ -24,4 +24,3 @@ clilol create dns [name] [type] [data] [flags]
 ### SEE ALSO
 
 * [clilol create](clilol_create.md)	 - Create things
-

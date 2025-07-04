@@ -26,4 +26,3 @@ clilol get purl [name] [flags]
 ### SEE ALSO
 
 * [clilol get](clilol_get.md)	 - Get things
-

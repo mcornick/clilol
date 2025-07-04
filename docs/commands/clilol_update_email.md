@@ -24,4 +24,3 @@ clilol update email [address] [flags]
 ### SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things
-

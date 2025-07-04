@@ -25,4 +25,3 @@ clilol delete account session [id] [flags]
 ### SEE ALSO
 
 * [clilol delete account](clilol_delete_account.md)	 - Delete information about your account
-

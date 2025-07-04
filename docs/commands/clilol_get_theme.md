@@ -23,4 +23,3 @@ clilol get theme [theme-name] [flags]
 
 * [clilol get](clilol_get.md)	 - Get things
 * [clilol get theme preview](clilol_get_theme_preview.md)	 - Get theme preview
-

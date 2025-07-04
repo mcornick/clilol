@@ -31,4 +31,3 @@ These commands get things.
 * [clilol get theme](clilol_get_theme.md)	 - Get theme information
 * [clilol get web](clilol_get_web.md)	 - Get your webpage content
 * [clilol get weblog](clilol_get_weblog.md)	 - Get a weblog entry
-

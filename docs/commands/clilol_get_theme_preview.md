@@ -27,4 +27,3 @@ clilol get theme preview [theme-name] [flags]
 ### SEE ALSO
 
 * [clilol get theme](clilol_get_theme.md)	 - Get theme information
-

@@ -32,4 +32,3 @@ clilol update web [flags]
 
 * [clilol update](clilol_update.md)	 - Update things
 * [clilol update web pfp](clilol_update_web_pfp.md)	 - set your profile picture
-

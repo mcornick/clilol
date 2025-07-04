@@ -27,4 +27,3 @@ These commands update things.
 * [clilol update status-bio](clilol_update_status-bio.md)	 - Update your status bio
 * [clilol update web](clilol_update_web.md)	 - set webpage content
 * [clilol update weblog](clilol_update_weblog.md)	 - set your weblog config
-

@@ -29,4 +29,3 @@ clilol update weblog config [flags]
 ### SEE ALSO
 
 * [clilol update weblog](clilol_update_weblog.md)	 - set your weblog config
-

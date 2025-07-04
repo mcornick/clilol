@@ -24,4 +24,3 @@ clilol update dns [id] [name] [type] [data] [flags]
 ### SEE ALSO
 
 * [clilol update](clilol_update.md)	 - Update things
-

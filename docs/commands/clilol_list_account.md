@@ -20,4 +20,3 @@ The account list group of commands allows you to list information about your omg
 * [clilol list](clilol_list.md)	 - List things
 * [clilol list account addresses](clilol_list_account_addresses.md)	 - List your addresses
 * [clilol list account sessions](clilol_list_account_sessions.md)	 - List your sessions
-

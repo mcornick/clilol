@@ -25,4 +25,3 @@ These commands delete things.
 * [clilol delete purl](clilol_delete_purl.md)	 - Delete a PURL
 * [clilol delete status](clilol_delete_status.md)	 - Delete a status
 * [clilol delete weblog](clilol_delete_weblog.md)	 - Delete a weblog entry
-

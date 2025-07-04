@@ -24,4 +24,3 @@ These commands create things.
 * [clilol create purl](clilol_create_purl.md)	 - Create a PURL
 * [clilol create status](clilol_create_status.md)	 - Create a status
 * [clilol create weblog](clilol_create_weblog.md)	 - Create a weblog entry
-

@@ -22,4 +22,3 @@ clilol list now [flags]
 ### SEE ALSO
 
 * [clilol list](clilol_list.md)	 - List things
-

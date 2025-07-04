@@ -22,4 +22,3 @@ clilol update web pfp [filename] [flags]
 ### SEE ALSO
 
 * [clilol update web](clilol_update_web.md)	 - set webpage content
-

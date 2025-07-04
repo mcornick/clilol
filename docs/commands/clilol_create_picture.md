@@ -26,4 +26,3 @@ clilol create picture [filename] [flags]
 ### SEE ALSO
 
 * [clilol create](clilol_create.md)	 - Create things
-

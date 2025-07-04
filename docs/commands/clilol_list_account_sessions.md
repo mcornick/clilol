@@ -22,4 +22,3 @@ clilol list account sessions [flags]
 ### SEE ALSO
 
 * [clilol list account](clilol_list_account.md)	 - List information about your account
-

@@ -29,4 +29,3 @@ These commands list things.
 * [clilol list statuslog](clilol_list_statuslog.md)	 - List the statuslog
 * [clilol list themes](clilol_list_themes.md)	 - List profile themes
 * [clilol list weblogs](clilol_list_weblogs.md)	 - List all weblog entries
-
