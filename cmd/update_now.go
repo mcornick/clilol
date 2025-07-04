@@ -84,7 +84,7 @@ func updateNow(filename string, listed bool) (updateNowOutput, error) {
 	var listedB int
 	var content string
 	if filename != "" {
-		updateNowInput, err := os.ReadFile(filename)
+		updateNowInput, err := os.ReadFile(filename) // #nosec G304
 		if err != nil {
 			return result, err
 		}

@@ -84,7 +84,7 @@ func updateWeb(filename string) (updateWebOutput, error) {
 	var result updateWebOutput
 	var content string
 	if filename != "" {
-		updateWebInput, err := os.ReadFile(filename)
+		updateWebInput, err := os.ReadFile(filename) // #nosec G304
 		if err != nil {
 			return result, err
 		}

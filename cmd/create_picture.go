@@ -92,7 +92,7 @@ func init() {
 
 func createPicture(filename string) (createPictureOutput, error) {
 	var result createPictureOutput
-	content, err := os.ReadFile(filename)
+	content, err := os.ReadFile(filename) // #nosec G304
 	if err != nil {
 		return result, err
 	}

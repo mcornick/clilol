@@ -88,7 +88,7 @@ func createPaste(title, filename string, listed bool) (createPasteOutput, error)
 	var content string
 	var listedInt int
 	if filename != "" {
-		input, err := os.ReadFile(filename)
+		input, err := os.ReadFile(filename) // #nosec G304
 		if err != nil {
 			return result, err
 		}

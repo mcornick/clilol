@@ -53,7 +53,7 @@ to stdout.`,
 			}
 			if result.Request.Success {
 				if getWebFilename != "" {
-					err = os.WriteFile(getWebFilename, []byte(result.Response.Content), 0o644)
+					err = os.WriteFile(getWebFilename, []byte(result.Response.Content), 0o600)
 					if err != nil {
 						return err
 					}

@@ -41,7 +41,7 @@ to stdout.`,
 				return err
 			}
 			if getThemePreviewFilename != "" {
-				err = os.WriteFile(getThemePreviewFilename, []byte(result.Response.HTML), 0o644)
+				err = os.WriteFile(getThemePreviewFilename, []byte(result.Response.HTML), 0o600)
 				if err != nil {
 					return err
 				}

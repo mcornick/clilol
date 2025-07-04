@@ -51,7 +51,7 @@ to stdout.`,
 			}
 			if result.Request.Success {
 				if getNowFilename != "" {
-					err = os.WriteFile(getNowFilename, []byte(result.Response.Now.Content), 0o644)
+					err = os.WriteFile(getNowFilename, []byte(result.Response.Now.Content), 0o600)
 					if err != nil {
 						return err
 					}

@@ -69,7 +69,7 @@ to stdout.`,
 					err = os.WriteFile(
 						getWeblogConfigFilename,
 						[]byte(result.Response.Configuration.Raw),
-						0o644,
+						0o600,
 					)
 					if err != nil {
 						return err

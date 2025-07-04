@@ -1,4 +1,3 @@
-// SPDX-License-Identifier: MPL-2.0
 //
 // Copyright (c) 2023 Mark Cornick
 //
@@ -81,7 +80,7 @@ func loadConfig() error {
 		if err != nil {
 			return err
 		}
-		cmd := exec.Command(args[0], args[1:]...)
+		cmd := exec.Command(args[0], args[1:]...) // #nosec G204
 		stdout, err := cmd.StdoutPipe()
 		if err != nil {
 			return err

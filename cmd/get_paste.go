@@ -46,7 +46,7 @@ it defaults to your own address.`,
 			}
 			if result.Request.Success {
 				if getPasteFilename != "" {
-					err = os.WriteFile(getPasteFilename, []byte(result.Response.Paste.Content), 0o644)
+					err = os.WriteFile(getPasteFilename, []byte(result.Response.Paste.Content), 0o600)
 					if err != nil {
 						return err
 					}

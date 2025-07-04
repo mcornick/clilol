@@ -47,7 +47,7 @@ to stdout.`,
 					err = os.WriteFile(
 						getWeblogTemplateFilename,
 						[]byte(result.Response.Template),
-						0o644,
+						0o600,
 					)
 					if err != nil {
 						return err

@@ -51,7 +51,7 @@ func init() {
 
 func updateWebPFP(filename string) (updateWebPFPOutput, error) {
 	var result updateWebPFPOutput
-	content, err := os.ReadFile(filename)
+	content, err := os.ReadFile(filename) // #nosec G304
 	if err != nil {
 		return result, err
 	}

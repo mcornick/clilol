@@ -69,7 +69,7 @@ func updateWeblogTemplate(filename string) (updateWeblogTemplateOutput, error) {
 	var result updateWeblogTemplateOutput
 	var content string
 	if filename != "" {
-		input, err := os.ReadFile(filename)
+		input, err := os.ReadFile(filename) // #nosec G304
 		if err != nil {
 			return result, err
 		}
