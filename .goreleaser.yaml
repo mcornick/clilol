@@ -78,7 +78,8 @@ homebrew_casks:
     description: A CLI for omg.lol
     homepage: https://clilol.readthedocs.io/
     license: MPL-2.0
-    manpage: manpages/clilol.1
+    manpages:
+      - manpages/clilol.1
     repository:
       name: homebrew-tap
       owner: mcornick
