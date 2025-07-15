@@ -87,7 +87,7 @@ func getDNS(name string, recordType string, data string, priority int, ttl int) 
 	allDNS, _ := listDNS()
 	var foundDNS getDNSOutput
 	for _, record := range allDNS.Response.DNS {
-		if record.Type == recordType && record.Name == name && record.Data == data && record.Priority == priority && record.TTL == ttl {
+		if record.Type == strings.ToUpper(recordType) && record.Name == name && record.Data == data && record.Priority == priority && record.TTL == ttl {
 			foundDNS.Response.Message = allDNS.Response.Message
 			foundDNS.Response.DNS = record
 		}

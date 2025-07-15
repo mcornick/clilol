@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/spf13/cobra"
@@ -95,7 +96,7 @@ func init() {
 
 func updateDNS(id string, name string, recordType string, data string, priority int, ttl int) (updateDNSOutput, error) {
 	var result updateDNSOutput
-	dns := updateDNSInput{recordType, name, data, priority, ttl}
+	dns := updateDNSInput{strings.ToUpper(recordType), name, data, priority, ttl}
 	body, err := callAPIWithParams(
 		http.MethodPatch,
 		"/address/"+viper.GetString("address")+"/dns/"+id,

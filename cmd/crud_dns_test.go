@@ -11,6 +11,7 @@ package cmd
 import (
 	"os"
 	"strconv"
+	"strings"
 	"testing"
 
 	"golang.org/x/exp/slices"
@@ -55,6 +56,12 @@ func Test_crudDNS(t *testing.T) {
 		return
 	}
 
+	_, err = getDNS(expectedName, strings.ToLower(expectedType), expectedData, 0, 3600)
+	if err != nil {
+		t.Errorf("getDNS() error = %v", err)
+		return
+	}
+
 	// https://github.com/neatnik/omg.lol/issues/584
 
 	// updateResult, err := updateDNS(recordID, "localghost", expectedType, expectedData, 0, 3600)
@@ -80,5 +87,20 @@ func Test_crudDNS(t *testing.T) {
 	expectedMessage := "OK, your DNS record has been deleted."
 	if deleteResult.Response.Message != expectedMessage {
 		t.Errorf("deleteDNS() = %v , want %v", deleteResult.Response.Message, expectedMessage)
+	}
+
+	createResult, err = createDNS("lowercase-a", "a", "127.0.0.1", 0, 3600)
+	if err != nil {
+		t.Errorf("createDNS() error = %v", err)
+		return
+	}
+	if createResult.Response.ResponseReceived.Data.Type != "A" {
+		t.Errorf("createDNS() = %v, want %v", createResult.Response.ResponseReceived.Data.Type, "A")
+	}
+	recordID = strconv.Itoa(createResult.Response.ResponseReceived.Data.ID)
+	deleteResult, err = deleteDNS(recordID)
+	if err != nil {
+		t.Errorf("deleteDNS() error = %v", err)
+		return
 	}
 }

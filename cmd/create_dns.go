@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/spf13/cobra"
@@ -95,7 +96,7 @@ func init() {
 
 func createDNS(name string, recordType string, data string, priority int, ttl int) (createDNSOutput, error) {
 	var result createDNSOutput
-	dns := createDNSInput{recordType, name, data, priority, ttl}
+	dns := createDNSInput{strings.ToUpper(recordType), name, data, priority, ttl}
 	body, err := callAPIWithParams(
 		http.MethodPost,
 		"/address/"+viper.GetString("address")+"/dns",
