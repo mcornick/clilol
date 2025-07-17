@@ -17,7 +17,7 @@ aurs:
     homepage: https://clilol.readthedocs.io/
     license: MPL-2.0
     maintainers:
-      - Mark Cornick <mark@markcornick.com>
+      - M Cornick <mcornick@mcornick.com>
     name: clilol-bin
     package: |
       install -Dm755 "./clilol" "${pkgdir}/usr/bin/clilol"
@@ -91,7 +91,7 @@ kos:
     ko_data_creation_time: "{{ .CommitTimestamp }}"
     labels:
       io.artifacthub.package.license: MPL-2.0
-      io.artifacthub.package.maintainers: '[{"name":"Mark Cornick","email":"mark@markcornick.com"}]'
+      io.artifacthub.package.maintainers: '[{"name":"M Cornick","email":"mcornick@mcornick.com"}]'
       io.artifacthub.package.readme-url: https://github.com/mcornick/clilol/tree/main/item/README.md
       org.opencontainers.image.description: A CLI for omg.lol
       org.opencontainers.image.name: "{{ .ProjectName }}"
@@ -110,7 +110,7 @@ milestones:
   - close: true
 nfpms:
   - archlinux:
-      packager: Mark Cornick <mark@markcornick.com>
+      packager: M Cornick <mcornick@mcornick.com>
     contents:
       - dst: /usr/share/bash-completion/completions/clilol
         file_info:
@@ -140,8 +140,8 @@ nfpms:
       - rpm
     homepage: https://clilol.readthedocs.io/
     license: MPL-2.0
-    maintainer: Mark Cornick <mark@markcornick.com>
-    vendor: Mark Cornick
+    maintainer: M Cornick <mcornick@mcornick.com>
+    vendor: M Cornick
 nix:
   - description: A CLI for omg.lol
     extra_install: |

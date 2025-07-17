@@ -93,7 +93,7 @@ plugins:
   - search
 repo_name: mcornick/clilol
 repo_url: https://github.com/mcornick/clilol
-site_author: Mark Cornick
+site_author: M Cornick
 site_description: a CLI for omg.lol
 site_name: clilol, a CLI for omg.lol
 site_url: https://clilol.readthedocs.io/
