@@ -22,7 +22,7 @@ You can install clilol in any of these ways. (These are the only supported build
 
     !!! Note
 
-    clilol was previously distributed as a Homebrew _brew_, but is now distributed as a _cask_. If you previously installed the brew, remove it before installing the cask.
+        clilol was previously distributed as a Homebrew _brew_, but is now distributed as a _cask_. If you previously installed the brew, remove it before installing the cask.
 
 === "Scoop"
 
@@ -71,7 +71,7 @@ You can install clilol in any of these ways. (These are the only supported build
 
     !!! Note
 
-    The flake _theoretically_ supports nix-darwin, but this is untested. If you try it and it works, let me know!
+        The flake _theoretically_ supports nix-darwin, but this is untested. If you try it and it works, let me know!
 
 === "Container Images"
 
