@@ -73,8 +73,6 @@ homebrew_casks:
       bash: completions/clilol.bash
       zsh: completions/clilol.zsh
       fish: completions/clilol.fish
-    conflicts:
-      - formula: clilol
     description: A CLI for omg.lol
     homepage: https://clilol.readthedocs.io/
     license: MPL-2.0
